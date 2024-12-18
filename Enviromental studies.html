@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bcom frndz©4</title>
+    <style>
+        /* General styles */
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: start;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the start */
+            height: 100vh; /* Full height */
+            position: relative; /* Position relative for absolute positioning of cube */
+        }
+
+        h1 {
+            color: rgb(0, 0, 0);
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .logo {
+            display: block;
+            width: 100px; /* Adjust size */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Subject link styles */
+        .subject {
+            margin: 20px auto;
+            font-size: 20px; /* Fixed font size */
+        }
+
+        a {
+            display: block;
+            color: rgb(0, 17, 255);
+            text-decoration: none;
+            margin: 10px 0; /* Added vertical margin */
+        }
+
+        a:hover {
+            text-decoration: underline; 
+        }
+
+        /* Cube styles */
+        .cube-container {
+            position: absolute; /* Position absolute to place it at the bottom center */
+            bottom: 20px; /* Distance from the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust to center */
+            width: 100px;
+            height: 100px;
+            perspective: 800px; /* Perspective for the cube */
+        }
+
+        .cube {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotateCube 10s infinite linear; /* Rotate animation */
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.8), rgba(0, 0, 255, 0.8)); /* Gradient color */
+            border: 1px solid rgba(0, 0, 0, 0.5); /* Border for depth */
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 0, 255, 0.5); /* Shining effect */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Positioning the cube faces */
+        .cube-face.front  { transform: translateZ(50px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(50px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(50px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(50px); }
+        .cube-face.bottom  { transform: rotateX(-90deg) translateZ(50px); }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0) rotateY(0); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="wings.png">
+            <img src="wings.png" alt="Logo" class="logo">
+        </a>
+    </header>
+
+    <h1>Bcom frndz©4</h1>
+    <h2>Select a Subject to BREAK the exam</h2>
+    <h3>Enviromental studies</h3>
+    <div class="folders">
+        <a href="Enviromental studies-question-papers.html">Question Papers</a>
+        <a href="Enviromental studies-genuine-questions.html">Genuine Questions</a>
+    </div>
+
+    <footer>
+        <p>❤️ WEBSITE SHARE BE KAR DE YAR ❤️.</p>
+    </footer>
+
+    <div class="cube-container">
+        <div class="cube">
+            <div class="cube-face front">Bcom frndz©4</div>
+            <div class="cube-face back">Bcom frndz©4</div>
+            <div class="cube-face left">Bcom frndz©4</div>
+            <div class="cube-face right">Bcom frndz©4</div>
+            <div class="cube-face top">Bcom frndz©4</div>
+            <div class="cube-face bottom">Bcom frndz©4</div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: You can add any JavaScript functionality here if needed
+    </script>
+</body>
+</html>
