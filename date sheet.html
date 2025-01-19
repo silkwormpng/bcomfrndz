@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.com Frndz - Study Material</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="z.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo6-container">
+            <img src="logo6.png" alt="logo6" class="logo6">
+            <h1 class="site-title">B.com Frndz</h1>
+        </div>
+        <div class="menu-btn">☰</div>
+    </header>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="logo6.png" alt="Sidebar logo6" class="sidebar-logo6">
+            <h2>Study Materials</h2>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="previous-paper.html">🖤  Previous Papers</a></li>
+            <li><a href="pdf-solutions.html">📝  PDF Solutions</a></li>
+            <li><a href="important-question.html">⭐  Important Questions</a></li>
+            <li><a href="assignment.html">📚  Assignments</a></li>
+            <li><a href="https://drive.google.com/file/d/1CPR39xnbtoCNdTW_ukZQb6UKI3-QTJma/view?usp=drive_link">✍️  Class Notes</a></li>
+            <li><a href="sylabus.pdf">📜  Syllabus</a></li>
+            <li><a href="datesheet.pdf">📆  Date sheet</a></li>
+            <li><a href="https://collegeadmissions.gndu.ac.in/studentArea/GNDUEXAMRESULT.aspx">📈  Result</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <h2>Bcom frndz©</h2>
+            <p>all rights reserved under the laws of federal authorities.🫱🏻‍🫲🏾</p>
+        
+        </div>
+    </div>
+    <div class="hero-card">
+        <img src="4.png" alt="Hero Animation" class="hero-image">
+        <p></p>only website dedicated to</p>
+        <h2>B.com 4th semester</h2>
+     
+    </div>
+    <div class="grid-container">
+        <a href="a.pdf" class="grid-card">
+            <img src="date sheet.png" alt="Previous Paper" class="card-icon">
+            <span class="card-title">Date sheet </span>
+        </a>
+    </div>
+    <div class="overlay"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const closeBtn = document.querySelector('.close-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.overlay');
+
+            menuBtn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+
+            closeBtn.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            // Add smooth scroll animation for all cards
+            document.querySelectorAll('.grid-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        });
+
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+

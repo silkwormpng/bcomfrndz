@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.com Frndz - Study Material</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo6-container">
+            <img src="logo6.png" alt="logo6" class="logo6">
+            <h1 class="site-title">B.com Frndz</h1>
+        </div>
+        <div class="menu-btn">☰</div>
+    </header>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="logo6.png" alt="Sidebar logo6" class="sidebar-logo6">
+            <h2>Study Materials</h2>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="previous-paper.html">🖤  Previous Papers</a></li>
+            <li><a href="pdf-solutions.html">📝  PDF Solutions</a></li>
+            <li><a href="important-question.html">⭐  Important Questions</a></li>
+            <li><a href="assignment.html">📚  Assignments</a></li>
+            <li><a href="https://drive.google.com/file/d/1CPR39xnbtoCNdTW_ukZQb6UKI3-QTJma/view?usp=drive_link">✍️  Class Notes</a></li>
+            <li><a href="sylabus.pdf">📜  Syllabus</a></li>
+            <li><a href="datesheet.pdf">📆  Date sheet</a></li>
+            <li><a href="https://collegeadmissions.gndu.ac.in/studentArea/GNDUEXAMRESULT.aspx">📈  Result</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <h2>Bcom frndz©</h2>
+            <p>all rights reserved under the laws of federal authorities.🫱🏻‍🫲🏾</p>
+        
+        </div>
+    </div>
+
+    <div class="hero-card">
+        <img src="4.png" alt="Hero Animation" class="hero-image">
+        <p></p>only website dedicated to</p>
+        <h2>B.com 4th semester</h2>
+     
+    </div>
+
+    <div class="grid-container">
+        <a href="previous-paper.html" class="grid-card">
+            <img src="previous paper.png" alt="Previous Paper" class="card-icon">
+            <span class="card-title">Previous Paper</span>
+        </a>
+        
+        <a href="important-question.html" class="grid-card">
+            <img src="important question.png" alt="Important Question" class="card-icon">
+            <span class="card-title">Important Question</span>
+        </a>
+        
+        <a href="pdf-solutions.html" class="grid-card">
+            <img src="pdf solutions.png" alt="PDF solution" class="card-icon">
+            <span class="card-title">PDF solution</span>
+        </a>
+        
+        <a href="assignment.html" class="grid-card">
+            <img src="assignment.png" alt="Assignment" class="card-icon">
+            <span class="card-title">Assignment</span>
+        </a>
+
+        <a href="class notes.html" class="grid-card">
+            <img src="class notes.png" alt="Assignment" class="card-icon">
+            <span class="card-title">class notes</span>
+        </a>
+
+        <a href="sylabus.pdf" class="grid-card">
+            <img src="syllabus.png" alt="Syllabus" class="card-icon">
+            <span class="card-title">Syllabus</span>
+        </a>
+        
+        <a href="date sheet.html" class="grid-card">
+            <img src="date sheet.png" alt="Date Sheet" class="card-icon">
+            <span class="card-title">Date Sheet</span>
+        </a>
+        
+        <a href="https://collegeadmissions.gndu.ac.in/studentArea/GNDUEXAMRESULT.aspx" class="grid-card">
+            <img src="result.png" alt="Result" class="card-icon">
+            <span class="card-title">Result</span>
+        </a>
+    </div>
+
+    <div class="feature-card">
+        <img src="8.png" alt="Feature Image" class="feature-image">
+        <h2>Learn AI Predicted Questions.</h2>
+    </div>
+
+    <div class="feature-card">
+        <img src="10.png" alt="Feature Image" class="feature-image">
+        <h2>Exams made simple and Fun.</h2>
+    </div>
+
+    <div class="feature-card">
+        <img src="9.png" alt="Feature Image" class="feature-image">
+        <h2> Easy Wins - Top of the Game.</h2>
+    </div>
+
+    <div class="footer-card">
+        <img src="emoji.png" alt="Footer Image" class="footer-image">
+        <h2>Bcom frndz©</h2>
+        <p>BCom Frndz:I've got every freaking note, organized and ready, so you can master your exams effortlessly and stay ahead of the game.🫱🏻‍🫲🏾 </p>
+       
+    </div>
+
+    <div class="overlay"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const closeBtn = document.querySelector('.close-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.overlay');
+
+            menuBtn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+
+            closeBtn.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            // Add smooth scroll animation for all cards
+            document.querySelectorAll('.grid-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        });
+
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+

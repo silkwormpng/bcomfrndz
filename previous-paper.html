@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.com Frndz - Study Material</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="z.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo6-container">
+            <img src="logo6.png" alt="logo6" class="logo6">
+            <h1 class="site-title">B.com Frndz</h1>
+        </div>
+        <div class="menu-btn">☰</div>
+    </header>
+<!-- Sidebar Menu -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src="emoji.png" alt="Sidebar logo6" class="sidebar-logo6">
+        <h2>Study Materials</h2>
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="previous-paper.html">🖤  Previous Papers</a></li>
+        <li><a href="pdf-solutions.html">📝  PDF Solutions</a></li>
+        <li><a href="important-question.html">⭐  Important Questions</a></li>
+        <li><a href="assignment.html">📚  Assignments</a></li>
+        <li><a href="https://drive.google.com/file/d/1CPR39xnbtoCNdTW_ukZQb6UKI3-QTJma/view?usp=drive_link">✍️  Class Notes</a></li>
+        <li><a href="sylabus.pdf">📜  Syllabus</a></li>
+        <li><a href="datesheet.pdf">📆  Date sheet</a></li>
+        <li><a href="https://collegeadmissions.gndu.ac.in/studentArea/GNDUEXAMRESULT.aspx">📈  Result</a></li>
+    </ul>
+    <div class="sidebar-footer">
+        <h2>Bcom frndz©</h2>
+        <p>all rights reserved under the laws of federal authorities 🫱🏻‍🫲🏾</p>
+    
+    </div>
+</div>
+<div class="feature-card">
+    <img src="animation.png" alt="Feature Image" class="feature-image">
+    <h2>look back to get idea</h2>
+</div>
+
+
+<div class="grid-container">
+    <a href="english.html" class="grid-card">
+        <img src="english.png" alt="English compulsory" class="card-icon">
+        <span class="card-title">English compulsory</span>
+    </a>
+    
+    <a href="punjabi.html" class="grid-card">
+        <img src="punjabi.png" alt="Punjabi compulsory" class="card-icon">
+        <span class="card-title">Punjabi compulsory</span>
+    </a>
+    
+    <a href="cost accounting.html" class="grid-card">
+        <img src="account.png" alt="Cost accounting" class="card-icon">
+        <span class="card-title">Cost accounting</span>
+    </a>
+    
+    <a href="gst.html" class="grid-card">
+        <img src="GST.png" alt="Goods & service tax" class="card-icon">
+        <span class="card-title">Goods & service tax</span>
+    </a>
+    
+    <a href="indian economy.html" class="grid-card">
+        <img src="indian economy.png" alt="indian economy" class="card-icon">
+        <span class="card-title">indian economy</span>
+    </a>
+    
+    <a href="industrial laws.html" class="grid-card">
+        <img src="industrial laws.png" alt="industrial laws" class="card-icon">
+        <span class="card-title">industrial laws</span>
+    </a>
+    
+    <a href="Insurance & risk managment.html" class="grid-card">
+        <img src="Ins & risk managment.png" alt="Insurance & risk managment" class="card-icon">
+        <span class="card-title">Insurance & risk managment</span>
+    </a>
+
+    <a href="PPBI.html" class="grid-card">
+        <img src="PPBI.png" alt="Principal & practice of banking & insurance" class="card-icon">
+        <span class="card-title">Principal & practice of banking & insurance</span>
+    </a>
+
+    <a href="Entrepreneurship & small businesses.html" class="grid-card">
+        <img src="Ent & small bus.png" alt="Entrepreneurship & small businesses" class="card-icon">
+        <span class="card-title">Entrepreneurship & small businesses</span>
+    </a>
+
+    <a href="Enviromntal studies.html" class="grid-card">
+        <img src="enviromntal studies.png" alt="Enviromntal studies" class="card-icon">
+        <span class="card-title">Enviromntal studies</span>
+    </a>
+</div>
+
+<div class="feature-card">
+    <img src="8.png" alt="Feature Image" class="feature-image">
+    <h2>Understand .</h2>
+</div>
+<div class="feature-card">
+    <img src="9.png" alt="Feature Image" class="feature-image">
+    <h2>And WIN.</h2>
+</div>
+<div class="footer-card">
+    <img src="emoji.png" alt="Footer Image" class="footer-image">
+    <h2>Bcom frndz©</h2>
+    <p>BCom Frndz: contains [Old question papers].[AI analyzed exam Trend].[AI Predicted Question paper].[Solutions in PDFs].{Basically you only need bcom frndz to win the exam} </p>
+   
+</div>
+</div>
+
+<div class="overlay"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.menu-btn');
+        const closeBtn = document.querySelector('.close-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
+
+        menuBtn.addEventListener('click', function() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Add smooth scroll animation for all cards
+        document.querySelectorAll('.grid-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+    });
+
+    function toggleMenu() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.querySelector('.overlay');
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+</script>
+</body>
+</html>
+
