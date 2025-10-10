@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insurance - Study Material</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="2insurance.css">
+</head>
+<body>
+  <!-- Hero (replaces header) -->
+  <div class="hero-card">
+    <a class="hero-link" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram"></a>
+    <img src="owner pic.png" alt="Hero Animation" class="hero-image">
+
+    <h2>MANJEET Enterprises</h2>
+    <p>all rights reserved</p>
+    
+   
+  </div>
+
+  <!-- Subject detail card matching site theme -->
+  <div class="detail-card-wrap">
+    <div class="detail-card">
+      <img class="detail-media" src="img insurance.png" alt="Insurance services" />
+      <h4 class="detail-title">Insurance services</h4>
+      <div class="detail-pills">
+        <!-- Expandable: Previous Papers (top) -->
+        <div class="prev-group">
+          <div class="prev-toggle pill" role="button" tabindex="0" aria-expanded="false" aria-controls="prev-list">
+            <span class="chev">›</span>
+            <span>Previous Paper</span>
+          </div>
+          <div id="prev-list" class="prev-list" aria-hidden="true">
+            <a href="https://drive.google.com/file/d/1jwjX7Qd2GCeRcx9eWz5v1klZ5D-4Z-tC/view?usp=sharing">2021 Question Paper</a>
+            <a href="https://drive.google.com/file/d/1vTowncHyMCTBGKjFB-t8sYQ-SMZJvQtd/view?usp=sharing">2021a Question Paper</a>
+            <a href="https://drive.google.com/file/d/1OXS9J9VYKY2iPNtnGtrKcfKC4P2lOmiB/view?usp=sharing">2019 Question Paper</a>
+            <a href="https://drive.google.com/file/d/1ugV3P0lCxlPoQqn9tELhnJBEPbC8TCNN/view?usp=sharing">2018 Question Paper</a>
+            <a href="https://drive.google.com/file/d/1ZHQ3Yw4zTw5OMfPiH_KXZRhycUC5VnfI/view?usp=sharing">2017 Question Paper</a>
+            <a href="https://drive.google.com/file/d/1OudEjozyyYNKH-yp1huSkg74XsOyrBjw/view?usp=sharing">2016 Question Paper</a>
+          </div>
+        </div>
+
+        <!-- Other pills remain as before -->
+        <div class="unit-group">
+          <div class="unit-toggle pill" role="button" tabindex="0" aria-expanded="false" aria-controls="unit-list-insurance">
+            <span class="chev">›</span>
+            <span>Unit Test</span>
+          </div>
+          <div id="unit-list-insurance" class="unit-list" aria-hidden="true">
+            <a href="https://drive.google.com/file/d/1vxiudTOtgYtM8Cm3Zed2sPhaXTaAM3Lw/view?usp=sharing">Section A</a>
+            <a href="#">Section B</a>
+            <a href="#">Section C</a>
+            <a href="#">Section D</a>
+          </div>
+        </div>
+          <a class="pill" href="https://drive.google.com/file/d/1fNS23zjlwi46U9qsRj76UZZ3ZO9WR5-n/view?usp=sharing">Syllabus</a>
+        <a class="pill" href="#">Predicted question paper</a>
+        <a class="pill" href="#">Predicted question solution</a>
+      </div>
+    </div>
+  </div>
+
+   <!-- Feature card (from old.html) -->
+  <div class="feature-card">
+    <a class="feature-link" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram"></a>
+    <img src="featureimg.png" alt="Feature Image" class="feature-image">
+    <h2>Full Study one place.</h2>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Toggle helper for previous papers and unit test groups
+    (function(){
+      const toggles = document.querySelectorAll('.prev-toggle, .unit-toggle');
+      toggles.forEach(toggle => {
+        const targetId = toggle.getAttribute('aria-controls');
+        const list = document.getElementById(targetId);
+        if(!list) return;
+
+        function setExpanded(expanded){
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          list.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+          list.style.display = expanded ? 'flex' : 'none';
+        }
+
+        setExpanded(false);
+
+        toggle.addEventListener('click', ()=>{
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          setExpanded(!isOpen);
+        });
+
+        toggle.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            toggle.click();
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

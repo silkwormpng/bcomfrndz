@@ -1,0 +1,55 @@
+/* Simple stylesheet for insurance.html - extracted from the inline styles
+   Kept numeric and color values; simplified structure for easy editing. */
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  background:#f3f4f6;
+  padding:20px;
+  color:#0f172a;
+}
+
+/* Hero (replaces header) */
+.hero-card{background:rgba(255, 255, 255, 0.959);border-radius:12px;margin:0 0 1rem 0;padding:2rem;text-align:center;box-shadow:0 2px 10px rgba(79, 72, 218, 0.08)}
+.hero-image{width:40%;max-width:400px;margin:1rem auto;display:block ;border-radius:12px; box-shadow:0 2px 10px rgba(79, 72, 218, 0.08)}
+.hero-card h2{margin:.5rem 0;font-size:1.6rem}
+.hero-card p{color:#6b7280;margin:.30rem 0 ;font-size: 10px; text-align: center;}
+
+/* Detail card */
+.detail-card-wrap{display:flex;justify-content:center;margin:20px 0 36px}
+.detail-card{width:100%;max-width:760px;background:#fff;border-radius:14px;box-shadow:0 8px 24px rgb(224,224,224);border:1px solid rgba(15,23,42,0.04);overflow:hidden;padding:16px;display:flex;flex-direction:column;gap:12px}
+.detail-media{width:90%;background:#eef2ff;border-radius:10px;overflow:hidden;display:block;margin:0 auto}
+.detail-title{font-size:1.4rem;font-weight:700;color:#000;text-align:center;margin:0 8px 12px}
+
+.detail-pills{display:flex;flex-direction:column;gap:10px;padding:0 8px 12px}
+.pill{display:inline-block;background:rgba(79, 72, 218, 0.08);color:#4f46e5;padding:10px 14px;border-radius:10px;font-weight:600;text-decoration:none;text-align:left}
+
+/* Previous papers group (expandable) */
+.prev-group{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.prev-toggle{cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.prev-toggle .chev{font-weight:700;transition:transform .18s}
+.prev-toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.prev-list{display:none;margin-left:6px;margin-top:4px;display:flex;flex-direction:column;gap:8px}
+.prev-list a{background:rgba(0,0,0,0.03);color:#0b3b61;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+
+/* Feature */
+.feature-card{background:white;border-radius:12px;margin:1rem 0;padding:2rem;text-align:center;box-shadow:0 2px 10px rgb(223, 223, 223)}
+.feature-image{width:70%;margin:1rem auto;display:block ;border-radius:12px;}
+
+/* Unit test list (same style as prev-list) */
+.unit-list{display:none;margin-left:6px;margin-top:4px;display:flex;flex-direction:column;gap:8px}
+.unit-list a{background:rgba(0,0,0,0.03);color:#0b3b61;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+
+/* Overlay anchors for hero/feature cards */
+.hero-card, .feature-card { position: relative; }
+.hero-card > a.hero-link, .feature-card > a.feature-link { position: absolute; inset: 0; z-index: 1; display: block; text-decoration: none; color: inherit; }
+.hero-card * , .feature-card * { position: relative; z-index: 2; }
+
+/* End card (kept simple) */
+.end-card{width:100%;margin-top:20px;display:flex;justify-content:center}
+.end-inner{width:100%;max-width:980px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(15,23,42,0.04);box-shadow:0 10px 30px rgba(12,23,52,0.04)}
+.end-media{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.end-headline{font-size:26px;font-weight:800;color:#0b3b61;padding:18px 22px;margin:0}
+.end-sub{font-size:16px;color:#475569;padding:0 22px 20px 22px;margin:0}
+
+@media(min-width:900px){.detail-card{max-width:980px}.prev-list{max-width:720px}}
