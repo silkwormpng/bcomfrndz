@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BFJD2H2EH"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-8BFJD2H2EH');
+        </script>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Papers Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #3498db;
+            margin: 10px auto 0;
+        }
+
+        .paper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .paper-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .paper-card h3 {
+            color: #34495e;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+
+        .paper-card p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .paper-card a {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .paper-card a:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Blinking text */
+        .blinking-text {
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: none; /* Hidden by default */
+            max-width: 500px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+
+        .popup h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .popup p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .popup button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #c0392b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        /* Scroll-triggered popups */
+        .scroll-popup {
+            position: fixed;
+            bottom: -150px; /* Start off-screen */
+            right: 20px;
+            background-color: #27ae60;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: bottom 0.5s ease-out;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .scroll-popup.show {
+            bottom: 20px; /* Slide in */
+        }
+
+        .scroll-popup p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .scroll-popup .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2em;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Previous Papers Hub</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#papers">Papers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2>Welcome to our <span class="blinking-text">Previous Papers</span> Archive!</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #555;">
+                Your ultimate resource for past examination papers from various courses and universities.
+                Prepare smarter, not just harder, by practicing with real questions. We constantly update our collection
+                to provide you with the most relevant and up-to-date papers.
+            </p>
+            <p style="text-align: center; margin-top: 20px;">
+                <button onclick="showMainPopup()" style="background-color: #3498db; color: white; padding: 12px 25px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;">
+                    Learn More
+                </button>
+            </p>
+        </section>
+
+        <section id="papers" class="section">
+            <h2>Explore Our <span class="blinking-text">Paper Categories</span></h2>
+            <div class="paper-grid">
+                <div class="paper-card">
+                    <h3>Engineering Papers</h3>
+                    <p>Access previous papers for all major engineering disciplines. Includes Civil, Mechanical, Electrical, Computer Science, and more.</p>
+                    <a href="#" onclick="showCategoryPopup('Engineering')">View Papers</a>
+                </div>
+                <div class="paper-card">
+                    <h3>Medical Papers</h3>
+                    <p>A comprehensive collection of past papers for medical entrance exams and university courses. Covers MBBS, BDS, and other allied health sciences.</p>
+                    <a href="#" onclick="showCategoryPopup('Medical')">View Papers</a>
+                </div>
+                <div class="paper-card">
+                    <h3>Commerce Papers</h3>
+                    <p>Find previous papers for B.Com, M.Com, CA, CS, and other commerce-related examinations. Enhance your accounting and business knowledge.</p>
+                    <a href="#" onclick="showCategoryPopup('Commerce')">View Papers</a>
+                </div>
+                <div class="paper-card">
+                    <h3>Arts & Humanities Papers</h3>
+                    <p>Explore a wide range of papers for Arts and Humanities subjects, including History, Literature, Sociology, Political Science, etc.</p>
+                    <a href="#" onclick="showCategoryPopup('Arts & Humanities')">View Papers</a>
+                </div>
+                <div class="paper-card">
+                    <h3>Science Papers</h3>
+                    <p>Previous papers for B.Sc, M.Sc courses across Physics, Chemistry, Biology, Mathematics, and environmental sciences.</p>
+                    <a href="#" onclick="showCategoryPopup('Science')">View Papers</a>
+                </div>
+                <div class="paper-card">
+                    <h3>Management Papers</h3>
+                    <p>Collection of papers for MBA, BBA, and other management entrance exams and degree courses.</p>
+                    <a href="#" onclick="showCategoryPopup('Management')">View Papers</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Get in Touch</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #555;">
+                Have questions or need assistance? Feel free to reach out to us.
+            </p>
+            <form style="max-width: 600px; margin: 30px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                <div style="margin-bottom: 15px;">
+                    <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Name:</label>
+                    <input type="text" id="name" name="name" required style="width: calc(100% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Email:</label>
+                    <input type="email" id="email" name="email" required style="width: calc(100% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="message" style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Message:</label>
+                    <textarea id="message" name="message" rows="5" required style="width: calc(100% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" style="background-color: #27ae60; color: white; padding: 12px 25px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; width: 100%; transition: background-color 0.3s ease;">
+                    Send Message
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Previous Papers Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Main Popup -->
+    <div class="popup-overlay" id="mainPopupOverlay"></div>
+    <div class="popup" id="mainPopup">
+        <h3>Welcome to Our Archive!</h3>
+        <p>This is a simulated platform for previous year's question papers. Here you can find a vast collection categorized by subject and year.</p>
+        <p>Start exploring now and boost your exam preparation!</p>
+        <button onclick="hideMainPopup()">Got It!</button>
+    </div>
+
+    <!-- Category Popup -->
+    <div class="popup-overlay" id="categoryPopupOverlay"></div>
+    <div class="popup" id="categoryPopup">
+        <h3 id="categoryPopupTitle"></h3>
+        <p>This section would contain a list of available papers for the selected category.</p>
+        <p>Example: 2022, 2021, 2020 question papers for relevant subjects. (Simulated Content)</p>
+        <button onclick="hideCategoryPopup()">Close</button>
+    </div>
+
+    <!-- Scroll-triggered Popup -->
+    <div class="scroll-popup" id="scrollPopup">
+        <button class="close-btn" onclick="hideScrollPopup()">&times;</button>
+        <p>Don't forget to check out our newest additions!</p>
+        <a href="#papers" style="color: #fff; text-decoration: underline; font-size: 0.9em;">Explore Now</a>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Main Popup Logic
+        function showMainPopup() {
+            document.getElementById('mainPopupOverlay').style.display = 'block';
+            document.getElementById('mainPopup').style.display = 'block';
+        }
+
+        function hideMainPopup() {
+            document.getElementById('mainPopupOverlay').style.display = 'none';
+            document.getElementById('mainPopup').style.display = 'none';
+        }
+
+        // Category Popup Logic
+        function showCategoryPopup(categoryName) {
+            document.getElementById('categoryPopupTitle').innerText = `${categoryName} Papers`;
+            document.getElementById('categoryPopupOverlay').style.display = 'block';
+            document.getElementById('categoryPopup').style.display = 'block';
+        }
+
+        function hideCategoryPopup() {
+            document.getElementById('categoryPopupOverlay').style.display = 'none';
+            document.getElementById('categoryPopup').style.display = 'none';
+        }
+
+        // Scroll-triggered Popup Logic
+        let scrollPopupShown = false;
+        function showScrollPopup() {
+            if (!scrollPopupShown) {
+                document.getElementById('scrollPopup').classList.add('show');
+                scrollPopupShown = true;
+                setTimeout(hideScrollPopup, 8000); // Auto-hide after 8 seconds
+            }
+        }
+
+        function hideScrollPopup() {
+            document.getElementById('scrollPopup').classList.remove('show');
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollThreshold = 300; // Show popup after scrolling 300px
+            if (window.scrollY > scrollThreshold && !scrollPopupShown) {
+                showScrollPopup();
+            }
+        });
+
+        // Initial popup on page load (optional)
+        window.addEventListener('load', () => {
+            // You can uncomment the line below to show the main popup immediately on load
+            // showMainPopup();
+        });
+
+        // Simulate blinking effect by adding/removing class
+        setInterval(() => {
+            const blinkingElements = document.querySelectorAll('.blinking-text');
+            blinkingElements.forEach(el => {
+                el.classList.toggle('blink-animation'); // Toggles a class that defines blink
+            });
+        }, 1500); // Every 1.5 seconds
+
+        // Add a class for the actual blink animation in CSS if you prefer
+        // For simplicity, the blink is directly in the CSS @keyframes
+
+    </script>
+</body>
+</html>

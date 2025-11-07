@@ -1,0 +1,63 @@
+/* 1. Define the custom property for the angle */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card {
+  position: relative;
+  /* Inner background color to cover the gradient in the middle */
+  background: #303030;
+  color: #929292;
+  padding: 20px;
+  border-radius: 8px; /* Optional: for rounded corners */
+  overflow: hidden; /* Ensures the gradient stays within the bounds */
+}
+
+/* 2. Create the animated border using a pseudo-element */
+.card::before {
+  content: "";
+  position: absolute;
+  /* Inset defines the "thickness" of the border */
+  inset: -2px;
+  border-radius: inherit;
+  background-image: conic-gradient(
+    from var(--angle),
+    #ff7e00,
+    /* Color stops */ #ffffff,
+    #5cff00,
+    #ffffff,
+    #ff7e00
+  );
+  animation: spin 3s linear infinite; /* Apply the animation */
+  /* Move the pseudo-element behind the content */
+  z-index: -1;
+}
+
+/* Optional: Add a glow effect using another blurred pseudo-element */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background-image: conic-gradient(
+    from var(--angle),
+    #ff7e00,
+    #ffffff,
+    #5cff00,
+    #ffffff,
+    #ff7e00
+  );
+  animation: spin 3s linear infinite;
+  z-index: -2;
+  filter: blur(14px); /* Apply blur filter for glow */
+  opacity: 0.8;
+}
+
+/* 3. Define the keyframe animation */
+@keyframes spin {
+  to {
+    --angle: 360deg; /* Animate the custom angle property */
+  }
+}

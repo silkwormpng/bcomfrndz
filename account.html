@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BFJD2H2EH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8BFJD2H2EH');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account - Study Material</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="2insurance.css">
+</head>
+<body>
+  <!-- Dedication card -->
+  <section class="dedication-card card">
+    <div class="dedication-content">Dedicated to B.Com 5th Sem</div>
+  </section>
+
+  <!-- Owner/Feature Card -->
+  <section class="feature-card card owner-card">
+    <a class="card-link" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Open Manjeet's Instagram"></a>
+    <img src="owner pic.png" alt="Manjeet, owner of Manjeet Enterprises" class="feature-image">
+    <h2>Manjeet Enterprises</h2>
+    <p>Your one-stop destination for commerce study materials.</p>
+    <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Follow @manxjeetagain">Follow @manxjeetagain</a>
+  </section>
+
+  <!-- Subject detail card matching site theme -->
+  <div class="detail-card-wrap">
+    <div class="detail-card">
+      <img class="detail-media" src="img account.png" alt="Managment Account" />
+      <h4 class="detail-title">Managment Account</h4>
+      <div class="detail-pills">
+        
+
+        <!-- Ordered pills: Previous Paper, Unit Test, Syllabus, Predicted question paper, Predicted question solution -->
+        <div class="prev-group">
+          <div class="prev-toggle pill" role="button" tabindex="0" aria-expanded="false" aria-controls="prev-list">
+            <span class="chev">›</span>
+            <span>Previous Paper</span>
+          </div>
+          <div id="prev-list" class="prev-list" aria-hidden="true">
+            <a href="https://drive.google.com/file/d/1M9n8ar1gLcah74ZQ5xdcM7VpggbBhkfZ/view?usp=sharing">2021 Question Paper</a>
+            <a href="https://drive.google.com/file/d/1ZEMcAohcdbL-fgEwYsn-ygYArWkKezNx/view?usp=sharing">2021a Question Paper</a>
+            <a href="https://drive.google.com/file/d/1-podGa-xyJVgnzf7qF1EgcWfpCSZtrvY/view?usp=sharing">2019 Question Paper</a>
+            <a href="https://drive.google.com/file/d/1ZEMcAohcdbL-fgEwYsn-ygYArWkKezNx/view?usp=sharing">2019a Question Paper</a>
+            <a href="https://drive.google.com/file/d/128bI10CsS4akbyz9u8oLGy6Somx4ucxC/view?usp=sharing">2018 Question Paper</a>
+            <a href="https://drive.google.com/file/d/15VrFJj2gKLBPpS5pdNepPWOXAwEKGt_w/view?usp=sharing">2017 Question Paper</a>
+          </div>
+        </div>
+
+        <div class="unit-group">
+          <div class="unit-toggle pill" role="button" tabindex="0" aria-expanded="false" aria-controls="unit-list-account">
+            <span class="chev">›</span>
+            <span>Unit Test</span>
+          </div>
+          <div id="unit-list-account" class="unit-list" aria-hidden="true">
+            <a href="error.png">Section A</a>
+            <a href="account B.pdf">Section B</a>
+            <a href="error.png">Section C</a>
+            <a href="error.png">Section D</a>
+          </div>
+        </div>
+
+        <a class="pill" href="https://drive.google.com/file/d/11Wu28AbIMVFji7RVN3JQdxdCNhXITVGt/view?usp=sharing">Syllabus</a>
+        <a class="pill" href="predicted account.html">Predicted Question paper</a>
+        <a class="pill" href="PDS account.html">Predicted Question solution</a>
+      </div>
+    </div>
+  </div>
+
+   <!-- Feature card (from old.html) -->
+  <div class="feature-card">
+      <a class="feature-link" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram"></a>
+    <img src="featureimg.png" alt="Feature Image" class="feature-image">
+    <h2>Full Study one place.</h2>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Map a single elevation value (0..4) to header shadow presets (optional helper)
+    (function(){
+      const presets = [
+        'none',
+        '0 -3px 8px rgba(12,23,52,0.03), 0 6px 12px rgba(12,23,52,0.04)',
+        '0 -6px 18px rgba(12,23,52,0.04), 0 10px 30px rgba(12,23,52,0.08)',
+        '0 -10px 28px rgba(12,23,52,0.06), 0 18px 48px rgba(12,23,52,0.10)',
+        '0 -14px 40px rgba(12,23,52,0.08), 0 26px 70px rgba(12,23,52,0.14)'
+      ];
+      function applyHeaderShadow(){
+        const root = document.documentElement;
+        const style = getComputedStyle(root);
+        let elevation = parseInt(style.getPropertyValue('--header-elevation')) || 0;
+        if(elevation < 0) elevation = 0;
+        if(elevation > 4) elevation = 4;
+        root.style.setProperty('--header-shadow', presets[elevation]);
+      }
+      applyHeaderShadow();
+      window.applyHeaderShadow = applyHeaderShadow;
+    })();
+  </script>
+
+  <script>
+    // Toggle helper for previous papers and unit test groups
+    (function(){
+      const toggles = document.querySelectorAll('.prev-toggle, .unit-toggle');
+      toggles.forEach(toggle => {
+        const targetId = toggle.getAttribute('aria-controls');
+        const list = document.getElementById(targetId);
+        if(!list) return;
+
+        function setExpanded(expanded){
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          list.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+          list.style.display = expanded ? 'flex' : 'none';
+        }
+
+        setExpanded(false);
+
+        toggle.addEventListener('click', ()=>{
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          setExpanded(!isOpen);
+        });
+
+        toggle.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            toggle.click();
+          }
+        });
+      });
+    })();
+  </script>
+ <script src="track.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* Styles for answer sections to match questions */
+.answer-section {
+    background-color: #f9f9f9;
+    padding: 18px 20px; /* slightly larger padding to match question spacing */
+    margin: 10px 0;
+    border-radius: 8px;
+    width: 100%; /* fill the available content width so it aligns with questions */
+    box-sizing: border-box;
+}
+
+/* If answer sections are placed as siblings inside the ol, browsers will indent them
+   because of the list padding. Shift them left slightly so they align visually with
+   the question text (reduces the 'tick' gutter spacing). Adjust value if needed. */
+.question-list > ol > .answer-section,
+.question-list ol > li + .answer-section,
+.question-list ol > li > .answer-section {
+    margin-left: -20px !important; /* stronger pull to compensate for list marker gutter */
+    width: calc(100% + 20px) !important;
+}
+
+@media (max-width: 480px) {
+    .question-list > ol > .answer-section,
+    .question-list ol > li + .answer-section,
+    .question-list ol > li > .answer-section {
+        margin-left: -10px !important; /* less pull on small screens */
+        width: calc(100% + 10px) !important;
+    }
+}
+
+.answer-section h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.answer-section p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.answer-section ul {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.answer-section li {
+    margin-bottom: 5px;
+}
+
+/* Make question list items bold so they stand out like real questions */
+.question-list li {
+    font-weight: 700;
+    color: #111;
+}

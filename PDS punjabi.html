@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BFJD2H2EH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8BFJD2H2EH');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predicted - Punjabi</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Reuse the page stylesheet from PDS direct tax for consistent look -->
+    <link rel="stylesheet" href="pds-direct-tax.css" />
+    <script>
+      function toggleNav() {
+        const navContent = document.getElementById("navContent");
+        navContent.classList.toggle("active");
+      }
+
+      function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.classList.toggle("active");
+
+        // Update arrow in section header
+        const header = event.currentTarget;
+        if (section.classList.contains("active")) {
+          header.innerHTML = header.innerHTML.replace("▼", "▲");
+        } else {
+          header.innerHTML = header.innerHTML.replace("▲", "▼");
+        }
+      }
+
+      // Add smooth scrolling to anchor links
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".question-nav a").forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+    </script>
+    <style>
+      /* Normalize any large heading styles inside answer sections so they match other answers */
+      .answer-section h2,
+      .answer-section h3,
+      .answer-section h4 {
+        background: transparent !important;
+        color: inherit !important;
+        padding: 0 !important;
+        margin: 0 0 0.5rem 0 !important;
+        border: none !important;
+        font-size: inherit !important;
+        font-weight: 600 !important;
+      }
+      /* Make only question cards dark: black background with white text */
+      /* Use a CSS counter to render numbers reliably even when markup has siblings between <li> tags */
+      .question-list > ol {
+        counter-reset: q-counter;
+        list-style: none !important; /* hide default markers to use CSS counters */
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+      }
+      .question-list > ol > li {
+        counter-increment: q-counter;
+        background: #000 !important;
+        color: #fff !important;
+        padding: 0.5rem 1rem 0.5rem 3rem !important; /* leave space for the synthetic marker */
+        border-radius: 6px !important;
+        margin: 0.5rem 0 !important;
+        position: relative !important;
+      }
+      /* Synthetic numeric marker so numbering appears even if HTML markup is unconventional */
+      .question-list > ol > li::before {
+        content: counter(q-counter) ".";
+        position: absolute !important;
+        left: 0.8rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+      }
+      /* Ensure links inside question items remain readable and don't affect answer text */
+      .question-list > ol > li a {
+        color: #fff !important;
+      }
+      /* Important note card: make background black and text white */
+      .important-note {
+        background: #e7e7e7 !important;
+        color: #000000 !important;
+        padding: 0.75rem 1rem !important;
+        border-radius: 8px !important;
+        box-shadow: 0 12px 30px rgb(189, 189, 189) !important;
+      }
+
+      /* Question cards: add deeper shadow to stand out */
+      .question-list > ol > li {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55) !important;
+      }
+
+      /* Owner / feature card - remove heavy shadow for the final owner card per user request */
+      .feature-card.owner-card {
+        box-shadow: none !important;
+        border-radius: 10px !important;
+      }
+
+      /* Visit / contact clickable cells (treat as contact cards) - remove shadow for contact links */
+      .visit-row .visit-cell {
+        box-shadow: none !important;
+        border-radius: 8px !important;
+        padding: 0.6rem !important;
+        background: #fff !important;
+      }
+    </style>
+  </head>
+  <body class="pds-page">
+    <!-- Header Card -->
+    <header class="header-card card">
+      <img src="9.png" alt="Abstract background image" />
+    </header>
+
+    <!-- Dedication card -->
+    <section class="dedication-card card">
+      <div class="dedication-content">Punjabi</div>
+    </section>
+
+    <div class="section">
+      <h3>Small Message from manxjeetagain</h3>
+      <p>
+        These predicted questions are curated through in-depth trend analysis of
+        previous exam papers and the latest syllabus patterns, powered by
+        Google’s advanced Turbo 2.5 system. With a 92% accuracy rate, they’re
+        highly likely to appear in your upcoming Nov/Dec exams.
+      </p>
+    </div>
+
+    <div class="important-note">
+      Note – exam date: TBD. Paste the actual date and questions into this file
+      when ready.
+    </div>
+
+    <!-- SECTION A -->
+    <!-- PDS navigation: Section A/B/C/D -->
+    <nav class="pds-nav" aria-label="PDS sections navigation">
+      <div class="pds-nav-inner">
+        <button class="pds-nav-btn" data-target="sectionA">Section A</button>
+        <button class="pds-nav-btn" data-target="sectionB">Section B</button>
+        <button class="pds-nav-btn" data-target="sectionC">Section C</button>
+        <button class="pds-nav-btn" data-target="sectionD">Section D</button>
+      </div>
+    </nav>
+    <style>
+      .pds-nav{max-width:980px;margin:14px auto;padding:8px 12px;display:flex;justify-content:center}
+      .pds-nav-inner{display:flex;gap:10px;flex-wrap:wrap}
+      .pds-nav-btn{background:#fff;border:1px solid #e6eef8;padding:8px 12px;border-radius:8px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.04);font-weight:600}
+      .pds-nav-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+      @media (max-width:600px){.pds-nav-inner{flex-direction:column;align-items:stretch}.pds-nav-btn{width:100%}}
+    </style>
+    <script>
+    (function(){
+      function onNavClick(ev){
+        var target = ev.currentTarget.dataset.target;
+        var el = document.getElementById(target);
+        if(!el) return;
+        var isHidden = window.getComputedStyle(el).display === 'none';
+        if(isHidden && target !== 'sectionA'){
+          var form = document.getElementById('lockedForm');
+          if(form){ form.scrollIntoView({behavior:'smooth'}); var inpt=document.getElementById('userName'); if(inpt) inpt.focus(); }
+        } else {
+          el.scrollIntoView({behavior:'smooth'});
+        }
+      }
+      document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('.pds-nav-btn').forEach(function(b){ b.addEventListener('click', onNavClick); });
+      });
+    })();
+    </script>
+   <div class="section" id="sectionA">
+    <h3>SECTION A</h3>
+      <div class="question-list">
+        <ol>
+          <!-- Paste Punjabi questions here -->
+        </ol>
+      </div>
+    </div>
+
+    <!-- Card asking for Name + Roll -->
+    <div id="lockedForm" style="max-width:400px; margin:20px auto; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.1); text-align:center; background:#f9f9f9;">
+      <h3 style="color:#0074D9;">Enter your details to unlock other sections</h3>
+      <input type="text" id="userName" placeholder="Enter your name" required
+        style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+      <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (start with 500)" required
+        style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+      <button onclick="unlockAccess()"
+    style="background-color:#0074D9; color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;">
+   Unlock Access
+      </button>
+    </div>
+
+    <!-- Owner/Feature Card -->
+    <section class="feature-card card owner-card">
+      <a
+        class="card-link"
+        href="https://www.instagram.com/manxjeetagain"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Manjeet's Instagram"
+      ></a>
+      <img
+        src="owner pic.png"
+        alt="Manjeet, owner of Manjeet Enterprises"
+        class="feature-image"
+      />
+      <h2>Manjeet Enterprises</h2>
+      <p>Your one-stop destination for commerce study materials.</p>
+      <a
+        class="follow-pill"
+        href="https://www.instagram.com/manxjeetagain"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow @manxjeetagain"
+        >Follow @manxjeetagain</a
+      >
+    </section>
+
+    <!-- Visit/contact block removed -->
+  <style>
+    /* keep a single small rule to hide locked content by default; unlocking is handled by track.js */
+    .locked { display: none; }
+  </style>
+  <script src="track.js"></script>
+  </body>
+  </html>
