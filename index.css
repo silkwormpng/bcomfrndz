@@ -262,7 +262,7 @@ a {
   align-items: center;
   gap: var(--spacing-unit);
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 
 .subject-image {
@@ -452,3 +452,4 @@ a {
   margin: 0.5rem auto;
   font-weight: 600;
 }
+
