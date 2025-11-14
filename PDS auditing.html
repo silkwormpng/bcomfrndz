@@ -19,6 +19,125 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/c ss2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Reuse the page stylesheet from PDS direct tax for consistent look -->
+    <link rel="stylesheet" href="pds-direct-tax.css<style>
+      /* Floating toggle */
+      #pds-section-toggle {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background: linear-gradient(180deg,#2b73e6,#175fd6);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        cursor: pointer;
+        z-index: 9999;
+        font-weight:700;
+      }
+    
+      #pds-section-panel {
+        position: fixed;
+        right: 18px;
+        bottom: 78px; /* sits above toggle */
+        width: 160px;
+        background: rgba(0,0,0,0.85);
+        color: #fff;
+        border-radius: 10px;
+        padding: 8px;
+        box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+        transform-origin: bottom right;
+        transform: scale(0);
+        transition: transform 180ms ease-out;
+        z-index: 9999;
+        font-size: 14px;
+      }
+    
+      #pds-section-panel.open { transform: scale(1); }
+      #pds-section-panel a { color: #fff; display:block; padding:6px 8px; border-radius:6px; text-decoration:none; }
+      #pds-section-panel a:hover { background: rgba(255,255,255,0.06); }
+    
+      /* Small label to reduce visual clutter on mobile */
+      @media (max-width:520px) {
+        #pds-section-panel { right: 12px; left: 12px; width: auto; bottom: 70px; }
+        #pds-section-toggle { right: 12px; }
+      }
+    </style>
+   
+    </div>
+    <button id="pds-section-toggle" aria-expanded="false" title="Sections"></button>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      try {
+        // Ensure we don't duplicate the controls if script runs twice
+        if (window._pdsSectionNavInitialized) return;
+        window._pdsSectionNavInitialized = true;
+    
+        // The original script had a section to assign IDs like 'sec-a' to '.answer-section' elements.
+        // However, the floating navigation links (in #pds-section-panel) directly target
+        // the main section IDs (e.g., 'sectionA', 'sectionB').
+        // For this feature to work, ensure your main content sections have these IDs.
+        // Example: <div class="section" id="sectionA">...</div>
+    
+        var panel = document.getElementById('pds-section-panel');
+        var toggle = document.getElementById('pds-section-toggle');
+    
+        // Update links: hide links whose target id does not exist
+        panel.querySelectorAll('a').forEach(function(a){
+          var targetId = a.getAttribute('data-target'); // e.g., "sectionA"
+          if (!document.getElementById(targetId)) {
+            // remove link if no such target section exists in the current file
+            a.parentNode && a.parentNode.removeChild(a);
+          } else {
+            // smooth scroll handler to avoid default jump
+            a.addEventListener('click', function(e){
+              e.preventDefault();
+              var idToScroll = this.getAttribute('data-target');
+              var targetElement = document.getElementById(idToScroll);
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // close panel on mobile after click
+                panel.classList.remove('open');
+                toggle.setAttribute('aria-expanded','false');
+              }
+            });
+          }
+        });
+    
+        // Toggle behaviour
+        toggle.addEventListener('click', function(){
+          var open = panel.classList.toggle('open');
+          panel.setAttribute('aria-hidden', String(!open));
+          toggle.setAttribute('aria-expanded', String(!!open));
+        });
+    
+        // Accessibility: close panel when clicking outside
+        document.addEventListener('click', function(e){
+          if (!panel.classList.contains('open')) return;
+          if (e.target === toggle || panel.contains(e.target)) return;
+          panel.classList.remove('open');
+          panel.setAttribute('aria-hidden','true');
+          toggle.setAttribute('aria-expanded','false');
+        });
+    
+        // Keyboard: ESC closes
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Escape') {
+            panel.classList.remove('open');
+            panel.setAttribute('aria-hidden','true');
+            toggle.setAttribute('aria-expanded','false');
+          }
+        });
+    
+      } catch (err) {
+        console.error('PDS section nav init failed:', err);
+      }
+    });
+    </script>
+    ">
     <link rel="stylesheet" href="pds-direct-tax.css">
      <script>
         function toggleNav() {
@@ -148,7 +267,55 @@
       }
     </style>
 </head>
-<body class="pds-page" onload="checkAccess()">
+<body class="pds-page" onload="checkAccess()"> 
+    <style>
+      /* Floating toggle */
+      #pds-section-toggle {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background: linear-gradient(180deg,#2b73e6,#175fd6);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        cursor: pointer;
+        z-index: 9999;
+        font-weight:700;
+      }
+    
+      #pds-section-panel {
+        position: fixed;
+        right: 18px;
+        bottom: 78px; /* sits above toggle */
+        width: 160px;
+        background: rgba(0,0,0,0.85);
+        color: #fff;
+        border-radius: 10px;
+        padding: 8px;
+        box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+        transform-origin: bottom right;
+        transform: scale(0);
+        transition: transform 180ms ease-out;
+        z-index: 9999;
+        font-size: 14px;
+      }
+    
+      #pds-section-panel.open { transform: scale(1); }
+      #pds-section-panel a { color: #fff; display:block; padding:6px 8px; border-radius:6px; text-decoration:none; }
+      #pds-section-panel a:hover { background: rgba(255,255,255,0.06); }
+    
+      /* Small label to reduce visual clutter on mobile */
+      @media (max-width:520px) {
+        #pds-section-panel { right: 12px; left: 12px; width: auto; bottom: 70px; }
+        #pds-section-toggle { right: 12px; }
+      }
+    </style>
+    
      
     <style>
             /* Ensure pasted answer blocks are visible even if they contain inline display:none */
@@ -5858,6 +6025,60 @@ Date: 30th May, 2025</p>
     <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Follow @manxjeetagain">Follow @manxjeetagain</a>
   </section>
 
-     
+<!-- Floating navigation button (bottom-right) -->
+<button id="pdsFloatingNavBtn" class="pds-fab" aria-label="Open sections navigation" title="Open sections navigation">▲</button>
+<style>
+    /* Floating action button */
+    .pds-fab{
+        position:fixed;
+        right:18px;
+        bottom:18px;
+        width:56px;
+        height:56px;
+        border-radius:50%;
+        background:#0074D9;
+        color:#fff;
+        border:none;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:22px;
+        cursor:pointer;
+        box-shadow:0 8px 24px rgba(0,0,0,0.25);
+        z-index:9999;
+        transition:transform .12s ease,box-shadow .12s ease;
+    }
+    .pds-fab:active{ transform:translateY(2px) scale(.98); }
+    .pds-fab:focus{ outline:2px solid rgba(255,255,255,0.25); outline-offset:2px; }
+
+    /* temporary highlight when nav is focused */
+    .pds-nav.pds-nav-highlight{ box-shadow:0 8px 28px rgba(0,116,217,0.18); transition:box-shadow .28s ease; }
+</style>
+
+<script>
+    (function(){
+        function onFabClick(){
+            var nav = document.querySelector('.pds-nav');
+            if(!nav) return;
+            try {
+                // Scroll the top navigation into view
+                nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // focus first interactive element in nav for keyboard users
+                var firstBtn = nav.querySelector('.pds-nav-btn, a, button');
+                if(firstBtn){ try{ firstBtn.focus({preventScroll:true}); }catch(e){ firstBtn.focus(); } }
+                // briefly highlight the nav so user notices it
+                nav.classList.add('pds-nav-highlight');
+                window.setTimeout(function(){ nav.classList.remove('pds-nav-highlight'); }, 900);
+            } catch (err) {
+                console && console.error && console.error('pds-fab error', err);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function(){
+            var fab = document.getElementById('pdsFloatingNavBtn');
+            if(fab) fab.addEventListener('click', onFabClick);
+        });
+    })();
+</script>
+
 </body>
 </html>
