@@ -30,14 +30,14 @@ function unlockAccess() {
   const roll = document.getElementById('rollNumber').value.trim();
 
   // Validation: name must not be empty, roll must be 5 digits and start with 500
-  const rollPattern = /^500\d{2}$/;
+  const rollPattern = /^550\d{2}$/;
 
   if (!name) {
     alert("Please enter your name.");
     return;
   }
   if (!rollPattern.test(roll)) {
-    alert("Roll number must be 5 digits and start with 500 (e.g., 50012).");
+    alert("Roll number must be 5 digits and start with 550 (e.g., 55012).");
     return;
   }
 
@@ -115,4 +115,5 @@ window.addEventListener("beforeunload", () => {
 // Auto-run check on load
 // -------------------------------
 window.addEventListener("load", checkAccess);
+
 
