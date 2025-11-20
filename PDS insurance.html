@@ -1385,8 +1385,27 @@
         <h6>Conclusion</h6>
         <p>Publicity plays an <strong>indispensable role</strong> in the promotion and development of insurance products and services. As a form of <strong>non-paid, credible communication</strong>, it bridges the gap between insurers and the public by building trust, enhancing reputation, and supporting customer education. Its importance extends beyond marketing and sales to supporting <strong>financial literacy, social welfare, and national development</strong>, ensuring that insurance is viewed as a socially meaningful and <strong>trusted relationship</strong> between insurers and society.</p>
       </div>
-    </ol>
+
+</a></div><div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #fff;box-sizing:border-box;">
+              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#fff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+    </div>
   </div>
+
+
+
 
 <div class="section locked" id="sectionB" style="display:none;">
 </div>
@@ -3913,7 +3932,7 @@
 	<!-- Owner/Feature Card -->
 	<section class="feature-card card owner-card">
 		<a class="card-link" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Open Manjeet's Instagram"></a>
-		<img src="owner pic.png" alt="Manjeet, owner of Manjeet Enterprises" class="feature-image">
+		<img src="owner pic2.png" alt="Manjeet, owner of Manjeet Enterprises" class="feature-image">
 		<h2>Manjeet Enterprises</h2>
 		<p>Your one-stop destination for commerce study materials.</p>
 		<a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" aria-label="Follow @manxjeetagain">Follow @manxjeetagain</a>
@@ -3924,61 +3943,175 @@
   /* keep a single small rule to hide locked content by default; unlocking is handled by track.js */
   .locked { display: none; }
 </style>
-<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top">↑</button>
+<script src="track.js"></script>
+<script>
+// Insert a compact owner-card after every answer-section on the page.
+// Skips insertion when an owner card (small or large) already directly follows the answer.
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    var ownerHtml = '<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">'
+      + '<div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #fff;box-sizing:border-box;">'
+      + '<img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">'
+      + '</div>'
+      + '<div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">'
+      + '<div style="flex:1;min-width:0;"><div style="font-size:16px;font-weight:700;color:#fff;line-height:1;">Manjeet enterprises®</div></div>'
+      + '<div style="margin-left:12px;">'
+      + '<a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>'
+      + '</div></div></div>';
 
+    document.querySelectorAll('.answer-section').forEach(function(ans){
+      // Remove any owner card markup that was manually placed INSIDE the answer-section
+      // to avoid duplicate cards in the same visual area.
+      ans.querySelectorAll('.owner-card-small, .owner-card').forEach(function(existing){
+        existing.parentNode && existing.parentNode.removeChild(existing);
+      });
+
+      // If an owner card already immediately follows, skip insertion
+      var nxt = ans.nextElementSibling;
+      if (nxt && nxt.classList && (nxt.classList.contains('owner-card-small') || nxt.classList.contains('owner-card'))) return;
+
+      // Insert the owner HTML after the answer-section
+      var temp = document.createElement('div');
+      temp.innerHTML = ownerHtml;
+      ans.parentNode.insertBefore(temp.firstElementChild, ans.nextSibling);
+    });
+  } catch (e) {
+    // Fail silently to avoid breaking page if unexpected DOM structure
+    console.error('Owner-card insertion failed:', e);
+  }
+});
+</script>
+
+<!-- Floating section toggle navigation for quick access to sections A–E -->
 <style>
-#scrollToTopBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: #0074D9;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  line-height: 18px;
-  text-align: center;
-}
+  /* Floating toggle */
+  #pds-section-toggle {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background: linear-gradient(180deg,#2b73e6,#175fd6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    cursor: pointer;
+    z-index: 9999;
+    font-weight:700;
+  }
 
-#scrollToTopBtn:hover {
-  background-color: #0056b3;
-}
+  #pds-section-panel {
+    position: fixed;
+    right: 18px;
+    bottom: 78px; /* sits above toggle */
+    width: 160px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+    transform-origin: bottom right;
+    transform: scale(0);
+    transition: transform 180ms ease-out;
+    z-index: 9999;
+    font-size: 14px;
+  }
+
+  #pds-section-panel.open { transform: scale(1); }
+  #pds-section-panel a { color: #fff; display:block; padding:6px 8px; border-radius:6px; text-decoration:none; }
+  #pds-section-panel a:hover { background: rgba(255,255,255,0.06); }
+
+  /* Small label to reduce visual clutter on mobile */
+  @media (max-width:520px) {
+    #pds-section-panel { right: 12px; left: 12px; width: auto; bottom: 70px; }
+    #pds-section-toggle { right: 12px; }
+  }
 </style>
 
+<div id="pds-section-panel" aria-hidden="true" role="navigation" aria-label="Sections A to E">
+  <a href="#sec-a" data-target="sectionA">Section A</a>
+  <a href="#sec-b" data-target="sectionB">Section B</a>
+  <a href="#sec-c" data-target="sectionC">Section C</a>
+  <a href="#sec-d" data-target="sectionD">Section D</a>
+  <a href="#sec-e" data-target="sectionE">Section E</a>
+</div>
+<button id="pds-section-toggle" aria-expanded="false" title="Sections">A-D</button>
+
 <script>
-// Get the button
-var mybutton = document.getElementById("scrollToTopBtn");
-var navElement = document.querySelector('.pds-nav');
+document.addEventListener('DOMContentLoaded', function(){
+  try {
+    // Ensure we don't duplicate the controls if script runs twice
+    if (window._pdsSectionNavInitialized) return;
+    window._pdsSectionNavInitialized = true;
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+    // Assign anchors (ids) to the first five .answer-section elements if not present.
+    var answers = Array.from(document.querySelectorAll('.answer-section'));
+    var ids = ['sec-a','sec-b','sec-c','sec-d','sec-e'];
+    for (var i=0;i<ids.length;i++){
+      var el = answers[i];
+      if (!el) break;
+      // prefer not to overwrite an existing id; if present, also expose as data-pds-section for nav mapping
+      if (!el.id) el.id = ids[i];
+      else el.dataset.pdsSection = el.id;
+    }
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
+    var panel = document.getElementById('pds-section-panel');
+    var toggle = document.getElementById('pds-section-toggle');
+
+    // Update links: hide links whose target id does not exist
+    panel.querySelectorAll('a').forEach(function(a){
+      var target = a.getAttribute('data-target');
+      if (!document.getElementById(target)) {
+        // remove link if no such target
+        a.parentNode && a.parentNode.removeChild(a);
+      } else {
+        // smooth scroll handler to avoid default jump
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          var id = this.getAttribute('data-target');
+          var t = document.getElementById(id);
+          if (!t) return;
+          t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // close panel on mobile after click
+          panel.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+        });
+      }
+    });
+
+    // Toggle behaviour
+    toggle.addEventListener('click', function(){
+      var open = panel.classList.toggle('open');
+      panel.setAttribute('aria-hidden', String(!open));
+      toggle.setAttribute('aria-expanded', String(!!open));
+    });
+
+    // Accessibility: close panel when clicking outside
+    document.addEventListener('click', function(e){
+      if (!panel.classList.contains('open')) return;
+      if (e.target === toggle || panel.contains(e.target)) return;
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden','true');
+      toggle.setAttribute('aria-expanded','false');
+    });
+
+    // Keyboard: ESC closes
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden','true');
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+
+  } catch (err) {
+    console.error('PDS section nav init failed:', err);
   }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function scrollToTop() {
-  if(navElement) {
-    navElement.scrollIntoView({behavior: 'smooth'});
-  } else {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
-}
+});
 </script>
-<script src="track.js"></script>
+
 </body>
 </html>
-
