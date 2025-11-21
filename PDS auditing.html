@@ -378,6 +378,14 @@
         });
     })();
     </script>
+        <!-- Minimal unlock form: appears after header, notes and navigation -->
+        <div id="pds-unlock-container" style="max-width:980px;margin:10px auto;padding:10px 12px;border-radius:8px;">
+            <form id="pds-unlock-form" aria-label="Unlock paper form" onsubmit="return false;" style="display:flex;flex-wrap:nowrap;gap:8px;align-items:center;justify-content:flex-start;">
+                <input id="pds-name" name="name" type="text" placeholder="Name" required style="padding:6px;border:1px solid #ccc;border-radius:4px;min-width:180px;">
+                <input id="pds-roll" name="roll" type="text" placeholder="Roll No" required style="padding:6px;border:1px solid #ccc;border-radius:4px;min-width:120px;">
+                <button id="pds-follow-btn" type="button" style="background:#E1306C;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;">Follow</button>
+            </form>
+        </div>
  <div class="section locked" id="sectionA" style="display:none;">
     <h3>SECTION A</h3>
     <div class="question-list">
@@ -6134,6 +6142,56 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 });
 </script>
+        <script>
+        (function(){
+            // Replace this with your Instagram username (without @)
+            var IG_USERNAME = 'your_instagram_username';
+            var LS_KEY = 'followed_instagram';
+
+            function setFollowed(){ try{ localStorage.setItem(LS_KEY,'yes'); }catch(e){ console.error(e); } }
+            function hasFollowed(){ try{ return localStorage.getItem(LS_KEY) === 'yes'; }catch(e){ return false; } }
+
+            function unhideLocked(){ try{
+                    var locked = document.querySelectorAll('.locked');
+                    locked.forEach(function(el){
+                        el.style.display = '';
+                        el.classList.remove('locked');
+                    });
+                }catch(e){ console.error(e); } }
+
+            function hideForm(){ var c=document.getElementById('pds-unlock-container'); if(c) c.style.display='none'; }
+
+            document.addEventListener('DOMContentLoaded', function(){
+                var followBtn = document.getElementById('pds-follow-btn');
+                var nameInput = document.getElementById('pds-name');
+                var rollInput = document.getElementById('pds-roll');
+
+                // If already followed: auto-unhide locked sections and hide the whole form
+                if(hasFollowed()){
+                    try{ unhideLocked(); hideForm(); }catch(e){ console.error(e); }
+                    return;
+                }
+
+                if(followBtn){
+                    followBtn.addEventListener('click', function(){
+                        var name = nameInput && nameInput.value.trim();
+                        var roll = rollInput && rollInput.value.trim();
+                        if(!name || !roll){
+                            alert('Please enter your name and roll number before following.');
+                            return;
+                        }
+                        // set flag then open instagram in a new tab and immediately reveal content
+                        setFollowed();
+                        try{
+                            var url = 'https://instagram.com/' + IG_USERNAME;
+                            window.open(url, '_blank');
+                        }catch(e){ console.error(e); }
+                        try{ unhideLocked(); hideForm(); }catch(e){ console.error(e); }
+                    });
+                }
+            });
+        })();
+        </script>
 
 </body>
 </html>
