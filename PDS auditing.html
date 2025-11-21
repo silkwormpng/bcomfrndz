@@ -2526,11 +2526,12 @@
         <h3 style="color:#0074D9;">Enter your details to unlock other sections</h3>
         <input type="text" id="userName" placeholder="Enter your name" required
                      style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (start with 500)" required
-                     style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+        <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required
+                 inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550"
+                 style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
         <button
                         style="background-color:#0074D9; color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;">
-            Must Follow and Open Paper
+            Must Follow to Open Paper
         </button>
     </div>
 
@@ -6172,8 +6173,15 @@ document.addEventListener('DOMContentLoaded', function(){
                     followBtn.addEventListener('click', function(){
                         var name = nameInput && nameInput.value.trim();
                         var roll = rollInput && rollInput.value.trim();
-                        if(!name || !roll){
-                            alert('Please enter your name and roll number before following.');
+                        if(!name){
+                            alert('Please enter your name before following.');
+                            return;
+                        }
+                        // roll must be exactly 5 digits and start with 550
+                        var rollOk = /^550\d{2}$/.test(roll || '');
+                        if(!rollOk){
+                            alert('Roll must be 5 digits and start with 550 (e.g. 55012).');
+                            if(rollInput) rollInput.focus();
                             return;
                         }
                         // set flag, open Instagram, and immediately reveal content & hide form
@@ -6188,5 +6196,3 @@ document.addEventListener('DOMContentLoaded', function(){
 
 </body>
 </html>
-
-
