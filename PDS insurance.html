@@ -187,7 +187,7 @@
     });
   })();
   </script>
-  <div class="section locked" id="sectionA" style="display:none;">
+ <div class="section" id="sectionA">
   <h3>SECTION A</h3>
   <div class="question-list">
     <ol>
@@ -1415,8 +1415,8 @@
   <h3 style="color:#0074D9;">Enter your details to unlock other sections</h3>
   <input type="text" id="userName" placeholder="Enter your name" required
     style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-  <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (start with 500)" required
-    style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+  <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550"
+                     style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
   <button onclick="unlockAccess()"
      style="background-color:#0074D9; color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;">
     Unlock Access
@@ -4115,4 +4115,3 @@ document.addEventListener('DOMContentLoaded', function(){
 
 </body>
 </html>
-
