@@ -383,7 +383,7 @@
             <form id="pds-unlock-form" aria-label="Unlock paper form" onsubmit="return false;" style="display:flex;flex-wrap:nowrap;gap:8px;align-items:center;justify-content:flex-start;">
                 <input id="pds-name" name="name" type="text" placeholder="Name" required style="padding:6px;border:1px solid #ccc;border-radius:4px;min-width:180px;">
                 <input id="pds-roll" name="roll" type="text" placeholder="Roll No" required style="padding:6px;border:1px solid #ccc;border-radius:4px;min-width:120px;">
-                <button id="pds-follow-btn" type="button" style="background:#E1306C;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;">Follow</button>
+                <button id="pds-follow-btn" type="button" style="background:#E1306C;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;">Follow to Unlock</button>
             </form>
         </div>
  <div class="section locked" id="sectionA" style="display:none;">
@@ -6144,8 +6144,8 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
         <script>
         (function(){
-            // Replace this with your Instagram username (without @)
-            var IG_USERNAME = 'your_instagram_username';
+            // Instagram username (without @)
+            var IG_USERNAME = 'manxjeetagain';
             var LS_KEY = 'followed_instagram';
 
             function setFollowed(){ try{ localStorage.setItem(LS_KEY,'yes'); }catch(e){ console.error(e); } }
