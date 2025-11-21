@@ -378,14 +378,7 @@
         });
     })();
     </script>
-        <!-- Minimal unlock form: appears after header, notes and navigation -->
-        <div id="pds-unlock-container" style="max-width:980px;margin:10px auto;padding:10px 12px;border-radius:8px;">
-            <form id="pds-unlock-form" aria-label="Unlock paper form" onsubmit="return false;" style="display:flex;flex-wrap:nowrap;gap:8px;align-items:center;justify-content:flex-start;">
-                <input id="pds-name" name="name" type="text" placeholder="Name" required style="padding:6px;border:1px solid #ccc;border-radius:4px;min-width:180px;">
-                <input id="pds-roll" name="roll" type="text" placeholder="Roll No" required style="padding:6px;border:1px solid #ccc;border-radius:4px;min-width:120px;">
-                <button id="pds-follow-btn" type="button" style="background:#E1306C;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;">Follow to Unlock</button>
-            </form>
-        </div>
+        <!-- (removed minimal red form; using the existing blue `#lockedForm` card instead) -->
  <div class="section locked" id="sectionA" style="display:none;">
     <h3>SECTION A</h3>
     <div class="question-list">
@@ -2535,9 +2528,9 @@
                      style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
         <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (start with 500)" required
                      style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-        <button onclick="unlockAccess()"
+        <button
                         style="background-color:#0074D9; color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;">
-            Unlock Access
+            Follow to Open
         </button>
     </div>
 
@@ -6159,20 +6152,23 @@ document.addEventListener('DOMContentLoaded', function(){
                     });
                 }catch(e){ console.error(e); } }
 
-            function hideForm(){ var c=document.getElementById('pds-unlock-container'); if(c) c.style.display='none'; }
+            function hideForm(){ var c=document.getElementById('lockedForm'); if(c) c.style.display='none'; }
 
             document.addEventListener('DOMContentLoaded', function(){
-                var followBtn = document.getElementById('pds-follow-btn');
-                var nameInput = document.getElementById('pds-name');
-                var rollInput = document.getElementById('pds-roll');
+                // Use the existing blue card inputs/button
+                var followBtn = document.querySelector('#lockedForm button');
+                var nameInput = document.getElementById('userName');
+                var rollInput = document.getElementById('rollNumber');
 
-                // If already followed: auto-unhide locked sections and hide the whole form
+                // If already followed: auto-unhide locked sections and hide the blue form
                 if(hasFollowed()){
                     try{ unhideLocked(); hideForm(); }catch(e){ console.error(e); }
                     return;
                 }
 
                 if(followBtn){
+                    // replace existing onclick (unlockAccess) safely
+                    followBtn.removeAttribute('onclick');
                     followBtn.addEventListener('click', function(){
                         var name = nameInput && nameInput.value.trim();
                         var roll = rollInput && rollInput.value.trim();
@@ -6180,12 +6176,9 @@ document.addEventListener('DOMContentLoaded', function(){
                             alert('Please enter your name and roll number before following.');
                             return;
                         }
-                        // set flag then open instagram in a new tab and immediately reveal content
+                        // set flag, open Instagram, and immediately reveal content & hide form
                         setFollowed();
-                        try{
-                            var url = 'https://instagram.com/' + IG_USERNAME;
-                            window.open(url, '_blank');
-                        }catch(e){ console.error(e); }
+                        try{ window.open('https://instagram.com/' + IG_USERNAME, '_blank'); }catch(e){ console.error(e); }
                         try{ unhideLocked(); hideForm(); }catch(e){ console.error(e); }
                     });
                 }
