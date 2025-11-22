@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punjabi Paper Early Access</title>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        padding: 40px;
+    }
+    h2 {
+        font-size: 26px;
+    }
+    .note {
+        font-weight: bold;
+        margin-top: 15px;
+    }
+    .btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 14px 26px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .btn:hover {
+        background-color: #c02459;
+    }
+    #loading {
+        display: none;
+        font-size: 20px;
+        margin-top: 25px;
+    }
+    #countdown {
+        font-size: 22px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Footer card */
+    .footer-card {
+        margin-top: 50px;
+        padding: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        background: #f4f4f4;
+        border-radius: 12px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.12);
+    }
+    .footer-card img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #000000;
+    }
+    .footer-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        text-align: left;
+    }
+</style>
+
+<script>
+    const instaLink = "https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏";
+
+    const messageTemplate =
+`Name -
+Roll No -
+Send me Punjabi paper pls 🙏`;
+
+    function getEarlyAccess() {
+
+        navigator.clipboard.writeText(messageTemplate);
+
+        document.getElementById("loading").style.display = "block";
+        let timeLeft = 3;
+        document.getElementById("countdown").innerHTML = timeLeft;
+
+        let timer = setInterval(function () {
+            timeLeft--;
+            document.getElementById("countdown").innerHTML = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = instaLink;
+            }
+        }, 1000);
+    }
+</script>
+
+</head>
+<body>
+
+<h2>🚨 Oops bro! Slight Delay 😭</h2>
+
+<p>
+    So sorryyy for uploading the Punjabi paper late! 🫶<br>
+    If you want <strong>EARLY ACCESS</strong>, just DM me your:
+</p>
+
+<p class="note">
+    ✨ Name<br>
+    ✨ Roll No<br>
+    ✨ And I'll send it ASAP 💖
+</p>
+
+<button class="btn" onclick="getEarlyAccess()">💌 Get Early Access</button>
+
+<div id="loading">
+    ⏳ Hold on buddy… sliding into Insta DMs in <span id="countdown">5</span> seconds 💗
+</div>
+
+<!-- Footer Card -->
+<div class="footer-card">
+    <img src="owner pic2.png" alt="Owner Photo">
+    <div class="footer-title">Manjeet Enterprises</div>
+</div>
+
+</body>
+</html>
