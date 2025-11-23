@@ -21,7 +21,7 @@
       rel="stylesheet"
     />
     <!-- Reuse the page stylesheet from PDS direct tax for consistent look -->
-    <link rel="stylesheet" href="pds-direct-tax.css" />
+    <link rel="stylesheet" href="punjabipds.css" />
     <script>
       function toggleNav() {
         const navContent = document.getElementById("navContent");
@@ -59,6 +59,135 @@
       });
     </script>
     <style>
+      .audio-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.audio-thumb {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.audio-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.audio-btn {
+  background: #000;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.audio-btn:active {
+  transform: scale(0.96);
+}
+
+audio {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Make audio bar full-width and bigger on mobile */
+audio {
+  width: 100% !important;
+  display: block;
+  margin: 10px 0;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 600px) {
+  .audio-card {
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .audio-thumb {
+    order: 1;
+  }
+  .timeline-container {
+    order: 2; 
+  }
+  .audio-controls {
+    order: 3;
+    margin-top: 12px;
+  }
+  audio {
+    order: 4; /* Hidden, but let's keep it ordered */
+  }
+  /* Rule for original audio player's timeline, can be removed but let's keep it for now */
+  audio::-webkit-media-controls-timeline {
+    height: 44px; /* bigger drag area */
+  }
+  audio::-webkit-media-controls-panel {
+    padding: 8px;
+  }
+}
+
+/* Custom Timeline */
+.timeline-container {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.timeline-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 10px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.timeline-slider:hover {
+  opacity: 1;
+}
+
+.timeline-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+}
+
+.timeline-slider::-moz-range-thumb {
+  width: 25px;
+  height: 15px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+}
+
+.time-display {
+  text-align: right;
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 5px;
+}
+
+.speed-controls {
+    margin-top: 10px;
+}
+
       /* Normalize any large heading styles inside answer sections so they match other answers */
       .answer-section h2,
       .answer-section h3,
@@ -131,8 +260,90 @@
         background: #fff !important;
       }
     </style>
-  </head>
-  <body class="pds-page">
+  <style>
+.floating-audio-player {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    background-color: #181818;
+    color: #fff;
+    display: none;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.floating-audio-player .player-thumb {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 4px;
+}
+
+.floating-audio-player .player-details {
+    flex-grow: 1;
+}
+
+.floating-audio-player .player-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.floating-audio-player .player-controls {
+    display: flex;
+    align-items: center;
+}
+
+.floating-audio-player .play-pause-btn {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.floating-audio-player .timeline-slider {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: #535353;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    margin-right: 15px;
+}
+
+.floating-audio-player .timeline-slider:hover {
+    opacity: 1;
+}
+
+.floating-audio-player .timeline-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+.floating-audio-player .time-display {
+    font-size: 12px;
+}
+</style>
+</head>
+  <body class="pds-page" onload="checkAccess()">
     <!-- Header Card -->
     <header class="header-card card">
       <img src="9.png" alt="Abstract background image" />
@@ -143,7 +354,7 @@
       <div class="dedication-content">Punjabi</div>
     </section>
 
-    <div class="section">
+    <div class="section locked" style="display:none;">
       <h3>Small Message from manxjeetagain</h3>
       <p>
         These predicted questions are curated through in-depth trend analysis of
@@ -154,70 +365,509 @@
     </div>
 
     <div class="important-note">
-      Note – exam date: TBD. Paste the actual date and questions into this file
-      when ready.
+      Note – exam date: 26/11/2025 
     </div>
 
     <!-- SECTION A -->
     <!-- PDS navigation: Section A/B/C/D -->
-    <nav class="pds-nav" aria-label="PDS sections navigation">
-      <div class="pds-nav-inner">
-        <button class="pds-nav-btn" data-target="sectionA">Section A</button>
-        <button class="pds-nav-btn" data-target="sectionB">Section B</button>
-        <button class="pds-nav-btn" data-target="sectionC">Section C</button>
-        <button class="pds-nav-btn" data-target="sectionD">Section D</button>
-      </div>
-    </nav>
-    <style>
-      .pds-nav{max-width:980px;margin:14px auto;padding:8px 12px;display:flex;justify-content:center}
-      .pds-nav-inner{display:flex;gap:10px;flex-wrap:wrap}
-      .pds-nav-btn{background:#fff;border:1px solid #e6eef8;padding:8px 12px;border-radius:8px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.04);font-weight:600}
-      .pds-nav-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-      @media (max-width:600px){.pds-nav-inner{flex-direction:column;align-items:stretch}.pds-nav-btn{width:100%}}
-    </style>
-    <script>
-    (function(){
-      function onNavClick(ev){
-        var target = ev.currentTarget.dataset.target;
-        var el = document.getElementById(target);
-        if(!el) return;
-        var isHidden = window.getComputedStyle(el).display === 'none';
-        if(isHidden && target !== 'sectionA'){
-          var form = document.getElementById('lockedForm');
-          if(form){ form.scrollIntoView({behavior:'smooth'}); var inpt=document.getElementById('userName'); if(inpt) inpt.focus(); }
-        } else {
-          el.scrollIntoView({behavior:'smooth'});
-        }
-      }
-      document.addEventListener('DOMContentLoaded', function(){
-        document.querySelectorAll('.pds-nav-btn').forEach(function(b){ b.addEventListener('click', onNavClick); });
-      });
-    })();
-    </script>
-   <div class="section" id="sectionA">
-    <h3>SECTION A</h3>
-      <div class="question-list">
-        <ol>
-          <!-- Paste Punjabi questions here -->
-        </ol>
+    
+  <div class="section locked" id="sectionA" style="display:none;">
+     
+          
+       
+  
+
+
+
+   
+
+
+  <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="sorry.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider2" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time2">0:00</span> / <span id="total-duration2">0:00</span>
       </div>
     </div>
+
+    <audio id="audio2" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="sorry.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio2')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn2">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio2')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio2',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio2',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio2',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio2',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #000000;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+      <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="harak sog.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider3" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time3">0:00</span> / <span id="total-duration3">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio3" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="harak sog.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio3')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn3">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio3')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio3',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio3',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio3',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio3',2)">2x</button>
+    </div>
+  </div>
+
+  <div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #000000;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+<!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="khuh khata.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider4" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time4">0:00</span> / <span id="total-duration4">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio4" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="khuh khata.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio4')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn4">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio4')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio4',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio4',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio4',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio4',2)">2x</button>
+    </div>
+  </div>
+
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
+              </div>
+            </div>
+          </div>
+        
+   
+
+
+  <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="rahu katu.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider5" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time5">0:00</span> / <span id="total-duration5">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio5" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="rahu katu.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio5')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn5">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio5')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio5',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio5',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio5',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio5',2)">2x</button>
+    </div>
+  </div>
+
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+      <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="thakava.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider6" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time6">0:00</span> / <span id="total-duration6">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio6" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="thakava.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio6')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn6">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio6')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio6',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio6',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio6',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio6',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+          <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="hazar kahaniya da baap.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider7" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time7">0:00</span> / <span id="total-duration7">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio7" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="hazar kahaniya da baap.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio7')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn7">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio7')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio7',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio7',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio7',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio7',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+
+
+   <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="pavitar papi.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider8" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time8">0:00</span> / <span id="total-duration8">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio8" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="pavitar papi.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio8')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn8">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio8')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio8',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio8',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio8',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio8',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+
+      
+          <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="aklavya.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider9" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time9">0:00</span> / <span id="total-duration9">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio9" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="aklavya.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio9')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn9">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio9')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio9',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio9',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio9',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio9',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+
+   <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="new year.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider10" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time10">0:00</span> / <span id="total-duration10">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio10" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="new year.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio10')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn10">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio10')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio10',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio10',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio10',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio10',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
+     <!-- AUDIO CARD -->
+  <div class="audio-card">
+    <img src="aho hamara zivan.png" alt="Audio Thumbnail" class="audio-thumb" />
+
+    <!-- Custom Timeline -->
+    <div class="timeline-container">
+      <input type="range" id="timeline-slider11" class="timeline-slider" value="0" min="0" step="1">
+      <div class="time-display">
+        <span id="current-time11">0:00</span> / <span id="total-duration11">0:00</span>
+      </div>
+    </div>
+
+    <audio id="audio11" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+      <source src="aho hamara zivan.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+      <button class="audio-btn" onclick="skipBack('audio11')">⏪ 10s</button>
+      <button class="audio-btn" id="play-pause-btn11">Play</button>
+      <button class="audio-btn" onclick="skipForward('audio11')">10s ⏩</button>
+    </div>
+    
+    <div class="audio-controls speed-controls">
+      <button class="audio-btn" onclick="setSpeed('audio11',1)">1x</button>
+      <button class="audio-btn" onclick="setSpeed('audio11',1.25)">1.25x</button>
+      <button class="audio-btn" onclick="setSpeed('audio11',1.5)">1.5x</button>
+      <button class="audio-btn" onclick="setSpeed('audio11',2)">2x</button>
+    </div>
+  </div>
+<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
+            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
+              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+            </div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
+              </div>
+              <div style="margin-left:12px;">
+                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
+              </div>
+            </div>
+          </div>
+        
+      </ol>
+
 
     <!-- Card asking for Name + Roll -->
     <div id="lockedForm" style="max-width:400px; margin:20px auto; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.1); text-align:center; background:#f9f9f9;">
       <h3 style="color:#0074D9;">Enter your details to unlock other sections</h3>
       <input type="text" id="userName" placeholder="Enter your name" required
         style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (start with 500)" required
-        style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <button onclick="unlockAccess()"
-    style="background-color:#0074D9; color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;">
-   Unlock Access
+      <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550"
+             style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+      <button id="followUnlockBtn"
+    style="background:linear-gradient(180deg,#2b73e6,#175fd6); color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;font-weight:700;"
+    onclick="followToUnlock()">
+   Follow to Unlock
       </button>
     </div>
 
     <!-- Owner/Feature Card -->
-    <section class="feature-card card owner-card">
+  <section class="feature-card card owner-card locked" style="display:none;">
       <a
         class="card-link"
         href="https://www.instagram.com/manxjeetagain"
@@ -226,7 +876,7 @@
         aria-label="Open Manjeet's Instagram"
       ></a>
       <img
-        src="owner pic.png"
+        src="owner pic2.png"
         alt="Manjeet, owner of Manjeet Enterprises"
         class="feature-image"
       />
@@ -234,11 +884,11 @@
       <p>Your one-stop destination for commerce study materials.</p>
       <a
         class="follow-pill"
-        href="https://www.instagram.com/manxjeetagain"
+        href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Follow @manxjeetagain"
-        >Follow @manxjeetagain</a
+        aria-label="follow @manxjeetagain"
+        >please Send your feedback @manxjeetagain</a
       >
     </section>
 
@@ -248,5 +898,228 @@
     .locked { display: none; }
   </style>
   <script src="track.js"></script>
+  <script>
+    // Unlock logic for Punjabi page
+    // Make these global so skip/playback speed work
+    var currentAudioCard = null;
+    var floatingAudio;
+
+    function followToUnlock() {
+      const name = document.getElementById('userName').value.trim();
+      const roll = document.getElementById('rollNumber').value.trim();
+      if (!name || !/^550\d{2}$/.test(roll)) {
+        alert('Please enter a valid name and 5-digit roll number starting with 550.');
+        return;
+      }
+      localStorage.setItem('userName', name);
+      localStorage.setItem('rollNumber', roll);
+      localStorage.setItem('pending_follow', '1');
+      window.open('https://instagram.com/manxjeetagain', '_blank');
+      document.getElementById('followUnlockBtn').innerText = 'Return here after following';
+    }
+
+    function unlockContent() {
+      const lockedForm = document.getElementById('lockedForm');
+      if (lockedForm) lockedForm.style.display = 'none';
+      document.querySelectorAll('.locked').forEach(el => {
+        el.style.display = '';
+      });
+    }
+    function lockContent() {
+      const lockedForm = document.getElementById('lockedForm');
+      if (lockedForm) lockedForm.style.display = '';
+      document.querySelectorAll('.locked').forEach(el => {
+        el.style.display = 'none';
+      });
+    }
+    function checkAccess() {
+      if (localStorage.getItem('followed_instagram') === '1') {
+        unlockContent();
+        return;
+      }
+      if (localStorage.getItem('pending_follow') === '1') {
+        localStorage.setItem('followed_instagram', '1');
+        localStorage.removeItem('pending_follow');
+        unlockContent();
+        return;
+      }
+      lockContent();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      checkAccess();
+
+      // Audio logic block (fixed)
+      const audioPlayers = document.querySelectorAll('.audio-card');
+      const floatingPlayer = document.getElementById('floating-audio-player');
+      floatingAudio = new Audio();
+      const floatingPlayPauseBtn = document.getElementById('floating-player-play-pause');
+      const floatingTimeline = document.getElementById('floating-player-timeline');
+      const floatingTimeDisplay = document.getElementById('floating-player-time');
+      const floatingThumb = document.getElementById('floating-player-thumb');
+      const floatingTitle = document.getElementById('floating-player-title');
+
+      audioPlayers.forEach((player) => {
+        const audio = player.querySelector('audio');
+        if (!audio) return;
+
+        const timelineSlider = player.querySelector('.timeline-slider');
+        const totalDurationEl = player.querySelector('.time-display span:last-child');
+        const playPauseBtn = player.querySelector('.audio-btn:nth-child(2)');
+
+        audio.addEventListener('loadedmetadata', () => {
+          totalDurationEl.textContent = formatTime(audio.duration);
+          timelineSlider.max = audio.duration;
+        });
+
+        playPauseBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (currentAudioCard === player && !floatingAudio.paused) {
+            floatingAudio.pause();
+          } else {
+            if (currentAudioCard && currentAudioCard !== player) {
+              const oldPlayBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
+              if (oldPlayBtn) oldPlayBtn.textContent = 'Play';
+            }
+
+            currentAudioCard = player;
+            const audioSource = audio.querySelector('source').src;
+            const thumbSource = player.querySelector('.audio-thumb').src;
+            const title = thumbSource.split('/').pop().replace('.png', '').replace(/%20/g, ' ')
+              .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize words
+
+            if (floatingAudio.src !== audioSource) {
+              floatingAudio.src = audioSource;
+              floatingThumb.src = thumbSource;
+              floatingTitle.textContent = title;
+            }
+
+            floatingAudio.play();
+            floatingPlayer.style.display = 'flex';
+          }
+        });
+
+        timelineSlider.addEventListener('input', () => {
+          if (currentAudioCard === player) {
+            floatingAudio.currentTime = timelineSlider.value;
+          }
+        });
+      });
+
+      floatingPlayPauseBtn.addEventListener('click', () => {
+        if (floatingAudio.src) {
+          if (floatingAudio.paused) {
+            floatingAudio.play();
+          } else {
+            floatingAudio.pause();
+          }
+        }
+      });
+
+      floatingAudio.addEventListener('play', () => {
+        floatingPlayPauseBtn.textContent = '❚❚';
+        if (currentAudioCard) {
+          const playPauseBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
+          if (playPauseBtn) playPauseBtn.textContent = 'Pause';
+        }
+      });
+
+      floatingAudio.addEventListener('pause', () => {
+        floatingPlayPauseBtn.textContent = '▶';
+        if (currentAudioCard) {
+          const playPauseBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
+          if (playPauseBtn) playPauseBtn.textContent = 'Play';
+        }
+      });
+
+      floatingAudio.addEventListener('timeupdate', () => {
+        const currentTime = floatingAudio.currentTime;
+        floatingTimeline.value = currentTime;
+        if (isFinite(floatingAudio.duration)) {
+          floatingTimeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(floatingAudio.duration)}`;
+        }
+
+        if (currentAudioCard) {
+          const cardTimeline = currentAudioCard.querySelector('.timeline-slider');
+          const cardCurrentTimeEl = currentAudioCard.querySelector('.time-display span:first-child');
+
+          if (cardTimeline) cardTimeline.value = currentTime;
+          if (cardCurrentTimeEl) cardCurrentTimeEl.textContent = formatTime(currentTime);
+        }
+      });
+
+      floatingAudio.addEventListener('loadedmetadata', () => {
+        floatingTimeline.max = floatingAudio.duration;
+        if (currentAudioCard) {
+          const totalDurationEl = currentAudioCard.querySelector('.time-display span:last-child');
+          const cardTimeline = currentAudioCard.querySelector('.timeline-slider');
+          if (totalDurationEl) totalDurationEl.textContent = formatTime(floatingAudio.duration);
+          if (cardTimeline) cardTimeline.max = floatingAudio.duration;
+        }
+      });
+
+      floatingTimeline.addEventListener('input', () => {
+        floatingAudio.currentTime = floatingTimeline.value;
+      });
+
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+      }
+    });
+
+    function skipBack(id) {
+      const cardAudioElement = document.getElementById(id);
+      if (!cardAudioElement) return;
+      const card = cardAudioElement.closest('.audio-card');
+      if (card === currentAudioCard && floatingAudio) {
+        floatingAudio.currentTime = Math.max(0, floatingAudio.currentTime - 10);
+      }
+    }
+
+    function skipForward(id) {
+      const cardAudioElement = document.getElementById(id);
+      if (!cardAudioElement) return;
+      const card = cardAudioElement.closest('.audio-card');
+      if (card === currentAudioCard && floatingAudio) {
+        floatingAudio.currentTime = Math.min(floatingAudio.duration, floatingAudio.currentTime + 10);
+      }
+    }
+
+    function setSpeed(id, speed) {
+      const cardAudioElement = document.getElementById(id);
+      if (!cardAudioElement) return;
+      const card = cardAudioElement.closest('.audio-card');
+      if (card === currentAudioCard && floatingAudio) {
+        floatingAudio.playbackRate = speed;
+      }
+    }
+
+    document.addEventListener("contextmenu", e => e.preventDefault());
+  </script>
+
+  <div id="floating-audio-player" class="floating-audio-player">
+      <img id="floating-player-thumb" src="" alt="Album Art" class="player-thumb">
+      <div class="player-details">
+          <div id="floating-player-title" class="player-title">Select a track</div>
+          <div class="player-controls">
+              <button id="floating-player-play-pause" class="play-pause-btn">▶</button>
+              <input type="range" id="floating-player-timeline" class="timeline-slider" value="0" step="1">
+              <div id="floating-player-time" class="time-display">0:00 / 0:00</div>
+          </div>
+      </div>
+  </div>
+  
+  <script>
+src="track.js"</script>
+  </script>
+
   </body>
+
   </html>
+
+  
