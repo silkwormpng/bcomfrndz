@@ -868,6 +868,13 @@ audio {
 
     <!-- Owner/Feature Card -->
   <section class="feature-card card owner-card locked" style="display:none;">
+          <!-- Development notice card -->
+          <div class="feature-card card" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;justify-content:center;">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <span style="font-size:18px;font-weight:700;color:#fff;">The next part of Punjabi paper is <span style="color:#fff;">under development</span></span>
+              <span style="font-size:15px;font-weight:500;color:#fff;margin-top:8px;">Sorry for the inconvenience.</span>
+            </div>
+          </div>
       <a
         class="card-link"
         href="https://www.instagram.com/manxjeetagain"
@@ -919,15 +926,19 @@ audio {
     }
 
     function unlockContent() {
+      // Hide the unlock form
       const lockedForm = document.getElementById('lockedForm');
       if (lockedForm) lockedForm.style.display = 'none';
+      // Show all locked sections
       document.querySelectorAll('.locked').forEach(el => {
         el.style.display = '';
       });
     }
     function lockContent() {
+      // Show the unlock form
       const lockedForm = document.getElementById('lockedForm');
       if (lockedForm) lockedForm.style.display = '';
+      // Hide only locked sections, not the form
       document.querySelectorAll('.locked').forEach(el => {
         el.style.display = 'none';
       });
