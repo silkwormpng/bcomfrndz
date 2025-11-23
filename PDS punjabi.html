@@ -1023,7 +1023,7 @@ audio {
     function lockContent() {
       // Show the unlock form
       const lockedForm = document.getElementById('lockedForm');
-      if (lockedForm) lockedForm.style.display = '';
+      if (lockedForm) lockedForm.style.display = 'block';
       // Hide only locked sections, not the form
       document.querySelectorAll('.locked').forEach(el => {
         el.style.display = 'none';
