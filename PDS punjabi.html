@@ -852,16 +852,23 @@ audio {
 
 
     <!-- Card asking for Name + Roll -->
-    <div id="lockedForm" style="max-width:400px; margin:20px auto; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.1); text-align:center; background:#f9f9f9;">
-      <h3 style="color:#0074D9;">Enter your details to unlock other sections</h3>
-      <input type="text" id="userName" placeholder="Enter your name" required
-        style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
-      <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550"
-             style="width:90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px;">
+    <div id="lockedForm" style="max-width:400px; margin:20px auto; padding:24px 20px 20px 20px; border-radius:14px; box-shadow:0 0 16px rgba(0,0,0,0.13); text-align:center; background:#f9f9f9;">
+      <h3 style="color:#0074D9; font-weight:700; margin-bottom:18px;">Unlock Punjabi Paper</h3>
+      <div style="margin-bottom:14px;">
+        <input type="text" id="userName" placeholder="Enter your name" required
+          style="width:100%; padding:12px; margin-bottom:6px; border:1px solid #bfc8d6; border-radius:7px; font-size:16px;">
+        <div id="nameError" style="color:#e74c3c; font-size:13px; display:none; text-align:left; margin-bottom:4px;"></div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550"
+               style="width:100%; padding:12px; margin-bottom:6px; border:1px solid #bfc8d6; border-radius:7px; font-size:16px;">
+        <div id="rollError" style="color:#e74c3c; font-size:13px; display:none; text-align:left; margin-bottom:4px;"></div>
+      </div>
       <button id="followUnlockBtn"
-    style="background:linear-gradient(180deg,#2b73e6,#175fd6); color:white; border:none; border-radius:6px; padding:10px 20px; margin-top:10px; cursor:pointer;font-weight:700;"
-    onclick="followToUnlock()">
-   Follow to Unlock
+        style="background:linear-gradient(180deg,#2b73e6,#175fd6); color:white; border:none; border-radius:7px; padding:12px 0; width:100%; font-size:17px; font-weight:700; margin-top:8px; cursor:pointer; opacity:0.7;"
+        onclick="followToUnlock()" disabled>
+        <span id="btnText">Follow to Unlock</span>
+        <span id="btnSpinner" style="display:none; margin-left:8px; vertical-align:middle;">🔄</span>
       </button>
     </div>
 
@@ -915,15 +922,35 @@ audio {
     function followToUnlock() {
       const name = document.getElementById('userName').value.trim();
       const roll = document.getElementById('rollNumber').value.trim();
-      if (!name || !/^550\d{2}$/.test(roll)) {
-        alert('Please enter a valid name and 5-digit roll number starting with 550.');
-        return;
+      var valid = true;
+      if (!name) {
+        document.getElementById('nameError').textContent = 'Please enter your name.';
+        document.getElementById('nameError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('nameError').style.display = 'none';
       }
-      localStorage.setItem('userName', name);
-      localStorage.setItem('rollNumber', roll);
-      localStorage.setItem('pending_follow', '1');
-      window.open('https://instagram.com/manxjeetagain', '_blank');
-      document.getElementById('followUnlockBtn').innerText = 'Return here after following';
+      if (!/^550\d{2}$/.test(roll)) {
+        document.getElementById('rollError').textContent = 'Roll number must be 5 digits and start with 550.';
+        document.getElementById('rollError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('rollError').style.display = 'none';
+      }
+      if (!valid) return;
+      document.getElementById('btnText').style.display = 'none';
+      document.getElementById('btnSpinner').style.display = 'inline-block';
+      setTimeout(function() {
+        localStorage.setItem('userName', name);
+        localStorage.setItem('rollNumber', roll);
+        localStorage.setItem('pending_follow', '1');
+        window.open('https://instagram.com/manxjeetagain', '_blank');
+        document.getElementById('btnText').textContent = 'Return here after following';
+        document.getElementById('btnText').style.display = 'inline-block';
+        document.getElementById('btnSpinner').style.display = 'none';
+        document.getElementById('followUnlockBtn').disabled = true;
+        document.getElementById('followUnlockBtn').style.opacity = '0.6';
+      }, 700);
     }
 
     function unlockContent() {
@@ -961,7 +988,29 @@ audio {
     document.addEventListener('DOMContentLoaded', function() {
       checkAccess();
 
-      // Audio logic block (fixed)
+      // Form validation and button enable/disable
+      var userNameInput = document.getElementById('userName');
+      var rollInput = document.getElementById('rollNumber');
+      var followBtn = document.getElementById('followUnlockBtn');
+
+      function validateFormFields() {
+        var name = userNameInput.value.trim();
+        var roll = rollInput.value.trim();
+        var valid = name.length > 0 && /^550\d{2}$/.test(roll);
+        followBtn.disabled = !valid;
+        followBtn.style.opacity = valid ? '1' : '0.7';
+      }
+      userNameInput.addEventListener('input', function() {
+        document.getElementById('nameError').style.display = 'none';
+        validateFormFields();
+      });
+      rollInput.addEventListener('input', function() {
+        document.getElementById('rollError').style.display = 'none';
+        validateFormFields();
+      });
+      validateFormFields();
+
+      // ...existing code for audio logic...
       const audioPlayers = document.querySelectorAll('.audio-card');
       const floatingPlayer = document.getElementById('floating-audio-player');
       floatingAudio = new Audio();
