@@ -66,6 +66,65 @@
   margin-top: 10px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
+      /* Unlock form styling to match PDS auditing */
+      #lockedForm {
+        background: linear-gradient(135deg, #e3f0ff 0%, #f9f9f9 100%);
+        border: 1.5px solid #bfc8d6;
+        box-shadow: 0 8px 32px rgba(23,95,214,0.10);
+        padding: 28px 22px 22px 22px;
+        border-radius: 16px;
+        max-width: 410px;
+      }
+      #lockedForm h3 {
+        color: #175fd6;
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+      }
+      #lockedForm input[type="text"] {
+        border: 1.5px solid #bfc8d6;
+        border-radius: 8px;
+        padding: 13px;
+        font-size: 16px;
+        margin-bottom: 7px;
+        background: #fff;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+      }
+      #lockedForm input[type="text"]:focus {
+        border-color: #175fd6;
+        outline: none;
+      }
+      #lockedForm button {
+        background: linear-gradient(90deg, #175fd6 0%, #2b73e6 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 13px 0;
+        width: 100%;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(23,95,214,0.10);
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+      #lockedForm button:enabled {
+        opacity: 1;
+      }
+      #lockedForm button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+      #lockedForm #nameError,
+      #lockedForm #rollError {
+        color: #e74c3c;
+        font-size: 13px;
+        text-align: left;
+        margin-bottom: 4px;
+        display: none;
+      }
 
 .audio-thumb {
   width: 100%;
@@ -354,26 +413,6 @@ audio {
       <div class="dedication-content">Punjabi</div>
     </section>
 
-    <!-- Card asking for Name + Roll (ALWAYS VISIBLE UNTIL UNLOCKED) -->
-    <div id="lockedForm" style="max-width:400px; margin:20px auto; padding:24px 20px 20px 20px; border-radius:14px; box-shadow:0 0 16px rgba(0,0,0,0.13); text-align:center; background:#f9f9f9;">
-      <h3 style="color:#0074D9; font-weight:700; margin-bottom:18px;">Unlock Punjabi Paper</h3>
-      <div style="margin-bottom:14px;">
-        <input type="text" id="userName" placeholder="Enter your name" required
-          style="width:100%; padding:12px; margin-bottom:6px; border:1px solid #bfc8d6; border-radius:7px; font-size:16px;">
-        <div id="nameError" style="color:#e74c3c; font-size:13px; display:none; text-align:left; margin-bottom:4px;"></div>
-      </div>
-      <div style="margin-bottom:14px;">
-        <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550"
-               style="width:100%; padding:12px; margin-bottom:6px; border:1px solid #bfc8d6; border-radius:7px; font-size:16px;">
-        <div id="rollError" style="color:#e74c3c; font-size:13px; display:none; text-align:left; margin-bottom:4px;"></div>
-      </div>
-      <button id="followUnlockBtn"
-        style="background:linear-gradient(180deg,#2b73e6,#175fd6); color:white; border:none; border-radius:7px; padding:12px 0; width:100%; font-size:17px; font-weight:700; margin-top:8px; cursor:pointer; opacity:0.7;"
-        onclick="followToUnlock()" disabled>
-        <span id="btnText">Follow to Unlock</span>
-        <span id="btnSpinner" style="display:none; margin-left:8px; vertical-align:middle;">🔄</span>
-      </button>
-    </div>
 
     <div class="section locked" style="display:none;">
       <h3>Small Message from manxjeetagain</h3>
@@ -977,7 +1016,9 @@ audio {
     function unlockContent() {
       // Hide the unlock form
       const lockedForm = document.getElementById('lockedForm');
-      if (lockedForm) lockedForm.style.display = 'none';
+      if (lockedForm) {
+        lockedForm.style.display = 'none';
+      }
       // Show all locked sections
       document.querySelectorAll('.locked').forEach(el => {
         el.style.display = '';
