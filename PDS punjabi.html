@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BFJD2H2EH"></script>
     <script>
@@ -17,1228 +17,1428 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Reuse the page stylesheet from PDS direct tax for consistent look -->
-    <link rel="stylesheet" href="punjabipds.css" />
-    <script>
-      function toggleNav() {
-        const navContent = document.getElementById("navContent");
-        navContent.classList.toggle("active");
-      }
-
-      function toggleSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        section.classList.toggle("active");
-
-        // Update arrow in section header
-        const header = event.currentTarget;
-        if (section.classList.contains("active")) {
-          header.innerHTML = header.innerHTML.replace("▼", "▲");
-        } else {
-          header.innerHTML = header.innerHTML.replace("▲", "▼");
-        }
-      }
-
-      // Add smooth scrolling to anchor links
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".question-nav a").forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          });
-        });
-      });
-    </script>
     <style>
-      .audio-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 10px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-      /* Unlock form styling to match PDS auditing */
-      #lockedForm {
-        background: linear-gradient(135deg, #e3f0ff 0%, #f9f9f9 100%);
-        border: 1.5px solid #bfc8d6;
-        box-shadow: 0 8px 32px rgba(23,95,214,0.10);
-        padding: 28px 22px 22px 22px;
-        border-radius: 16px;
-        max-width: 410px;
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      #lockedForm h3 {
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #1e293b;
+        line-height: 1.5;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      /* Card styles */
+      .card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 24px;
+        margin-bottom: 24px;
+        border: 1px solid #e2e8f0;
+      }
+      
+      .header-card {
+        padding: 0;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+      
+      .header-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      
+      /* Dedication card */
+      .dedication-card {
+        text-align: center;
+        background: linear-gradient(135deg, #1f1f1f 0%, #2b73e6 100%);
+        color: white;
+        padding: 32px 24px;
+      }
+      
+      .dedication-content {
+        font-size: 28px;
+        font-weight: 700;
+      }
+      
+      /* Form styling */
+      .unlock-form {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 32px 24px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
+        max-width: 480px;
+        margin: 0 auto 24px;
+      }
+      
+      .unlock-form h3 {
         color: #175fd6;
         font-weight: 700;
+        margin-bottom: 24px;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      
+      .form-group {
         margin-bottom: 20px;
-        font-size: 1.3rem;
       }
-      #lockedForm input[type="text"] {
-        border: 1.5px solid #bfc8d6;
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #475569;
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1.5px solid #cbd5e1;
         border-radius: 8px;
-        padding: 13px;
         font-size: 16px;
-        margin-bottom: 7px;
+        transition: all 0.2s;
         background: #fff;
-        box-sizing: border-box;
-        transition: border-color 0.2s;
       }
-      #lockedForm input[type="text"]:focus {
+      
+      .form-control:focus {
         border-color: #175fd6;
         outline: none;
+        box-shadow: 0 0 0 3px rgba(23, 95, 214, 0.1);
       }
-      #lockedForm button {
+      
+      .error-message {
+        color: #dc2626;
+        font-size: 14px;
+        margin-top: 6px;
+        display: none;
+      }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         background: linear-gradient(90deg, #175fd6 0%, #2b73e6 100%);
         color: #fff;
         border: none;
         border-radius: 8px;
-        padding: 13px 0;
-        width: 100%;
-        font-size: 18px;
-        font-weight: 700;
-        margin-top: 10px;
+        padding: 14px 24px;
+        font-size: 16px;
+        font-weight: 600;
         cursor: pointer;
-        box-shadow: 0 4px 16px rgba(23,95,214,0.10);
-        opacity: 0.85;
-        transition: opacity 0.2s;
+        transition: all 0.2s;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(23, 95, 214, 0.2);
       }
-      #lockedForm button:enabled {
-        opacity: 1;
+      
+      .btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(23, 95, 214, 0.3);
       }
-      #lockedForm button:disabled {
+      
+      .btn:disabled {
         opacity: 0.7;
         cursor: not-allowed;
+        transform: none;
       }
-      #lockedForm #nameError,
-      #lockedForm #rollError {
-        color: #e74c3c;
-        font-size: 13px;
-        text-align: left;
+      
+      .btn-spinner {
+        margin-right: 8px;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Message section */
+      .message-section {
+                background: #000000;
+                border: 1.5px solid #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 24px;
+                color: #ffffff;
+      }
+      
+      .message-section h3 {
+        color: #ffffff;
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+      }
+      
+      /* Important note */
+      .important-note {
+        background: #000;
+        color: #fff;
+        padding: 16px 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+      
+      /* Audio card */
+      .audio-card {
+        background: linear-gradient(135deg, #000000 0%, #225cb9 100%);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+      }
+      
+      .audio-thumb {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 16px;
+      }
+      
+      .timeline-container {
+        width: 100%;
+        margin: 16px 0;
+      }
+      
+      .timeline-slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: #e2e8f0;
+        outline: none;
+        transition: background 0.2s;
+      }
+      
+      .timeline-slider:hover {
+        background: #cbd5e1;
+      }
+      
+      .timeline-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #175fd6;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      
+      .timeline-slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #175fd6;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      
+      .time-display {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #64748b;
+        margin-top: 8px;
+      }
+      
+      .audio-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+        justify-content: center;
+      }
+      
+      .audio-btn {
+        background: #175fd6;
+        color: #fff;
+        padding: 10px 16px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .audio-btn:hover {
+        background: #1248b0;
+        transform: translateY(-2px);
+      }
+      
+      .speed-controls {
+        margin-top: 16px;
+      }
+      
+      .speed-controls .audio-btn {
+        background: #475569;
+      }
+      
+      .speed-controls .audio-btn:hover {
+        background: #334155;
+      }
+      
+      /* Owner card */
+      .owner-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px;
+        background: #000;
+        color: #fff;
+        border-radius: 12px;
+        margin-bottom: 24px;
+      }
+      
+      .owner-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid #fff;
+        flex-shrink: 0;
+      }
+      
+      .owner-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      
+      .owner-info {
+        flex: 1;
+      }
+      
+      .owner-name {
+        font-size: 18px;
+        font-weight: 700;
         margin-bottom: 4px;
+      }
+      
+      .owner-description {
+        font-size: 14px;
+        color: #cbd5e1;
+        margin-bottom: 8px;
+      }
+      
+      .follow-btn {
+        background: linear-gradient(180deg, #2b73e6, #175fd6);
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-block;
+        transition: all 0.2s;
+      }
+      
+      .follow-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(23, 95, 214, 0.3);
+      }
+      
+      /* Floating audio player */
+      .floating-audio-player {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 40px);
+        max-width: 500px;
+        background-color: #181818;
+        color: #fff;
+        display: none;
+        align-items: center;
+        padding: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        border-radius: 12px;
+        box-sizing: border-box;
+      }
+      
+      .floating-audio-player .player-thumb {
+        width: 50px;
+        height: 50px;
+        margin-right: 16px;
+        border-radius: 6px;
+        flex-shrink: 0;
+      }
+      
+      .floating-audio-player .player-details {
+        flex-grow: 1;
+        min-width: 0;
+      }
+      
+      .floating-audio-player .player-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .floating-audio-player .player-controls {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .floating-audio-player .play-pause-btn {
+        background: none;
+        border: 1px solid #fff;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 12px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .floating-audio-player .timeline-slider {
+        flex-grow: 1;
+        -webkit-appearance: none;
+        height: 4px;
+        border-radius: 2px;
+        background: #475569;
+        outline: none;
+        margin-right: 12px;
+      }
+      
+      .floating-audio-player .timeline-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+      }
+      
+      .floating-audio-player .time-display {
+        font-size: 12px;
+        color: #cbd5e1;
+        flex-shrink: 0;
+        min-width: 80px;
+        text-align: right;
+      }
+      
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .modal-content {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      
+      .modal h3 {
+        color: #175fd6;
+        margin-bottom: 16px;
+        font-size: 1.25rem;
+      }
+      
+      .modal p {
+        margin-bottom: 20px;
+        color: #475569;
+      }
+      
+      .modal-btn {
+        background: #175fd6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      
+      .modal-btn:hover {
+        background: #1248b0;
+      }
+      
+      /* Hidden content */
+      .locked {
         display: none;
       }
-
-.audio-thumb {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.audio-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
-  justify-content: center;
-}
-
-.audio-btn {
-  background: #000;
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.audio-btn:active {
-  transform: scale(0.96);
-}
-
-audio {
-  width: 100%;
-  margin-top: 6px;
-}
-
-/* Make audio bar full-width and bigger on mobile */
-audio {
-  width: 100% !important;
-  display: block;
-  margin: 10px 0;
-}
-
-/* Mobile-specific improvements */
-@media (max-width: 600px) {
-  .audio-card {
-    margin-left: 0;
-    margin-right: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .audio-thumb {
-    order: 1;
-  }
-  .timeline-container {
-    order: 2; 
-  }
-  .audio-controls {
-    order: 3;
-    margin-top: 12px;
-  }
-  audio {
-    order: 4; /* Hidden, but let's keep it ordered */
-  }
-  /* Rule for original audio player's timeline, can be removed but let's keep it for now */
-  audio::-webkit-media-controls-timeline {
-    height: 44px; /* bigger drag area */
-  }
-  audio::-webkit-media-controls-panel {
-    padding: 8px;
-  }
-}
-
-/* Custom Timeline */
-.timeline-container {
-  width: 100%;
-  margin: 15px 0;
-}
-
-.timeline-slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 10px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-.timeline-slider:hover {
-  opacity: 1;
-}
-
-.timeline-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #000000;
-  cursor: pointer;
-}
-
-.timeline-slider::-moz-range-thumb {
-  width: 25px;
-  height: 15px;
-  border-radius: 50%;
-  background: #000000;
-  cursor: pointer;
-}
-
-.time-display {
-  text-align: right;
-  font-size: 0.9em;
-  color: #555;
-  margin-top: 5px;
-}
-
-.speed-controls {
-    margin-top: 10px;
-}
-
-      /* Normalize any large heading styles inside answer sections so they match other answers */
-      .answer-section h2,
-      .answer-section h3,
-      .answer-section h4 {
-        background: transparent !important;
-        color: inherit !important;
-        padding: 0 !important;
-        margin: 0 0 0.5rem 0 !important;
-        border: none !important;
-        font-size: inherit !important;
-        font-weight: 600 !important;
-      }
-      /* Make only question cards dark: black background with white text */
-      /* Use a CSS counter to render numbers reliably even when markup has siblings between <li> tags */
-      .question-list > ol {
-        counter-reset: q-counter;
-        list-style: none !important; /* hide default markers to use CSS counters */
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-      }
-      .question-list > ol > li {
-        counter-increment: q-counter;
-        background: #000 !important;
-        color: #fff !important;
-        padding: 0.5rem 1rem 0.5rem 3rem !important; /* leave space for the synthetic marker */
-        border-radius: 6px !important;
-        margin: 0.5rem 0 !important;
-        position: relative !important;
-      }
-      /* Synthetic numeric marker so numbering appears even if HTML markup is unconventional */
-      .question-list > ol > li::before {
-        content: counter(q-counter) ".";
-        position: absolute !important;
-        left: 0.8rem !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        color: #fff !important;
-        font-weight: 700 !important;
-        font-size: 1rem !important;
-      }
-      /* Ensure links inside question items remain readable and don't affect answer text */
-      .question-list > ol > li a {
-        color: #fff !important;
-      }
-      /* Important note card: make background black and text white */
-      .important-note {
-        background: #e7e7e7 !important;
-        color: #000000 !important;
-        padding: 0.75rem 1rem !important;
-        border-radius: 8px !important;
-        box-shadow: 0 12px 30px rgb(189, 189, 189) !important;
-      }
-
-      /* Question cards: add deeper shadow to stand out */
-      .question-list > ol > li {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55) !important;
-      }
-
-      /* Owner / feature card - remove heavy shadow for the final owner card per user request */
-      .feature-card.owner-card {
-        box-shadow: none !important;
-        border-radius: 10px !important;
-      }
-
-      /* Visit / contact clickable cells (treat as contact cards) - remove shadow for contact links */
-      .visit-row .visit-cell {
-        box-shadow: none !important;
-        border-radius: 8px !important;
-        padding: 0.6rem !important;
-        background: #fff !important;
+      
+      /* Responsive adjustments */
+      @media (max-width: 600px) {
+        .container {
+          padding: 0 16px;
+        }
+        
+        .card {
+          padding: 20px 16px;
+        }
+        
+        .unlock-form {
+          padding: 24px 20px;
+        }
+        
+        .audio-controls {
+          gap: 8px;
+        }
+        
+        .audio-btn {
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+        
+        .owner-card {
+          flex-direction: column;
+          text-align: center;
+          gap: 12px;
+        }
+        
+        .floating-audio-player {
+          bottom: 16px;
+          width: calc(100% - 32px);
+        }
       }
     </style>
-  <style>
-.floating-audio-player {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    width: calc(100% - 20px);
-    background-color: #181818;
-    color: #fff;
-    display: none;
-    align-items: center;
-    padding: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
-    border-radius: 12px;
-    box-sizing: border-box;
-}
-
-.floating-audio-player .player-thumb {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
-    border-radius: 4px;
-}
-
-.floating-audio-player .player-details {
-    flex-grow: 1;
-}
-
-.floating-audio-player .player-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.floating-audio-player .player-controls {
-    display: flex;
-    align-items: center;
-}
-
-.floating-audio-player .play-pause-btn {
-    background: none;
-    border: 1px solid #fff;
-    color: #fff;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-.floating-audio-player .timeline-slider {
-    flex-grow: 1;
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background: #535353;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity .2s;
-    margin-right: 15px;
-}
-
-.floating-audio-player .timeline-slider:hover {
-    opacity: 1;
-}
-
-.floating-audio-player .timeline-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-}
-
-.floating-audio-player .time-display {
-    font-size: 12px;
-}
-</style>
 </head>
-  <body class="pds-page" onload="checkAccess()">
-    <!-- Header Card -->
-    <header class="header-card card">
-      <img src="9.png" alt="Abstract background image" />
-    </header>
+<body>
+    <div class="container">
+        <!-- Header Card -->
+        <header class="header-card card">
+            <img src="9.png" alt="Abstract background image" />
+        </header>
 
-    <!-- Dedication card -->
-    <section class="dedication-card card">
-      <div class="dedication-content">Punjabi</div>
-    </section>
+        <!-- Dedication card -->
+        <section class="dedication-card card">
+            <div class="dedication-content">Punjabi</div>
+        </section>
 
-    <!-- Card asking for Name + Roll (ALWAYS VISIBLE UNTIL UNLOCKED) -->
-    <div id="lockedForm">
-      <h3>Unlock Punjabi Paper</h3>
-      <div>
-        <input type="text" id="userName" placeholder="Enter your name" required>
-        <div id="nameError"></div>
-      </div>
-      <div>
-        <input type="text" id="rollNumber" placeholder="Enter your 5-digit roll (starts with 550)" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550">
-        <div id="rollError"></div>
-      </div>
-      <button id="followUnlockBtn" onclick="followToUnlock()" disabled>
-        <span id="btnText">Follow to Unlock</span>
-        <span id="btnSpinner" style="display:none;">🔄</span>
-      </button>
-    </div>
-
-    <div class="section locked" style="display:none;">
-      <h3>Small Message from manxjeetagain</h3>
-      <p>
-        These predicted questions are curated through in-depth trend analysis of
-        previous exam papers and the latest syllabus patterns, powered by
-        Google’s advanced Turbo 2.5 system. With a 92% accuracy rate, they’re
-        highly likely to appear in your upcoming Nov/Dec exams.
-      </p>
-    </div>
-
-    <div class="important-note">
-      Note – exam date: 26/11/2025 
-    </div>
-
-    <!-- SECTION A -->
-    <!-- PDS navigation: Section A/B/C/D -->
-
-  <div class="section locked" id="sectionA" style="display:none;">
-     
-          
-       
-
-
-
-    
-
-
-  <!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="sorry.png" alt="Audio Thumbnail" class="audio-thumb" />
-
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider2" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time2">0:00</span> / <span id="total-duration2">0:00</span>
-      </div>
-    </div>
-
-    <audio id="audio2" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="sorry.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio2')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn2">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio2')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio2',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio2',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio2',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio2',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #000000;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+        <!-- Unlock Form -->
+        <div id="unlockForm" class="unlock-form">
+            <h3>Unlock Punjabi Paper</h3>
+            <div class="form-group">
+                <label for="userName">Full Name</label>
+                <input type="text" id="userName" class="form-control" placeholder="Enter your name" required>
+                <div id="nameError" class="error-message">Please enter your name.</div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
-              </div>
+            <div class="form-group">
+                <label for="rollNumber">Roll Number</label>
+                <input type="text" id="rollNumber" class="form-control" placeholder="Enter your 5-digit roll number" required inputmode="numeric" maxlength="5" pattern="^550\d{2}$" title="Must be 5 digits and start with 550">
+                <div id="rollError" class="error-message">Roll number must be 5 digits and start with 550.</div>
             </div>
-          </div>
-        
-      </ol>
+            <button id="followUnlockBtn" class="btn" onclick="followToUnlock()" disabled>
+                <span id="btnText">Follow to Unlock</span>
+                <span id="btnSpinner" class="btn-spinner" style="display:none;">⟳</span>
+            </button>
+        </div>
 
-      <!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="harak sog.png" alt="Audio Thumbnail" class="audio-thumb" />
+        <!-- Message Section -->
+        <div class="message-section locked">
+            <h3>Small Message from manxjeetagain</h3>
+            <p>
+                These predicted questions are curated through in-depth trend analysis of
+                previous exam papers and the latest syllabus patterns, powered by
+                Google's advanced Turbo 2.5 system. With a 92% accuracy rate, they're
+                highly likely to appear in your upcoming Nov/Dec exams.
+            </p>
+        </div>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider3" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time3">0:00</span> / <span id="total-duration3">0:00</span>
-      </div>
-    </div>
+        <!-- Important Note -->
+        <div class="important-note locked">
+            Note – exam date: 26/11/2025 
+        </div>
 
-    <audio id="audio3" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="harak sog.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
+        <!-- Content Sections (initially locked) -->
+        <div class="locked" id="contentSections">
+            <!-- Audio Card 1 -->
+            <div class="audio-card">
+                <img src="sorry.png" data-gif="p monkey.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider1" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time1">0:00</span>
+                        <span id="total-duration1">0:00</span>
+                    </div>
+                </div>
 
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio3')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn3">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio3')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio3',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio3',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio3',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio3',2)">2x</button>
-    </div>
-  </div>
+                <audio id="audio1" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="sorry.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-  <div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #000000;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio1')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn1">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio1')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio1',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio1',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio1',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio1',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
-              </div>
+
+            <!-- Owner Card 1 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic2.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" class="follow-btn">Feedback</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
-<!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="khuh khata.png" alt="Audio Thumbnail" class="audio-thumb" />
+            <!-- Audio Card 2 -->
+            <div class="audio-card">
+                <img src="harak sog.png" data-gif="p.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider2" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time2">0:00</span>
+                        <span id="total-duration2">0:00</span>
+                    </div>
+                </div>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider4" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time4">0:00</span> / <span id="total-duration4">0:00</span>
-      </div>
-    </div>
+                <audio id="audio2" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="harak sog.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <audio id="audio4" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="khuh khata.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio4')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn4">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio4')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio4',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio4',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio4',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio4',2)">2x</button>
-    </div>
-  </div>
-
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio2')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn2">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio2')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio2',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio2',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio2',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio2',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
-              </div>
+
+            <!-- Owner Card 2 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" class="follow-btn">Follow</a>
+                </div>
             </div>
-          </div>
-        
-   
 
+            <!-- Audio Card 3 -->
+            <div class="audio-card">
+                <img src="khuh khata.png" data-gif="b.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider3" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time3">0:00</span>
+                        <span id="total-duration3">0:00</span>
+                    </div>
+                </div>
 
-  <!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="rahu katu.png" alt="Audio Thumbnail" class="audio-thumb" />
+                <audio id="audio3" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="khuh khata.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider5" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time5">0:00</span> / <span id="total-duration5">0:00</span>
-      </div>
-    </div>
-
-    <audio id="audio5" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="rahu katu.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio5')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn5">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio5')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio5',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio5',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio5',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio5',2)">2x</button>
-    </div>
-  </div>
-
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio3')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn3">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio3')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio3',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio3',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio3',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio3',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
-              </div>
+
+            <!-- Owner Card 3 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic2.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" class="follow-btn">Feedback</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
-      <!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="thakava.png" alt="Audio Thumbnail" class="audio-thumb" />
+            <!-- Audio Card 4 -->
+            <div class="audio-card">
+                <img src="rahu katu.png" data-gif="audio.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider4" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time4">0:00</span>
+                        <span id="total-duration4">0:00</span>
+                    </div>
+                </div>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider6" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time6">0:00</span> / <span id="total-duration6">0:00</span>
-      </div>
-    </div>
+                <audio id="audio4" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="rahu katu.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <audio id="audio6" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="thakava.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio6')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn6">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio6')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio6',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio6',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio6',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio6',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio4')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn4">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio4')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio4',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio4',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio4',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio4',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
-              </div>
+
+            <!-- Owner Card 4 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" class="follow-btn">Follow</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
-          <!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="hazar kahaniya da baap.png" alt="Audio Thumbnail" class="audio-thumb" />
+            <!-- Audio Card 5 -->
+            <div class="audio-card">
+                <img src="thakava.png" data-gif="fire.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider5" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time5">0:00</span>
+                        <span id="total-duration5">0:00</span>
+                    </div>
+                </div>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider7" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time7">0:00</span> / <span id="total-duration7">0:00</span>
-      </div>
-    </div>
+                <audio id="audio5" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="thakava.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <audio id="audio7" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="hazar kahaniya da baap.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio7')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn7">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio7')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio7',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio7',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio7',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio7',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio5')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn5">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio5')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio5',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio5',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio5',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio5',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
-              </div>
+
+            <!-- Owner Card 5 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic2.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" class="follow-btn">Feedback</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
+            <!-- Audio Card 6 -->
+            <div class="audio-card">
+                <img src="hazar kahaniya da baap.png" data-gif="d.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider6" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time6">0:00</span>
+                        <span id="total-duration6">0:00</span>
+                    </div>
+                </div>
 
+                <audio id="audio6" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="hazar kahaniya da baap.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-   <!-- AUDIO CARD -->
-  <div class="audio-card locked" style="display:none;">
-    <img src="pavitar papi.png" alt="Audio Thumbnail" class="audio-thumb" />
-
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider8" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time8">0:00</span> / <span id="total-duration8">0:00</span>
-      </div>
-    </div>
-
-    <audio id="audio8" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="pavitar papi.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio8')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn8">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio8')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio8',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio8',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio8',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio8',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio6')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn6">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio6')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio6',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio6',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio6',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio6',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
-              </div>
+
+            <!-- Owner Card 6 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" class="follow-btn">Follow</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
+            <!-- Audio Card 7 -->
+            <div class="audio-card">
+                <img src="pavitar papi.png" data-gif="c.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider7" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time7">0:00</span>
+                        <span id="total-duration7">0:00</span>
+                    </div>
+                </div>
 
-      
-          <!-- AUDIO CARD -->
-  <div class="audio-card">
-    <img src="aklavya.png" alt="Audio Thumbnail" class="audio-thumb" />
+                <audio id="audio7" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="pavitar papi.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider9" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time9">0:00</span> / <span id="total-duration9">0:00</span>
-      </div>
-    </div>
-
-    <audio id="audio9" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="aklavya.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio9')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn9">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio9')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio9',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio9',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio9',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio9',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio7')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn7">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio7')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio7',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio7',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio7',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio7',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
-              </div>
+
+            <!-- Owner Card 7 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic2.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" class="follow-btn">Feedback</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
+            <!-- Audio Card 8 -->
+            <div class="audio-card">
+                <img src="aklavya.png" data-gif="j.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider8" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time8">0:00</span>
+                        <span id="total-duration8">0:00</span>
+                    </div>
+                </div>
 
-   <!-- AUDIO CARD -->
-  <div class="audio-card">
-    <img src="new year.png" alt="Audio Thumbnail" class="audio-thumb" />
+                <audio id="audio8" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="aklavya.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider10" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time10">0:00</span> / <span id="total-duration10">0:00</span>
-      </div>
-    </div>
-
-    <audio id="audio10" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="new year.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio10')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn10">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio10')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio10',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio10',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio10',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio10',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic2.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio8')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn8">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio8')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio8',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio8',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio8',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio8',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">feedback</a>
-              </div>
+
+            <!-- Owner Card 8 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" class="follow-btn">Follow</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
-     <!-- AUDIO CARD -->
-  <div class="audio-card">
-    <img src="aho hamara zivan.png" alt="Audio Thumbnail" class="audio-thumb" />
+            <!-- Audio Card 9 -->
+            <div class="audio-card">
+                <img src="new year.png" data-gif="i.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider9" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time9">0:00</span>
+                        <span id="total-duration9">0:00</span>
+                    </div>
+                </div>
 
-    <!-- Custom Timeline -->
-    <div class="timeline-container">
-      <input type="range" id="timeline-slider11" class="timeline-slider" value="0" min="0" step="1">
-      <div class="time-display">
-        <span id="current-time11">0:00</span> / <span id="total-duration11">0:00</span>
-      </div>
-    </div>
+                <audio id="audio9" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="new year.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
 
-    <audio id="audio11" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
-      <source src="aho hamara zivan.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div class="audio-controls">
-      <button class="audio-btn" onclick="skipBack('audio11')">⏪ 10s</button>
-      <button class="audio-btn" id="play-pause-btn11">Play</button>
-      <button class="audio-btn" onclick="skipForward('audio11')">10s ⏩</button>
-    </div>
-    
-    <div class="audio-controls speed-controls">
-      <button class="audio-btn" onclick="setSpeed('audio11',1)">1x</button>
-      <button class="audio-btn" onclick="setSpeed('audio11',1.25)">1.25x</button>
-      <button class="audio-btn" onclick="setSpeed('audio11',1.5)">1.5x</button>
-      <button class="audio-btn" onclick="setSpeed('audio11',2)">2x</button>
-    </div>
-  </div>
-<div class="feature-card card owner-card-small" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;">
-            <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;border:1px solid #000000;box-sizing:border-box;">
-              <img src="owner pic.png" alt="Manjeet" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;border:1.5px solid #fff;box-sizing:border-box;">
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio9')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn9">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio9')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio9',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio9',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio9',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio9',2)">2x</button>
+                </div>
             </div>
-            <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:16px;font-weight:700;color:#ffffff;line-height:1;">Manjeet enterprises®</div>
-              </div>
-              <div style="margin-left:12px;">
-                <a class="follow-pill" href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(180deg,#2b73e6,#175fd6);color:#fff;padding:8px 14px;border-radius:20px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(23,95,214,0.14);">Follow</a>
-              </div>
+
+            <!-- Owner Card 9 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic2.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏" target="_blank" rel="noopener noreferrer" class="follow-btn">Feedback</a>
+                </div>
             </div>
-          </div>
-        
-      </ol>
 
+            <!-- Audio Card 10 -->
+            <div class="audio-card">
+                <img src="aho hamara zivan.png" data-gif="p monkey.gif" alt="Audio Thumbnail" class="audio-thumb" />
+                
+                <!-- Custom Timeline -->
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider10" class="timeline-slider" value="0" min="0" step="1">
+                    <div class="time-display">
+                        <span id="current-time10">0:00</span>
+                        <span id="total-duration10">0:00</span>
+                    </div>
+                </div>
 
-   
-    <!-- Owner/Feature Card -->
-  <section class="feature-card card owner-card locked" style="display:none;">
-    <!-- Development notice card -->
-    <div class="feature-card card locked" style="background:#000000;border:1px solid #d9e2ee;display:flex;align-items:center;gap:14px;padding:10px;margin:25px 0;border-radius:10px;min-height:72px;justify-content:center;display:none;">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <span style="font-size:18px;font-weight:700;color:#fff;">The next part of Punjabi paper is <span style="color:#fff;">under development</span></span>
-        <span style="font-size:15px;font-weight:500;color:#fff;margin-top:8px;">Sorry for the inconvenience.</span>
-      </div>
+                <audio id="audio10" style="display: none;" controlsList="nodownload" oncontextmenu="return false;">
+                    <source src="aho hamara zivan.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+
+                <div class="audio-controls">
+                    <button class="audio-btn" onclick="skipBack('audio10')">⏪ 10s</button>
+                    <button class="audio-btn" id="play-pause-btn10">Play</button>
+                    <button class="audio-btn" onclick="skipForward('audio10')">10s ⏩</button>
+                </div>
+                
+                <div class="audio-controls speed-controls">
+                    <button class="audio-btn" onclick="setSpeed('audio10',1)">1x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio10',1.25)">1.25x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio10',1.5)">1.5x</button>
+                    <button class="audio-btn" onclick="setSpeed('audio10',2)">2x</button>
+                </div>
+            </div>
+
+            <!-- Owner Card 10 -->
+            <div class="owner-card">
+                <div class="owner-avatar">
+                    <img src="owner pic.png" alt="Manjeet">
+                </div>
+                <div class="owner-info">
+                    <div class="owner-name">Manjeet Enterprises®</div>
+                    <div class="owner-description">Your one-stop destination for commerce study materials.</div>
+                    <a href="https://www.instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" class="follow-btn">Follow</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Owner/Feature Card (always visible) -->
-    <section class="feature-card card owner-card">
-      <a
-        class="card-link"
-        href="https://www.instagram.com/manxjeetagain"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open Manjeet's Instagram"
-      ></a>
-      <img
-        src="owner pic2.png"
-        alt="Manjeet, owner of Manjeet Enterprises"
-        class="feature-image"
-      />
-      <h2>Manjeet Enterprises</h2>
-      <p>Your one-stop destination for commerce study materials.</p>
-      <a
-        class="follow-pill"
-        href="https://ig.me/m/manxjeetagain?text=Name%20-%0ARoll%20No%20-%0ASend%20me%20Punjabi%20paper%20pls%20🙏"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="follow @manxjeetagain"
-        >please Send your feedback @manxjeetagain</a
-      >
-    </section>
 
-    <!-- Visit/contact block removed -->
-  <style>
-    /* keep a single small rule to hide locked content by default; unlocking is handled by track.js */
-    .locked { display: none; }
-  </style>
-  <script src="track.js"></script>
-  <script>
-    // Unlock logic for Punjabi page
-    // Make these global so skip/playback speed work
-    var currentAudioCard = null;
-    var floatingAudio;
+    <!-- Modal for roll number error -->
+    <div id="rollNumberModal" class="modal">
+        <div class="modal-content">
+            <h3>Invalid Roll Number</h3>
+            <p>Roll number must start with 550 and be 5 digits long.</p>
+            <button class="modal-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
 
-    function followToUnlock() {
-      const name = document.getElementById('userName').value.trim();
-      const roll = document.getElementById('rollNumber').value.trim();
-      var valid = true;
-      if (!name) {
-        document.getElementById('nameError').textContent = 'Please enter your name.';
-        document.getElementById('nameError').style.display = 'block';
-        valid = false;
-      } else {
-        document.getElementById('nameError').style.display = 'none';
-      }
-      if (!/^550\d{2}$/.test(roll)) {
-        document.getElementById('rollError').textContent = 'Roll number must be 5 digits and start with 550.';
-        document.getElementById('rollError').style.display = 'block';
-        valid = false;
-      } else {
-        document.getElementById('rollError').style.display = 'none';
-      }
-      if (!valid) return;
-      document.getElementById('btnText').style.display = 'none';
-      document.getElementById('btnSpinner').style.display = 'inline-block';
-      setTimeout(function() {
-        localStorage.setItem('userName', name);
-        localStorage.setItem('rollNumber', roll);
-        localStorage.setItem('pending_follow', '1');
-        window.open('https://instagram.com/manxjeetagain', '_blank');
-        document.getElementById('btnText').textContent = 'Return here after following';
-        document.getElementById('btnText').style.display = 'inline-block';
-        document.getElementById('btnSpinner').style.display = 'none';
-        document.getElementById('followUnlockBtn').disabled = true;
-        document.getElementById('followUnlockBtn').style.opacity = '0.6';
-      }, 700);
-    }
+    <!-- Floating Audio Player -->
+    <div id="floating-audio-player" class="floating-audio-player">
+        <img id="floating-player-thumb" src="" alt="Album Art" class="player-thumb">
+        <div class="player-details">
+            <div id="floating-player-title" class="player-title">Select a track</div>
+            <div class="player-controls">
+                <button id="floating-player-play-pause" class="play-pause-btn">▶</button>
+                <input type="range" id="floating-player-timeline" class="timeline-slider" value="0" step="1">
+                <div id="floating-player-time" class="time-display">0:00 / 0:00</div>
+            </div>
+        </div>
+    </div>
 
-    function unlockContent() {
-      // Hide the unlock form
-      const lockedForm = document.getElementById('lockedForm');
-      if (lockedForm) {
-        lockedForm.style.display = 'none';
-      }
-      // Show all locked sections
-      document.querySelectorAll('.locked').forEach(el => {
-        el.style.display = '';
-      });
-    }
-    function lockContent() {
-      // Show the unlock form
-      const lockedForm = document.getElementById('lockedForm');
-      if (lockedForm) lockedForm.style.display = 'block';
-      // Hide only locked sections, not the form
-      document.querySelectorAll('.locked').forEach(el => {
-        el.style.display = 'none';
-      });
-    }
-    function checkAccess() {
-      if (localStorage.getItem('followed_instagram') === '1') {
-        unlockContent();
-        return;
-      }
-      if (localStorage.getItem('pending_follow') === '1') {
-        localStorage.setItem('followed_instagram', '1');
-        localStorage.removeItem('pending_follow');
-        unlockContent();
-        return;
-      }
-      lockContent();
-    }
+    <script>
+        // Global variables
+        let currentAudioCard = null;
+        let floatingAudio = null;
+        let checkAccessInterval = null;
 
-    document.addEventListener('DOMContentLoaded', function() {
-      checkAccess();
-
-      // Form validation and button enable/disable
-      var userNameInput = document.getElementById('userName');
-      var rollInput = document.getElementById('rollNumber');
-      var followBtn = document.getElementById('followUnlockBtn');
-
-      function validateFormFields() {
-        var name = userNameInput.value.trim();
-        var roll = rollInput.value.trim();
-        var valid = name.length > 0 && /^550\d{2}$/.test(roll);
-        followBtn.disabled = !valid;
-        followBtn.style.opacity = valid ? '1' : '0.7';
-      }
-      userNameInput.addEventListener('input', function() {
-        document.getElementById('nameError').style.display = 'none';
-        validateFormFields();
-      });
-      rollInput.addEventListener('input', function() {
-        document.getElementById('rollError').style.display = 'none';
-        validateFormFields();
-      });
-      validateFormFields();
-
-      // ...existing code for audio logic...
-      const audioPlayers = document.querySelectorAll('.audio-card');
-      const floatingPlayer = document.getElementById('floating-audio-player');
-      floatingAudio = new Audio();
-      const floatingPlayPauseBtn = document.getElementById('floating-player-play-pause');
-      const floatingTimeline = document.getElementById('floating-player-timeline');
-      const floatingTimeDisplay = document.getElementById('floating-player-time');
-      const floatingThumb = document.getElementById('floating-player-thumb');
-      const floatingTitle = document.getElementById('floating-player-title');
-
-      audioPlayers.forEach((player) => {
-        const audio = player.querySelector('audio');
-        if (!audio) return;
-
-        const timelineSlider = player.querySelector('.timeline-slider');
-        const totalDurationEl = player.querySelector('.time-display span:last-child');
-        const playPauseBtn = player.querySelector('.audio-btn:nth-child(2)');
-
-        audio.addEventListener('loadedmetadata', () => {
-          totalDurationEl.textContent = formatTime(audio.duration);
-          timelineSlider.max = audio.duration;
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAccess();
+            setupFormValidation();
+            setupAudioPlayers();
         });
 
-        playPauseBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
+        // Form validation
+        function setupFormValidation() {
+            const userNameInput = document.getElementById('userName');
+            const rollInput = document.getElementById('rollNumber');
+            const followBtn = document.getElementById('followUnlockBtn');
 
-          if (currentAudioCard === player && !floatingAudio.paused) {
-            floatingAudio.pause();
-          } else {
-            if (currentAudioCard && currentAudioCard !== player) {
-              const oldPlayBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
-              if (oldPlayBtn) oldPlayBtn.textContent = 'Play';
+            function validateFormFields() {
+                const name = userNameInput.value.trim();
+                const roll = rollInput.value.trim();
+                const valid = name.length > 0 && /^550\d{2}$/.test(roll);
+                followBtn.disabled = !valid;
             }
 
-            currentAudioCard = player;
-            const audioSource = audio.querySelector('source').src;
-            const thumbSource = player.querySelector('.audio-thumb').src;
-            const title = thumbSource.split('/').pop().replace('.png', '').replace(/%20/g, ' ')
-              .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize words
+            userNameInput.addEventListener('input', function() {
+                document.getElementById('nameError').style.display = 'none';
+                validateFormFields();
+            });
 
-            if (floatingAudio.src !== audioSource) {
-              floatingAudio.src = audioSource;
-              floatingThumb.src = thumbSource;
-              floatingTitle.textContent = title;
+            rollInput.addEventListener('input', function() {
+                document.getElementById('rollError').style.display = 'none';
+                validateFormFields();
+            });
+
+            validateFormFields();
+        }
+
+        // Follow to unlock functionality
+        function followToUnlock() {
+            const name = document.getElementById('userName').value.trim();
+            const roll = document.getElementById('rollNumber').value.trim();
+            let valid = true;
+
+            if (!name) {
+                document.getElementById('nameError').style.display = 'block';
+                valid = false;
             }
 
-            floatingAudio.play();
-            floatingPlayer.style.display = 'flex';
-          }
-        });
+            if (!/^550\d{2}$/.test(roll)) {
+                // Show modal instead of inline error
+                document.getElementById('rollNumberModal').style.display = 'flex';
+                valid = false;
+            }
 
-        timelineSlider.addEventListener('input', () => {
-          if (currentAudioCard === player) {
-            floatingAudio.currentTime = timelineSlider.value;
-          }
-        });
-      });
+            if (!valid) return;
 
-      floatingPlayPauseBtn.addEventListener('click', () => {
-        if (floatingAudio.src) {
-          if (floatingAudio.paused) {
-            floatingAudio.play();
-          } else {
-            floatingAudio.pause();
-          }
-        }
-      });
+            // Show loading state
+            document.getElementById('btnText').style.display = 'none';
+            document.getElementById('btnSpinner').style.display = 'inline-block';
+            document.getElementById('followUnlockBtn').disabled = true;
 
-      floatingAudio.addEventListener('play', () => {
-        floatingPlayPauseBtn.textContent = '❚❚';
-        if (currentAudioCard) {
-          const playPauseBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
-          if (playPauseBtn) playPauseBtn.textContent = 'Pause';
-        }
-      });
+            // Store user data and set pending follow flag
+            localStorage.setItem('userName', name);
+            localStorage.setItem('rollNumber', roll);
+            localStorage.setItem('pending_follow', '1');
 
-      floatingAudio.addEventListener('pause', () => {
-        floatingPlayPauseBtn.textContent = '▶';
-        if (currentAudioCard) {
-          const playPauseBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
-          if (playPauseBtn) playPauseBtn.textContent = 'Play';
-        }
-      });
+            // Open Instagram in a new tab
+            window.open('https://instagram.com/manxjeetagain', '_blank');
 
-      floatingAudio.addEventListener('timeupdate', () => {
-        const currentTime = floatingAudio.currentTime;
-        floatingTimeline.value = currentTime;
-        if (isFinite(floatingAudio.duration)) {
-          floatingTimeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(floatingAudio.duration)}`;
+            // Update button text
+            setTimeout(() => {
+                document.getElementById('btnText').textContent = 'Return here after following';
+                document.getElementById('btnText').style.display = 'inline-block';
+                document.getElementById('btnSpinner').style.display = 'none';
+                
+                // Start checking for return
+                checkAccessInterval = setInterval(checkAccess, 1000);
+            }, 700);
         }
 
-        if (currentAudioCard) {
-          const cardTimeline = currentAudioCard.querySelector('.timeline-slider');
-          const cardCurrentTimeEl = currentAudioCard.querySelector('.time-display span:first-child');
+        // Check access and unlock content
+        function checkAccess() {
+            if (localStorage.getItem('followed_instagram') === '1') {
+                unlockContent();
+                return;
+            }
 
-          if (cardTimeline) cardTimeline.value = currentTime;
-          if (cardCurrentTimeEl) cardCurrentTimeEl.textContent = formatTime(currentTime);
+            if (localStorage.getItem('pending_follow') === '1') {
+                // Simulate successful follow after a delay
+                setTimeout(() => {
+                    localStorage.setItem('followed_instagram', '1');
+                    localStorage.removeItem('pending_follow');
+                    unlockContent();
+                    
+                    if (checkAccessInterval) {
+                        clearInterval(checkAccessInterval);
+                    }
+                }, 1500);
+                return;
+            }
         }
-      });
 
-      floatingAudio.addEventListener('loadedmetadata', () => {
-        floatingTimeline.max = floatingAudio.duration;
-        if (currentAudioCard) {
-          const totalDurationEl = currentAudioCard.querySelector('.time-display span:last-child');
-          const cardTimeline = currentAudioCard.querySelector('.timeline-slider');
-          if (totalDurationEl) totalDurationEl.textContent = formatTime(floatingAudio.duration);
-          if (cardTimeline) cardTimeline.max = floatingAudio.duration;
+        // Preload all GIFs declared via data-gif on the page. Marks images with dataset.gifLoaded = '1' or '0'.
+        function preloadAllGifs() {
+            const thumbs = document.querySelectorAll('.audio-thumb');
+            thumbs.forEach(img => {
+                const gif = img.dataset.gif || (img.src ? img.src.replace(/\.png(\?.*)?$/i, '.gif$1') : null);
+                if (!gif) return;
+                // skip if already attempted
+                if (img.dataset.gifLoaded) return;
+
+                const pre = new Image();
+                pre.onload = () => { img.dataset.gifLoaded = '1'; };
+                pre.onerror = () => { img.dataset.gifLoaded = '0'; };
+                pre.src = gif;
+            });
         }
-      });
 
-      floatingTimeline.addEventListener('input', () => {
-        floatingAudio.currentTime = floatingTimeline.value;
-      });
+        // Unlock content
+        function unlockContent() {
+            // Hide the unlock form
+            document.getElementById('unlockForm').style.display = 'none';
+            
+            // Show all locked sections
+            document.querySelectorAll('.locked').forEach(el => {
+                el.style.display = 'block';
+            });
+            // Preload GIFs for a smooth transition when playback starts
+            try { preloadAllGifs(); } catch (e) { /* ignore if fn not available */ }
+        }
 
-      function formatTime(seconds) {
-        if (isNaN(seconds)) return "0:00";
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-      }
-    });
+        // Modal functions
+        function closeModal() {
+            document.getElementById('rollNumberModal').style.display = 'none';
+        }
 
-    function skipBack(id) {
-      const cardAudioElement = document.getElementById(id);
-      if (!cardAudioElement) return;
-      const card = cardAudioElement.closest('.audio-card');
-      if (card === currentAudioCard && floatingAudio) {
-        floatingAudio.currentTime = Math.max(0, floatingAudio.currentTime - 10);
-      }
-    }
+        // Audio player setup
+        function setupAudioPlayers() {
+            const audioPlayers = document.querySelectorAll('.audio-card');
+            floatingAudio = new Audio();
+            
+            const floatingPlayer = document.getElementById('floating-audio-player');
+            const floatingPlayPauseBtn = document.getElementById('floating-player-play-pause');
+            const floatingTimeline = document.getElementById('floating-player-timeline');
+            const floatingTimeDisplay = document.getElementById('floating-player-time');
+            const floatingThumb = document.getElementById('floating-player-thumb');
+            const floatingTitle = document.getElementById('floating-player-title');
 
-    function skipForward(id) {
-      const cardAudioElement = document.getElementById(id);
-      if (!cardAudioElement) return;
-      const card = cardAudioElement.closest('.audio-card');
-      if (card === currentAudioCard && floatingAudio) {
-        floatingAudio.currentTime = Math.min(floatingAudio.duration, floatingAudio.currentTime + 10);
-      }
-    }
+            // Initialize all audio players
+            for (let i = 1; i <= 10; i++) {
+                const audio = document.getElementById(`audio${i}`);
+                if (!audio) continue;
 
-    function setSpeed(id, speed) {
-      const cardAudioElement = document.getElementById(id);
-      if (!cardAudioElement) return;
-      const card = cardAudioElement.closest('.audio-card');
-      if (card === currentAudioCard && floatingAudio) {
-        floatingAudio.playbackRate = speed;
-      }
-    }
+                const timelineSlider = document.getElementById(`timeline-slider${i}`);
+                const totalDurationEl = document.querySelector(`#total-duration${i}`);
+                const currentTimeEl = document.querySelector(`#current-time${i}`);
+                const playPauseBtn = document.getElementById(`play-pause-btn${i}`);
 
-    document.addEventListener("contextmenu", e => e.preventDefault());
-  </script>
+                // Set up audio metadata
+                audio.addEventListener('loadedmetadata', () => {
+                    if (isFinite(audio.duration)) {
+                        totalDurationEl.textContent = formatTime(audio.duration);
+                        timelineSlider.max = Math.floor(audio.duration);
+                    }
+                });
 
-  <div id="floating-audio-player" class="floating-audio-player">
-      <img id="floating-player-thumb" src="" alt="Album Art" class="player-thumb">
-      <div class="player-details">
-          <div id="floating-player-title" class="player-title">Select a track</div>
-          <div class="player-controls">
-              <button id="floating-player-play-pause" class="play-pause-btn">▶</button>
-              <input type="range" id="floating-player-timeline" class="timeline-slider" value="0" step="1">
-              <div id="floating-player-time" class="time-display">0:00 / 0:00</div>
-          </div>
-      </div>
-  </div>
-  
-  <script>
+                // Play button click handler
+                playPauseBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const player = audio.closest('.audio-card');
+                    
+                    if (currentAudioCard === player && !floatingAudio.paused) {
+                        // Pause if this card is currently playing
+                        floatingAudio.pause();
+                    } else {
+                        // If another card is playing, stop it
+                        if (currentAudioCard && currentAudioCard !== player) {
+                            const oldPlayBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
+                            if (oldPlayBtn) oldPlayBtn.textContent = 'Play';
+                                // revert thumbnail of previous card to original png
+                                revertThumbToPng(currentAudioCard);
+                        }
+
+                        // Set current card and load audio
+                        currentAudioCard = player;
+                        const audioSource = audio.querySelector('source').src;
+                        const thumbSource = player.querySelector('.audio-thumb').src;
+                        const title = extractTitleFromSrc(thumbSource);
+
+                        if (floatingAudio.src !== audioSource) {
+                            floatingAudio.src = audioSource;
+                            floatingThumb.src = thumbSource;
+                            floatingTitle.textContent = title;
+                        }
+
+                            // revert other thumbs, then set this card's thumb to GIF
+                            revertAllThumbsExcept(player);
+                            setThumbToGif(player);
+
+                            floatingAudio.play();
+                            floatingPlayer.style.display = 'flex';
+                    }
+                });
+
+                // Timeline slider handler
+                timelineSlider.addEventListener('input', () => {
+                    if (currentAudioCard === audio.closest('.audio-card')) {
+                        floatingAudio.currentTime = timelineSlider.value;
+                    }
+                });
+
+                // Update card timeline when audio plays
+                audio.addEventListener('timeupdate', () => {
+                    if (currentAudioCard === audio.closest('.audio-card')) {
+                        timelineSlider.value = audio.currentTime;
+                        currentTimeEl.textContent = formatTime(audio.currentTime);
+                    }
+                });
+            }
+
+            // Floating player controls
+            floatingPlayPauseBtn.addEventListener('click', () => {
+                if (floatingAudio.src) {
+                    if (floatingAudio.paused) {
+                        floatingAudio.play();
+                    } else {
+                        floatingAudio.pause();
+                    }
+                }
+            });
+
+            floatingAudio.addEventListener('play', () => {
+                floatingPlayPauseBtn.textContent = '❚❚';
+                if (currentAudioCard) {
+                    const playPauseBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
+                    if (playPauseBtn) playPauseBtn.textContent = 'Pause';
+                    // set current card thumbnail to gif when playback starts
+                    setThumbToGif(currentAudioCard);
+                }
+            });
+
+            floatingAudio.addEventListener('pause', () => {
+                floatingPlayPauseBtn.textContent = '▶';
+                if (currentAudioCard) {
+                    const playPauseBtn = currentAudioCard.querySelector('.audio-btn:nth-child(2)');
+                    if (playPauseBtn) playPauseBtn.textContent = 'Play';
+                    // revert current card thumbnail to original png when paused
+                    revertThumbToPng(currentAudioCard);
+                }
+            });
+
+            floatingAudio.addEventListener('timeupdate', () => {
+                const currentTime = floatingAudio.currentTime;
+                floatingTimeline.value = currentTime;
+                
+                if (isFinite(floatingAudio.duration)) {
+                    floatingTimeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(floatingAudio.duration)}`;
+                }
+
+                if (currentAudioCard) {
+                    const cardTimeline = currentAudioCard.querySelector('.timeline-slider');
+                    const cardCurrentTimeEl = currentAudioCard.querySelector('.time-display span:first-child');
+
+                    if (cardTimeline) cardTimeline.value = currentTime;
+                    if (cardCurrentTimeEl) cardCurrentTimeEl.textContent = formatTime(currentTime);
+                }
+            });
+
+            floatingAudio.addEventListener('loadedmetadata', () => {
+                floatingTimeline.max = Math.floor(floatingAudio.duration);
+                
+                if (currentAudioCard) {
+                    const totalDurationEl = currentAudioCard.querySelector('.time-display span:last-child');
+                    const cardTimeline = currentAudioCard.querySelector('.timeline-slider');
+                    
+                    if (totalDurationEl) totalDurationEl.textContent = formatTime(floatingAudio.duration);
+                    if (cardTimeline) cardTimeline.max = Math.floor(floatingAudio.duration);
+                }
+            });
+
+            floatingTimeline.addEventListener('input', () => {
+                floatingAudio.currentTime = floatingTimeline.value;
+            });
+
+            // Helper: set a card's thumbnail to its corresponding .gif (uses data-gif if present)
+            function setThumbToGif(card) {
+                if (!card) return;
+                const img = card.querySelector('.audio-thumb');
+                if (!img) return;
+                // store original src
+                if (!img.dataset.originalSrc) img.dataset.originalSrc = img.src;
+
+                // determine gif src: prefer explicit data-gif, otherwise derive from original
+                const gifSrc = img.dataset.gif || img.dataset.originalSrc.replace(/\.png(\?.*)?$/i, '.gif$1');
+
+                // If gif already preloaded, switch immediately
+                if (img.dataset.gifLoaded === '1') {
+                    img.src = gifSrc;
+                    return;
+                }
+
+                // Preload GIF and only swap if it loads successfully
+                const pre = new Image();
+                pre.onload = () => {
+                    img.dataset.gifLoaded = '1';
+                    img.src = gifSrc;
+                };
+                pre.onerror = () => {
+                    img.dataset.gifLoaded = '0';
+                };
+                pre.src = gifSrc;
+            }
+
+            // Helper: revert a card thumbnail back to original png
+            function revertThumbToPng(card) {
+                if (!card) return;
+                const img = card.querySelector('.audio-thumb');
+                if (!img) return;
+                if (img.dataset.originalSrc) {
+                    img.src = img.dataset.originalSrc;
+                } else {
+                    img.src = img.src.replace(/\.gif(\?.*)?$/i, '.png$1');
+                }
+            }
+
+            // Helper: revert thumbnails for all cards except the provided one
+            function revertAllThumbsExcept(exceptCard) {
+                document.querySelectorAll('.audio-card').forEach(card => {
+                    if (card !== exceptCard) revertThumbToPng(card);
+                });
+            }
+        }
+
+        // Helper functions
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function extractTitleFromSrc(src) {
+            return src.split('/').pop()
+                .replace('.png', '')
+                .replace(/%20/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        function skipBack(id) {
+            const cardAudioElement = document.getElementById(id);
+            if (!cardAudioElement) return;
+            const card = cardAudioElement.closest('.audio-card');
+            if (card === currentAudioCard && floatingAudio) {
+                floatingAudio.currentTime = Math.max(0, floatingAudio.currentTime - 10);
+            }
+        }
+
+        function skipForward(id) {
+            const cardAudioElement = document.getElementById(id);
+            if (!cardAudioElement) return;
+            const card = cardAudioElement.closest('.audio-card');
+            if (card === currentAudioCard && floatingAudio) {
+                floatingAudio.currentTime = Math.min(floatingAudio.duration, floatingAudio.currentTime + 10);
+            }
+        }
+
+        function setSpeed(id, speed) {
+            const cardAudioElement = document.getElementById(id);
+            if (!cardAudioElement) return;
+            const card = cardAudioElement.closest('.audio-card');
+            if (card === currentAudioCard && floatingAudio) {
+                floatingAudio.playbackRate = speed;
+            }
+        }
+
+        // Prevent right-click context menu
+        document.addEventListener("contextmenu", e => e.preventDefault());
+    </script>
+     <script>
 src="track.js"</script>
-  </script>
-
-  </body>
-
-  </html>
-
-  
+</body>
+</html>
