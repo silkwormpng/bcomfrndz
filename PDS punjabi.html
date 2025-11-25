@@ -197,12 +197,12 @@
       
       /* Audio card */
       .audio-card {
-        background: linear-gradient(135deg, #000000 0%, #225cb9 100%);
+        background: linear-gradient(135deg, #6700ee73 0%, #000000 100%, #175fd6);
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+        border: 0.3px solid #888888;
       }
       
       .audio-thumb {
@@ -236,16 +236,16 @@
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #175fd6;
+        background: #000000;
         cursor: pointer;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 6px rgb(255, 255, 255);
       }
       
       .timeline-slider::-moz-range-thumb {
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background: #175fd6;
+        background: #000000;
         cursor: pointer;
         border: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -268,11 +268,11 @@
       }
       
       .audio-btn {
-        background: #175fd6;
-        color: #fff;
+        background: linear-gradient(135deg, #000000, #6700eea4);
+        color: #ffffff;
         padding: 10px 16px;
         border-radius: 8px;
-        border: none;
+        border: 0.3px solid #888888;
         cursor: pointer;
         font-size: 14px;
         font-weight: 500;
@@ -283,7 +283,7 @@
       }
       
       .audio-btn:hover {
-        background: #1248b0;
+        background: linear-gradient(135deg,  #6700eea4, #000000);
         transform: translateY(-2px);
       }
       
@@ -292,31 +292,48 @@
       }
       
       .speed-controls .audio-btn {
-        background: #475569;
+        background: linear-gradient(135deg,  #8d8d8da4, #000000);
+        border-color: #ffffff;
+        border : 0.3px solid #888888
       }
       
       .speed-controls .audio-btn:hover {
-        background: #334155;
+        background: linear-gradient(135deg,  #000000, #8d8d8da4);
       }
       
-      /* Owner card */
-      .owner-card {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 20px;
-        background: #000;
-        color: #fff;
-        border-radius: 12px;
-        margin-bottom: 24px;
-      }
+            /* Owner card: plain deep black background (no gradient) */
+            .owner-card {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 20px;
+                background: #000000; /* deep black */
+                color: #fff;
+                border-radius: 12px;
+                border: 0.3px solid #888888;
+                margin-bottom: 24px;
+                box-shadow: none;
+            }
+
+            /* Contrast helpers */
+            .owner-card .owner-name,
+            .owner-card .owner-description,
+            .owner-card .follow-btn { color: #fff; }
+
+            /* Avatar border and shadow to pop against gradients */
+            .owner-avatar { 
+                border: 2px solid rgba(255,255,255,0.12);
+                box-shadow: 0 6px 18px rgba(0,0,0,0.45), inset 0 0 6px rgba(255,255,255,0.03);
+            }
+
+            /* Owner gradient presets removed — owner cards now use plain deep black */
       
-      .owner-avatar {
+            .owner-avatar {
         width: 60px;
         height: 60px;
         border-radius: 10px;
         overflow: hidden;
-        border: 2px solid #fff;
+                border: 2px solid rgba(255,255,255,0.12);
         flex-shrink: 0;
       }
       
@@ -343,22 +360,25 @@
         margin-bottom: 8px;
       }
       
-      .follow-btn {
-        background: linear-gradient(180deg, #2b73e6, #175fd6);
-        color: #fff;
-        padding: 8px 16px;
-        border-radius: 20px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        display: inline-block;
-        transition: all 0.2s;
-      }
+            .follow-btn {
+                background: rgba(255,255,255,0.08);
+                color: #fff;
+                padding: 8px 16px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                display: inline-block;
+                transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+                border: 1px solid rgba(255,255,255,0.09);
+                backdrop-filter: blur(4px) saturate(120%);
+            }
       
-      .follow-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(23, 95, 214, 0.3);
-      }
+            .follow-btn:hover { 
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+                background: rgba(255,255,255,0.12);
+            }
       
       /* Floating audio player */
       .floating-audio-player {
@@ -368,7 +388,7 @@
         transform: translateX(-50%);
         width: calc(100% - 40px);
         max-width: 500px;
-        background-color: #181818;
+        background: linear-gradient(135deg, #000000, #5c01d3a8);
         color: #fff;
         display: none;
         align-items: center;
@@ -409,8 +429,8 @@
       
       .floating-audio-player .play-pause-btn {
         background: none;
-        border: 1px solid #fff;
-        color: #fff;
+        border: 2px solid #542eff;
+        color: #d60ccc;
         width: 36px;
         height: 36px;
         border-radius: 50%;
@@ -428,7 +448,7 @@
         -webkit-appearance: none;
         height: 4px;
         border-radius: 2px;
-        background: #475569;
+        background: linear-gradient(135deg, #ff22e293, #630fff);
         outline: none;
         margin-right: 12px;
       }
@@ -439,13 +459,13 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #fff;
+        background: #6b43fc;
         cursor: pointer;
       }
       
       .floating-audio-player .time-display {
         font-size: 12px;
-        color: #cbd5e1;
+        color: #929292;
         flex-shrink: 0;
         min-width: 80px;
         text-align: right;
@@ -539,6 +559,7 @@
         .floating-audio-player {
           bottom: 16px;
           width: calc(100% - 32px);
+          border: 0.3px solid #888888
         }
       }
     </style>
@@ -1393,6 +1414,8 @@
             }
         }
 
+        // applyOwnerGradients removed; owner-card background is plain black now
+
         // Helper functions
         function formatTime(seconds) {
             if (isNaN(seconds)) return "0:00";
@@ -1438,7 +1461,138 @@
         // Prevent right-click context menu
         document.addEventListener("contextmenu", e => e.preventDefault());
     </script>
-     <script>
-src="track.js"</script>
+
+<script>
+(function (){
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwMq6blMRYNtXPmH0kTa0di6UG6dDnK8ljiyva5JxaHY5NkgV2IcSN_aHX6E0YmuPVI/exec";
+  const PAGE_KEY = "pds_visit_start_" + location.pathname;
+  let started = false;
+
+  function getDeviceInfo() {
+    const ua = navigator.userAgent || "";
+    let deviceType = /mobile/i.test(ua) ? "Mobile" : /tablet/i.test(ua) ? "Tablet" : "Desktop";
+    let os = "Unknown";
+    if (/Windows/i.test(ua)) os = "Windows";
+    else if (/Android/i.test(ua)) os = "Android";
+    else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+    else if (/Macintosh|Mac OS X/i.test(ua)) os = "MacOS";
+    else if (/Linux/i.test(ua)) os = "Linux";
+    let browser = "Unknown";
+    if (/Edg\//i.test(ua)) browser = "Edge";
+    else if (/OPR\//i.test(ua) || /Opera/i.test(ua)) browser = "Opera";
+    else if (/Chrome/i.test(ua) && !/Edg\//i.test(ua) && !/OPR\//i.test(ua)) browser = "Chrome";
+    else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = "Safari";
+    else if (/Firefox/i.test(ua)) browser = "Firefox";
+    const screenSize = (window.screen && window.screen.width) ? `${window.screen.width}x${window.screen.height}` : "";
+    return { deviceType, os, browser, ua, screenSize };
+  }
+
+  function nowSeconds() { return Math.floor(Date.now()/1000); }
+
+  function startTimerIfNeeded() {
+    if (started) return;
+    // Start only if name + roll exist (user unlocked)
+    const name = localStorage.getItem("userName");
+    const roll = localStorage.getItem("rollNumber");
+    if (name && roll) {
+      // save start time to sessionStorage so reload preserves time within same tab
+      const existing = sessionStorage.getItem(PAGE_KEY);
+      if (!existing) sessionStorage.setItem(PAGE_KEY, String(nowSeconds()));
+      started = true;
+    }
+  }
+
+  function getElapsedSeconds() {
+    const s = sessionStorage.getItem(PAGE_KEY);
+    if (!s) return 0;
+    return Math.max(0, nowSeconds() - Number(s));
+  }
+
+  function clearTimer() {
+    sessionStorage.removeItem(PAGE_KEY);
+    started = false;
+  }
+
+  function sendLog(immediate=false) {
+    // Send only if user has unlocked and we have some time
+    const name = localStorage.getItem("userName") || "Guest";
+    const roll = localStorage.getItem("rollNumber") || "Unknown";
+    const timeSpent = getElapsedSeconds();
+    if (timeSpent < 1 && !immediate) return;
+    const device = getDeviceInfo();
+    const params = new URLSearchParams();
+    params.append("name", name);
+    params.append("rollNumber", roll);
+    params.append("page", location.pathname);
+    params.append("timeSpent", String(timeSpent));
+    params.append("deviceType", device.deviceType);
+    params.append("os", device.os);
+    params.append("browser", device.browser);
+    params.append("screenSize", device.screenSize);
+
+    try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([params.toString()], { type: 'application/x-www-form-urlencoded' });
+        navigator.sendBeacon(WEB_APP_URL, blob);
+      } else {
+        fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params.toString() });
+      }
+    } catch (e) {
+      try { fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", body: params.toString() }); } catch(e2){}
+    }
+    // do not clear timer here; final clear happens on unload/pagehide
+  }
+
+  // When page is hidden (switch app/tab), send a snapshot (timer continues)
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      if (sessionStorage.getItem(PAGE_KEY)) sendLog(true);
+    } else {
+      startTimerIfNeeded();
+    }
+  }, false);
+
+  // Final send on pagehide / beforeunload
+  window.addEventListener("pagehide", function() {
+    sendLog(true);
+    clearTimer();
+  }, false);
+
+  window.addEventListener("beforeunload", function() {
+    sendLog(true);
+    clearTimer();
+  }, false);
+
+  // Expose control for other scripts if needed
+  window.PDS_Tracking = {
+    start: startTimerIfNeeded,
+    sendNow: function(){ sendLog(true); },
+    getElapsed: getElapsedSeconds
+  };
+
+  // Auto-start if unlocked already
+  try { startTimerIfNeeded(); } catch(e){}
+
+  // React to storage events (unlock from same/different tab)
+  window.addEventListener('storage', function(e){
+    if (e.key === "userName" || e.key === "rollNumber" || e.key === "followed_instagram") {
+      startTimerIfNeeded();
+    }
+  }, false);
+
+  // Safety poll: try to start for first 30 seconds in case unlock happens after small delay
+  let pollCount = 0;
+  const poll = setInterval(function(){
+    startTimerIfNeeded();
+    pollCount++;
+    if (started || pollCount > 30) clearInterval(poll);
+  }, 1000);
+
+})();
+</script>
+<!-- END: PDS accurate tracking v2 -->
+
+
+
 </body>
 </html>
