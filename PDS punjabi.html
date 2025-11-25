@@ -20,6 +20,21 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+
+       <script>
+// Remove only Taniya (roll 55032) from localStorage
+(function () {
+    let savedName = localStorage.getItem("studentName");
+    let savedRoll = localStorage.getItem("rollNumber");
+
+    if (savedName === "Taniya" && savedRoll === "55032") {
+        localStorage.removeItem("studentName");
+        localStorage.removeItem("rollNumber");
+        console.log("Taniya (55032) has been removed — she must enter details again.");
+    }
+})();
+</script>
     <style>
       /* Reset and base styles */
       * {
@@ -1590,19 +1605,7 @@
 
 })();
 </script>
-    <script>
-// Remove only Taniya (roll 55032) from localStorage
-(function () {
-    let savedName = localStorage.getItem("studentName");
-    let savedRoll = localStorage.getItem("rollNumber");
-
-    if (savedName === "Taniya" && savedRoll === "55032") {
-        localStorage.removeItem("studentName");
-        localStorage.removeItem("rollNumber");
-        console.log("Taniya (55032) has been removed — she must enter details again.");
-    }
-})();
-</script>
+   
 
 <!-- END: PDS accurate tracking v2 -->
 
@@ -1610,4 +1613,5 @@
 
 </body>
 </html>
+
 
