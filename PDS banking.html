@@ -4883,8 +4883,136 @@
     });
   })();
 </script>
+<script>
+(function (){
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwMq6blMRYNtXPmH0kTa0di6UG6dDnK8ljiyva5JxaHY5NkgV2IcSN_aHX6E0YmuPVI/exec";
+  const PAGE_KEY = "pds_visit_start_" + location.pathname;
+  let started = false;
 
+  function getDeviceInfo() {
+    const ua = navigator.userAgent || "";
+    let deviceType = /mobile/i.test(ua) ? "Mobile" : /tablet/i.test(ua) ? "Tablet" : "Desktop";
+    let os = "Unknown";
+    if (/Windows/i.test(ua)) os = "Windows";
+    else if (/Android/i.test(ua)) os = "Android";
+    else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+    else if (/Macintosh|Mac OS X/i.test(ua)) os = "MacOS";
+    else if (/Linux/i.test(ua)) os = "Linux";
+    let browser = "Unknown";
+    if (/Edg\//i.test(ua)) browser = "Edge";
+    else if (/OPR\//i.test(ua) || /Opera/i.test(ua)) browser = "Opera";
+    else if (/Chrome/i.test(ua) && !/Edg\//i.test(ua) && !/OPR\//i.test(ua)) browser = "Chrome";
+    else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = "Safari";
+    else if (/Firefox/i.test(ua)) browser = "Firefox";
+    const screenSize = (window.screen && window.screen.width) ? `${window.screen.width}x${window.screen.height}` : "";
+    return { deviceType, os, browser, ua, screenSize };
+  }
+
+  function nowSeconds() { return Math.floor(Date.now()/1000); }
+
+  function startTimerIfNeeded() {
+    if (started) return;
+    // Start only if name + roll exist (user unlocked)
+    const name = localStorage.getItem("userName");
+    const roll = localStorage.getItem("rollNumber");
+    if (name && roll) {
+      // save start time to sessionStorage so reload preserves time within same tab
+      const existing = sessionStorage.getItem(PAGE_KEY);
+      if (!existing) sessionStorage.setItem(PAGE_KEY, String(nowSeconds()));
+      started = true;
+    }
+  }
+
+  function getElapsedSeconds() {
+    const s = sessionStorage.getItem(PAGE_KEY);
+    if (!s) return 0;
+    return Math.max(0, nowSeconds() - Number(s));
+  }
+
+  function clearTimer() {
+    sessionStorage.removeItem(PAGE_KEY);
+    started = false;
+  }
+
+  function sendLog(immediate=false) {
+    // Send only if user has unlocked and we have some time
+    const name = localStorage.getItem("userName") || "Guest";
+    const roll = localStorage.getItem("rollNumber") || "Unknown";
+    const timeSpent = getElapsedSeconds();
+    if (timeSpent < 1 && !immediate) return;
+    const device = getDeviceInfo();
+    const params = new URLSearchParams();
+    params.append("name", name);
+    params.append("rollNumber", roll);
+    params.append("page", location.pathname);
+    params.append("timeSpent", String(timeSpent));
+    params.append("deviceType", device.deviceType);
+    params.append("os", device.os);
+    params.append("browser", device.browser);
+    params.append("screenSize", device.screenSize);
+
+    try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([params.toString()], { type: 'application/x-www-form-urlencoded' });
+        navigator.sendBeacon(WEB_APP_URL, blob);
+      } else {
+        fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params.toString() });
+      }
+    } catch (e) {
+      try { fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", body: params.toString() }); } catch(e2){}
+    }
+    // do not clear timer here; final clear happens on unload/pagehide
+  }
+
+  // When page is hidden (switch app/tab), send a snapshot (timer continues)
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      if (sessionStorage.getItem(PAGE_KEY)) sendLog(true);
+    } else {
+      startTimerIfNeeded();
+    }
+  }, false);
+
+  // Final send on pagehide / beforeunload
+  window.addEventListener("pagehide", function() {
+    sendLog(true);
+    clearTimer();
+  }, false);
+
+  window.addEventListener("beforeunload", function() {
+    sendLog(true);
+    clearTimer();
+  }, false);
+
+  // Expose control for other scripts if needed
+  window.PDS_Tracking = {
+    start: startTimerIfNeeded,
+    sendNow: function(){ sendLog(true); },
+    getElapsed: getElapsedSeconds
+  };
+
+  // Auto-start if unlocked already
+  try { startTimerIfNeeded(); } catch(e){}
+
+  // React to storage events (unlock from same/different tab)
+  window.addEventListener('storage', function(e){
+    if (e.key === "userName" || e.key === "rollNumber" || e.key === "followed_instagram") {
+      startTimerIfNeeded();
+    }
+  }, false);
+
+  // Safety poll: try to start for first 30 seconds in case unlock happens after small delay
+  let pollCount = 0;
+  const poll = setInterval(function(){
+    startTimerIfNeeded();
+    pollCount++;
+    if (started || pollCount > 30) clearInterval(poll);
+  }, 1000);
+
+})();
+</script>
 </body>
 </html>
+
 
 
