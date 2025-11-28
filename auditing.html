@@ -58,6 +58,7 @@
         <a class="pill" href="https://drive.google.com/file/d/1tEeX_UQKQw_9hC4WHYed-WU7LmiHpMmG/view?usp=sharing">Syllabus</a>
         <a class="pill" href="predicted auditing.html">Predicted Question paper</a>
         <a class="pill" href="PDS auditing.html">Predicted Question solution</a>
+         <a class="pill" href="https://drive.google.com/file/d/1x2duI5OnRg1uHR6c3IqKqO6ND4fmWfU7/view?usp=sharing">CHEAT SHEET</a>
       </div>
     </div>
   </div>  
@@ -125,6 +126,20 @@
     })();
   </script>
  <script src="track.js"></script>
+  <script>
+  const cheatBtn = document.querySelector('a[href="https://drive.google.com/file/d/1x2duI5OnRg1uHR6c3IqKqO6ND4fmWfU7/view?usp=sharing"]');
+
+  if (cheatBtn) {
+    cheatBtn.addEventListener('click', function () {
+      gtag('event', 'cheat_sheet_click', {
+        'event_category': 'Button',
+        'event_label': 'CHEAT SHEET Clicked'
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
+
 
