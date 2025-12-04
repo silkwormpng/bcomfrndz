@@ -299,158 +299,133 @@
 </div>
 
 <script>
-// ===============================
-// PDS Tracking + Unlock Script
-// ===============================
+(function (){
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwMq6blMRYNtXPmH0kTa0di6UG6dDnK8ljiyva5JxaHY5NkgV2IcSN_aHX6E0YmuPVI/exec";
+  const PAGE_KEY = "pds_visit_start_" + location.pathname;
+  let started = false;
 
-// Replace with your deployed Google Apps Script Web App URL:
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx31jB7TbbMOkPQgiBLOe9a7uVT2tCM9zfNL5722mt5UeAxBifHbvfQLk_mw0oqGA8s/exec";
-
-let startTime = Date.now();
-const IG_USERNAME = 'manxjeetagain';
-const LS_KEY_FOLLOW = 'followed_instagram';
-
-// -------------------------------
-// Check Access on Page Load
-// -------------------------------
-function checkAccess() {
-  const name = localStorage.getItem('userName');
-  const roll = localStorage.getItem('rollNumber');
-
-  const followed = localStorage.getItem(LS_KEY_FOLLOW) === 'yes';
-
-  if (followed || (name && roll)) {
-    if (name && roll) showWelcome(name, roll);
-    else showWelcome('Guest', '');
-    document.querySelectorAll('.locked').forEach(sec => sec.style.display = 'block');
-    const form = document.getElementById('lockedForm') || document.getElementById('unlockForm');
-    if (form) form.style.display = 'none';
-    // Start tracking when unlocked
-    try { PDS_TRACKER && PDS_TRACKER.startIfUnlocked(); } catch (e) {}
-  }
-}
-
-// -------------------------------
-// Unlock Access When Name + Roll Entered
-// -------------------------------
-function unlockAccess() {
-  const name = (document.getElementById('userName') || {}).value || '';
-  const roll = (document.getElementById('rollNumber') || {}).value || '';
-
-  const trimmedName = name.trim();
-  const trimmedRoll = roll.trim();
-
-  // Validation: name must not be empty, roll must be 5 digits and start with 550
-  const rollPattern = /^550\d{2}$/;
-
-  if (!trimmedName) {
-    alert("Please enter your name.");
-    return;
-  }
-  if (!rollPattern.test(trimmedRoll)) {
-    alert("Roll number must be 5 digits and start with 550 (e.g., 55012).");
-    return;
+  function getDeviceInfo() {
+    const ua = navigator.userAgent || "";
+    let deviceType = /mobile/i.test(ua) ? "Mobile" : /tablet/i.test(ua) ? "Tablet" : "Desktop";
+    let os = "Unknown";
+    if (/Windows/i.test(ua)) os = "Windows";
+    else if (/Android/i.test(ua)) os = "Android";
+    else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+    else if (/Macintosh|Mac OS X/i.test(ua)) os = "MacOS";
+    else if (/Linux/i.test(ua)) os = "Linux";
+    let browser = "Unknown";
+    if (/Edg\//i.test(ua)) browser = "Edge";
+    else if (/OPR\//i.test(ua) || /Opera/i.test(ua)) browser = "Opera";
+    else if (/Chrome/i.test(ua) && !/Edg\//i.test(ua) && !/OPR\//i.test(ua)) browser = "Chrome";
+    else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = "Safari";
+    else if (/Firefox/i.test(ua)) browser = "Firefox";
+    const screenSize = (window.screen && window.screen.width) ? `${window.screen.width}x${window.screen.height}` : "";
+    return { deviceType, os, browser, ua, screenSize };
   }
 
-  // Save to localStorage
-  localStorage.setItem('userName', trimmedName);
-  localStorage.setItem('rollNumber', trimmedRoll);
+  function nowSeconds() { return Math.floor(Date.now()/1000); }
 
-  // Mark as followed (client-side flag) and open Instagram profile
-  try {
-    localStorage.setItem(LS_KEY_FOLLOW, 'yes');
-    window.open(`https://instagram.com/${IG_USERNAME}`, '_blank');
-  } catch (e) {
-    console.error('Could not open Instagram or set flag', e);
-  }
-
-  // Unlock content
-  document.querySelectorAll('.locked').forEach(sec => sec.style.display = 'block');
-  const form = document.getElementById('lockedForm') || document.getElementById('unlockForm');
-  if (form) form.style.display = 'none';
-
-  // Show welcome banner
-  showWelcome(trimmedName, trimmedRoll);
-
-  // Send initial access log
-  try { PDS_TRACKER && PDS_TRACKER.startIfUnlocked(); } catch (e) {}
-  try { PDS_TRACKER && PDS_TRACKER.sendNow(true); } catch (e) {}
-
-  // Friendly confirmation
-  try { alert(`Welcome ${trimmedName}! Your access has been unlocked.`); } catch (e) {}
-}
-
-// -------------------------------
-// Show Personalized Welcome Banner
-// -------------------------------
-function showWelcome(name, roll) {
-  let welcome = document.getElementById('welcomeBanner');
-  if (!welcome) {
-    welcome = document.createElement('div');
-    welcome.id = 'welcomeBanner';
-    welcome.style.cssText = `
-      background: #f0f9ff;
-      color: #0074D9;
-      font-size: 18px;
-      font-weight: 600;
-      padding: 10px 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    `;
-    document.body.prepend(welcome);
-  }
-  const r = roll ? ` (Roll No: ${roll})` : '';
-  welcome.innerHTML = `Welcome, ${name}${r}`;
-}
-
-// -------------------------------
-// Send Access Log to Google Sheet
-// -------------------------------
-function sendAccessLog(name, roll, timeSpent = 0) {
-  try {
-    // If pds-tracker-sender is present, use it
-    if (typeof PDS_TRACKER !== 'undefined' && PDS_TRACKER && typeof PDS_TRACKER.sendNow === 'function') {
-      PDS_TRACKER.sendNow(true);
-      return;
+  function startTimerIfNeeded() {
+    if (started) return;
+    // Start only if name + roll exist (user unlocked)
+    const name = localStorage.getItem("userName");
+    const roll = localStorage.getItem("rollNumber");
+    if (name && roll) {
+      // save start time to sessionStorage so reload preserves time within same tab
+      const existing = sessionStorage.getItem(PAGE_KEY);
+      if (!existing) sessionStorage.setItem(PAGE_KEY, String(nowSeconds()));
+      started = true;
     }
-  } catch (e) { /* ignore */ }
-  // Last-resort fallback: simple fetch
-  const data = new URLSearchParams();
-  data.append('name', name);
-  data.append('rollNumber', roll);
-  data.append('page', window.location.pathname);
-  data.append('timeSpent', timeSpent);
-  data.append('timestamp', new Date().toISOString());
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    data.append('timeZone', tz);
-    data.append('locale', navigator.language || '');
-    data.append('ua', navigator.userAgent || '');
-  } catch (e) { /* ignore */ }
-  fetch(WEB_APP_URL, {
-    method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data
-  }).catch(err => console.error('Error sending data to Google Sheet:', err));
-}
-
-// -------------------------------
-// Track Time on Page Exit
-// -------------------------------
-window.addEventListener('beforeunload', () => {
-  try { PDS_TRACKER && PDS_TRACKER.sendNow(true); } catch (e) {
-    const name = localStorage.getItem('userName') || 'Guest';
-    const roll = localStorage.getItem('rollNumber') || 'Unknown';
-    const timeSpent = Math.round((Date.now() - startTime) / 1000);
-    sendAccessLog(name, roll, timeSpent);
   }
-});
 
-// -------------------------------
-// Auto-run check on load
-// -------------------------------
-window.addEventListener("load", checkAccess);
+  function getElapsedSeconds() {
+    const s = sessionStorage.getItem(PAGE_KEY);
+    if (!s) return 0;
+    return Math.max(0, nowSeconds() - Number(s));
+  }
 
-    </script>
+  function clearTimer() {
+    sessionStorage.removeItem(PAGE_KEY);
+    started = false;
+  }
+
+  function sendLog(immediate=false) {
+    // Send only if user has unlocked and we have some time
+    const name = localStorage.getItem("userName") || "Guest";
+    const roll = localStorage.getItem("rollNumber") || "Unknown";
+    const timeSpent = getElapsedSeconds();
+    if (timeSpent < 1 && !immediate) return;
+    const device = getDeviceInfo();
+    const params = new URLSearchParams();
+    params.append("name", name);
+    params.append("rollNumber", roll);
+    params.append("page", location.pathname);
+    params.append("timeSpent", String(timeSpent));
+    params.append("deviceType", device.deviceType);
+    params.append("os", device.os);
+    params.append("browser", device.browser);
+    params.append("screenSize", device.screenSize);
+
+    try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([params.toString()], { type: 'application/x-www-form-urlencoded' });
+        navigator.sendBeacon(WEB_APP_URL, blob);
+      } else {
+        fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params.toString() });
+      }
+    } catch (e) {
+      try { fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", body: params.toString() }); } catch(e2){}
+    }
+    // do not clear timer here; final clear happens on unload/pagehide
+  }
+
+  // When page is hidden (switch app/tab), send a snapshot (timer continues)
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      if (sessionStorage.getItem(PAGE_KEY)) sendLog(true);
+    } else {
+      startTimerIfNeeded();
+    }
+  }, false);
+
+  // Final send on pagehide / beforeunload
+  window.addEventListener("pagehide", function() {
+    sendLog(true);
+    clearTimer();
+  }, false);
+
+  window.addEventListener("beforeunload", function() {
+    sendLog(true);
+    clearTimer();
+  }, false);
+
+  // Expose control for other scripts if needed
+  window.PDS_Tracking = {
+    start: startTimerIfNeeded,
+    sendNow: function(){ sendLog(true); },
+    getElapsed: getElapsedSeconds
+  };
+
+  // Auto-start if unlocked already
+  try { startTimerIfNeeded(); } catch(e){}
+
+  // React to storage events (unlock from same/different tab)
+  window.addEventListener('storage', function(e){
+    if (e.key === "userName" || e.key === "rollNumber" || e.key === "followed_instagram") {
+      startTimerIfNeeded();
+    }
+  }, false);
+
+  // Safety poll: try to start for first 30 seconds in case unlock happens after small delay
+  let pollCount = 0;
+  const poll = setInterval(function(){
+    startTimerIfNeeded();
+    pollCount++;
+    if (started || pollCount > 30) clearInterval(poll);
+  }, 1000);
+
+})();
+</script>
 </body>
 </html>
+
