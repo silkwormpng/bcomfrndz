@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Foreign Exchange Management</title>
+    <title>Foreign exchange management – full notes</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
@@ -40,10 +40,8 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Fixed Horizontal Scrolling & Smooth Scroll */
         html {
             scroll-behavior: smooth;
-            /* scroll-padding-top removed since header is no longer sticky */
         }
 
         body {
@@ -55,10 +53,8 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Glassmorphism Header (No longer sticky) */
         header {
             position: relative;
-            /* Changed from sticky */
             background: var(--header-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -81,11 +77,15 @@
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--heading-color);
-            display: flex;
-            flex-direction: column;
         }
 
-        /* Navigation / TOC */
+        .header-subtitle {
+            font-size: 0.75rem;
+            color: var(--secondary-text);
+            font-weight: 400;
+            display: block;
+        }
+
         nav {
             display: flex;
             gap: 10px;
@@ -93,12 +93,10 @@
             padding-bottom: 5px;
             width: 100%;
             scrollbar-width: none;
-            /* Firefox */
         }
 
         nav::-webkit-scrollbar {
             display: none;
-            /* Chrome/Safari */
         }
 
         nav a {
@@ -127,14 +125,8 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-color);
-            transition: transform 0.3s;
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Main Container */
         .container {
             max-width: 900px;
             margin: 30px auto;
@@ -142,7 +134,6 @@
             width: 100%;
         }
 
-        /* Question Cards */
         .card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -150,36 +141,25 @@
             margin-bottom: 30px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
-            width: 100%;
-            overflow: hidden;
         }
 
-        /* Typography */
         h1 {
             font-size: 1.5rem;
             color: var(--heading-color);
             margin-bottom: 20px;
-            line-height: 1.4;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 12px;
         }
 
-        h2 {
-            font-size: 1.25rem;
-            margin: 25px 0 15px;
+        h3 {
+            font-size: 1.2rem;
+            margin: 25px 0 10px;
             color: var(--heading-color);
             font-weight: 700;
         }
 
-        h3 {
-            font-size: 1.1rem;
-            margin: 25px 0 10px;
-            color: var(--heading-color);
-            font-weight: 600;
-        }
-
         h4 {
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin: 15px 0 5px;
             color: var(--heading-color);
             font-weight: 600;
@@ -200,29 +180,27 @@
             text-align: justify;
         }
 
-        .example-box {
+        .highlight-box {
             background: rgba(16, 185, 129, 0.1);
             border-left: 4px solid var(--primary-color);
             padding: 15px;
             margin: 15px 0;
             border-radius: 0 8px 8px 0;
             font-style: italic;
-            color: var(--text-color);
         }
 
-        /* Table Responsiveness */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
+        .example-box {
+            background: var(--bg-color);
+            border: 1px dashed var(--border-color);
+            padding: 15px;
             margin: 15px 0;
             border-radius: 8px;
-            border: 1px solid var(--border-color);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px;
+            margin: 20px 0;
         }
 
         th,
@@ -233,46 +211,20 @@
         }
 
         th {
-            background-color: rgba(16, 185, 129, 0.1);
-            color: var(--heading-color);
+            background: rgba(0, 0, 0, 0.05);
         }
 
-        /* Clean IG Card */
         .ig-card-inline {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--bg-color);
-            border: 1px solid var(--border-color);
             border-left: 4px solid #bc1888;
-            border-radius: 12px;
             padding: 15px 20px;
-            margin-top: 30px;
+            border-radius: 12px;
             text-decoration: none;
-            color: var(--text-color);
-            box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .ig-card-inline:active {
-            transform: scale(0.98);
-        }
-
-        .ig-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ig-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--heading-color);
-        }
-
-        .ig-subtitle {
-            font-size: 0.85rem;
-            opacity: 0.8;
-            color: var(--secondary-text);
+            color: inherit;
+            margin-top: 20px;
         }
 
         .ig-btn {
@@ -280,41 +232,89 @@
             color: white;
             padding: 8px 20px;
             border-radius: 20px;
-            font-size: 0.9rem;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: none;
         }
 
-        /* Unlock Gate Card */
-        #unlockGate {
-            background: linear-gradient(135deg, rgba(220, 39, 67, 0.05), rgba(240, 148, 51, 0.05));
+        #lockedForm {
+            background: linear-gradient(135deg, rgba(188, 24, 136, 0.05), rgba(220, 39, 67, 0.05));
             border: 2px dashed #bc1888;
-            text-align: center;
-            padding: 30px 20px;
+            padding: 30px;
             border-radius: 16px;
+            text-align: center;
             margin-top: 30px;
+        }
+
+        .form-group {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            gap: 10px;
+            max-width: 300px;
+            margin: 20px auto;
         }
 
-        #unlockGate h3 {
-            margin: 0;
-            color: #dc2743;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        #unlockGate p {
-            margin: 0;
-            text-align: center;
+        .form-group input {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
             color: var(--text-color);
-            font-weight: 500;
+        }
+
+        .locked {
+            display: none;
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .fab-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: 0.3s;
+        }
+
+        .fab-menu.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .fab-item {
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--heading-color);
+            font-weight: bold;
+            box-shadow: var(--shadow);
+        }
+
+        .fab-main {
+            width: 55px;
+            height: 55px;
+            background: var(--heading-color);
+            color: var(--card-bg);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .shake {
@@ -340,794 +340,409 @@
                 transform: translateX(-5px);
             }
         }
-
-        /* Locked Content Wrapper */
-        #lockedContent {
-            display: none;
-        }
-
-        /* Hidden initially */
-
-        /* FAB Menu */
-        .fab-container {
-            position: fixed;
-            bottom: 25px;
-            right: 20px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .fab-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(20px) scale(0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: bottom center;
-        }
-
-        .fab-menu.open {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0) scale(1);
-        }
-
-        .fab-item {
-            background: var(--card-bg);
-            color: var(--heading-color);
-            border: 1px solid var(--border-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            box-shadow: var(--shadow);
-            transition: all 0.2s;
-        }
-
-        .fab-item:active {
-            background: var(--heading-color);
-            color: var(--card-bg);
-        }
-
-        .fab-main {
-            background: var(--heading-color);
-            color: var(--card-bg);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border: none;
-            transition: transform 0.3s;
-        }
-
-        .fab-container.active .fab-main {
-            transform: rotate(45deg);
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .header-title {
-                font-size: 1.1rem;
-            }
-
-            h1 {
-                font-size: 1.35rem;
-            }
-
-            .card {
-                padding: 18px;
-            }
-
-            .ig-card-inline {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-                align-items: stretch;
-            }
-
-            .ig-btn {
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 
 <body>
-
     <header>
         <div class="header-top">
-            <div class="header-title">Foreign Exchange Management</div>
+            <div class="header-title">
+                Foreign Exchange Management
+                <span class="header-subtitle">Complete academic notes (37 pages)</span>
+            </div>
             <button class="theme-toggle" id="theme-btn">🌙</button>
         </div>
         <nav id="toc">
-            <a href="#q1">Q1: BOP Theory</a>
-            <a href="#q2">Q2: Systematic Risk</a>
-            <a href="#q3">Q3: Exchange Rate Factors</a>
-            <a href="#q4">Q4: Fixed vs Floating</a>
-            <a href="#q5">Q5: Financial Fragility</a>
-            <a href="#q6">Q6: Issues & Challenges</a>
+            <a href="#q1">Q1: BOP theory</a>
+            <a href="#q2">Q2: Systematic risk</a>
+            <a href="#q3">Q3: FX rate factors</a>
+            <a href="#q4">Q4: Fixed vs floating</a>
+            <a href="#q5">Q5: Financial fragility indicators</a>
+            <a href="#q6">Q6: FF challenges</a>
         </nav>
     </header>
 
     <div class="container">
-
-        <!-- Question 1 (Always Visible) -->
+        <!-- Q1 partial (visible before unlock) -->
         <article class="card section-card" id="q1">
-            <h1>1. What is the balance payment theory? How does it relate to exchange rate? Explain the main criticism
+            <h1>1. What is the balance payment theory? how does it relate to exchange rate? Explain the main criticism
                 of this theory.</h1>
             <h3>Introduction</h3>
             <p>The determination of exchange rate has been an important subject in international economics. Different
                 theories have been developed to explain how the value of one country's currency is determined in
-                relation to another country's currency. Among these, the <strong>Balance of Payments Theory</strong>
-                occupies a significant position in modern economic analysis.</p>
+                relation to another country's currency. Among these, the Balance of Payments Theory occupies a
+                significant position in modern economic analysis.</p>
             <p>The Balance of Payments Theory explains exchange rate determination on the basis of a country's
                 international payments position. According to this theory, the exchange rate between two countries is
                 determined by the demand for and supply of foreign exchange arising from their balance of payments
                 transactions.</p>
 
-            <h3>Meaning of Balance of Payments</h3>
-            <p>Before understanding the theory, it is necessary to understand the concept of Balance of Payments (BOP).
-            </p>
-            <p><strong>Balance of Payments</strong> refers to a systematic record of all economic transactions between
-                residents of one country and the rest of the world during a given period, usually one year. It includes:
-            </p>
+            <h3>Meaning of Balance of Payments (BOP)</h3>
+            <p>Balance of Payments refers to a systematic record of all economic transactions between residents of one
+                country and the rest of the world during a given period, usually one year.</p>
+            <h4>Structure of BOP:</h4>
             <ol>
-                <li><strong>Current Account:</strong> Export and import of goods, Services, Interest and dividend
-                    payments, Transfers</li>
-                <li><strong>Capital Account:</strong> Foreign investments, Loans and borrowings, Capital transfers</li>
-                <li><strong>Official Reserve Account:</strong> Changes in foreign exchange reserves</li>
+                <li><strong>Current Account:</strong> Export and import of goods, services, interest/dividend payments,
+                    transfers.</li>
+                <li><strong>Capital Account:</strong> Foreign investments, loans and borrowings, capital transfers.</li>
+                <li><strong>Official Reserve Account:</strong> Changes in foreign exchange reserves.</li>
             </ol>
 
-            <h3>Meaning of Balance of Payments Theory</h3>
+            <h3>The core theory: Demand and supply of foreign exchange</h3>
             <p>The Balance of Payments Theory is also known as the <strong>Demand and Supply Theory of Exchange
-                    Rate</strong>.</p>
-            <p>According to this theory: The exchange rate between two currencies is determined by the demand for and
-                supply of foreign exchange generated by balance of payments transactions.</p>
-            <p>In simple words:</p>
-            <ul>
-                <li>When a country demands more foreign currency, its own currency depreciates.</li>
-                <li>When foreign demand for a country's currency increases, its currency appreciates.</li>
-            </ul>
-
-            <h3>Explanation of the Theory</h3>
-            <h4>1. Demand for Foreign Exchange</h4>
-            <p>Demand for foreign exchange arises when residents of a country need foreign currency for: Import of goods
-                and services, Foreign tourism, Investment abroad, Payment of foreign debts, and Education and medical
-                expenses abroad.</p>
-            <p>Thus, imports create <strong>demand for foreign currency</strong>.<br>
-                Higher imports &rarr; Higher demand for foreign currency &rarr; Depreciation of domestic currency.</p>
-
-            <h4>2. Supply of Foreign Exchange</h4>
-            <p>Supply of foreign exchange comes from: Exports of goods and services, Foreign investments, Remittances
-                from abroad, Tourism earnings, and Loans received from foreign countries.</p>
-            <p>Exports bring foreign currency into the country.<br>
-                Higher exports &rarr; Higher supply of foreign exchange &rarr; Appreciation of domestic currency.</p>
-
-            <h4>3. Determination of Exchange Rate</h4>
-            <p>The exchange rate is determined at the point where demand and supply of foreign exchange are equal.</p>
-            <ul>
-                <li>If demand for foreign exchange exceeds supply &rarr; currency depreciates.</li>
-                <li>If supply exceeds demand &rarr; currency appreciates.</li>
-            </ul>
-            <p>Thus, exchange rate equilibrium depends on the balance of payments position.</p>
-
-            <h3>Relation Between Balance of Payments and Exchange Rate</h3>
-            <p>The Balance of Payments and exchange rate are closely interconnected.</p>
-            <h4>1. BOP Deficit and Exchange Rate</h4>
-            <p>When a country imports more than it exports: Demand for foreign currency increases, Domestic currency
-                weakens, and Exchange rate rises (depreciation).</p>
-            <div class="example-box">Example: If India imports more oil, demand for US dollars increases, causing
-                depreciation of the Indian Rupee.</div>
-
-            <h4>2. BOP Surplus and Exchange Rate</h4>
-            <p>When exports exceed imports: Supply of foreign currency increases, Domestic currency strengthens, and
-                Exchange rate falls (appreciation).</p>
-
-            <h4>3. Automatic Adjustment Mechanism</h4>
-            <p>The theory suggests an automatic correction: Currency depreciation makes exports cheaper &rarr; Imports
-                become expensive &rarr; Exports increase and imports decrease &rarr; Balance of payments moves toward
-                equilibrium.</p>
-
-            <h4>4. Role in Flexible Exchange Rate System</h4>
-            <p>The theory is especially applicable under flexible exchange rate systems where currency value changes
-                according to market forces. Countries like India after economic reforms allow exchange rate movements
-                influenced by BOP conditions.</p>
-
-            <h3>Main Assumptions of the Theory</h3>
-            <ol>
-                <li>Exchange rate is determined by free market forces.</li>
-                <li>No strict government control over foreign exchange.</li>
-                <li>International trade flows freely.</li>
-                <li>Demand and supply conditions operate normally.</li>
-                <li>Capital movements respond to economic conditions.</li>
-            </ol>
-
-            <h3>Main Criticism of Balance of Payments Theory</h3>
-            <p>Although widely accepted, the theory has several limitations:</p>
-            <ol>
-                <li><strong>Indeterminate Cause and Effect:</strong> Critics argue that the theory confuses cause and
-                    effect. Exchange rate influences Balance of Payments, but Balance of Payments also influences
-                    exchange rate. Thus, it is difficult to determine which comes first.</li>
-                <li><strong>Ignores Internal Price Levels:</strong> The theory neglects domestic price levels and
-                    inflation. Economists say exchange rate also depends on purchasing power and price differences
-                    between countries.</li>
-                <li><strong>Short-Run Explanation Only:</strong> The theory mainly explains short-term exchange rate
-                    movements but fails to explain long-term equilibrium rates.</li>
-                <li><strong>Assumption of Perfect Competition Unrealistic:</strong> In reality, governments impose trade
-                    restrictions, exchange controls exist, and central banks intervene in foreign exchange markets.
-                    Therefore, demand and supply do not operate freely.</li>
-                <li><strong>Neglect of Speculation:</strong> Speculative activities in foreign exchange markets greatly
-                    affect exchange rates, but the theory gives little importance to speculation.</li>
-                <li><strong>Capital Movements Complicate Analysis:</strong> Modern economies experience huge capital
-                    flows unrelated to trade balances, making the theory insufficient.</li>
-                <li><strong>Government Intervention Ignored:</strong> Central banks often stabilize exchange rates by
-                    buying or selling foreign currency, which weakens the theory’s assumptions.</li>
-            </ol>
-
-            <h3>Importance of the Theory</h3>
-            <p>Despite criticism, the theory remains important because:</p>
-            <ul>
-                <li>It explains exchange rate through real economic transactions.</li>
-                <li>Helps understand currency depreciation and appreciation.</li>
-                <li>Useful for policy formulation.</li>
-                <li>Explains effects of trade deficits and surpluses.</li>
-            </ul>
-
-            <h3>Conclusion</h3>
-            <p>The Balance of Payments Theory provides a practical and modern explanation of exchange rate determination
-                by emphasizing demand and supply of foreign exchange arising from international transactions. It
-                highlights the close relationship between a country’s external economic position and the value of its
-                currency.</p>
-            <p>Although the theory has limitations such as ignoring price levels and government intervention, it remains
-                an important tool for understanding exchange rate movements in the modern global economy. In combination
-                with other theories, it helps economists and policymakers analyze international monetary problems
-                effectively.</p>
-
-            <!-- THE UNLOCK GATE -->
-            <div id="unlockGate">
-                <h3>🔒 Content Locked</h3>
-                <p>To view further questions (like <strong>Q2: Systematic Risk & its types</strong>), please support by
-                    clicking Follow below.</p>
-                <button class="ig-btn" id="unlockBtn" style="cursor: pointer;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                    Follow @manxjeetagain to Unlock
-                </button>
+                    Rate</strong>. According to this theory, the exchange rate between two currencies is determined by
+                the demand for and supply of foreign exchange generated by balance of payments transactions.</p>
+            <div class="highlight-box">
+                “When a country demands more foreign currency, its own currency depreciates. When foreign demand for a
+                country's currency increases, its currency appreciates.”
             </div>
 
-            <!-- Standard IG Card (Hidden initially, shown after unlock) -->
-            <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
-                class="ig-card-inline standard-ig" style="display: none;">
-                <div class="ig-info">
-                    <span class="ig-title">bcomfrndz</span>
-                    <span class="ig-subtitle">by @manxjeetagain</span>
+            <h4>1. Demand for foreign exchange</h4>
+            <p>Demand arises when residents need foreign currency for: imports of goods/services, foreign tourism,
+                investment abroad, payment of foreign debts, education/medical expenses abroad. <strong>Higher imports →
+                    higher demand for foreign currency → depreciation of domestic currency.</strong></p>
+
+            <!-- LOCK FORM (visible) -->
+            <div id="lockedForm">
+                <h3>🔒 Full 37‑page content locked</h3>
+                <p>Enter your details and follow us to unlock complete answers for all six questions.</p>
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="Full Name" required>
+                    <input type="text" id="rollNumber" placeholder="Roll No (e.g. 55012)" required>
                 </div>
-                <div class="ig-btn">Follow</div>
-            </a>
+                <button class="ig-btn" id="customUnlockBtn">Unlock full content</button>
+            </div>
         </article>
 
-        <!-- WRAPPER FOR LOCKED CONTENT -->
-        <div id="lockedContent">
+        <!-- ALL LOCKED CONTENT (full answers from PDF) -->
+        <div id="lockedContent" class="locked">
+            <!-- ========== Q1 CONTINUED (complete) ========== -->
+            <article class="card section-card">
+                <h4>2. Supply of foreign exchange</h4>
+                <p>Supply of foreign exchange comes from: exports of goods/services, foreign investments arriving,
+                    remittances from abroad, tourism earnings, loans received from foreign countries. <strong>Higher
+                        exports → higher supply of foreign exchange → appreciation of domestic currency.</strong></p>
 
-            <!-- Question 2 -->
+                <h3>Determination of exchange rate</h3>
+                <p>Exchange rate is determined at the point where demand and supply of foreign exchange are equal. If
+                    demand exceeds supply → currency depreciates; if supply exceeds demand → currency appreciates. Thus,
+                    exchange rate equilibrium depends on the balance of payments position.</p>
+
+                <h3>Relation between BOP and exchange rate</h3>
+                <ul>
+                    <li><strong>BOP deficit:</strong> imports > exports → demand for foreign currency rises → domestic
+                        currency weakens (depreciation). Example: India imports more oil, demand for USD increases,
+                        rupee depreciates.</li>
+                    <li><strong>BOP surplus:</strong> exports > imports → supply of foreign currency increases →
+                        domestic currency strengthens (appreciation).</li>
+                </ul>
+                <p>The theory suggests an automatic adjustment mechanism: currency depreciation makes exports cheaper,
+                    imports expensive → exports increase, imports decrease → BOP moves toward equilibrium. Especially
+                    applicable under flexible exchange rate systems.</p>
+
+                <h4>Main assumptions of the theory</h4>
+                <ol>
+                    <li>Exchange rate determined by free market forces.</li>
+                    <li>No strict government control over foreign exchange.</li>
+                    <li>International trade flows freely.</li>
+                    <li>Demand and supply conditions operate normally.</li>
+                    <li>Capital movements respond to economic conditions.</li>
+                </ol>
+
+                <h3>Main criticisms of Balance of Payments Theory</h3>
+                <ol>
+                    <li><strong>Indeterminate cause and effect:</strong> exchange rate influences BOP and BOP influences
+                        exchange rate – difficult to determine which comes first.</li>
+                    <li><strong>Ignores internal price levels:</strong> neglects domestic inflation and purchasing
+                        power.</li>
+                    <li><strong>Short‑run explanation only:</strong> fails to explain long‑term equilibrium rates.</li>
+                    <li><strong>Assumption of perfect competition unrealistic:</strong> governments impose trade
+                        restrictions, exchange controls, central bank intervention.</li>
+                    <li><strong>Neglect of speculation:</strong> speculative activities greatly affect rates but theory
+                        gives little importance.</li>
+                    <li><strong>Capital movements complicate analysis:</strong> huge capital flows unrelated to trade
+                        balances make theory insufficient.</li>
+                    <li><strong>Government intervention ignored:</strong> central banks often stabilize rates.</li>
+                </ol>
+
+                <h3>Importance of the theory</h3>
+                <p>Despite criticism, the theory remains important because: it explains exchange rate through real
+                    economic transactions; helps understand currency depreciation/appreciation; useful for policy
+                    formulation; explains effects of trade deficits and surpluses.</p>
+
+                <h3>Conclusion</h3>
+                <p>The Balance of Payments Theory provides a practical and modern explanation of exchange rate
+                    determination by emphasising demand and supply of foreign exchange arising from international
+                    transactions. It highlights the close relationship between a country's external economic position
+                    and the value of its currency. Although it has limitations, it remains an important tool for
+                    understanding exchange rate movements.</p>
+            </article>
+
+            <!-- ========== Q2: SYSTEMATIC RISK (complete) ========== -->
             <article class="card section-card" id="q2">
                 <h1>2. What is systematic risk and explain its various types?</h1>
-
                 <h3>Introduction</h3>
                 <p>Investment involves uncertainty regarding future returns. Every investor faces different types of
                     risks while investing in securities such as shares, bonds, and mutual funds. In financial
-                    management, risk is broadly classified into <strong>systematic risk</strong> and
-                    <strong>unsystematic risk</strong>. Among these, systematic risk plays a crucial role because it
-                    affects the entire financial market and cannot be eliminated through diversification.
-                </p>
-                <p>Systematic risk arises due to macroeconomic factors that influence the overall economy and financial
-                    system. Therefore, understanding systematic risk is essential for investors and financial managers.
-                </p>
+                    management, risk is broadly classified into systematic risk and unsystematic risk. Systematic risk
+                    affects the entire market and cannot be eliminated through diversification.</p>
 
-                <h3>Meaning of Risk</h3>
-                <p>Risk refers to the possibility that actual returns from an investment may differ from expected
-                    returns. It represents uncertainty regarding income, capital value, or both.</p>
+                <h3>Meaning of systematic risk</h3>
+                <p>Systematic risk is the risk that affects the entire market or a large segment of the economy
+                    simultaneously. It is caused by external factors beyond the control of individual companies or
+                    investors. Also known as market risk, non‑diversifiable risk, or non‑controllable risk.</p>
+                <div class="highlight-box">
+                    “Systematic risk is the portion of total risk that cannot be reduced or eliminated through
+                    diversification because it arises from economy‑wide influences.”
+                </div>
 
-                <h3>Meaning of Systematic Risk</h3>
-                <p><strong>Systematic risk</strong> is the risk that affects the entire market or a large segment of the
-                    economy simultaneously. It is caused by external factors beyond the control of individual companies
-                    or investors.</p>
-                <p>It is also known as: Market risk, Non-diversifiable risk, Non-controllable risk.</p>
-                <p>According to financial theory: Systematic risk is the portion of total risk that cannot be reduced or
-                    eliminated through diversification because it arises from economy-wide influences.</p>
-
-                <h3>Features of Systematic Risk</h3>
+                <h3>Features of systematic risk</h3>
                 <ol>
                     <li>It affects all securities in the market.</li>
                     <li>It arises due to macroeconomic changes.</li>
                     <li>It cannot be eliminated by diversification.</li>
                     <li>It influences overall market returns.</li>
-                    <li>It is measured by <strong>Beta (β)</strong> coefficient.</li>
+                    <li>It is measured by Beta (β) coefficient.</li>
                 </ol>
 
-                <h3>Causes of Systematic Risk</h3>
-                <p>Systematic risk occurs due to changes in: Economic policies, Inflation and interest rates, Political
-                    conditions, International events, Economic growth or recession.</p>
+                <h3>Causes of systematic risk</h3>
+                <p>Occurs due to changes in: economic policies, inflation and interest rates, political conditions,
+                    international events, economic growth or recession.</p>
 
-                <h3>Types of Systematic Risk</h3>
-                <p>Systematic risk can be classified into several types as explained below.</p>
-
-                <h4>1. Market Risk</h4>
-                <p>Market risk refers to fluctuations in security prices caused by overall market movements. When the
-                    stock market rises or falls due to economic conditions, almost all securities are affected.</p>
-                <p><strong>Causes:</strong> Economic slowdown, Investor sentiment, Financial crises, Global economic
-                    events.</p>
-                <div class="example-box">Example: A stock market crash reduces prices of most shares regardless of
-                    company performance.</div>
-
-                <h4>2. Interest Rate Risk</h4>
-                <p>Interest rate risk arises due to changes in market interest rates.</p>
-                <p>When interest rates increase: Bond prices fall, Borrowing costs increase, Share prices may
-                    decline.<br>
-                    When interest rates decrease: Investment increases, Security prices generally rise.<br>
-                    This risk mainly affects fixed-income securities like bonds and debentures.</p>
-
-                <h4>3. Purchasing Power Risk (Inflation Risk)</h4>
-                <p>Purchasing power risk arises when inflation reduces the real value of returns. Even if investors
-                    receive fixed income, rising prices reduce their purchasing capacity.</p>
-                <div class="example-box">Example: If an investment gives 8% return but inflation is 6%, real return is
-                    only 2%. Thus, inflation negatively affects investors' real earnings.</div>
-
-                <h4>4. Political Risk</h4>
-                <p>Political risk arises due to instability or changes in government policies.</p>
-                <p>Examples include: Tax policy changes, Trade restrictions, War or political unrest, Regulatory
-                    reforms. Political decisions influence business operations and investor confidence, thereby
-                    affecting the entire market.</p>
-
-                <h4>5. Exchange Rate Risk</h4>
-                <p>Exchange rate risk occurs due to fluctuations in currency values in international markets.</p>
-                <p>It mainly affects: Exporters and importers, Multinational companies, Foreign investors. If domestic
-                    currency depreciates or appreciates suddenly, company profits and investment returns may change.</p>
-
-                <h4>6. Economic Risk (Business Cycle Risk)</h4>
-                <p>Economic risk arises from changes in the overall economic environment such as: Recession, Boom,
-                    Unemployment levels, GDP growth.</p>
-                <p>During economic recession: Production decreases, Profits decline, Stock prices fall. Since all
-                    industries are affected, this risk becomes systematic.</p>
-
-                <h3>Measurement of Systematic Risk</h3>
-                <p>Systematic risk is measured using <strong>Beta (β)</strong>.</p>
-                <ul>
-                    <li>β = 1 &rarr; Security moves with the market.</li>
-                    <li>β > 1 &rarr; More volatile than market.</li>
-                    <li>β < 1 &rarr; Less volatile than market.</li>
-                </ul>
-                <p>Higher beta indicates higher systematic risk.</p>
-
-                <h3>Importance of Systematic Risk</h3>
+                <h3>Types of systematic risk</h3>
                 <ol>
-                    <li>Helps investors understand market-wide risk.</li>
-                    <li>Assists in portfolio management decisions.</li>
-                    <li>Used in Capital Asset Pricing Model (CAPM).</li>
-                    <li>Helps estimate expected rate of return.</li>
-                    <li>Guides investment planning under changing economic conditions.</li>
+                    <li><strong>Market risk:</strong> fluctuations in security prices caused by overall market movements
+                        (economic slowdown, investor sentiment, financial crises).</li>
+                    <li><strong>Interest rate risk:</strong> arises from changes in market interest rates – when rates
+                        increase, bond prices fall, borrowing costs rise, share prices may decline.</li>
+                    <li><strong>Purchasing power risk (inflation risk):</strong> inflation reduces real value of
+                        returns. Example: 8% return with 6% inflation → real return only 2%.</li>
+                    <li><strong>Political risk:</strong> instability or changes in government policies (tax changes,
+                        trade restrictions, war, regulatory reforms).</li>
+                    <li><strong>Exchange rate risk:</strong> fluctuations in currency values affecting exporters,
+                        importers, multinationals.</li>
+                    <li><strong>Economic risk (business cycle risk):</strong> changes in overall economic environment –
+                        recession reduces production, profits, stock prices.</li>
                 </ol>
 
-                <h3>Difference Between Systematic and Unsystematic Risk (Brief)</h3>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th>Basis</th>
-                            <th>Systematic Risk</th>
-                            <th>Unsystematic Risk</th>
-                        </tr>
-                        <tr>
-                            <td>Nature</td>
-                            <td>Market-wide</td>
-                            <td>Company-specific</td>
-                        </tr>
-                        <tr>
-                            <td>Control</td>
-                            <td>Cannot be controlled</td>
-                            <td>Can be reduced</td>
-                        </tr>
-                        <tr>
-                            <td>Diversification</td>
-                            <td>Not possible</td>
-                            <td>Possible</td>
-                        </tr>
-                        <tr>
-                            <td>Cause</td>
-                            <td>Economic factors</td>
-                            <td>Internal factors</td>
-                        </tr>
-                    </table>
-                </div>
+                <h3>Measurement of systematic risk</h3>
+                <p>Systematic risk is measured using Beta (β): β = 1 → security moves with the market; β > 1 → more
+                    volatile than market; β < 1 → less volatile than market. Higher beta indicates higher systematic
+                        risk.</p>
 
-                <h3>Conclusion</h3>
-                <p>Systematic risk represents unavoidable market risk arising from economic, political, and financial
-                    changes that influence the entire economy. Since it cannot be eliminated through diversification,
-                    investors must carefully analyze macroeconomic conditions before making investment decisions.
-                    Understanding different types of systematic risk enables investors to manage portfolios efficiently
-                    and make informed financial decisions.</p>
+                        <h3>Importance of systematic risk</h3>
+                        <ol>
+                            <li>Helps investors understand market‑wide risk.</li>
+                            <li>Assists in portfolio management decisions.</li>
+                            <li>Used in Capital Asset Pricing Model (CAPM).</li>
+                            <li>Helps estimate expected rate of return.</li>
+                            <li>Guides investment planning under changing economic conditions.</li>
+                        </ol>
 
-                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
-                    class="ig-card-inline">
-                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
-                            @manxjeetagain</span></div>
-                    <div class="ig-btn">Follow</div>
-                </a>
+                        <h3>Difference between systematic and unsystematic risk</h3>
+                        <table>
+                            <tr>
+                                <th>Basis</th>
+                                <th>Systematic Risk</th>
+                                <th>Unsystematic Risk</th>
+                            </tr>
+                            <tr>
+                                <td>Nature</td>
+                                <td>Market‑wide</td>
+                                <td>Company‑specific</td>
+                            </tr>
+                            <tr>
+                                <td>Control</td>
+                                <td>Cannot be controlled</td>
+                                <td>Can be reduced</td>
+                            </tr>
+                            <tr>
+                                <td>Diversification</td>
+                                <td>Cannot be eliminated</td>
+                                <td>Eliminated by diversification</td>
+                            </tr>
+                            <tr>
+                                <td>Cause</td>
+                                <td>External macroeconomic factors</td>
+                                <td>Internal micro factors</td>
+                            </tr>
+                        </table>
             </article>
 
-            <!-- Question 3 -->
+            <!-- ========== Q3: FOREIGN EXCHANGE RATE & FACTORS (complete) ========== -->
             <article class="card section-card" id="q3">
-                <h1>3. What is foreign exchange rate. Discuss the factors determining exchange rate.</h1>
+                <h1>3. What is foreign exchange rate? Discuss the factors determining exchange rate.</h1>
+                <h3>Meaning of foreign exchange rate</h3>
+                <p>A foreign exchange rate is the price of one country's currency expressed in terms of another
+                    country's currency. It is the rate at which one currency can be exchanged for another. Example: 1 US
+                    Dollar = ₹83 → ₹83 represents the exchange rate of the Indian Rupee against the US Dollar.</p>
 
-                <h3>Introduction</h3>
-                <p>In the modern world, no country is economically self-sufficient. Nations engage in international
-                    trade, foreign investment, tourism, and financial transactions with other countries. Since each
-                    country has its own currency, there must be a system to determine how one currency exchanges for
-                    another. This system is known as the <strong>foreign exchange rate</strong>.</p>
-                <p>The foreign exchange rate plays a vital role in international economics because it influences
-                    exports, imports, capital flows, price levels, and economic stability. Changes in exchange rates
-                    directly affect a country’s balance of payments and economic growth.</p>
-
-                <h3>Meaning of Foreign Exchange</h3>
-                <p>Foreign exchange refers to foreign currencies and financial instruments expressed in foreign
-                    currencies. It includes: Foreign currency notes and coins, Bank deposits held abroad, Bills of
-                    exchange, Cheques and drafts payable in foreign currency, International payment claims.</p>
-                <p>Foreign exchange facilitates payments between countries engaged in international trade.</p>
-
-                <h3>Meaning of Foreign Exchange Rate</h3>
-                <p>A foreign exchange rate is the price of one country’s currency expressed in terms of another
-                    country’s currency. In simple words: It is the rate at which one currency can be exchanged for
-                    another currency.</p>
-                <div class="example-box">Example: If 1 US Dollar = ₹83, then ₹83 represents the exchange rate of the
-                    Indian Rupee against the US Dollar.</div>
-                <p>Thus, exchange rate shows the external value of a country’s currency.</p>
-
-                <h3>Nature and Characteristics of Exchange Rate</h3>
+                <h3>Nature and characteristics of exchange rate</h3>
                 <ol>
-                    <li>It is a relative price between two currencies.</li>
-                    <li>It changes continuously due to market conditions.</li>
-                    <li>It affects international trade and investment.</li>
-                    <li>It reflects the economic strength of a country.</li>
-                    <li>It is influenced by both economic and political factors.</li>
+                    <li>Relative price between two currencies.</li>
+                    <li>Changes continuously due to market conditions.</li>
+                    <li>Affects international trade and investment.</li>
+                    <li>Reflects economic strength of a country.</li>
+                    <li>Influenced by both economic and political factors.</li>
                 </ol>
 
-                <h3>Types of Exchange Rate</h3>
-                <p><strong>1. Fixed Exchange Rate:</strong> Under this system, the government or central bank fixes the
-                    value of currency relative to another currency or gold.<br>
-                    <em>Features:</em> Stable exchange rate, Government intervention required, Reduces uncertainty in
-                    trade.
-                </p>
-
-                <p><strong>2. Flexible (Floating) Exchange Rate:</strong> Exchange rate is determined by market forces
-                    of demand and supply of foreign exchange.<br>
-                    <em>Features:</em> Market-determined, Automatically adjusts balance of payments, Less government
-                    control.
-                </p>
-
-                <p><strong>3. Managed Floating Exchange Rate:</strong> A combination of fixed and flexible systems where
-                    market forces operate but central banks intervene when necessary to stabilize excessive
-                    fluctuations.</p>
-
-                <h3>Factors Determining Exchange Rate</h3>
-                <p>Exchange rate determination depends upon several economic, financial, and political factors. The
-                    major determinants are discussed below.</p>
-
-                <h4>1. Demand and Supply of Foreign Exchange</h4>
-                <p>The most fundamental factor determining exchange rate is demand and supply of foreign currency.</p>
-                <p>Demand for Foreign Exchange arises from: Import payments, Foreign travel and education, Investment
-                    abroad, Loan repayments.<br>
-                    Supply of Foreign Exchange arises from: Exports of goods and services, Foreign investments, Tourism
-                    earnings, Remittances from abroad.</p>
-                <p>Effect: Higher demand &rarr; depreciation of domestic currency. Higher supply &rarr; appreciation of
-                    domestic currency. Exchange rate equilibrium occurs where demand equals supply.</p>
-
-                <h4>2. Balance of Payments (BOP)</h4>
-                <p>Balance of Payments records all international economic transactions of a country.</p>
+                <h3>Types of exchange rate</h3>
                 <ul>
-                    <li><strong>BOP Deficit:</strong> Imports exceed exports &rarr; demand for foreign currency rises
-                        &rarr; currency depreciates.</li>
-                    <li><strong>BOP Surplus:</strong> Exports exceed imports &rarr; supply of foreign currency rises
-                        &rarr; currency appreciates.</li>
+                    <li><strong>Fixed exchange rate:</strong> government/central bank fixes currency value relative to
+                        another currency or gold. Stable, requires intervention.</li>
+                    <li><strong>Flexible (floating) exchange rate:</strong> determined by market forces of demand and
+                        supply.</li>
+                    <li><strong>Managed floating:</strong> combination – market forces operate with occasional central
+                        bank intervention.</li>
                 </ul>
-                <p>Thus, exchange rate reflects the country’s external financial position.</p>
 
-                <h4>3. Inflation Rate</h4>
-                <p>Inflation reduces the purchasing power of money. High inflation makes domestic goods expensive,
-                    exports decrease and imports increase, demand for foreign currency rises, and domestic currency
-                    depreciates. Countries with lower inflation generally maintain stronger currencies.</p>
+                <h3>Factors determining exchange rate</h3>
+                <ol>
+                    <li><strong>Demand and supply of foreign exchange:</strong> most fundamental. Higher demand →
+                        depreciation; higher supply → appreciation.</li>
+                    <li><strong>Balance of Payments (BOP):</strong> deficit → depreciation; surplus → appreciation.</li>
+                    <li><strong>Inflation rate:</strong> high inflation makes domestic goods expensive, exports
+                        decrease, currency depreciates.</li>
+                    <li><strong>Interest rate differentials:</strong> higher interest rates attract foreign capital,
+                        currency appreciates.</li>
+                    <li><strong>National income and economic growth:</strong> rapid growth increases imports (demand for
+                        FX) but also attracts investment. Net effect depends.</li>
+                    <li><strong>Government policies and central bank intervention:</strong> monetary/fiscal policies,
+                        exchange controls, reserve operations.</li>
+                    <li><strong>Political stability and economic confidence:</strong> stable government → capital inflow
+                        → appreciation.</li>
+                    <li><strong>Speculation in foreign exchange market:</strong> expectations of future changes cause
+                        immediate shifts.</li>
+                    <li><strong>Foreign investment and capital movements:</strong> large FDI/portfolio inflows
+                        strengthen domestic currency.</li>
+                    <li><strong>Terms of trade:</strong> improvement in export prices increases FX earnings →
+                        appreciation.</li>
+                    <li><strong>External shocks and international factors:</strong> oil price changes, global crises,
+                        wars, pandemics.</li>
+                </ol>
 
-                <h4>4. Interest Rate Differentials</h4>
-                <p>Interest rates influence international capital movements. Higher interest rates attract foreign
-                    investors, foreign capital inflow increases demand for domestic currency, and currency appreciates.
-                    Lower interest rates may lead to capital outflow and depreciation.</p>
-
-                <h4>5. National Income and Economic Growth</h4>
-                <p>Rapid economic growth increases income and purchasing power. Effects: Higher imports increase demand
-                    for foreign exchange. At the same time, strong growth attracts foreign investment. Overall impact
-                    depends on whether investment inflows exceed import payments.</p>
-
-                <h4>6. Government Policies and Central Bank Intervention</h4>
-                <p>Governments influence exchange rates through: Monetary policy, Fiscal policy, Exchange controls,
-                    Trade restrictions, Foreign exchange reserve operations. Central banks buy or sell foreign currency
-                    to stabilize exchange rates.</p>
-
-                <h4>7. Political Stability and Economic Confidence</h4>
-                <p>Political stability increases investor confidence.</p>
-                <ul>
-                    <li>Stable government &rarr; capital inflow &rarr; currency appreciation.</li>
-                    <li>Political unrest or uncertainty &rarr; capital outflow &rarr; depreciation.</li>
-                </ul>
-                <p>Investors prefer countries with predictable policies.</p>
-
-                <h4>8. Speculation in Foreign Exchange Market</h4>
-                <p>Speculators buy or sell currencies expecting future changes. Expectation of appreciation increases
-                    demand immediately. Expectation of depreciation causes selling pressure. Speculative activities
-                    cause short-term exchange rate fluctuations.</p>
-
-                <h4>9. Foreign Investment and Capital Movements</h4>
-                <p>Foreign Direct Investment (FDI) and portfolio investments influence exchange rates. Large inflows
-                    strengthen domestic currency. Capital outflows weaken currency value. Global investors constantly
-                    shift funds based on expected returns.</p>
-
-                <h4>10. Terms of Trade</h4>
-                <p>Terms of trade refer to the ratio between export prices and import prices. Improvement in export
-                    prices increases foreign exchange earnings and currency appreciates. Unfavorable terms weaken the
-                    currency.</p>
-
-                <h4>11. External Shocks and International Factors</h4>
-                <p>Exchange rates are also influenced by global conditions such as: Oil price changes, International
-                    financial crises, Wars and geopolitical tensions, Global pandemics. These factors affect global
-                    currency demand and supply.</p>
-
-                <h3>Importance of Foreign Exchange Rate</h3>
+                <h3>Importance of foreign exchange rate</h3>
                 <ol>
                     <li>Facilitates international trade and payments.</li>
                     <li>Determines competitiveness of exports.</li>
                     <li>Influences inflation and domestic prices.</li>
                     <li>Affects foreign investment decisions.</li>
                     <li>Helps maintain balance of payments equilibrium.</li>
-                    <li>Plays a key role in economic planning and policy formulation.</li>
+                    <li>Key role in economic planning.</li>
                 </ol>
-
-                <h3>Diagram (Foreign Exchange Market)</h3>
-                <p>In examinations, students should draw a simple diagram showing:</p>
-                <ul>
-                    <li>Downward sloping demand curve for foreign exchange.</li>
-                    <li>Upward sloping supply curve.</li>
-                    <li>Intersection point determining equilibrium exchange rate.</li>
-                </ul>
 
                 <h3>Conclusion</h3>
-                <p>Foreign exchange rate represents the external value of a nation’s currency and is a fundamental
+                <p>Foreign exchange rate represents the external value of a nation's currency and is a fundamental
                     element of international economic relations. It is determined by a wide range of factors including
-                    demand and supply of foreign exchange, balance of payments position, inflation, interest rates,
-                    political stability, government policies, and global economic conditions. A stable and realistic
-                    exchange rate promotes international trade, investment, and economic growth, making effective
-                    exchange rate management essential for economic stability and development.</p>
-
-                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
-                    class="ig-card-inline">
-                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
-                            @manxjeetagain</span></div>
-                    <div class="ig-btn">Follow</div>
-                </a>
+                    demand‑supply, BOP, inflation, interest rates, political stability, and global conditions. A stable
+                    and realistic rate promotes trade, investment, and growth.</p>
             </article>
 
-            <!-- Question 4 -->
+            <!-- ========== Q4: FLOATING vs FIXED (complete) ========== -->
             <article class="card section-card" id="q4">
-                <h1>4. What do you mean by floating exchange rate ? differentiate between fixed exchange rate syatem and
-                    floating exchange rate system .</h1>
-
-                <h3>Introduction</h3>
-                <p>International trade and financial transactions require the exchange of currencies between countries.
-                    Since each nation has its own currency, a system is necessary to determine how currencies are valued
-                    relative to one another. This value is known as the exchange rate. Over time, economists and
-                    governments have developed different exchange rate systems to regulate currency values.</p>
-                <p>The two most important exchange rate systems are the fixed exchange rate system and the floating
-                    exchange rate system. After the breakdown of the Bretton Woods system in the 1970s, many countries
-                    adopted floating exchange rates due to increasing globalization and expansion of international
-                    financial markets.</p>
-                <p>Understanding floating exchange rate and its comparison with fixed exchange rate system is essential
-                    for analyzing international economic relations.</p>
-
-                <h3>Meaning of Exchange Rate</h3>
-                <p>An exchange rate is the price of one country’s currency expressed in terms of another country’s
-                    currency. In simple words: Exchange rate is the rate at which one currency can be exchanged for
-                    another currency.</p>
-                <div class="example-box">Example: If 1 US Dollar = ₹83, then ₹83 represents the exchange rate of Indian
-                    Rupee in terms of US Dollar.</div>
-                <p>Exchange rate determines the cost of imports, value of exports, and international investment
-                    decisions.</p>
-
-                <h3>Meaning of Floating Exchange Rate</h3>
-                <p>A floating exchange rate refers to a system in which the value of a country’s currency is determined
+                <h1>4. What do you mean by floating exchange rate? differentiate between fixed exchange rate system and
+                    floating exchange rate system.</h1>
+                <h3>Meaning of floating exchange rate</h3>
+                <p>A floating exchange rate refers to a system in which the value of a country's currency is determined
                     freely by the forces of demand and supply in the foreign exchange market without being fixed by the
-                    government.</p>
-                <p><strong>Definition:</strong> Floating exchange rate is a system where exchange rate fluctuates
-                    according to market conditions and economic factors. In this system, currency value changes
-                    continuously depending upon international trade flows, capital movements, and economic expectations.
-                </p>
+                    government. Exchange rate fluctuates according to market conditions.</p>
 
-                <h3>Features of Floating Exchange Rate</h3>
-                <ol>
-                    <li>Exchange rate is determined by market forces.</li>
-                    <li>No officially fixed currency value.</li>
-                    <li>Exchange rate fluctuates daily.</li>
-                    <li>Government intervention is limited.</li>
-                    <li>Reflects economic performance of the country.</li>
-                    <li>Balance of payments adjusts automatically.</li>
-                    <li>Exchange market plays a dominant role.</li>
-                </ol>
+                <h4>Working of floating exchange rate</h4>
+                <p>Under floating rates, demand for foreign exchange (for imports, travel, investment) and supply (from
+                    exports, remittances, tourism) determine the equilibrium rate. Increase in demand → depreciation;
+                    increase in supply → appreciation.</p>
 
-                <h3>Working of Floating Exchange Rate System</h3>
-                <p>Under floating exchange rate, demand and supply of foreign exchange determine currency value.</p>
-                <p><strong>Demand for Foreign Exchange</strong> arises due to: Imports of goods and services, Foreign
-                    travel and education, Investment abroad, Debt repayment to foreign countries.</p>
-                <p><strong>Supply of Foreign Exchange</strong> comes from: Exports of goods and services, Foreign
-                    investments, Remittances from abroad, Tourism earnings.</p>
-
-                <p><strong>Equilibrium Exchange Rate:</strong> The exchange rate is determined at the point where demand
-                    equals supply.</p>
+                <h4>Types of floating exchange rate</h4>
                 <ul>
-                    <li>Increase in demand for foreign currency &rarr; depreciation of domestic currency.</li>
-                    <li>Increase in supply of foreign currency &rarr; appreciation of domestic currency.</li>
+                    <li><strong>Clean float:</strong> completely market‑determined, no government interference.</li>
+                    <li><strong>Managed float (dirty float):</strong> central bank intervenes occasionally to prevent
+                        excessive fluctuations – followed by most modern economies.</li>
                 </ul>
-                <p>Thus, market forces continuously adjust the exchange rate.</p>
 
-                <h3>Types of Floating Exchange Rate</h3>
-                <p><strong>1. Clean Float:</strong> In this system, exchange rate is completely determined by market
-                    forces without government interference.</p>
-                <p><strong>2. Managed Float (Dirty Float):</strong> Government or central bank intervenes occasionally
-                    to prevent excessive fluctuations. Most modern economies follow managed floating exchange rate
-                    systems.</p>
+                <h3>Meaning of fixed exchange rate system</h3>
+                <p>A fixed exchange rate system is one in which the government or central bank fixes the value of its
+                    currency relative to another currency (or gold) and maintains that value through intervention
+                    (buying/selling foreign currency).</p>
 
-                <h3>Advantages of Floating Exchange Rate</h3>
-                <ol>
-                    <li><strong>Automatic Adjustment of Balance of Payments:</strong> Currency depreciation encourages
-                        exports and discourages imports, correcting balance of payments deficits automatically.</li>
-                    <li><strong>Independence of Monetary Policy:</strong> Central banks can focus on controlling
-                        inflation and unemployment rather than maintaining fixed exchange rates.</li>
-                    <li><strong>No Need for Large Foreign Exchange Reserves:</strong> Government does not need to spend
-                        reserves to maintain currency value.</li>
-                    <li><strong>Reflects True Market Value:</strong> Exchange rate reflects actual economic strength and
-                        competitiveness.</li>
-                    <li><strong>Protection Against External Shocks:</strong> Floating rates help absorb global economic
-                        shocks such as oil price changes or financial crises.</li>
-                </ol>
-
-                <h3>Disadvantages of Floating Exchange Rate</h3>
-                <ol>
-                    <li>Exchange rate instability and volatility.</li>
-                    <li>Uncertainty in international trade and investment.</li>
-                    <li>Possibility of inflation due to currency depreciation.</li>
-                    <li>Speculative activities may cause sudden fluctuations.</li>
-                    <li>Difficulties in long-term planning for exporters and importers.</li>
-                </ol>
-
-                <h3>Meaning of Fixed Exchange Rate System</h3>
-                <p>A fixed exchange rate system is a system in which the government or central bank fixes the value of
-                    its currency relative to another currency or gold and maintains that value through intervention in
-                    foreign exchange markets. The central bank buys or sells foreign currency to maintain the fixed
-                    rate.</p>
-
-                <h3>Features of Fixed Exchange Rate System</h3>
-                <ol>
-                    <li>Exchange rate determined by government authority.</li>
+                <h3>Features of fixed exchange rate</h3>
+                <ul>
+                    <li>Rate determined by government authority.</li>
                     <li>Stable currency value.</li>
                     <li>Requires continuous central bank intervention.</li>
                     <li>Large foreign exchange reserves needed.</li>
                     <li>Limited currency fluctuations.</li>
-                    <li>Promotes certainty in international trade.</li>
-                </ol>
+                </ul>
 
-                <h3>Advantages of Fixed Exchange Rate</h3>
-                <ol>
+                <h4>Advantages of fixed exchange rate</h4>
+                <ul>
                     <li>Stability in international prices.</li>
                     <li>Encourages international trade and investment.</li>
                     <li>Reduces exchange rate uncertainty.</li>
                     <li>Controls speculative movements.</li>
-                    <li>Helps maintain investor confidence.</li>
-                </ol>
-
-                <h3>Disadvantages of Fixed Exchange Rate</h3>
-                <ol>
-                    <li>Loss of monetary policy independence.</li>
-                    <li>Requires large foreign exchange reserves.</li>
-                    <li>Difficult to maintain during economic crises.</li>
-                    <li>May lead to balance of payments problems.</li>
-                    <li>Artificial valuation of currency possible.</li>
-                </ol>
-
-                <h3>Difference Between Fixed Exchange Rate System and Floating Exchange Rate System</h3>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th>Basis</th>
-                            <th>Fixed Exchange Rate</th>
-                            <th>Floating Exchange Rate</th>
-                        </tr>
-                        <tr>
-                            <td>Meaning</td>
-                            <td>Rate fixed by government</td>
-                            <td>Rate determined by demand and supply</td>
-                        </tr>
-                        <tr>
-                            <td>Determination</td>
-                            <td>Official decision</td>
-                            <td>Market mechanism</td>
-                        </tr>
-                        <tr>
-                            <td>Flexibility</td>
-                            <td>Rigid</td>
-                            <td>Flexible</td>
-                        </tr>
-                        <tr>
-                            <td>Government Intervention</td>
-                            <td>High</td>
-                            <td>Low or occasional</td>
-                        </tr>
-                        <tr>
-                            <td>Stability</td>
-                            <td>Stable</td>
-                            <td>Fluctuating</td>
-                        </tr>
-                        <tr>
-                            <td>Foreign Exchange Reserves</td>
-                            <td>Required in large amount</td>
-                            <td>Not heavily required</td>
-                        </tr>
-                        <tr>
-                            <td>BOP Adjustment</td>
-                            <td>Through policy measures</td>
-                            <td>Automatic adjustment</td>
-                        </tr>
-                        <tr>
-                            <td>Monetary Policy</td>
-                            <td>Limited independence</td>
-                            <td>Greater independence</td>
-                        </tr>
-                        <tr>
-                            <td>Market Role</td>
-                            <td>Limited</td>
-                            <td>Major role</td>
-                        </tr>
-                        <tr>
-                            <td>Risk</td>
-                            <td>Less short-term volatility</td>
-                            <td>Higher volatility</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <h3>Diagram (For Examination Purpose)</h3>
-                <p>Students should draw a diagram showing:</p>
-                <ul>
-                    <li>Downward sloping demand curve for foreign exchange.</li>
-                    <li>Upward sloping supply curve.</li>
-                    <li>Intersection determining equilibrium exchange rate.</li>
+                    <li>Maintains investor confidence.</li>
                 </ul>
 
-                <h3>Importance of Floating Exchange Rate in Modern Economy</h3>
+                <h4>Disadvantages of fixed exchange rate</h4>
+                <ul>
+                    <li>Loss of monetary policy independence.</li>
+                    <li>Requires large foreign exchange reserves.</li>
+                    <li>Difficult to maintain during crises.</li>
+                    <li>May lead to balance of payments problems.</li>
+                    <li>Artificial valuation possible.</li>
+                </ul>
+
+                <h3>Difference between fixed and floating exchange rate systems</h3>
+                <table>
+                    <tr>
+                        <th>Basis</th>
+                        <th>Fixed Exchange Rate</th>
+                        <th>Floating Exchange Rate</th>
+                    </tr>
+                    <tr>
+                        <td>Meaning</td>
+                        <td>Rate fixed by government</td>
+                        <td>Rate determined by market forces</td>
+                    </tr>
+                    <tr>
+                        <td>Flexibility</td>
+                        <td>Rigid</td>
+                        <td>Flexible</td>
+                    </tr>
+                    <tr>
+                        <td>Government intervention</td>
+                        <td>High, continuous</td>
+                        <td>Low or occasional</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign exchange reserves</td>
+                        <td>Required in large amount</td>
+                        <td>Not heavily required</td>
+                    </tr>
+                    <tr>
+                        <td>BOP adjustment</td>
+                        <td>Through policy measures</td>
+                        <td>Automatic adjustment</td>
+                    </tr>
+                    <tr>
+                        <td>Monetary policy independence</td>
+                        <td>Limited</td>
+                        <td>Greater independence</td>
+                    </tr>
+                    <tr>
+                        <td>Market role</td>
+                        <td>Limited</td>
+                        <td>Major role</td>
+                    </tr>
+                    <tr>
+                        <td>Risk</td>
+                        <td>Less short‑term volatility</td>
+                        <td>Higher volatility</td>
+                    </tr>
+                </table>
+
+                <h3>Importance of floating exchange rate in modern economy</h3>
                 <ol>
-                    <li>Supports globalization and international capital flows.</li>
+                    <li>Supports globalisation and international capital flows.</li>
                     <li>Helps economies adjust automatically to trade imbalances.</li>
                     <li>Reduces pressure on central banks.</li>
                     <li>Encourages efficient allocation of resources.</li>
@@ -1135,54 +750,27 @@
                 </ol>
 
                 <h3>Conclusion</h3>
-                <p>A floating exchange rate system allows currency value to be determined by market forces of demand and
-                    supply, providing flexibility and automatic adjustment in international payments. In contrast, a
-                    fixed exchange rate system ensures stability through government control but limits economic
-                    flexibility. Both systems have advantages and disadvantages; therefore, most countries today adopt a
-                    managed floating exchange rate combining stability with flexibility. The choice of exchange rate
-                    system plays a crucial role in maintaining economic stability and promoting international trade.</p>
-
-                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
-                    class="ig-card-inline">
-                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
-                            @manxjeetagain</span></div>
-                    <div class="ig-btn">Follow</div>
-                </a>
+                <p>Floating exchange rate system allows currency value to be determined by market forces, providing
+                    flexibility and automatic adjustment. Fixed exchange rate ensures stability but limits flexibility.
+                    Most countries today adopt a managed floating system combining stability with flexibility.</p>
             </article>
 
-            <!-- Question 5 -->
+            <!-- ========== Q5: FINANCIAL FRAGILITY – INDICATORS (complete) ========== -->
             <article class="card section-card" id="q5">
                 <h1>5. What is financial fragility? What are its indicators?</h1>
-
                 <h3>Introduction</h3>
                 <p>The stability of the financial system is essential for the smooth functioning of an economy. Banks,
-                    financial institutions, capital markets, and investment systems play a vital role in mobilizing
-                    savings and allocating funds for productive purposes. However, financial systems sometimes become
-                    weak and vulnerable to crises due to excessive risk-taking, economic shocks, or poor financial
-                    management. This condition is known as <strong>financial fragility</strong>.</p>
-                <p>Financial fragility gained global attention after major financial crises such as banking crises and
-                    global recessions. Understanding financial fragility and its indicators helps policymakers,
-                    investors, and economists prevent financial instability and economic collapse.</p>
+                    financial institutions, capital markets mobilise savings and allocate funds. However, financial
+                    systems sometimes become weak and vulnerable to crises due to excessive risk‑taking, economic
+                    shocks, or poor financial management. This condition is known as financial fragility.</p>
 
-                <h3>Meaning of Financial Fragility</h3>
-                <p><strong>Financial fragility</strong> refers to a situation in which the financial system becomes
-                    weak, unstable, and highly vulnerable to economic shocks, leading to the possibility of financial
-                    crisis or collapse.</p>
-                <p>In simple words: Financial fragility is the condition where banks and financial institutions are
-                    unable to withstand economic disturbances due to excessive risk, debt, or weak financial structure.
-                </p>
-                <p>When financial institutions operate with high levels of debt and low liquidity, even small economic
-                    disturbances can create serious financial problems.</p>
+                <h3>Meaning of financial fragility</h3>
+                <p>Financial fragility refers to a situation in which the financial system becomes weak, unstable, and
+                    highly vulnerable to economic shocks, leading to the possibility of financial crisis or collapse.
+                    Financial institutions operate with high levels of debt and low liquidity, so even small
+                    disturbances create serious problems.</p>
 
-                <h3>Definitions</h3>
-                <p>Financial fragility can be understood as:</p>
-                <ul>
-                    <li>A condition where financial markets are prone to instability.</li>
-                    <li>A situation where financial institutions face difficulty in meeting obligations.</li>
-                    <li>A state in which economic shocks easily spread through the financial system.</li>
-                </ul>
-
-                <h3>Features of Financial Fragility</h3>
+                <h3>Features of financial fragility</h3>
                 <ol>
                     <li>High dependence on borrowed funds.</li>
                     <li>Weak financial structure of institutions.</li>
@@ -1192,82 +780,54 @@
                     <li>Rapid spread of financial disturbances.</li>
                 </ol>
 
-                <h3>Causes of Financial Fragility</h3>
-                <p>Financial fragility arises due to several economic and institutional factors.</p>
+                <h3>Causes of financial fragility</h3>
                 <ol>
-                    <li><strong>Excessive Borrowing:</strong> When firms and banks rely heavily on debt financing,
-                        repayment becomes difficult during economic slowdown.</li>
-                    <li><strong>Poor Risk Management:</strong> Financial institutions sometimes invest in risky assets
-                        without proper assessment.</li>
-                    <li><strong>Economic Recession:</strong> Decline in income and employment reduces borrowers’
-                        repayment capacity.</li>
-                    <li><strong>Asset Price Bubbles:</strong> Rapid rise in prices of real estate or stocks creates
-                        instability when prices suddenly fall.</li>
-                    <li><strong>Weak Regulation:</strong> Lack of effective supervision increases chances of financial
-                        misconduct.</li>
-                    <li><strong>Global Financial Shocks:</strong> International crises quickly affect domestic financial
-                        systems due to globalization.</li>
+                    <li>Excessive borrowing (high leverage).</li>
+                    <li>Poor risk management – risky assets without proper assessment.</li>
+                    <li>Economic recession – reduces repayment capacity.</li>
+                    <li>Asset price bubbles – rapid rise then sudden fall.</li>
+                    <li>Weak regulation – lack of effective supervision.</li>
+                    <li>Global financial shocks – international crises affect domestic systems.</li>
                 </ol>
 
-                <h3>Conceptual Explanation of Financial Fragility</h3>
-                <p>According to modern financial theory, financial systems become fragile when:</p>
+                <h3>Conceptual explanation</h3>
+                <p>Financial systems become fragile when debt obligations increase faster than income, institutions hold
+                    risky/illiquid assets, and confidence declines. Small shocks then lead to bank runs, credit
+                    crunches, or market crashes.</p>
+
+                <h3>Indicators of financial fragility</h3>
+                <ol>
+                    <li><strong>High level of non‑performing assets (NPAs):</strong> rising NPAs indicate poor credit
+                        quality, bank losses, reduced profitability.</li>
+                    <li><strong>Excessive credit growth:</strong> lending growing faster than economic output creates
+                        asset bubbles and over‑leveraged borrowers.</li>
+                    <li><strong>Decline in bank capital adequacy:</strong> low capital means banks cannot absorb losses.
+                    </li>
+                    <li><strong>Liquidity problems:</strong> cash shortages, difficulty in withdrawals, increased
+                        borrowing by banks.</li>
+                    <li><strong>Asset price volatility:</strong> sharp fluctuations in stock/real estate prices.</li>
+                    <li><strong>Rising interest rates:</strong> increase borrowing costs and loan defaults.</li>
+                    <li><strong>Exchange rate instability:</strong> rapid depreciation increases foreign debt burden.
+                    </li>
+                    <li><strong>Declining profitability of financial institutions:</strong> reduces ability to absorb
+                        shocks.</li>
+                    <li><strong>Increase in public and private debt:</strong> high debt levels create repayment
+                        pressure.</li>
+                    <li><strong>Loss of investor and depositor confidence:</strong> withdrawal of deposits, capital
+                        flight.</li>
+                </ol>
+
+                <h3>Effects of financial fragility</h3>
                 <ul>
-                    <li>Debt obligations increase faster than income.</li>
-                    <li>Financial institutions hold risky or illiquid assets.</li>
-                    <li>Confidence in the banking system declines.</li>
-                </ul>
-                <p>Small shocks then lead to large financial disruptions such as bank runs, credit crunches, or market
-                    crashes.</p>
-
-                <h3>Indicators of Financial Fragility</h3>
-                <p>Indicators are measurable signs that show whether a financial system is becoming unstable. The major
-                    indicators are discussed below.</p>
-
-                <ol>
-                    <li><strong>High Level of Non-Performing Assets (NPAs):</strong> Non-performing assets are loans on
-                        which borrowers fail to make payments. Rising NPAs indicate poor credit quality. Banks face
-                        losses and reduced profitability. Financial stability weakens. High NPAs are one of the
-                        strongest signals of financial fragility.</li>
-                    <li><strong>Excessive Credit Growth:</strong> Rapid expansion of bank lending may indicate risky
-                        borrowing. When credit grows faster than economic output: Asset bubbles may form, Borrowers
-                        become over-leveraged, Risk of default increases.</li>
-                    <li><strong>Decline in Bank Capital Adequacy:</strong> Capital adequacy ratio measures a bank’s
-                        financial strength. Low capital levels mean: Banks cannot absorb losses, Higher probability of
-                        financial failure. Declining capital adequacy is a major warning sign.</li>
-                    <li><strong>Liquidity Problems:</strong> Liquidity refers to availability of cash to meet short-term
-                        obligations. Indicators include: Cash shortages, Difficulty in withdrawals, Increased borrowing
-                        by banks. Liquidity crises often trigger financial collapse.</li>
-                    <li><strong>Asset Price Volatility:</strong> Sharp fluctuations in stock or real estate prices
-                        indicate instability. Sudden fall in asset prices: Reduces wealth, Causes loan defaults, Weakens
-                        financial institutions.</li>
-                    <li><strong>Rising Interest Rates:</strong> High interest rates increase borrowing costs and loan
-                        repayment burden. Effects: Increase in loan defaults, Decline in investment, Financial stress on
-                        institutions.</li>
-                    <li><strong>Exchange Rate Instability:</strong> Rapid depreciation of domestic currency increases
-                        foreign debt burden. Countries with large external borrowings face financial stress when
-                        exchange rates fluctuate sharply.</li>
-                    <li><strong>Declining Profitability of Financial Institutions:</strong> Falling profits indicate
-                        inefficiency and rising financial risk. Low profitability reduces banks’ ability to absorb
-                        losses.</li>
-                    <li><strong>Increase in Public and Private Debt:</strong> High debt levels create repayment
-                        pressure. When debt grows faster than income: Default risk increases, Financial instability
-                        rises.</li>
-                    <li><strong>Loss of Investor and Depositor Confidence:</strong> Confidence is essential for
-                        financial stability. Signs include: Withdrawal of deposits, Capital flight, Stock market
-                        decline. Loss of confidence can quickly turn fragility into crisis.</li>
-                </ol>
-
-                <h3>Effects of Financial Fragility</h3>
-                <ol>
                     <li>Banking crises and failures.</li>
-                    <li>Credit contraction.</li>
+                    <li>Credit contraction (credit crunch).</li>
                     <li>Decline in investment.</li>
                     <li>Economic recession.</li>
                     <li>Unemployment increase.</li>
                     <li>Reduction in economic growth.</li>
-                </ol>
+                </ul>
 
-                <h3>Measures to Reduce Financial Fragility</h3>
+                <h3>Measures to reduce financial fragility</h3>
                 <ol>
                     <li>Strong banking regulation and supervision.</li>
                     <li>Maintaining adequate capital reserves.</li>
@@ -1277,80 +837,39 @@
                     <li>Stable macroeconomic policies.</li>
                 </ol>
 
-                <h3>Importance of Studying Financial Fragility</h3>
-                <ul>
-                    <li>Helps prevent financial crises.</li>
-                    <li>Assists policymakers in early warning detection.</li>
-                    <li>Promotes economic stability.</li>
-                    <li>Protects investors and depositors.</li>
-                    <li>Strengthens financial institutions.</li>
-                </ul>
+                <h3>Importance of studying financial fragility</h3>
+                <p>Helps prevent financial crises, assists policymakers in early warning detection, promotes economic
+                    stability, protects investors and depositors, strengthens financial institutions.</p>
 
                 <h3>Conclusion</h3>
-                <p>Financial fragility represents the vulnerability of the financial system to economic shocks and
-                    instability. It arises from excessive borrowing, weak financial management, and unfavorable economic
-                    conditions. Indicators such as rising non-performing assets, liquidity shortages, declining bank
-                    capital, asset price volatility, and loss of investor confidence signal growing financial weakness.
-                    Monitoring these indicators is essential for maintaining financial stability and preventing economic
-                    crises. A strong regulatory framework and sound financial practices are necessary to reduce
-                    financial fragility and ensure sustainable economic development.</p>
-
-                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
-                    class="ig-card-inline">
-                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
-                            @manxjeetagain</span></div>
-                    <div class="ig-btn">Follow</div>
-                </a>
+                <p>Financial fragility represents the vulnerability of the financial system to shocks. Indicators such
+                    as rising NPAs, liquidity shortages, declining bank capital, asset price volatility signal growing
+                    weakness. Monitoring these indicators is essential for maintaining stability. A strong regulatory
+                    framework and sound practices are necessary to ensure sustainable development.</p>
             </article>
 
-            <!-- Question 6 -->
+            <!-- ========== Q6: ISSUES & CHALLENGES OF FINANCIAL FRAGILITY (complete) ========== -->
             <article class="card section-card" id="q6">
-                <h1>6. What do you mean by financial fragility? What are the main issues and challenges which emerge out
+                <h1>6. What do you mean by financial fragility? what are the main issues and challenges which emerge out
                     financial fragility?</h1>
-
-                <p>Financial systems play a central role in modern economies by mobilizing savings, allocating capital,
-                    facilitating investment, and supporting economic growth. Banks, financial markets, insurance
-                    companies, and other financial institutions together form the financial structure of a country.
-                    However, when this structure becomes weak and vulnerable to shocks, the entire economy faces
-                    instability. This condition is known as financial fragility. The concept has gained significant
-                    importance after repeated global financial crises, banking failures, and economic recessions
-                    experienced by many countries.</p>
-
                 <h3>Introduction</h3>
-                <p>Economic development depends heavily on a stable and efficient financial system. Financial
-                    institutions act as intermediaries between savers and investors and ensure smooth circulation of
-                    funds in the economy. When these institutions become excessively exposed to risk, rely heavily on
-                    borrowed funds, or operate under weak regulatory environments, they become fragile. Even a small
-                    disturbance such as a decline in asset prices or sudden withdrawal of deposits may lead to serious
-                    financial disruptions. Financial fragility therefore represents a major threat to economic stability
-                    and sustainable development.</p>
-                <p>Understanding financial fragility helps policymakers identify weaknesses in the financial system and
-                    take preventive measures before crises occur.</p>
+                <p>Economic development depends on a stable and efficient financial system. Financial institutions act
+                    as intermediaries between savers and investors. When these institutions become excessively exposed
+                    to risk, rely heavily on borrowed funds, or operate under weak regulatory environments, they become
+                    fragile. Even a small disturbance may lead to serious financial disruptions.</p>
 
-                <h3>Meaning of Financial Fragility</h3>
+                <h3>Meaning of financial fragility</h3>
                 <p>Financial fragility refers to a situation in which financial institutions, markets, or the entire
                     financial system become highly vulnerable to economic shocks and are unable to absorb losses
-                    effectively.</p>
-                <p>In simple terms, financial fragility means the financial system is operating in a risky condition
-                    where minor disturbances can lead to major financial crises.</p>
-                <p>It occurs when banks and financial institutions maintain high levels of debt, low liquidity, risky
-                    investments, and weak capital positions. Under such circumstances, confidence among investors and
-                    depositors declines, increasing the chances of financial instability.</p>
+                    effectively. It occurs when banks maintain high levels of debt, low liquidity, risky investments,
+                    and weak capital positions.</p>
 
-                <h3>Definitions and Conceptual Understanding</h3>
-                <p>Financial fragility can be understood as:</p>
-                <ul>
-                    <li>A condition where financial institutions cannot meet their obligations during economic stress.
-                    </li>
-                    <li>A state in which financial markets are prone to sudden collapse.</li>
-                    <li>A situation where economic shocks spread quickly across the financial sector.</li>
-                </ul>
-                <p>Economists explain financial fragility as a result of excessive leverage, speculative investment
-                    behavior, and poor financial regulation. When profits rise during economic expansion, institutions
-                    often take higher risks. However, during downturns these risks turn into losses, exposing structural
-                    weaknesses.</p>
+                <h3>Definitions and conceptual understanding</h3>
+                <p>Financial fragility can be understood as: a condition where financial institutions cannot meet their
+                    obligations during economic stress; a state in which financial markets are prone to sudden collapse;
+                    a situation where economic shocks spread quickly across the financial sector.</p>
 
-                <h3>Features of Financial Fragility</h3>
+                <h3>Features of financial fragility</h3>
                 <ol>
                     <li>Heavy dependence on borrowed funds rather than own capital.</li>
                     <li>Increased exposure to risky financial assets.</li>
@@ -1358,101 +877,58 @@
                     <li>High probability of loan defaults.</li>
                     <li>Declining confidence among investors and depositors.</li>
                     <li>Rapid transmission of financial shocks across markets.</li>
-                    <li>Instability in credit and investment flows.</li>
                 </ol>
-                <p>These features indicate that the financial system lacks resilience against economic disturbances.</p>
 
-                <h3>Causes of Financial Fragility</h3>
-                <p>Financial fragility develops due to a combination of economic, institutional, and behavioral factors.
-                </p>
-                <ul>
-                    <li><strong>Excessive Leverage:</strong> Financial institutions often borrow heavily to increase
-                        profits. High leverage increases vulnerability because even small losses can wipe out capital.
-                    </li>
-                    <li><strong>Poor Credit Assessment:</strong> Banks sometimes extend loans without proper evaluation
-                        of borrowers’ repayment capacity.</li>
-                    <li><strong>Asset Price Bubbles:</strong> Rapid increases in stock market or real estate prices
-                        encourage speculative investments. When asset prices collapse, institutions suffer heavy losses.
-                    </li>
-                    <li><strong>Economic Recession:</strong> During economic slowdown, unemployment rises and income
-                        declines. Borrowers fail to repay loans.</li>
-                    <li><strong>Weak Financial Regulation:</strong> Inadequate supervision and regulatory loopholes
-                        allow excessive risk-taking, fraud, and mismanagement.</li>
-                    <li><strong>Global Financial Integration:</strong> Globalization connects financial markets across
-                        countries. A crisis in one country can quickly spread to others.</li>
-                </ul>
-
-                <h3>Main Issues Emerging from Financial Fragility</h3>
-                <p>Financial fragility creates several serious economic and financial problems that affect both
-                    institutions and the broader economy.</p>
-                <ul>
-                    <li><strong>Banking Crises:</strong> One of the most important issues arising from financial
-                        fragility is banking crisis. When banks face heavy losses or liquidity shortages, depositors
-                        lose confidence and withdraw funds simultaneously. This leads to bank runs and possible bank
-                        failures.</li>
-                    <li><strong>Credit Crunch:</strong> Fragile financial institutions reduce lending to protect
-                        themselves from losses. Businesses and consumers find it difficult to obtain loans, which
-                        reduces investment and economic activity.</li>
-                    <li><strong>Decline in Investment:</strong> Uncertainty in financial markets discourages investors.
-                        Both domestic and foreign investments decline, slowing economic growth.</li>
-                    <li><strong>Financial Market Volatility:</strong> Stock markets and bond markets become highly
-                        unstable during periods of financial fragility. Frequent price fluctuations increase risk and
-                        reduce investor confidence.</li>
-                    <li><strong>Increase in Non-Performing Assets:</strong> Loan defaults rise significantly during
-                        fragile financial conditions. High levels of non-performing assets weaken bank balance sheets
-                        and reduce profitability.</li>
-                    <li><strong>Loss of Public Confidence:</strong> Confidence is the foundation of financial systems.
-                        Financial fragility creates fear among depositors and investors, leading to withdrawal of funds
-                        and capital flight.</li>
-                    <li><strong>Currency Instability:</strong> Financial instability often results in exchange rate
-                        fluctuations. Investors move funds to safer economies, causing depreciation of domestic
-                        currency.</li>
-                    <li><strong>Economic Recession:</strong> Reduced lending, declining investment, and falling
-                        consumption together push the economy toward recession. Production declines and unemployment
-                        increases.</li>
-                </ul>
-
-                <h3>Challenges Emerging from Financial Fragility</h3>
-                <p>Apart from immediate issues, financial fragility creates long-term challenges for policymakers and
-                    economic management.</p>
+                <h3>Causes of financial fragility</h3>
                 <ol>
-                    <li><strong>Maintaining Financial Stability:</strong> Governments face the challenge of restoring
-                        stability without disrupting economic growth. Balancing regulation and market freedom becomes
-                        difficult.</li>
-                    <li><strong>Strengthening Banking Regulation:</strong> Authorities must design effective regulatory
-                        frameworks to monitor risk-taking activities while ensuring efficiency in financial markets.
-                    </li>
-                    <li><strong>Managing Public Debt:</strong> Financial crises often require government bailouts of
-                        banks and institutions. This increases public debt and fiscal burden.</li>
-                    <li><strong>Restoring Investor Confidence:</strong> After financial instability, rebuilding trust
-                        among investors and depositors becomes a major challenge. Confidence restoration requires
-                        transparency and policy credibility.</li>
-                    <li><strong>Controlling Contagion Effect:</strong> Financial fragility spreads quickly across
-                        institutions and countries. Preventing contagion effects requires coordinated monetary and
-                        fiscal policies.</li>
-                    <li><strong>Ensuring Adequate Capital and Liquidity:</strong> Financial institutions must maintain
-                        sufficient capital buffers and liquidity reserves, which may reduce short-term profitability but
-                        ensure long-term stability.</li>
-                    <li><strong>Balancing Growth and Risk:</strong> Encouraging economic growth while preventing
-                        excessive risk-taking remains one of the biggest challenges for financial regulators.</li>
-                    <li><strong>Managing Technological and Financial Innovation:</strong> Modern financial innovations
-                        such as digital finance and complex financial instruments increase efficiency but also create
-                        new risks that regulators must address.</li>
+                    <li>Excessive leverage – high debt increases vulnerability.</li>
+                    <li>Poor credit assessment – accumulation of bad loans.</li>
+                    <li>Asset price bubbles – speculative investments.</li>
+                    <li>Economic recession – rising unemployment, defaults.</li>
+                    <li>Weak financial regulation – excessive risk‑taking, fraud.</li>
+                    <li>Global financial integration – contagion across countries.</li>
                 </ol>
 
-                <h3>Economic and Social Consequences</h3>
-                <p>Financial fragility does not affect only financial institutions; it impacts society as a whole.</p>
+                <h3>Main issues emerging from financial fragility</h3>
                 <ul>
-                    <li>Increase in unemployment due to business failures.</li>
-                    <li>Reduction in income and living standards.</li>
-                    <li>Decline in government revenue.</li>
-                    <li>Increase in poverty and inequality.</li>
-                    <li>Slowdown in long-term economic development.</li>
+                    <li><strong>Banking crises:</strong> depositors lose confidence → bank runs → failures.</li>
+                    <li><strong>Credit crunch:</strong> fragile institutions reduce lending, starving businesses of
+                        capital.</li>
+                    <li><strong>Decline in investment:</strong> uncertainty discourages domestic and foreign investment.
+                    </li>
+                    <li><strong>Financial market volatility:</strong> unstable stock/bond markets reduce confidence.
+                    </li>
+                    <li><strong>Increase in non‑performing assets:</strong> loan defaults weaken balance sheets.</li>
+                    <li><strong>Loss of public confidence:</strong> withdrawal of funds, capital flight.</li>
+                    <li><strong>Currency instability:</strong> investors move to safer economies → depreciation.</li>
+                    <li><strong>Economic recession:</strong> reduced lending, falling consumption, unemployment.</li>
                 </ul>
-                <p>Thus, financial fragility becomes both an economic and social problem.</p>
 
-                <h3>Measures to Address Financial Fragility</h3>
-                <p>To overcome challenges arising from financial fragility, several measures can be adopted:</p>
+                <h3>Challenges emerging from financial fragility</h3>
+                <ol>
+                    <li><strong>Maintaining financial stability:</strong> restoring stability without disrupting growth.
+                    </li>
+                    <li><strong>Strengthening banking regulation:</strong> designing effective frameworks while ensuring
+                        efficiency.</li>
+                    <li><strong>Managing public debt:</strong> bailouts increase fiscal burden.</li>
+                    <li><strong>Restoring investor confidence:</strong> requires transparency and credible policies.
+                    </li>
+                    <li><strong>Controlling contagion effect:</strong> preventing rapid spread across
+                        institutions/countries.</li>
+                    <li><strong>Ensuring adequate capital and liquidity:</strong> buffers that may reduce short‑term
+                        profit but ensure long‑term stability.</li>
+                    <li><strong>Balancing growth and risk:</strong> encouraging growth while preventing excessive
+                        risk‑taking.</li>
+                    <li><strong>Managing technological and financial innovation:</strong> new products create new risks.
+                    </li>
+                </ol>
+
+                <h3>Economic and social consequences</h3>
+                <p>Financial fragility affects society as a whole: increase in unemployment, reduction in income and
+                    living standards, decline in government revenue, increase in poverty and inequality, slowdown in
+                    long‑term development.</p>
+
+                <h3>Measures to address financial fragility</h3>
                 <ol>
                     <li>Strong banking supervision and regulation.</li>
                     <li>Maintenance of adequate capital adequacy ratios.</li>
@@ -1464,38 +940,30 @@
                     <li>International cooperation among financial regulators.</li>
                 </ol>
 
-                <h3>Importance of Studying Financial Fragility</h3>
-                <p>Studying financial fragility is important because it:</p>
-                <ul>
-                    <li>Provides early warning signals of financial crises.</li>
-                    <li>Helps policymakers design preventive strategies.</li>
-                    <li>Protects depositors and investors.</li>
-                    <li>Promotes sustainable economic growth.</li>
-                    <li>Ensures stability of financial institutions.</li>
-                </ul>
+                <h3>Importance of studying financial fragility</h3>
+                <p>Provides early warning signals, helps policymakers design preventive strategies, protects
+                    depositors/investors, promotes sustainable growth, ensures stability of financial institutions.</p>
 
                 <h3>Conclusion</h3>
-                <p>Financial fragility refers to the vulnerability of financial institutions and markets to economic
-                    shocks due to excessive risk, weak financial structures, and inadequate regulation. It leads to
-                    serious issues such as banking crises, credit contraction, market instability, and economic
-                    recession. The challenges emerging from financial fragility include maintaining financial stability,
-                    restoring investor confidence, managing public debt, and strengthening regulatory systems.
-                    Therefore, continuous monitoring of financial conditions, strong institutional frameworks, and
-                    prudent economic policies are essential to reduce financial fragility and ensure long-term economic
-                    stability and development.</p>
+                <p>Financial fragility refers to the vulnerability of financial institutions and markets to shocks due
+                    to excessive risk, weak structures, and inadequate regulation. It leads to serious issues such as
+                    banking crises, credit contraction, market instability, and recession. Continuous monitoring, strong
+                    institutional frameworks, and prudent policies are essential to reduce fragility and ensure
+                    long‑term stability.</p>
 
-                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
-                    class="ig-card-inline">
-                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
-                            @manxjeetagain</span></div>
-                    <div class="ig-btn">Follow</div>
+                <!-- Instagram card -->
+                <a href="https://instagram.com/manxjeetagain" target="_blank" class="ig-card-inline">
+                    <div>
+                        <span style="display: block; font-weight: bold; font-size: 1.1rem;">bcomfrndz</span>
+                        <span style="font-size: 0.8rem; opacity: 0.8;">by @manxjeetagain</span>
+                    </div>
+                    <div class="ig-btn">Follow Us</div>
                 </a>
             </article>
+        </div> <!-- end lockedContent -->
+    </div> <!-- end container -->
 
-        </div> <!-- END OF LOCKED CONTENT -->
-    </div>
-
-    <!-- FAB Menu Setup -->
+    <!-- FAB -->
     <div class="fab-container" id="fabContainer">
         <div class="fab-menu" id="fabMenu">
             <a href="#q1" class="fab-item">Q1</a>
@@ -1505,143 +973,90 @@
             <a href="#q5" class="fab-item">Q5</a>
             <a href="#q6" class="fab-item">Q6</a>
         </div>
-        <button class="fab-main" id="fabMain">
-            <!-- Hamburger Icon -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </button>
+        <button class="fab-main" id="fabMain">☰</button>
     </div>
 
     <script>
-        // Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-btn');
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeBtn.innerText = '☀️';
-        }
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx31jB7TbbMOkPQgiBLOe9a7uVT2tCM9zfNL5722mt5UeAxBifHbvfQLk_mw0oqGA8s/exec";
+        let startTime = Date.now();
 
+        // Theme toggle
+        const themeBtn = document.getElementById('theme-btn');
         themeBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'dark') {
                 document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
                 themeBtn.innerText = '🌙';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
                 themeBtn.innerText = '☀️';
             }
         });
 
-        // Content Lock / Unlock Logic
-        const unlockBtn = document.getElementById('unlockBtn');
-        const lockedContent = document.getElementById('lockedContent');
-        const unlockGate = document.getElementById('unlockGate');
-        const standardIg = document.querySelector('.standard-ig');
-
-        function unlockPage() {
-            lockedContent.style.display = 'block';
-            unlockGate.style.display = 'none';
-            standardIg.style.display = 'flex';
-            localStorage.setItem('fxm_unlocked', 'true');
-        }
-
-        if (localStorage.getItem('fxm_unlocked') === 'true') {
-            unlockPage();
-        }
-
-        unlockBtn.addEventListener('click', () => {
-            window.open('https://instagram.com/manxjeetagain', '_blank');
-            unlockPage();
-        });
-
-        // Intercept clicks on locked sections
-        document.querySelectorAll('a[href^="#q"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (targetId !== '#q1' && localStorage.getItem('fxm_unlocked') !== 'true') {
-                    e.preventDefault();
-                    unlockGate.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    unlockGate.classList.add('shake');
-                    setTimeout(() => unlockGate.classList.remove('shake'), 500);
-                    return;
-                }
-
-                // Close FAB menu if open
-                fabContainer.classList.remove('active');
-                fabMenu.classList.remove('open');
-            });
-        });
-
-        // Horizontal Scroll Nav Logic (Fixed Mobile Bug)
-        const nav = document.querySelector('nav');
-        const sections = document.querySelectorAll('.section-card');
-        const navLinks = document.querySelectorAll('#toc a');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '-30% 0px -50% 0px',
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href').substring(1) === entry.target.id) {
-                            link.classList.add('active');
-                            // Custom safe horizontal scroll for mobile
-                            const linkRect = link.getBoundingClientRect();
-                            const navRect = nav.getBoundingClientRect();
-                            nav.scrollBy({
-                                left: linkRect.left - navRect.left - navRect.width / 2 + linkRect.width / 2,
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            // only observe if section is actually displayed (otherwise throws warnings)
-            if (window.getComputedStyle(section).display !== "none") {
-                observer.observe(section);
-            }
-        });
-
-        // Also re-observe sections after unlocking
-        unlockBtn.addEventListener('click', () => {
-            sections.forEach(section => observer.observe(section));
-        });
-
-        // FAB Menu Logic
+        // FAB toggle
         const fabMain = document.getElementById('fabMain');
         const fabMenu = document.getElementById('fabMenu');
-        const fabContainer = document.getElementById('fabContainer');
+        fabMain.addEventListener('click', () => fabMenu.classList.toggle('open'));
 
-        fabMain.addEventListener('click', () => {
-            fabContainer.classList.toggle('active');
-            fabMenu.classList.toggle('open');
-        });
+        // Unlock logic
+        const unlockBtn = document.getElementById('customUnlockBtn');
+        const lockForm = document.getElementById('lockedForm');
+        const lockedContent = document.getElementById('lockedContent');
 
-        // Close FAB when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!fabContainer.contains(e.target)) {
-                fabContainer.classList.remove('active');
-                fabMenu.classList.remove('open');
+        unlockBtn.addEventListener('click', () => {
+            const name = document.getElementById('userName').value.trim();
+            const roll = document.getElementById('rollNumber').value.trim();
+            const rollPattern = /^550\d{2}$/;
+
+            if (!name || !rollPattern.test(roll)) {
+                alert("Please enter a valid Name and a 5-digit Roll No starting with 550.");
+                lockForm.classList.add('shake');
+                setTimeout(() => lockForm.classList.remove('shake'), 500);
+                return;
             }
+
+            localStorage.setItem('userName', name);
+            localStorage.setItem('rollNumber', roll);
+            window.open('https://instagram.com/manxjeetagain', '_blank');
+
+            lockedContent.style.display = 'block';
+            lockForm.style.display = 'none';
+            showWelcome(name, roll);
         });
 
-    </script>
+        function showWelcome(name, roll) {
+            let welcome = document.createElement('div');
+            welcome.style.cssText = "background:var(--primary-color); color:white; padding:15px; border-radius:12px; margin-bottom:20px; text-align:center; font-weight:bold;";
+            welcome.innerText = `Welcome, ${name} (Roll: ${roll})`;
+            document.querySelector('.container').prepend(welcome);
+        }
 
-    <!-- Add external tracking script as requested -->
-    <script src="track.js"></script>
+        function sendAccessLog(name, roll, timeSpent) {
+            const data = new URLSearchParams();
+            data.append("name", name);
+            data.append("rollNumber", roll);
+            data.append("page", window.location.pathname);
+            data.append("timeSpent", timeSpent);
+            fetch(WEB_APP_URL, { method: "POST", mode: "no-cors", body: data });
+        }
+
+        window.addEventListener("beforeunload", () => {
+            const name = localStorage.getItem('userName') || "Guest";
+            const roll = localStorage.getItem('rollNumber') || "Unknown";
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            sendAccessLog(name, roll, timeSpent);
+        });
+
+        window.onload = () => {
+            const name = localStorage.getItem('userName');
+            const roll = localStorage.getItem('rollNumber');
+            if (name && roll) {
+                lockedContent.style.display = 'block';
+                lockForm.style.display = 'none';
+                showWelcome(name, roll);
+            }
+        };
+    </script>
 </body>
 
 </html>
