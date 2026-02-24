@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Operations Research</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
@@ -13,9 +13,7 @@
             --text-color: #334155;
             --card-bg: #ffffff;
             --primary-color: #10b981;
-            /* Accent color for links/buttons */
             --heading-color: #000000;
-            /* Black as requested */
             --secondary-text: #64748b;
             --border-color: #e2e8f0;
             --header-bg: rgba(255, 255, 255, 0.85);
@@ -28,7 +26,6 @@
             --card-bg: #1e293b;
             --primary-color: #34d399;
             --heading-color: #ffffff;
-            /* White in dark mode for visibility */
             --secondary-text: #94a3b8;
             --border-color: #334155;
             --header-bg: rgba(30, 41, 59, 0.85);
@@ -40,29 +37,35 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Fixed Horizontal Scrolling & Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+            overflow-x: hidden;
+            width: 100%;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
-            scroll-behavior: smooth;
         }
 
-        /* Glassmorphism Header */
+        /* Glassmorphism Header (No longer sticky) */
         header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: relative;
             background: var(--header-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             padding: 15px 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
         }
 
         .header-top {
@@ -94,22 +97,20 @@
             overflow-x: auto;
             padding-bottom: 5px;
             width: 100%;
+            scrollbar-width: none;
+            /* Firefox */
         }
 
         nav::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        nav::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
+            display: none;
+            /* Chrome/Safari */
         }
 
         nav a {
             text-decoration: none;
             color: var(--text-color);
             font-size: 0.85rem;
-            padding: 6px 12px;
+            padding: 6px 14px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 20px;
@@ -125,7 +126,6 @@
             border-color: var(--heading-color);
         }
 
-        /* Theme Toggle */
         .theme-toggle {
             background: none;
             border: none;
@@ -143,7 +143,8 @@
         .container {
             max-width: 900px;
             margin: 30px auto;
-            padding: 0 20px;
+            padding: 0 15px;
+            width: 100%;
         }
 
         /* Question Cards */
@@ -154,6 +155,8 @@
             margin-bottom: 30px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
+            width: 100%;
+            overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -164,7 +167,7 @@
 
         /* Typography */
         h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--heading-color);
             margin-bottom: 20px;
             line-height: 1.4;
@@ -208,7 +211,7 @@
             text-align: justify;
         }
 
-        .example-box {
+        .highlight-box {
             background: rgba(16, 185, 129, 0.1);
             border-left: 4px solid var(--primary-color);
             padding: 15px;
@@ -218,90 +221,211 @@
             color: var(--text-color);
         }
 
-        /* Instagram Branding Card */
-        .ig-card {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white !important;
-            border-radius: 16px;
-            padding: 25px;
-            margin: 40px auto;
-            max-width: 350px;
-            text-align: center;
-            text-decoration: none;
+        /* Clean IG Card */
+        .ig-card-inline {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            justify-content: space-between;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid #bc1888;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-top: 30px;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .ig-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 25px rgba(220, 39, 67, 0.4);
+        .ig-card-inline:active {
+            transform: scale(0.98);
+        }
+
+        .ig-info {
+            display: flex;
+            flex-direction: column;
         }
 
         .ig-title {
-            font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            font-size: 1.1rem;
+            color: var(--heading-color);
         }
 
         .ig-subtitle {
-            font-size: 0.95rem;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: var(--secondary-text);
         }
 
-        .follow-btn {
-            background: rgba(255, 255, 255, 0.2);
+        .ig-btn {
+            background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            padding: 8px 24px;
+            padding: 8px 20px;
             border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: background 0.3s;
+            border: none;
+            box-shadow: 0 4px 10px rgba(220, 39, 67, 0.3);
         }
 
-        .ig-card:hover .follow-btn {
-            background: rgba(255, 255, 255, 0.3);
+        /* Unlock Gate Form (Integrated with track.js) */
+        #lockedForm {
+            background: linear-gradient(135deg, rgba(220, 39, 67, 0.05), rgba(240, 148, 51, 0.05));
+            border: 2px dashed #bc1888;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 16px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* Back to top FAB */
-        .fab {
+        #lockedForm h3 {
+            margin: 0;
+            color: #dc2743;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        #lockedForm p {
+            margin: 0;
+            text-align: center;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-group input {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #bc1888;
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        /* Locked Content Wrapper */
+        .locked {
+            display: none;
+        }
+
+        /* Hidden initially, managed by checkAccess() in track.js */
+
+        /* FAB Menu Navigation */
+        .fab-container {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .fab-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: bottom center;
+        }
+
+        .fab-menu.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .fab-item {
+            background: var(--card-bg);
+            color: var(--heading-color);
+            border: 1px solid var(--border-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
+        }
+
+        .fab-item:active {
             background: var(--heading-color);
             color: var(--card-bg);
-            width: 50px;
-            height: 50px;
+        }
+
+        .fab-main {
+            background: var(--heading-color);
+            color: var(--card-bg);
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: none;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-            z-index: 100;
+            transition: transform 0.3s;
         }
 
-        .fab.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .fab:hover {
-            transform: translateY(-3px);
+        .fab-container.active .fab-main {
+            transform: rotate(45deg);
         }
 
         /* Mobile Adjustments */
@@ -318,15 +442,15 @@
                 padding: 18px;
             }
 
-            nav a {
-                font-size: 0.8rem;
+            .ig-card-inline {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                align-items: stretch;
             }
 
-            .fab {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
+            .ig-btn {
+                justify-content: center;
             }
         }
     </style>
@@ -344,14 +468,14 @@
         </div>
         <nav id="toc">
             <a href="#q1">Q1: Nature & Scope</a>
-            <a href="#q2">Q2: Characteristics & Limitations</a>
-            <a href="#q3">Q3: Numerical Chapter</a>
+            <a href="#q2">Q2: Characteristics</a>
+            <a href="#q3">Q3: Numerical</a>
         </nav>
     </header>
 
     <div class="container">
 
-        <!-- Question 1 -->
+        <!-- Question 1 (Always Visible) -->
         <article class="card section-card" id="q1">
             <h1>1. Define operations research discuss its nature and scope.</h1>
 
@@ -466,169 +590,305 @@
                 marketing, finance, personnel management, transportation, public administration, and service industries.
                 By helping organizations achieve optimal utilization of resources and improved efficiency, OR has become
                 an essential tool of modern management.</p>
+
+            <!-- THE UNLOCK GATE / FORM -->
+            <div id="lockedForm">
+                <h3>🔒 Content Locked</h3>
+                <p>To view the remaining questions, enter your details and support by following!</p>
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="Enter your Name" required>
+                    <input type="text" id="rollNumber" placeholder="Roll No (e.g., 55012)" required>
+                </div>
+                <button class="ig-btn" id="customUnlockBtn" style="cursor: pointer;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    Follow @manxjeetagain to Unlock
+                </button>
+            </div>
+
         </article>
 
-        <!-- Question 2 -->
-        <article class="card section-card" id="q2">
-            <h1>2. Explain operational research. Discuss its characteristics and limitations.</h1>
+        <!-- WRAPPER FOR LOCKED CONTENT (Managed by track.js and local script) -->
+        <div id="lockedContent" class="locked">
 
-            <h3>1. Introduction</h3>
-            <p>In the modern business environment, organizations face complex problems related to production, allocation
-                of resources, transportation, inventory control, marketing decisions, and financial planning. Managers
-                are required to make decisions under conditions of uncertainty and limited resources. Traditional
-                decision-making based only on experience or intuition is no longer sufficient. Therefore, scientific and
-                analytical methods are increasingly used in management.</p>
-            <p>Operations Research emerged during the Second World War when scientists applied mathematical techniques
-                to military operations for efficient utilization of resources. After the war, these techniques were
-                adopted by business and industrial organizations. Today, Operations Research is widely used in business
-                management, government planning, transportation, healthcare, and defense services.</p>
+            <!-- Question 2 -->
+            <article class="card section-card" id="q2">
+                <h1>2. Explain operational research. Discuss its characteristics and limitations.</h1>
 
-            <h3>2. Meaning of Operations Research</h3>
-            <p>Operations Research refers to the application of scientific methods, mathematical models, and analytical
-                techniques to managerial decision-making problems with the objective of achieving the best possible
-                solution.</p>
-            <p>In simple terms, Operations Research helps management determine the most efficient way of using limited
-                resources such as money, manpower, machines, and materials. It answers questions such as:</p>
-            <ol>
-                <li>What level of production minimizes cost?</li>
-                <li>How should resources be allocated efficiently?</li>
-                <li>Which alternative decision will yield maximum profit?</li>
-                <li>How can time and resources be optimized?</li>
-            </ol>
-            <p>Thus, Operations Research provides a logical and quantitative basis for decision-making.</p>
+                <h3>1. Introduction</h3>
+                <p>In the modern business environment, organizations face complex problems related to production,
+                    allocation of resources, transportation, inventory control, marketing decisions, and financial
+                    planning. Managers are required to make decisions under conditions of uncertainty and limited
+                    resources. Traditional decision-making based only on experience or intuition is no longer
+                    sufficient. Therefore, scientific and analytical methods are increasingly used in management.</p>
+                <p>Operations Research emerged during the Second World War when scientists applied mathematical
+                    techniques to military operations for efficient utilization of resources. After the war, these
+                    techniques were adopted by business and industrial organizations. Today, Operations Research is
+                    widely used in business management, government planning, transportation, healthcare, and defense
+                    services.</p>
 
-            <h3>3. Definitions of Operations Research</h3>
-            <ol>
-                <li><strong>Churchman, Ackoff and Arnoff</strong> defined Operations Research as the application of
-                    scientific methods and techniques to problems involving the operations of a system in order to
-                    provide optimal solutions.</li>
-                <li><strong>Morse and Kimball</strong> defined it as a scientific method of providing executive
-                    departments with a quantitative basis for decisions regarding operations.</li>
-                <li>In general terms, Operations Research is a systematic and analytical approach to problem solving
-                    using mathematical and statistical tools.</li>
-            </ol>
+                <h3>2. Meaning of Operations Research</h3>
+                <p>Operations Research refers to the application of scientific methods, mathematical models, and
+                    analytical techniques to managerial decision-making problems with the objective of achieving the
+                    best possible solution.</p>
+                <p>In simple terms, Operations Research helps management determine the most efficient way of using
+                    limited resources such as money, manpower, machines, and materials. It answers questions such as:
+                </p>
+                <ol>
+                    <li>What level of production minimizes cost?</li>
+                    <li>How should resources be allocated efficiently?</li>
+                    <li>Which alternative decision will yield maximum profit?</li>
+                    <li>How can time and resources be optimized?</li>
+                </ol>
+                <p>Thus, Operations Research provides a logical and quantitative basis for decision-making.</p>
 
-            <h3>4. Objectives of Operations Research</h3>
-            <p>The major objectives of Operations Research are:</p>
-            <ol>
-                <li>To provide a scientific basis for managerial decisions.</li>
-                <li>To achieve optimum utilization of resources.</li>
-                <li>To minimize cost and maximize profits or efficiency.</li>
-                <li>To improve planning and operational control.</li>
-                <li>To evaluate alternative courses of action.</li>
-                <li>To enhance productivity and organizational performance.</li>
-            </ol>
+                <h3>3. Definitions of Operations Research</h3>
+                <ol>
+                    <li><strong>Churchman, Ackoff and Arnoff</strong> defined Operations Research as the application of
+                        scientific methods and techniques to problems involving the operations of a system in order to
+                        provide optimal solutions.</li>
+                    <li><strong>Morse and Kimball</strong> defined it as a scientific method of providing executive
+                        departments with a quantitative basis for decisions regarding operations.</li>
+                    <li>In general terms, Operations Research is a systematic and analytical approach to problem solving
+                        using mathematical and statistical tools.</li>
+                </ol>
 
-            <h3>5. Characteristics of Operations Research</h3>
-            <p>Operations Research has several important characteristics which distinguish it from traditional
-                decision-making methods.</p>
-            <ul>
-                <li><strong>Scientific Approach:</strong> Follows a logical and systematic procedure involving problem
-                    identification, model formulation, analysis, and implementation.</li>
-                <li><strong>Decision-Oriented Technique:</strong> The primary aim is to assist managers in choosing the
-                    best alternative among available options.</li>
-                <li><strong>Interdisciplinary Team Approach:</strong> Requires cooperation among experts from
-                    mathematics, statistics, economics, engineering, and management fields.</li>
-                <li><strong>Use of Mathematical Models:</strong> Real-life problems are expressed in mathematical form
-                    using equations and variables to simplify analysis.</li>
-                <li><strong>Systems Approach:</strong> Studies the organization as a whole system and considers the
-                    interaction between different departments.</li>
-                <li><strong>Optimization Principle:</strong> Focuses on achieving the best solution under given
-                    constraints such as limited resources or time.</li>
-                <li><strong>Quantitative Analysis:</strong> Relies on numerical data and statistical techniques for
-                    accurate decision-making.</li>
-                <li><strong>Use of Computers:</strong> Complex calculations require computer assistance for faster and
-                    accurate solutions.</li>
-                <li><strong>Future-Oriented Analysis:</strong> Helps forecast future outcomes and supports long-term
-                    planning.</li>
-                <li><strong>Objective Decision-Making:</strong> Decisions derived are objective because they are based
-                    on measurable data.</li>
-            </ul>
+                <h3>4. Objectives of Operations Research</h3>
+                <p>The major objectives of Operations Research are:</p>
+                <ol>
+                    <li>To provide a scientific basis for managerial decisions.</li>
+                    <li>To achieve optimum utilization of resources.</li>
+                    <li>To minimize cost and maximize profits or efficiency.</li>
+                    <li>To improve planning and operational control.</li>
+                    <li>To evaluate alternative courses of action.</li>
+                    <li>To enhance productivity and organizational performance.</li>
+                </ol>
 
-            <h3>6. Steps Involved in Operations Research</h3>
-            <p>The Operations Research process generally includes the following steps:</p>
-            <ol>
-                <li>Identification and formulation of the problem.</li>
-                <li>Construction of a mathematical model.</li>
-                <li>Collection of relevant data.</li>
-                <li>Development of alternative solutions.</li>
-                <li>Testing and validation of the model.</li>
-                <li>Selection of the best solution.</li>
-                <li>Implementation of the solution.</li>
-                <li>Monitoring and control of results.</li>
-            </ol>
+                <h3>5. Characteristics of Operations Research</h3>
+                <p>Operations Research has several important characteristics which distinguish it from traditional
+                    decision-making methods.</p>
+                <ul>
+                    <li><strong>Scientific Approach:</strong> Follows a logical and systematic procedure involving
+                        problem identification, model formulation, analysis, and implementation.</li>
+                    <li><strong>Decision-Oriented Technique:</strong> The primary aim is to assist managers in choosing
+                        the best alternative among available options.</li>
+                    <li><strong>Interdisciplinary Team Approach:</strong> Requires cooperation among experts from
+                        mathematics, statistics, economics, engineering, and management fields.</li>
+                    <li><strong>Use of Mathematical Models:</strong> Real-life problems are expressed in mathematical
+                        form using equations and variables to simplify analysis.</li>
+                    <li><strong>Systems Approach:</strong> Studies the organization as a whole system and considers the
+                        interaction between different departments.</li>
+                    <li><strong>Optimization Principle:</strong> Focuses on achieving the best solution under given
+                        constraints such as limited resources or time.</li>
+                    <li><strong>Quantitative Analysis:</strong> Relies on numerical data and statistical techniques for
+                        accurate decision-making.</li>
+                    <li><strong>Use of Computers:</strong> Complex calculations require computer assistance for faster
+                        and accurate solutions.</li>
+                    <li><strong>Future-Oriented Analysis:</strong> Helps forecast future outcomes and supports long-term
+                        planning.</li>
+                    <li><strong>Objective Decision-Making:</strong> Decisions derived are objective because they are
+                        based on measurable data.</li>
+                </ul>
 
-            <h3>7. Limitations of Operations Research</h3>
-            <p>Despite its usefulness, Operations Research has certain limitations:</p>
-            <ul>
-                <li><strong>Dependence on Quantitative Data:</strong> Mainly deals with measurable variables. Human
-                    emotions and qualitative factors are difficult to measure.</li>
-                <li><strong>High Cost:</strong> Implementation requires skilled experts and advanced computing
-                    facilities, which can be expensive.</li>
-                <li><strong>Complexity of Techniques:</strong> Mathematical models may be difficult for managers without
-                    technical knowledge to understand.</li>
-                <li><strong>Time-Consuming Process:</strong> Data collection and analysis may take considerable time,
-                    delaying urgent decisions.</li>
-                <li><strong>Requirement of Skilled Personnel:</strong> Successful application requires trained analysts
-                    and statisticians who may not always be available.</li>
-                <li><strong>Unrealistic Assumptions:</strong> Models are often based on assumptions that may not fully
-                    represent real-world situations.</li>
-                <li><strong>Overemphasis on Quantitative Factors:</strong> Important qualitative aspects such as
-                    employee motivation and culture may be ignored.</li>
-                <li><strong>Implementation Difficulties:</strong> Resistance from employees or management may hinder
-                    practical implementation.</li>
-                <li><strong>Data Limitations:</strong> Incorrect or insufficient data can lead to wrong conclusions.
-                </li>
-                <li><strong>Not a Substitute for Managerial Judgment:</strong> OR supports decision-making but cannot
-                    replace human judgment and experience.</li>
-            </ul>
+                <h3>6. Steps Involved in Operations Research</h3>
+                <p>The Operations Research process generally includes the following steps:</p>
+                <ol>
+                    <li>Identification and formulation of the problem.</li>
+                    <li>Construction of a mathematical model.</li>
+                    <li>Collection of relevant data.</li>
+                    <li>Development of alternative solutions.</li>
+                    <li>Testing and validation of the model.</li>
+                    <li>Selection of the best solution.</li>
+                    <li>Implementation of the solution.</li>
+                    <li>Monitoring and control of results.</li>
+                </ol>
 
-            <h3>8. Applications of Operations Research</h3>
-            <p>OR is applied in many areas such as: Production planning and scheduling, Inventory and stock control,
-                Transportation and logistics management, Marketing and advertising decisions, Financial planning and
-                investment analysis, Personnel and manpower planning, Military strategy and defense operations,
-                Healthcare and hospital management.</p>
+                <h3>7. Limitations of Operations Research</h3>
+                <p>Despite its usefulness, Operations Research has certain limitations:</p>
+                <ul>
+                    <li><strong>Dependence on Quantitative Data:</strong> Mainly deals with measurable variables. Human
+                        emotions and qualitative factors are difficult to measure.</li>
+                    <li><strong>High Cost:</strong> Implementation requires skilled experts and advanced computing
+                        facilities, which can be expensive.</li>
+                    <li><strong>Complexity of Techniques:</strong> Mathematical models may be difficult for managers
+                        without technical knowledge to understand.</li>
+                    <li><strong>Time-Consuming Process:</strong> Data collection and analysis may take considerable
+                        time, delaying urgent decisions.</li>
+                    <li><strong>Requirement of Skilled Personnel:</strong> Successful application requires trained
+                        analysts and statisticians who may not always be available.</li>
+                    <li><strong>Unrealistic Assumptions:</strong> Models are often based on assumptions that may not
+                        fully represent real-world situations.</li>
+                    <li><strong>Overemphasis on Quantitative Factors:</strong> Important qualitative aspects such as
+                        employee motivation and culture may be ignored.</li>
+                    <li><strong>Implementation Difficulties:</strong> Resistance from employees or management may hinder
+                        practical implementation.</li>
+                    <li><strong>Data Limitations:</strong> Incorrect or insufficient data can lead to wrong conclusions.
+                    </li>
+                    <li><strong>Not a Substitute for Managerial Judgment:</strong> OR supports decision-making but
+                        cannot replace human judgment and experience.</li>
+                </ul>
 
-            <h3>9. Importance of Operations Research</h3>
-            <p>Operations Research is important because it: Improves efficiency and productivity, Reduces operational
-                costs, Ensures better utilization of resources, Supports scientific planning, Minimizes risks and
-                uncertainties, Enhances quality of managerial decisions.</p>
+                <h3>8. Applications of Operations Research</h3>
+                <p>OR is applied in many areas such as: Production planning and scheduling, Inventory and stock control,
+                    Transportation and logistics management, Marketing and advertising decisions, Financial planning and
+                    investment analysis, Personnel and manpower planning, Military strategy and defense operations,
+                    Healthcare and hospital management.</p>
 
-            <h3>10. Conclusion</h3>
-            <p>Operations Research is a powerful scientific tool that helps management solve complex problems through
-                logical reasoning and quantitative analysis. It improves efficiency, supports planning, and ensures
-                optimal utilization of resources. Although it has limitations such as complexity and dependence on data,
-                it remains an essential part of modern management practices.</p>
-        </article>
+                <h3>9. Importance of Operations Research</h3>
+                <p>Operations Research is important because it: Improves efficiency and productivity, Reduces
+                    operational costs, Ensures better utilization of resources, Supports scientific planning, Minimizes
+                    risks and uncertainties, Enhances quality of managerial decisions.</p>
 
-        <!-- Question 3 -->
-        <article class="card section-card" id="q3">
-            <h1>3. Numerical Chapter :- Assignment Problem.</h1>
-            <p><em>(Numerical content and problems for the Assignment Problem chapter would typically follow here.)</em>
-            </p>
-        </article>
+                <h3>10. Conclusion</h3>
+                <p>Operations Research is a powerful scientific tool that helps management solve complex problems
+                    through logical reasoning and quantitative analysis. It improves efficiency, supports planning, and
+                    ensures optimal utilization of resources. Although it has limitations such as complexity and
+                    dependence on data, it remains an essential part of modern management practices.</p>
 
-        <!-- Custom Branding Card -->
-        <div class="branding-card">
-            <span class="brand-title">bcomfrndz</span>
-            <span class="brand-subtitle">by manxjeetagain</span>
-        </div>
+                <!-- Instagram Card -->
+                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
+                    class="ig-card-inline">
+                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
+                            @manxjeetagain</span></div>
+                    <div class="ig-btn">Follow</div>
+                </a>
+            </article>
+
+            <!-- Question 3 -->
+            <article class="card section-card" id="q3">
+                <h1>3. Numerical Chapter :- Assignment Problem.</h1>
+                <p><em>(Numerical content and problems for the Assignment Problem chapter would typically follow
+                        here.)</em></p>
+
+                <!-- Instagram Card -->
+                <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer"
+                    class="ig-card-inline">
+                    <div class="ig-info"><span class="ig-title">bcomfrndz</span><span class="ig-subtitle">by
+                            @manxjeetagain</span></div>
+                    <div class="ig-btn">Follow</div>
+                </a>
+            </article>
+
+        </div> <!-- END OF LOCKED CONTENT -->
 
     </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="fab" id="backToTop" title="Go to top">↑</button>
+    <!-- FAB Menu Setup (Navigation) -->
+    <div class="fab-container" id="fabContainer">
+        <div class="fab-menu" id="fabMenu">
+            <a href="#q1" class="fab-item">Q1</a>
+            <a href="#q2" class="fab-item">Q2</a>
+            <a href="#q3" class="fab-item">Q3</a>
+        </div>
+        <button class="fab-main" id="fabMain">
+            <!-- Hamburger Icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </div>
 
+    <!-- External Tracking Script -->
+    <!-- Inline Tracking Script -->
     <script>
-        // Theme Toggle Logic
-        const themeBtn = document.getElementById('theme-btn');
+        // ===============================
+        // PDS Tracking + Unlock Script
+        // ===============================
 
-        // Check local storage for theme preference
+        // Replace with your deployed Google Apps Script Web App URL:
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx31jB7TbbMOkPQgiBLOe9a7uVT2tCM9zfNL5722mt5UeAxBifHbvfQLk_mw0oqGA8s/exec";
+
+        let startTime = Date.now();
+
+        // -------------------------------
+        // Check Access on Page Load
+        // -------------------------------
+        function checkAccess() {
+            const name = localStorage.getItem('userName');
+            const roll = localStorage.getItem('rollNumber');
+
+            if (name && roll) {
+                showWelcome(name, roll);
+                document.querySelectorAll('.locked').forEach(sec => sec.style.display = 'block');
+                const form = document.getElementById('lockedForm');
+                if (form) form.style.display = 'none';
+            }
+        }
+
+        // -------------------------------
+        // Show Personalized Welcome Banner
+        // -------------------------------
+        function showWelcome(name, roll) {
+            let welcome = document.getElementById('welcomeBanner');
+            if (!welcome) {
+                welcome = document.createElement('div');
+                welcome.id = 'welcomeBanner';
+                welcome.style.cssText = `
+              background: #f0f9ff;
+              color: #0074D9;
+              font-size: 18px;
+              font-weight: 600;
+              padding: 10px 15px;
+              border-radius: 8px;
+              margin-bottom: 15px;
+              text-align: center;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            `;
+                document.body.prepend(welcome);
+            }
+            welcome.innerHTML = `Welcome, ${name} (Roll No: ${roll})`;
+        }
+
+        // -------------------------------
+        // Send Access Log to Google Sheet
+        // -------------------------------
+        function sendAccessLog(name, roll, timeSpent = 0) {
+            const data = new URLSearchParams();
+            data.append("name", name);
+            data.append("rollNumber", roll);
+            data.append("page", window.location.pathname);
+            data.append("timeSpent", timeSpent);
+
+            fetch(WEB_APP_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: data
+            }).catch(err => console.error("Error sending data to Google Sheet:", err));
+        }
+
+        // -------------------------------
+        // Track Time on Page Exit
+        // -------------------------------
+        window.addEventListener("beforeunload", () => {
+            const name = localStorage.getItem('userName') || "Guest";
+            const roll = localStorage.getItem('rollNumber') || "Unknown";
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            sendAccessLog(name, roll, timeSpent);
+        });
+
+        // -------------------------------
+        // Auto-run check on load
+        // -------------------------------
+        window.addEventListener("load", checkAccess);
+    </script>
+    <!-- Custom Page Logic -->
+    <script>
+        // -----------------------------
+        // Theme Toggle Logic
+        // -----------------------------
+        const themeBtn = document.getElementById('theme-btn');
         if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             themeBtn.innerText = '☀️';
         }
-
         themeBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'dark') {
@@ -642,27 +902,84 @@
             }
         });
 
-        // Scroll to Top Logic
-        const fab = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                fab.classList.add('show');
-            } else {
-                fab.classList.remove('show');
+        // -----------------------------
+        // Content Lock / Follow Logic
+        // -----------------------------
+        const customUnlockBtn = document.getElementById('customUnlockBtn');
+        const unlockGate = document.getElementById('lockedForm');
+
+        customUnlockBtn.addEventListener('click', () => {
+            const name = document.getElementById('userName').value.trim();
+            const roll = document.getElementById('rollNumber').value.trim();
+            const rollPattern = /^550\d{2}$/;
+
+            // Validation
+            if (!name) {
+                alert("Please enter your name.");
+                unlockGate.classList.add('shake');
+                setTimeout(() => unlockGate.classList.remove('shake'), 500);
+                return;
+            }
+            if (!rollPattern.test(roll)) {
+                alert("Roll number must be 5 digits and start with 550 (e.g., 55012).");
+                unlockGate.classList.add('shake');
+                setTimeout(() => unlockGate.classList.remove('shake'), 500);
+                return;
+            }
+
+            // Open Instagram
+            window.open('https://instagram.com/manxjeetagain', '_blank');
+
+            // Save to LocalStorage for track.js
+            localStorage.setItem('userName', name);
+            localStorage.setItem('rollNumber', roll);
+
+            // Update UI
+            document.querySelectorAll('.locked').forEach(sec => sec.style.display = 'block');
+            unlockGate.style.display = 'none';
+
+            // Re-observe unlocked sections for Navigation highlighting
+            document.querySelectorAll('.section-card').forEach(section => observer.observe(section));
+
+            // Trigger track.js tracking mechanisms manually if available
+            if (typeof showWelcome === 'function') {
+                showWelcome(name, roll);
+            }
+            if (typeof sendAccessLog === 'function') {
+                sendAccessLog(name, roll, 0); // Send initial log
             }
         });
 
-        fab.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Intercept clicks on locked TOC items
+        document.querySelectorAll('a[href^="#q"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+
+                // If trying to access Q2+ and content is still locked
+                if (targetId !== '#q1' && (!localStorage.getItem('userName') || !localStorage.getItem('rollNumber'))) {
+                    e.preventDefault();
+                    unlockGate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    unlockGate.classList.add('shake');
+                    setTimeout(() => unlockGate.classList.remove('shake'), 500);
+                    return;
+                }
+
+                // Close FAB menu if open
+                fabContainer.classList.remove('active');
+                fabMenu.classList.remove('open');
+            });
         });
 
-        // Active TOC Highlighting (Intersection Observer)
+        // -----------------------------
+        // Horizontal Scroll Nav Logic
+        // -----------------------------
+        const nav = document.querySelector('nav');
         const sections = document.querySelectorAll('.section-card');
         const navLinks = document.querySelectorAll('#toc a');
 
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -60% 0px',
+            rootMargin: '-30% 0px -50% 0px',
             threshold: 0
         };
 
@@ -673,8 +990,13 @@
                         link.classList.remove('active');
                         if (link.getAttribute('href').substring(1) === entry.target.id) {
                             link.classList.add('active');
-                            // Mobile TOC auto-scroll to keep active item visible
-                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                            // Custom safe horizontal scroll for mobile
+                            const linkRect = link.getBoundingClientRect();
+                            const navRect = nav.getBoundingClientRect();
+                            nav.scrollBy({
+                                left: linkRect.left - navRect.left - navRect.width / 2 + linkRect.width / 2,
+                                behavior: 'smooth'
+                            });
                         }
                     });
                 }
@@ -682,10 +1004,32 @@
         }, observerOptions);
 
         sections.forEach(section => {
-            observer.observe(section);
+            if (window.getComputedStyle(section).display !== "none") {
+                observer.observe(section);
+            }
         });
+
+        // -----------------------------
+        // FAB Menu Logic
+        // -----------------------------
+        const fabMain = document.getElementById('fabMain');
+        const fabMenu = document.getElementById('fabMenu');
+        const fabContainer = document.getElementById('fabContainer');
+
+        fabMain.addEventListener('click', () => {
+            fabContainer.classList.toggle('active');
+            fabMenu.classList.toggle('open');
+        });
+
+        // Close FAB when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!fabContainer.contains(e.target)) {
+                fabContainer.classList.remove('active');
+                fabMenu.classList.remove('open');
+            }
+        });
+
     </script>
-    <script src="track.js"></script>
 </body>
 
 </html>
