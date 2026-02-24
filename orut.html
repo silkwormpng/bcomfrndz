@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operations Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --primary-color: #10b981;
+            /* Accent color for links/buttons */
+            --heading-color: #000000;
+            /* Black as requested */
+            --secondary-text: #64748b;
+            --border-color: #e2e8f0;
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-color: #cbd5e1;
+            --card-bg: #1e293b;
+            --primary-color: #34d399;
+            --heading-color: #ffffff;
+            /* White in dark mode for visibility */
+            --secondary-text: #94a3b8;
+            --border-color: #334155;
+            --header-bg: rgba(30, 41, 59, 0.85);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-subtitle {
+            font-size: 0.75rem;
+            color: var(--secondary-text);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* Navigation / TOC */
+        nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        nav::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        nav::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--heading-color);
+            color: var(--card-bg);
+            border-color: var(--heading-color);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Question Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 1.6rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            line-height: 1.4;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin: 25px 0 15px;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 25px 0 10px;
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin: 15px 0 5px;
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin: 10px 0 20px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        /* Instagram Branding Card */
+        .ig-card {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white !important;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 40px auto;
+            max-width: 350px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ig-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(220, 39, 67, 0.4);
+        }
+
+        .ig-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .ig-subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .follow-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s;
+        }
+
+        .ig-card:hover .follow-btn {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Back to top FAB */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--heading-color);
+            color: var(--card-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .fab.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .fab:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 1.35rem;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .fab {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="header-title">
+                Operations Research
+                <span class="header-subtitle">9:40am 27feb 15 room</span>
+            </div>
+            <button class="theme-toggle" id="theme-btn">🌙</button>
+        </div>
+        <nav id="toc">
+            <a href="#q1">Q1: Nature & Scope</a>
+            <a href="#q2">Q2: Characteristics & Limitations</a>
+            <a href="#q3">Q3: Numerical Chapter</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- Question 1 -->
+        <article class="card section-card" id="q1">
+            <h1>1. Define operations research discuss its nature and scope.</h1>
+
+            <h3>Introduction</h3>
+            <p>In the present competitive and dynamic business environment, organizations are required to make complex
+                decisions regarding production, distribution, finance, marketing, and resource allocation. Managers must
+                utilize limited resources such as manpower, money, materials, machines, and time in the most efficient
+                manner.</p>
+            <p>Traditional decision-making methods based on intuition or past experience are no longer sufficient to
+                handle modern business problems. Therefore, scientific and analytical techniques are increasingly used
+                to support managerial decision-making. Operations Research provides such a scientific framework for
+                solving managerial problems systematically.</p>
+            <p>Operations Research originated during the Second World War when teams of scientists were assigned to
+                study military operations and recommend efficient strategies for resource utilization. The success of
+                these methods encouraged their adoption in business, industry, government organizations, and service
+                sectors. Today, Operations Research has become an important tool for improving productivity, minimizing
+                costs, and achieving optimal decision-making.</p>
+
+            <h3>1. Meaning of Operations Research</h3>
+            <p>Operations Research (OR) refers to the application of scientific methods, mathematical models, and
+                analytical techniques to decision-making problems in order to obtain the best possible solution.</p>
+            <p>In simple words, Operations Research helps managers select the most efficient alternative among several
+                available choices by using quantitative analysis. It focuses on optimizing results such as maximizing
+                profit, minimizing cost, reducing time, or improving service efficiency under given constraints.</p>
+
+            <h3>2. Definitions of Operations Research</h3>
+            <div class="highlight-box">
+                <p><strong>According to Churchman, Ackoff, and Arnoff:</strong> "Operations Research is the application
+                    of scientific methods, techniques, and tools to problems involving operations of a system so as to
+                    provide optimal solutions."</p>
+                <p><strong>According to Morse and Kimball:</strong> "Operations Research is a scientific method of
+                    providing executive departments with a quantitative basis for decisions regarding operations under
+                    their control."</p>
+            </div>
+            <p>These definitions show that Operations Research combines science, mathematics, statistics, and management
+                principles to improve decision-making.</p>
+
+            <h3>3. Nature of Operations Research</h3>
+            <p>The nature of Operations Research explains its fundamental characteristics and approach toward solving
+                problems.</p>
+            <ol>
+                <li><strong>Scientific Approach:</strong> OR follows a logical and systematic process. Problems are
+                    identified, analyzed, modeled mathematically, and solved using scientific techniques rather than
+                    guesswork.</li>
+                <li><strong>Quantitative Orientation:</strong> OR relies heavily on numerical data, mathematical
+                    equations, probability theory, and statistical tools to analyze problems objectively.</li>
+                <li><strong>Decision-Oriented Discipline:</strong> The primary objective of Operations Research is to
+                    assist management in making effective decisions by evaluating different alternatives.</li>
+                <li><strong>Systems Approach:</strong> OR considers the organization as an integrated system. It studies
+                    the interrelationship among different departments and evaluates the overall effect of decisions.
+                </li>
+                <li><strong>Interdisciplinary Nature:</strong> OR involves cooperation among experts from mathematics,
+                    economics, engineering, statistics, psychology, and management to solve complex problems.</li>
+                <li><strong>Optimization Technique:</strong> Operations Research aims to achieve the best possible
+                    outcome, such as maximum output or minimum cost, within available constraints.</li>
+                <li><strong>Use of Models:</strong> Real-life problems are represented through mathematical or
+                    simulation models to simplify analysis and predict outcomes.</li>
+                <li><strong>Computer-Oriented Method:</strong> Modern OR techniques require computers for solving
+                    complex calculations and handling large volumes of data.</li>
+                <li><strong>Dealing with Uncertainty:</strong> Many business decisions involve risk and uncertainty. OR
+                    uses probability and forecasting methods to handle uncertain situations.</li>
+                <li><strong>Practical Application:</strong> OR is not purely theoretical; it focuses on practical
+                    solutions applicable to real organizational problems.</li>
+            </ol>
+
+            <h3>4. Scope of Operations Research</h3>
+            <p>The scope of Operations Research is very wide because its techniques can be applied in almost every field
+                of management and economic activity.</p>
+            <ul>
+                <li><strong>Production Management:</strong> OR helps in production planning, scheduling, plant layout,
+                    quality control, and efficient utilization of machines and labor resources.</li>
+                <li><strong>Inventory Management:</strong> It determines optimum inventory levels, economic order
+                    quantity, reorder points, and stock control policies to minimize holding and shortage costs.</li>
+                <li><strong>Marketing Management:</strong> Assists in product mix decisions, pricing strategies,
+                    advertising planning, sales forecasting, and distribution channel selection.</li>
+                <li><strong>Financial Management:</strong> Used in capital budgeting, portfolio selection, risk
+                    analysis, cash management, and allocation of financial resources.</li>
+                <li><strong>Personnel Management:</strong> Helps in manpower planning, job assignment, workforce
+                    scheduling, recruitment planning, and performance evaluation.</li>
+                <li><strong>Transportation and Logistics:</strong> Determines the most economical transportation routes,
+                    reduces shipping costs, and improves supply chain efficiency.</li>
+                <li><strong>Project Management:</strong> Techniques such as PERT and CPM help in project scheduling,
+                    time estimation, monitoring progress, and controlling project costs.</li>
+                <li><strong>Public Administration:</strong> Government agencies use OR for traffic management, defense
+                    planning, urban development, healthcare systems, and disaster management.</li>
+                <li><strong>Agriculture Sector:</strong> Assists farmers and planners in crop selection, irrigation
+                    planning, fertilizer allocation, and efficient land utilization.</li>
+                <li><strong>Service Industries:</strong> Banks, hospitals, airlines, and telecommunications companies
+                    use OR to reduce waiting time, improve service quality, and manage customer flow.</li>
+                <li><strong>Defense and Military Operations:</strong> Initially developed for military purposes such as
+                    resource deployment, logistics planning, and strategic decision-making.</li>
+                <li><strong>Research and Development:</strong> Helps organizations allocate research funds efficiently
+                    and select profitable innovation projects.</li>
+            </ul>
+
+            <h3>5. Importance of Operations Research</h3>
+            <p>Operations Research improves the quality of managerial decisions by providing a scientific basis for
+                analysis. It ensures optimum utilization of scarce resources and helps reduce operational costs. OR
+                increases productivity and efficiency, supports long-term planning, and minimizes uncertainty in
+                decision-making. It also enhances coordination among different departments within an organization.</p>
+
+            <h3>6. Limitations of Operations Research</h3>
+            <p>Operations Research depends heavily on accurate data; incorrect data may lead to wrong conclusions.
+                Mathematical models may oversimplify real-life situations and ignore human behavior. Implementation
+                requires skilled experts and computer facilities, which may increase organizational costs. Resistance
+                from employees and management may also limit practical application.</p>
+
+            <h3>Conclusion</h3>
+            <p>Operations Research is a scientific and analytical approach to decision-making that applies mathematical
+                and statistical techniques to solve complex operational problems. Its nature is scientific,
+                quantitative, system-oriented, and interdisciplinary, while its scope extends across production,
+                marketing, finance, personnel management, transportation, public administration, and service industries.
+                By helping organizations achieve optimal utilization of resources and improved efficiency, OR has become
+                an essential tool of modern management.</p>
+        </article>
+
+        <!-- Question 2 -->
+        <article class="card section-card" id="q2">
+            <h1>2. Explain operational research. Discuss its characteristics and limitations.</h1>
+
+            <h3>1. Introduction</h3>
+            <p>In the modern business environment, organizations face complex problems related to production, allocation
+                of resources, transportation, inventory control, marketing decisions, and financial planning. Managers
+                are required to make decisions under conditions of uncertainty and limited resources. Traditional
+                decision-making based only on experience or intuition is no longer sufficient. Therefore, scientific and
+                analytical methods are increasingly used in management.</p>
+            <p>Operations Research emerged during the Second World War when scientists applied mathematical techniques
+                to military operations for efficient utilization of resources. After the war, these techniques were
+                adopted by business and industrial organizations. Today, Operations Research is widely used in business
+                management, government planning, transportation, healthcare, and defense services.</p>
+
+            <h3>2. Meaning of Operations Research</h3>
+            <p>Operations Research refers to the application of scientific methods, mathematical models, and analytical
+                techniques to managerial decision-making problems with the objective of achieving the best possible
+                solution.</p>
+            <p>In simple terms, Operations Research helps management determine the most efficient way of using limited
+                resources such as money, manpower, machines, and materials. It answers questions such as:</p>
+            <ol>
+                <li>What level of production minimizes cost?</li>
+                <li>How should resources be allocated efficiently?</li>
+                <li>Which alternative decision will yield maximum profit?</li>
+                <li>How can time and resources be optimized?</li>
+            </ol>
+            <p>Thus, Operations Research provides a logical and quantitative basis for decision-making.</p>
+
+            <h3>3. Definitions of Operations Research</h3>
+            <ol>
+                <li><strong>Churchman, Ackoff and Arnoff</strong> defined Operations Research as the application of
+                    scientific methods and techniques to problems involving the operations of a system in order to
+                    provide optimal solutions.</li>
+                <li><strong>Morse and Kimball</strong> defined it as a scientific method of providing executive
+                    departments with a quantitative basis for decisions regarding operations.</li>
+                <li>In general terms, Operations Research is a systematic and analytical approach to problem solving
+                    using mathematical and statistical tools.</li>
+            </ol>
+
+            <h3>4. Objectives of Operations Research</h3>
+            <p>The major objectives of Operations Research are:</p>
+            <ol>
+                <li>To provide a scientific basis for managerial decisions.</li>
+                <li>To achieve optimum utilization of resources.</li>
+                <li>To minimize cost and maximize profits or efficiency.</li>
+                <li>To improve planning and operational control.</li>
+                <li>To evaluate alternative courses of action.</li>
+                <li>To enhance productivity and organizational performance.</li>
+            </ol>
+
+            <h3>5. Characteristics of Operations Research</h3>
+            <p>Operations Research has several important characteristics which distinguish it from traditional
+                decision-making methods.</p>
+            <ul>
+                <li><strong>Scientific Approach:</strong> Follows a logical and systematic procedure involving problem
+                    identification, model formulation, analysis, and implementation.</li>
+                <li><strong>Decision-Oriented Technique:</strong> The primary aim is to assist managers in choosing the
+                    best alternative among available options.</li>
+                <li><strong>Interdisciplinary Team Approach:</strong> Requires cooperation among experts from
+                    mathematics, statistics, economics, engineering, and management fields.</li>
+                <li><strong>Use of Mathematical Models:</strong> Real-life problems are expressed in mathematical form
+                    using equations and variables to simplify analysis.</li>
+                <li><strong>Systems Approach:</strong> Studies the organization as a whole system and considers the
+                    interaction between different departments.</li>
+                <li><strong>Optimization Principle:</strong> Focuses on achieving the best solution under given
+                    constraints such as limited resources or time.</li>
+                <li><strong>Quantitative Analysis:</strong> Relies on numerical data and statistical techniques for
+                    accurate decision-making.</li>
+                <li><strong>Use of Computers:</strong> Complex calculations require computer assistance for faster and
+                    accurate solutions.</li>
+                <li><strong>Future-Oriented Analysis:</strong> Helps forecast future outcomes and supports long-term
+                    planning.</li>
+                <li><strong>Objective Decision-Making:</strong> Decisions derived are objective because they are based
+                    on measurable data.</li>
+            </ul>
+
+            <h3>6. Steps Involved in Operations Research</h3>
+            <p>The Operations Research process generally includes the following steps:</p>
+            <ol>
+                <li>Identification and formulation of the problem.</li>
+                <li>Construction of a mathematical model.</li>
+                <li>Collection of relevant data.</li>
+                <li>Development of alternative solutions.</li>
+                <li>Testing and validation of the model.</li>
+                <li>Selection of the best solution.</li>
+                <li>Implementation of the solution.</li>
+                <li>Monitoring and control of results.</li>
+            </ol>
+
+            <h3>7. Limitations of Operations Research</h3>
+            <p>Despite its usefulness, Operations Research has certain limitations:</p>
+            <ul>
+                <li><strong>Dependence on Quantitative Data:</strong> Mainly deals with measurable variables. Human
+                    emotions and qualitative factors are difficult to measure.</li>
+                <li><strong>High Cost:</strong> Implementation requires skilled experts and advanced computing
+                    facilities, which can be expensive.</li>
+                <li><strong>Complexity of Techniques:</strong> Mathematical models may be difficult for managers without
+                    technical knowledge to understand.</li>
+                <li><strong>Time-Consuming Process:</strong> Data collection and analysis may take considerable time,
+                    delaying urgent decisions.</li>
+                <li><strong>Requirement of Skilled Personnel:</strong> Successful application requires trained analysts
+                    and statisticians who may not always be available.</li>
+                <li><strong>Unrealistic Assumptions:</strong> Models are often based on assumptions that may not fully
+                    represent real-world situations.</li>
+                <li><strong>Overemphasis on Quantitative Factors:</strong> Important qualitative aspects such as
+                    employee motivation and culture may be ignored.</li>
+                <li><strong>Implementation Difficulties:</strong> Resistance from employees or management may hinder
+                    practical implementation.</li>
+                <li><strong>Data Limitations:</strong> Incorrect or insufficient data can lead to wrong conclusions.
+                </li>
+                <li><strong>Not a Substitute for Managerial Judgment:</strong> OR supports decision-making but cannot
+                    replace human judgment and experience.</li>
+            </ul>
+
+            <h3>8. Applications of Operations Research</h3>
+            <p>OR is applied in many areas such as: Production planning and scheduling, Inventory and stock control,
+                Transportation and logistics management, Marketing and advertising decisions, Financial planning and
+                investment analysis, Personnel and manpower planning, Military strategy and defense operations,
+                Healthcare and hospital management.</p>
+
+            <h3>9. Importance of Operations Research</h3>
+            <p>Operations Research is important because it: Improves efficiency and productivity, Reduces operational
+                costs, Ensures better utilization of resources, Supports scientific planning, Minimizes risks and
+                uncertainties, Enhances quality of managerial decisions.</p>
+
+            <h3>10. Conclusion</h3>
+            <p>Operations Research is a powerful scientific tool that helps management solve complex problems through
+                logical reasoning and quantitative analysis. It improves efficiency, supports planning, and ensures
+                optimal utilization of resources. Although it has limitations such as complexity and dependence on data,
+                it remains an essential part of modern management practices.</p>
+        </article>
+
+        <!-- Question 3 -->
+        <article class="card section-card" id="q3">
+            <h1>3. Numerical Chapter :- Assignment Problem.</h1>
+            <p><em>(Numerical content and problems for the Assignment Problem chapter would typically follow here.)</em>
+            </p>
+        </article>
+
+        <!-- Custom Branding Card -->
+        <div class="branding-card">
+            <span class="brand-title">bcomfrndz</span>
+            <span class="brand-subtitle">by manxjeetagain</span>
+        </div>
+
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="fab" id="backToTop" title="Go to top">↑</button>
+
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-btn');
+
+        // Check local storage for theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerText = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerText = '☀️';
+            }
+        });
+
+        // Scroll to Top Logic
+        const fab = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                fab.classList.add('show');
+            } else {
+                fab.classList.remove('show');
+            }
+        });
+
+        fab.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Active TOC Highlighting (Intersection Observer)
+        const sections = document.querySelectorAll('.section-card');
+        const navLinks = document.querySelectorAll('#toc a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                            // Mobile TOC auto-scroll to keep active item visible
+                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+    <script src="track.js"></script>
+</body>
+
+</html>
