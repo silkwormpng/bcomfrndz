@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business ethics • complete Q&A (principles, theories, features, notes)</title>
+    <style>
+        /* === GLOBAL RESET / MODERN ETHICAL VIBE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #dde5ed;   /* soft blue-gray */
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #1c2c3f;
+            padding: 2rem 1rem;
+        }
+        .master-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 38px;
+            box-shadow: 0 30px 55px -15px rgba(0, 33, 68, 0.35);
+            overflow: hidden;
+            padding: 2.5rem 2.3rem;
+        }
+        /* headings */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 750;
+            background: linear-gradient(150deg, #0b3b5a, #1d587e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.02em;
+            border-left: 14px solid #1b6b9e;
+            padding-left: 1.4rem;
+        }
+        .sub-main {
+            color: #2d4a6e;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 2.2rem;
+            padding-left: 2.6rem;
+            border-bottom: 2px solid #bdd3e8;
+            padding-bottom: 0.7rem;
+        }
+        h2 {
+            font-size: 2.1rem;
+            font-weight: 650;
+            color: #0f3f62;
+            margin: 2.5rem 0 1.2rem 0;
+            border-bottom: 4px solid #bcd3e9;
+            padding-bottom: 0.3rem;
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1d4e78;
+            margin: 2rem 0 1rem 0;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 620;
+            color: #1a3d5c;
+            margin: 1.6rem 0 0.6rem 0;
+        }
+        .principle-block, .theory-highlight {
+            background: #f2f8ff;
+            border-radius: 30px;
+            padding: 1.8rem 2rem;
+            margin: 1.8rem 0;
+            border-left: 8px solid #2a77af;
+        }
+        .theory-highlight {
+            background: #effbf5;
+            border-left-color: #258367;
+        }
+        ul, ol {
+            margin: 0.8rem 0 1.5rem 2rem;
+        }
+        li {
+            margin-bottom: 0.6rem;
+            font-size: 1.07rem;
+        }
+        p {
+            font-size: 1.07rem;
+            margin-bottom: 1rem;
+            color: #202f40;
+        }
+        strong {
+            color: #003a6b;
+            font-weight: 650;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background: #f6faff;
+            border-radius: 24px;
+            padding: 1.5rem 1.3rem;
+            border: 1px solid #c7daf0;
+            transition: 0.1s ease;
+            box-shadow: 0 5px 13px rgba(0, 30, 60, 0.04);
+        }
+        .card:hover {
+            border-color: #7fa9cc;
+            background: #f9fcff;
+        }
+        .card h5 {
+            font-size: 1.5rem;
+            font-weight: 650;
+            color: #0b3e64;
+            margin-bottom: 0.5rem;
+            border-left: 6px solid #2670a5;
+            padding-left: 1rem;
+        }
+        .badge {
+            background: #1c5580;
+            color: white;
+            font-weight: 600;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.4px;
+            margin-bottom: 0.7rem;
+        }
+        .theory-name {
+            background: #e1f0fa;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 700;
+            color: #083e64;
+            margin: 1rem 0 0.4rem 0;
+            font-size: 1.2rem;
+            border-left: 6px solid #20638f;
+        }
+        .insight-box {
+            background: #e3effa;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2.2rem 0 1.2rem;
+            border-left: 8px solid #1f6290;
+        }
+        .short-note {
+            background: #f4f9fc;
+            border-radius: 30px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #b9d5ef;
+        }
+        hr {
+            border: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #aac6e2, #e2ecf5, #aac6e2);
+            margin: 2.5rem 0;
+        }
+        footer {
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #3f5f7a;
+            text-align: right;
+            border-top: 3px dashed #b7cee7;
+            padding-top: 1.5rem;
+        }
+        /* question labels */
+        .q-badge {
+            display: inline-block;
+            background: #0b2f4b;
+            color: white;
+            font-weight: 600;
+            padding: 0.25rem 2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+<div class="master-container">
+
+    <!-- main header (all three questions covered) -->
+    <h1>⚖️ Business ethics<br>principles · theories · importance · features · short notes</h1>
+    <div class="sub-main">complete answers for Q1, Q2 & Q3 in one structured file</div>
+
+    <!-- ========== QUESTION 1 ========== -->
+    <span class="q-badge">📌 QUESTION 1</span>
+    <h2>Principles of business ethics & theories of ethics</h2>
+
+    <h3>🔹 Core principles of business ethics</h3>
+    <div class="card-grid">
+        <div class="card"><span class="badge">01</span><h5>Integrity</h5><p>Moral uprightness even under pressure; honesty in transactions, actions aligned with values.</p></div>
+        <div class="card"><span class="badge">02</span><h5>Accountability</h5><p>Answerable for actions/decisions; transparent financial & social outcomes.</p></div>
+        <div class="card"><span class="badge">03</span><h5>Fairness</h5><p>Just, equitable treatment of employees, customers, suppliers; dignity and equality.</p></div>
+        <div class="card"><span class="badge">04</span><h5>Transparency</h5><p>Openness in reporting, product quality, changes; builds trust.</p></div>
+        <div class="card"><span class="badge">05</span><h5>Respect for rights</h5><p>Human rights, IP, privacy; uphold legal/ethical standards.</p></div>
+        <div class="card"><span class="badge">06</span><h5>Responsibility to stakeholders</h5><p>Consider employees, shareholders, community; long-term social/environmental impact.</p></div>
+        <div class="card"><span class="badge">07</span><h5>Sustainability</h5><p>Preserve environment, future generations; minimise footprint, conserve resources.</p></div>
+    </div>
+
+    <h3>🔹 Theories of business ethics (frameworks)</h3>
+    <div class="theory-highlight">
+        <div class="theory-name">📖 Utilitarianism (Bentham, Mill)</div>
+        <p><strong>Greatest good for greatest number.</strong> Business decisions maximise overall happiness. e.g. CSR, sustainable practices. Downside: may harm minority.</p>
+
+        <div class="theory-name">📖 Deontological ethics (Kant)</div>
+        <p><strong>Duty, rules over consequences.</strong> Follow ethical rules (honesty, fairness) regardless of profit. No false advertising, no exploitation even if profitable.</p>
+
+        <div class="theory-name">📖 Virtue ethics (Aristotle)</div>
+        <p><strong>Character & virtues.</strong> What would a virtuous person do? Cultivate honesty, courage, compassion. Ethical culture & integrity.</p>
+
+        <div class="theory-name">📖 Ethical relativism</div>
+        <p>No absolute truth; depends on cultural context. Multinationals adapt to local norms — risk of blurring bribery/gift-giving.</p>
+
+        <div class="theory-name">📖 Social contract theory (Hobbes, Locke, Rousseau)</div>
+        <p>Implied contract with society: business receives infrastructure/workforce, must act in public interest. Breach → loss of licence to operate.</p>
+
+        <div class="theory-name">📖 Care ethics</div>
+        <p>Prioritise relationships, empathy, vulnerable individuals. In business: employee well‑being, community support, nurturing.</p>
+    </div>
+
+    <div class="insight-box">
+        <p><strong>✅ Summary Q1:</strong> Principles (integrity, accountability, fairness, transparency, rights, stakeholder responsibility, sustainability) + ethical theories provide frameworks for moral dilemmas. Each theory brings unique perspective for responsible corporate behaviour.</p>
+    </div>
+
+    <hr>
+
+    <!-- ========== QUESTION 2 ========== -->
+    <span class="q-badge">📌 QUESTION 2</span>
+    <h2>Importance of business ethics & features of an ethical organisation</h2>
+
+    <h3>🌟 Why business ethics matters (importance)</h3>
+    <ul>
+        <li><strong>Enhanced reputation & brand image:</strong> consumers trust ethical brands; goodwill reservoir.</li>
+        <li><strong>Employee retention & motivation:</strong> pride, reduced turnover, higher productivity.</li>
+        <li><strong>Investor confidence & ESG:</strong> ethical firms attract long‑term capital, lower risk.</li>
+        <li><strong>Legal protection & risk management:</strong> avoid lawsuits, fines, regulatory scrutiny.</li>
+        <li><strong>Long‑term sustainability:</strong> unethical shortcuts fail; ethical practices survive shifts.</li>
+    </ul>
+
+    <h4>📘 Social contract theory (expanded view)</h4>
+    <p>Philosophers Hobbes, Locke, Rousseau: business operates under <strong>implied contract</strong> with society. Society grants infrastructure, legal system, workforce → business must serve public interest. If broken (pollution, bribery) → society revokes ‘moral licence’ (boycotts, regulation).</p>
+
+    <h3>⚙️ Features of an ethical organisation</h3>
+    <ul>
+        <li><strong>Clear vision & values (code of conduct):</strong> formal, written, removes ambiguity.</li>
+        <li><strong>Leadership by example (tone at the top):</strong> managers demonstrate integrity.</li>
+        <li><strong>Accountability & discipline:</strong> documented consequences for breaches; no one above rules.</li>
+        <li><strong>Transparency & open communication:</strong> share performance, admit mistakes.</li>
+        <li><strong>Fairness and justice:</strong> distributive (wages) and procedural (non‑discriminatory).</li>
+        <li><strong>Corporate social responsibility (CSR):</strong> beyond charity — ethical supply chains, carbon reduction.</li>
+        <li><strong>Robust whistleblowing mechanism:</strong> safe, anonymous, anti‑retaliation policy.</li>
+    </ul>
+    <div class="insight-box">
+        <p>🧾 <strong>Triple bottom line:</strong> Profit, People, Planet — ethical organisation links corporate ambition and social welfare.</p>
+    </div>
+
+    <hr>
+
+    <!-- ========== QUESTION 3 ========== -->
+    <span class="q-badge">📌 QUESTION 3</span>
+    <h2>Short notes: insider trading · rating agencies · whistleblowing</h2>
+
+    <div class="short-note">
+        <h4>📈 1. Insider trading</h4>
+        <p><strong>Definition:</strong> unethical & illegal practice of trading public company shares based on <strong>unpublished price sensitive information (UPSI)</strong>. An insider includes directors, lawyers, auditors, or tippees. It breaches <strong>market fairness</strong> – insiders exploit hidden advantage, stealing from public traders. <strong>Regulation (India):</strong> SEBI (Prohibition of Insider Trading) Regulations; penalties up to ₹25 crore fine or imprisonment.</p>
+    </div>
+
+    <div class="short-note">
+        <h4>🏦 2. Credit rating agencies (CRAs)</h4>
+        <p>Independent entities (e.g. CRISIL, Moody’s) assign ratings (AAA to C) indicating default risk. <strong>Ethical issues:</strong> ‘issuer‑pay’ model creates conflict of interest – agencies may inflate ratings to keep clients. <strong>2008 crisis:</strong> CRAs gave ‘AAA’ to subprime junk bonds, misleading investors. Downgrade can crash stock price, raise borrowing costs – thus integrity vital for market stability.</p>
+    </div>
+
+    <div class="short-note">
+        <h4>📢 3. Whistleblowing</h4>
+        <p>Act of disclosing unethical/illegal activities inside organisation. Types: <strong>internal</strong> (to ethics committee) or <strong>external</strong> (media, regulators). Dilemma between loyalty and public duty. <strong>Legal protection India:</strong> Whistleblowers Protection Act 2014 & Companies Act 2013 mandate vigil mechanism, prohibit victimisation (firing, harassment).</p>
+    </div>
+
+    <!-- extra summary for Q3 -->
+    <div style="background: #ddeeff; border-radius: 28px; padding: 1.5rem 2rem; margin: 2rem 0;">
+        <p style="margin:0;"><span style="font-weight:700;">⚡ core ethical thread:</span> Insider trading (fairness), rating agency conflicts (transparency), whistleblowing (accountability) – all reflect real‑world application of business ethics principles.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== full circle: all principles/theories reappear briefly ===== -->
+    <div style="background: #f3f7fd; border-radius: 40px; padding: 2rem; margin-top: 2rem;">
+        <h3 style="margin-top:0;">📚 Consolidated: principles + theories + features + notes</h3>
+        <p><strong>Principles:</strong> integrity, accountability, fairness, transparency, respect for rights, stakeholder responsibility, sustainability.<br>
+        <strong>Theories:</strong> utilitarianism, deontology, virtue ethics, relativism, social contract, care ethics.<br>
+        <strong>Ethical org features:</strong> code of conduct, tone at top, discipline, transparency, fairness, CSR, whistleblowing channel.<br>
+        <strong>Short notes:</strong> insider trading (UPSI, SEBI), rating agencies (conflict, 2008), whistleblowing (vigil mechanism).</p>
+    </div>
+
+    <footer>
+        all three questions answered • principles, theories, importance, ethical organisation, insider trading, CRAs, whistleblowing • study ready
+    </footer>
+
+</div> <!-- end master container -->
+</body>
+</html>
