@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bcomfrndz - Unit Tests</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="logo">bcomfrndz</div>
+        <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" style="color: white; font-size: 1.2rem;">
+                <i class="fa-solid fa-home"></i>
+            </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="unit-test-container">
+        <h2
+            style="margin-bottom: 20px; text-align: center; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            6th Sem Unit Tests</h2>
+
+        <!-- Corporate Governance -->
+        <div class="subject-item" id="corporate_governance">
+            <div class="subject-header" onclick="toggleSubject('corporate_governance')">
+                <h3>Corporate Governance</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/cg-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/cg-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/cg-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/cg-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+        <!-- English -->
+        <div class="subject-item" id="english">
+            <div class="subject-header" onclick="toggleSubject('english')">
+                <h3>English</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/english-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/english-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/english-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/english-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+        <!-- Financial Services -->
+        <div class="subject-item" id="financial_services">
+            <div class="subject-header" onclick="toggleSubject('financial_services')">
+                <h3>Financial Services</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/fs-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/fs-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/fs-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/fs-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+        <!-- Financial Market Operation -->
+        <div class="subject-item" id="fmo">
+            <div class="subject-header" onclick="toggleSubject('fmo')">
+                <h3>Financial Market Operation</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/fmo-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/fmo-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/fmo-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/fmo-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+        <!-- Operation Research -->
+        <div class="subject-item" id="or">
+            <div class="subject-header" onclick="toggleSubject('or')">
+                <h3>Operation Research</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/or-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/or-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/or-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/or-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+        <!-- Portfolio Management -->
+        <div class="subject-item" id="pm">
+            <div class="subject-header" onclick="toggleSubject('pm')">
+                <h3>Portfolio Management</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/pm-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/pm-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/pm-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/pm-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+        <!-- Punjabi Compulsory -->
+        <div class="subject-item" id="punjabi">
+            <div class="subject-header" onclick="toggleSubject('punjabi')">
+                <h3>Punjabi Compulsory</h3>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="section-grid">
+                <a href="sections/punjabi-sec-a.html" class="section-cell">Sec A</a>
+                <a href="sections/punjabi-sec-b.html" class="section-cell">Sec B</a>
+                <a href="sections/punjabi-sec-c.html" class="section-cell">Sec C</a>
+                <a href="sections/punjabi-sec-d.html" class="section-cell">Sec D</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSubject(id) {
+            const item = document.getElementById(id);
+            const isActive = item.classList.contains('active');
+
+            // Close all other open items
+            document.querySelectorAll('.subject-item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
