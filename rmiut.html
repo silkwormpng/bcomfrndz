@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Management and Insurance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --primary-color: #10b981;
+            /* Accent color for links/buttons */
+            --heading-color: #000000;
+            /* Black as requested */
+            --secondary-text: #64748b;
+            --border-color: #e2e8f0;
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-color: #cbd5e1;
+            --card-bg: #1e293b;
+            --primary-color: #34d399;
+            --heading-color: #ffffff;
+            /* White in dark mode for visibility */
+            --secondary-text: #94a3b8;
+            --border-color: #334155;
+            --header-bg: rgba(30, 41, 59, 0.85);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-subtitle {
+            font-size: 0.75rem;
+            color: var(--secondary-text);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* Navigation / TOC */
+        nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        nav::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        nav::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--heading-color);
+            color: var(--card-bg);
+            border-color: var(--heading-color);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Question Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 1.6rem;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            line-height: 1.4;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin: 25px 0 15px;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 25px 0 10px;
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin: 15px 0 5px;
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin: 10px 0 20px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        /* Instagram Branding Card */
+        .ig-card {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white !important;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 40px auto;
+            max-width: 350px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ig-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(220, 39, 67, 0.4);
+        }
+
+        .ig-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .ig-subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .follow-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s;
+        }
+
+        .ig-card:hover .follow-btn {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Back to top FAB */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--heading-color);
+            color: var(--card-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .fab.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .fab:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 1.35rem;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .fab {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="header-title">
+                Risk Management and Insurance
+                <span class="header-subtitle">10:20am 28feb 15room</span>
+            </div>
+            <button class="theme-toggle" id="theme-btn">🌙</button>
+        </div>
+        <nav id="toc">
+            <a href="#q1">Q1: Objectives of Risk Management</a>
+            <a href="#q2">Q2: Risk Management Techniques</a>
+            <a href="#q3">Q3: Property Insurance Contract</a>
+            <a href="#q4">Q4: Concept & Types of Risk</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- Question 1 -->
+        <article class="card section-card" id="q1">
+            <h1>1. What are the objectives of risk management?</h1>
+
+            <h3>1. Introduction</h3>
+            <p>Risk is an unavoidable part of every business activity. Organizations face different types of risks such
+                as financial risk, operational risk, market risk, legal risk, and environmental risk. These risks may
+                lead to losses, uncertainty, or disruption of business operations. Risk management is the process of
+                identifying, analyzing, and controlling risks in order to minimize losses and ensure smooth functioning
+                of the organization.</p>
+            <p>The main purpose of risk management is not to eliminate risk completely but to manage it effectively so
+                that business objectives can be achieved safely and efficiently.</p>
+
+            <h3>2. Meaning of Risk Management</h3>
+            <p>Risk management refers to a systematic process of identifying potential risks, evaluating their impact,
+                and taking appropriate measures to reduce or control their adverse effects.</p>
+            <p>It involves planning, organizing, directing, and controlling activities to safeguard organizational
+                assets and ensure continuity of operations.</p>
+
+            <h3>3. Objectives of Risk Management</h3>
+            <p>The major objectives of risk management are explained below:</p>
+            <ol>
+                <li><strong>Identification of Risks:</strong> The primary objective is to identify all possible risks
+                    that may affect business operations. Early identification helps management take preventive measures.
+                </li>
+                <li><strong>Minimization of Losses:</strong> Risk management aims to reduce financial and operational
+                    losses caused by accidents, uncertainties, or unexpected events.</li>
+                <li><strong>Protection of Assets:</strong> It seeks to safeguard physical assets such as buildings,
+                    machinery, inventory, and financial assets from damage or loss.</li>
+                <li><strong>Ensuring Business Continuity:</strong> Risk management helps organizations continue
+                    operations even during crises by preparing contingency and recovery plans.</li>
+                <li><strong>Stability of Earnings:</strong> By controlling risks, businesses can reduce fluctuations in
+                    profits and maintain stable earnings over time.</li>
+                <li><strong>Efficient Utilization of Resources:</strong> Risk management ensures proper allocation and
+                    use of resources by avoiding unnecessary risks and wastage.</li>
+                <li><strong>Improvement in Decision-Making:</strong> It provides relevant information about
+                    uncertainties, enabling managers to make informed and rational decisions.</li>
+                <li><strong>Compliance with Legal Requirements:</strong> Organizations must follow laws and regulations.
+                    Risk management helps ensure compliance and avoids legal penalties.</li>
+                <li><strong>Protection of Human Resources:</strong> It focuses on employee safety through workplace
+                    safety measures, insurance, and health protection policies.</li>
+                <li><strong>Enhancement of Organizational Reputation:</strong> Effective risk management builds trust
+                    among customers, investors, and stakeholders by reducing chances of failure.</li>
+                <li><strong>Reduction of Uncertainty:</strong> Risk management reduces uncertainty by forecasting
+                    possible risks and preparing strategies to handle them.</li>
+                <li><strong>Maximization of Profit:</strong> By minimizing unexpected losses and improving efficiency,
+                    risk management ultimately contributes to profit maximization.</li>
+                <li><strong>Encouraging Growth and Innovation:</strong> When risks are properly managed, organizations
+                    feel confident to adopt new technologies and expand operations.</li>
+            </ol>
+
+            <h3>4. Importance of Risk Management</h3>
+            <p>Risk management is important because it:</p>
+            <ul>
+                <li>Improves financial stability.</li>
+                <li>Prevents major business disruptions.</li>
+                <li>Enhances operational efficiency.</li>
+                <li>Protects stakeholders’ interests.</li>
+                <li>Supports long-term sustainability.</li>
+            </ul>
+
+            <h3>5. Conclusion</h3>
+            <p>Risk management plays a vital role in modern business organizations by identifying potential dangers and
+                minimizing their adverse effects. Its objectives focus on protecting assets, ensuring business
+                continuity, stabilizing earnings, and supporting effective decision-making. Therefore, risk management
+                is an essential managerial function that helps organizations achieve growth and long-term success while
+                operating under uncertainty.</p>
+        </article>
+
+        <!-- Question 2 -->
+        <article class="card section-card" id="q2">
+            <h1>2. What different techniques can be applied to manage risk?</h1>
+
+            <h3>1. Introduction</h3>
+            <p>Risk is an unavoidable element of every business activity. Organizations operate in an environment filled
+                with uncertainty arising from market fluctuations, technological changes, financial instability,
+                operational failures, and natural disasters. If risks are not properly managed, they may result in
+                financial losses, business failure, or damage to reputation. Therefore, businesses adopt various risk
+                management techniques to reduce uncertainty and protect organizational objectives.</p>
+            <p>Risk management techniques refer to the methods or strategies used by organizations to identify, control,
+                transfer, or bear risks in a systematic manner.</p>
+
+            <h3>2. Meaning of Risk Management Techniques</h3>
+            <p>Risk management techniques are practical tools and strategies used by management to handle risks
+                effectively. These techniques aim at either avoiding risk, reducing its impact, transferring it to
+                another party, or accepting it in a planned manner. The choice of technique depends on the nature of
+                risk, cost involved, probability of occurrence, and potential loss.</p>
+
+            <h3>3. Classification of Risk Management Techniques</h3>
+            <p>Risk management techniques are broadly classified into two categories:</p>
+            <ol>
+                <li>Risk Control Techniques</li>
+                <li>Risk Financing Techniques</li>
+            </ol>
+
+            <h3>4. Risk Control Techniques</h3>
+            <p>Risk control techniques aim to reduce the frequency or severity of losses.</p>
+
+            <h4>1. Risk Avoidance</h4>
+            <p>Risk avoidance means eliminating activities that create risk. The organization decides not to engage in a
+                particular activity that may lead to potential loss.</p>
+            <div class="example-box">Example: A company may avoid investing in highly unstable markets.</div>
+            <p><strong>Advantages:</strong> Eliminates possibility of loss; Provides safety and certainty.<br>
+                <strong>Limitations:</strong> May result in loss of profitable opportunities; Not always practical.
+            </p>
+
+            <h4>2. Loss Prevention</h4>
+            <p>Loss prevention focuses on reducing the probability of risk occurrence through preventive measures.</p>
+            <div class="example-box">Examples: Safety training programs; Installing fire alarms; Quality control
+                systems.</div>
+            <p><strong>Benefits:</strong> Reduces accidents; Improves operational efficiency.</p>
+
+            <h4>3. Loss Reduction</h4>
+            <p>Loss reduction aims to minimize the severity of loss after a risk has occurred.</p>
+            <div class="example-box">Examples: Fire extinguishers to reduce fire damage; Backup data systems in IT
+                companies; Emergency response planning.</div>
+
+            <h4>4. Risk Diversification</h4>
+            <p>Diversification means spreading risk across different activities, products, or markets so that loss in
+                one area can be compensated by gains in another.</p>
+            <div class="example-box">Example: Investing in different industries rather than a single business.</div>
+            <p><strong>Advantages:</strong> Reduces overall risk exposure; Stabilizes income.</p>
+
+            <h4>5. Risk Separation</h4>
+            <p>Risk separation involves dividing assets into different locations to prevent total loss from a single
+                event.</p>
+            <div class="example-box">Example: Keeping inventory in multiple warehouses instead of one location.</div>
+
+            <h4>6. Risk Combination</h4>
+            <p>Risk combination refers to pooling similar risks together to reduce uncertainty through averaging
+                effects.</p>
+            <div class="example-box">Example: Insurance companies combine risks of many policyholders.</div>
+
+            <h3>5. Risk Financing Techniques</h3>
+            <p>Risk financing techniques deal with arranging funds to meet losses when risks occur.</p>
+
+            <h4>1. Risk Retention (Self-Insurance)</h4>
+            <p>Risk retention means accepting the risk and bearing losses internally.</p>
+            <div class="example-box">Example: A firm may bear minor losses instead of purchasing insurance.</div>
+            <p><strong>Advantages:</strong> Saves insurance premium; Suitable for small and predictable losses.<br>
+                <strong>Disadvantages:</strong> Large losses may affect financial stability.
+            </p>
+
+            <h4>2. Risk Transfer</h4>
+            <p>Risk transfer shifts the financial burden of risk to another party.</p>
+            <p><strong>Methods:</strong> Insurance contracts; Outsourcing risky activities; Hedging through financial
+                instruments.</p>
+
+            <h4>3. Hedging</h4>
+            <p>Hedging involves using financial instruments such as futures, options, and forward contracts to protect
+                against price fluctuations.</p>
+            <div class="example-box">Example: Exporters hedge against foreign exchange risk.</div>
+
+            <h4>4. Contractual Transfer</h4>
+            <p>Risk is transferred through legal agreements.</p>
+            <div class="example-box">Example: Construction companies transfer risk to contractors through agreements.
+            </div>
+
+            <h4>5. Insurance</h4>
+            <p>Insurance is a formal arrangement where risk is transferred to an insurance company in exchange for
+                premium payment.</p>
+            <p><strong>Benefits:</strong> Financial protection; Business stability; Peace of mind.<br>
+                <strong>Types:</strong> Life insurance, Fire insurance, Marine insurance, Liability insurance.
+            </p>
+
+            <h3>6. Modern Risk Management Techniques</h3>
+            <ol>
+                <li><strong>Enterprise Risk Management (ERM):</strong> Manages all organizational risks collectively
+                    rather than separately.</li>
+                <li><strong>Risk Monitoring and Reporting:</strong> Continuous monitoring helps detect risks early.</li>
+                <li><strong>Business Continuity Planning:</strong> Preparation of plans to continue operations during
+                    emergencies.</li>
+                <li><strong>Stress Testing and Scenario Analysis:</strong> Organizations evaluate how they will perform
+                    under adverse conditions.</li>
+            </ol>
+
+            <h3>7. Steps in Applying Risk Management Techniques</h3>
+            <ol>
+                <li>Identification of risks.</li>
+                <li>Risk analysis and evaluation.</li>
+                <li>Selection of appropriate technique.</li>
+                <li>Implementation of control measures.</li>
+                <li>Monitoring and review.</li>
+            </ol>
+
+            <h3>8. Conclusion</h3>
+            <p>Risk management techniques play a crucial role in safeguarding business organizations against
+                uncertainties. By applying techniques such as risk avoidance, loss prevention, diversification, risk
+                transfer, insurance, and hedging, organizations can effectively manage risks and maintain stability.</p>
+        </article>
+
+        <!-- Question 3 -->
+        <article class="card section-card" id="q3">
+            <h1>3. What are the features of properties insurance contract?</h1>
+
+            <h3>1. Introduction</h3>
+            <p>Property is one of the most valuable assets of individuals and business organizations. It includes
+                buildings, machinery, furniture, inventory, equipment, and other physical assets that are exposed to
+                risks such as fire, theft, natural disasters, accidents, and riots. Any damage or destruction of
+                property may lead to heavy financial loss.</p>
+            <p>A property insurance contract is a legal agreement between the insurer and the insured under which the
+                insurer promises to compensate for loss or damage to property caused by specified risks in exchange for
+                payment of a premium.</p>
+
+            <h3>2. Meaning of Property Insurance Contract</h3>
+            <p>A property insurance contract is an agreement whereby an insurance company undertakes to indemnify the
+                insured against loss or damage to property due to specified perils such as fire, theft, flood,
+                earthquake, or other accidental causes. The main objective is to restore the insured to the same
+                financial position that existed before the loss occurred.</p>
+
+            <h3>3. Features of Property Insurance Contract</h3>
+            <ol>
+                <li><strong>Contract of Indemnity:</strong> The insurer compensates the insured only to the extent of
+                    actual loss suffered and not more than that. (Not to allow profit).<br>
+                    <em>Example: If property worth ₹5 lakh is insured for ₹7 lakh but suffers damage of ₹3 lakh,
+                        compensation will be limited to ₹3 lakh only.</em>
+                </li>
+
+                <li><strong>Insurable Interest:</strong> The insured must have an insurable interest in the property at
+                    the time of loss (must suffer financial loss if destroyed).</li>
+
+                <li><strong>Utmost Good Faith (Uberrimae Fidei):</strong> Both parties must disclose all material facts
+                    honestly regarding property condition, location, and risk.</li>
+
+                <li><strong>Principle of Subrogation:</strong> After compensating, the insurer acquires the legal right
+                    to recover the loss amount from any third party responsible for the damage.</li>
+
+                <li><strong>Principle of Contribution:</strong> If the same property is insured with more than one
+                    company, all insurers share the loss proportionately.</li>
+
+                <li><strong>Personal Contract:</strong> It is a contract between insurer and insured, protecting the
+                    insured's financial interest. It cannot automatically transfer to a new owner without approval.</li>
+
+                <li><strong>Conditional Contract:</strong> Certain conditions must be fulfilled (e.g., timely premium,
+                    proper maintenance, immediate reporting of loss).</li>
+
+                <li><strong>Contract of Adhesion:</strong> Terms are prepared by the insurer; the insured must accept
+                    them as they are (little bargaining power).</li>
+
+                <li><strong>Aleatory Contract:</strong> The premium is small compared to potential compensation, which
+                    depends on uncertain future events.</li>
+
+                <li><strong>Payment of Premium:</strong> Essential for contract validity. Responsibility begins only
+                    after receiving the premium.</li>
+
+                <li><strong>Compensation Only for Specified Perils:</strong> Covers only risks mentioned in the policy.
+                    <em>(e.g., Fire policy may not cover earthquake unless included).</em></li>
+
+                <li><strong>Requirement of Proof of Loss:</strong> Insured must provide evidence (documents, inspection
+                    reports) for verification.</li>
+
+                <li><strong>Proximate Cause Principle:</strong> Compensation granted only when loss is caused by the
+                    nearest covered cause.</li>
+
+                <li><strong>Fixed Sum Insured:</strong> Specifies a maximum liability amount. The insurer’s
+                    responsibility cannot exceed this.</li>
+
+                <li><strong>Period of Contract:</strong> Generally valid for a fixed period (usually one year) and must
+                    be renewed.</li>
+            </ol>
+
+            <h3>4. Types of Property Insurance</h3>
+            <ul>
+                <li>Fire insurance.</li>
+                <li>Marine insurance (cargo and goods).</li>
+                <li>Burglary and theft insurance.</li>
+                <li>Industrial all-risk insurance.</li>
+                <li>Householder insurance policy.</li>
+                <li>Commercial property insurance.</li>
+            </ul>
+
+            <h3>5. Conclusion</h3>
+            <p>A property insurance contract is an essential tool protecting from financial losses. Features such as
+                indemnity, insurable interest, utmost good faith, subrogation, and contribution ensure fairness and
+                prevent misuse. Understanding these features is crucial for effective risk management.</p>
+        </article>
+
+        <!-- Question 4 -->
+        <article class="card section-card" id="q4">
+            <h1>4. What is the concept of risk? What are its different types?</h1>
+
+            <h3>1. Introduction</h3>
+            <p>Risk is an integral part of human life as well as business activities. Every economic decision involves
+                uncertainty about future outcomes. Businesses operate in a changing environment influenced by market
+                conditions, competition, technological developments, government policies, and natural events. These
+                uncertainties create the possibility of loss, known as risk.</p>
+
+            <h3>2. Concept and Meaning of Risk</h3>
+            <p>Risk refers to the possibility of loss or adverse deviation from expected results due to uncertain future
+                events. In simple words, risk is the chance that actual results will differ from expected results,
+                leading to financial or non-financial loss.</p>
+            <p>Risk exists because the future cannot be predicted with complete certainty. Whenever there is uncertainty
+                combined with the possibility of loss, risk arises.</p>
+
+            <h3>3. Definitions of Risk</h3>
+            <ul>
+                <li>Risk is the possibility of loss arising from uncertainty.</li>
+                <li>According to insurance theory, risk is the uncertainty regarding the occurrence of loss.</li>
+                <li>In financial terms, risk refers to variability in returns from an investment.</li>
+            </ul>
+
+            <h3>4. Characteristics of Risk</h3>
+            <ol>
+                <li><strong>Uncertainty:</strong> Arises due to uncertain future events.</li>
+                <li><strong>Possibility of Loss:</strong> Involves chances of financial or physical loss.</li>
+                <li><strong>Measurability:</strong> Many risks can be measured using probability or statistical tools.
+                </li>
+                <li><strong>Future-Oriented:</strong> Relates to events that may occur in the future.</li>
+                <li><strong>Universality:</strong> Exists in all businesses and economic activities.</li>
+                <li><strong>Dynamic Nature:</strong> Risks change with economic and technological developments.</li>
+            </ol>
+
+            <h3>5. Types of Risk</h3>
+
+            <h4>1. Pure Risk</h4>
+            <p>Involves situations where there is only the possibility of loss or no loss, but no chance of gain.</p>
+            <div class="example-box">Examples: Fire accidents, Theft, Natural disasters. (Usually insurable).</div>
+
+            <h4>2. Speculative Risk</h4>
+            <p>Involves the possibility of both profit and loss.</p>
+            <div class="example-box">Examples: Investment in shares, Starting a new business. (Generally not insurable,
+                voluntary).</div>
+
+            <h4>3. Fundamental Risk</h4>
+            <p>Affect a large number of people or the entire economy simultaneously.</p>
+            <div class="example-box">Examples: Inflation, War, Economic recession, Natural calamities. (Beyond
+                individual control).</div>
+
+            <h4>4. Particular Risk</h4>
+            <p>Affect individuals or specific organizations rather than society as a whole.</p>
+            <div class="example-box">Examples: Factory fire, Car accident, Theft of property. (Can often be managed via
+                insurance).</div>
+
+            <h4>5. Financial Risk</h4>
+            <p>Possibility of monetary loss arising from financial transactions (Directly affects cash flow).</p>
+            <div class="example-box">Examples: Credit risk, Interest rate risk, Liquidity risk, Investment risk.</div>
+
+            <h4>6. Non-Financial Risk</h4>
+            <p>Does not directly involve monetary loss but indirectly affects performance.</p>
+            <div class="example-box">Examples: Damage to reputation, Employee dissatisfaction.</div>
+
+            <h4>7. Static Risk</h4>
+            <p>Arise from factors that remain relatively constant over time.</p>
+            <div class="example-box">Examples: Natural disasters, Accidents.</div>
+
+            <h4>8. Dynamic Risk</h4>
+            <p>Arise due to changes in the economy, technology, or consumer preferences (can create opportunities and
+                losses).</p>
+            <div class="example-box">Examples: Technological innovation, Market competition.</div>
+
+            <h4>9. Systematic Risk</h4>
+            <p>Affects the entire market or economy; cannot be eliminated through diversification.</p>
+            <div class="example-box">Examples: Inflation, Interest rate changes.</div>
+
+            <h4>10. Unsystematic Risk</h4>
+            <p>Affects a particular company or industry; can be reduced through diversification.</p>
+            <div class="example-box">Examples: Management failure, Labor strikes.</div>
+
+            <h4>11. Operational & Legal Risks</h4>
+            <p><strong>Operational Risk:</strong> Arises from internal processes, human errors, or system failures
+                (e.g., Machine breakdown).<br>
+                <strong>Legal and Regulatory Risk:</strong> Arises due to changes in laws or disputes (e.g.,
+                Non-compliance penalties).
+            </p>
+
+            <h3>6. Conclusion</h3>
+            <p>Risk is an unavoidable element of business and economic activities. It represents the possibility of loss
+                or deviation from expected results. Proper understanding and classification of risks enable
+                organizations to adopt suitable risk management strategies and minimize adverse effects.</p>
+        </article>
+
+        <!-- Custom Instagram Branding Card -->
+        <a href="https://instagram.com/manxjeetagain" target="_blank" rel="noopener noreferrer" class="ig-card">
+            <span class="ig-title">bcomfrndz</span>
+            <span class="ig-subtitle">by @manxjeetagain</span>
+            <div class="follow-btn">
+                <!-- Simple SVG for IG icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Follow on Instagram
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="fab" id="backToTop" title="Go to top">↑</button>
+
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-btn');
+
+        // Check local storage for theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerText = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerText = '☀️';
+            }
+        });
+
+        // Scroll to Top Logic
+        const fab = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                fab.classList.add('show');
+            } else {
+                fab.classList.remove('show');
+            }
+        });
+
+        fab.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Active TOC Highlighting (Intersection Observer)
+        const sections = document.querySelectorAll('.section-card');
+        const navLinks = document.querySelectorAll('#toc a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                            // Mobile TOC auto-scroll to keep active item visible
+                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+    <script src="track.js"></script>
+</body>
+
+</html>
