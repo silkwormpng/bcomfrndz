@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>TDS Master Guide | FY 2025-26 (AY 2026-27) | Indian Tax Compliance</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+    }
+    h1 {
+        text-align: center;
+        color: #004080;
+        border-bottom: 2px solid #004080;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #00509e;
+        margin-top: 40px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #0066cc;
+        margin-top: 25px;
+    }
+    /* Mapped classes from old structures to composition scheme classes */
+    .metadata, .meta, .doc-meta {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+        padding: 15px;
+        background-color: #f4f8fc;
+        border-radius: 5px;
+    }
+    .toc {
+        background-color: #f9f9f9;
+        padding: 20px 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    .toc ol, .toc ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    .toc li {
+        margin-bottom: 8px;
+    }
+    .screenshot, .screenshot-card, .screenshot-placeholder {
+        background-color: #fcfcfc;
+        border: 2px dashed #b3b3b3;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+        font-style: italic;
+        color: #555;
+        border-radius: 5px;
+    }
+    .screenshot strong, .screenshot-card strong, .screenshot-placeholder strong {
+        display: block;
+        margin-bottom: 10px;
+        color: #d9534f;
+        font-style: normal;
+    }
+    .note, .warning {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 15px 0;
+        font-size: 0.95em;
+    }
+    ul, ol {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .faq-q {
+        font-weight: bold;
+        color: #004080;
+        margin-top: 20px;
+    }
+    .faq-a {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="document">
+    <h1>WORKSHOP MASTER GUIDE: COMPREHENSIVE TDS COMPLIANCE (FY 2025-26 / AY 2026-27)</h1>
+    <p><strong>Prepared by:</strong> Tax Compliance Cell | <strong>Target Audience:</strong> Tax Professionals, Accountants, & Corporate Finance Teams</p>
+
+    <!-- PAGE 1: Introduction & TAN -->
+    <h2>1. Introduction to the TDS Mechanism in India</h2>
+    <h3>1.1 The Genesis and Logic of TDS</h3>
+    <p>Tax Deducted at Source (TDS) is a fundamental pillar of the Indian taxation system, governed by the Income Tax Act, 1961. Introduced with the principle of "Pay as You Earn" and "Collect as It is Earned," TDS ensures a steady flow of revenue to the Government while preventing tax evasion. Unlike self-assessment tax, which is paid by the earner, TDS places the legal onus on the payer (the deductor). When a specified payment (e.g., salary, professional fee, rent, contractor payment) is made, the payer is mandated to deduct a specific percentage as tax and remit it to the Central Government. The payee (the deductee) receives the net amount and claims the deducted tax as a credit against their final tax liability.</p>
+    
+    <h3>1.2 Understanding TAN (Tax Deduction and Collection Account Number)</h3>
+    <p>To deduct or collect tax, every entity (except individuals/HUFs deducting tax under sections like 194M or 194-IB who can use their PAN) must obtain a TAN. Structure of TAN: 10-digit alphanumeric (e.g., DEL M 12345 L). First 3: city code; 4th: initial of deductor name; next 5: sequential numbers; last: check digit. Under Section 203A, quoting TAN is mandatory on all TDS returns, Challan 281, and TDS Certificates. Failure to apply for a TAN or not quoting it attracts a penalty of ₹10,000 under Section 272BB.</p>
+    
+    <!-- SCREENSHOT 1/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 1/10 · Practical Step</strong>
+        <div class="card-title">TAN Application via NSDL/Protean (Form 49B)</div>
+        <div class="desc">Screenshot of the online Form 49B portal showing ‘Category of Deductor’ dropdown (Company, HUF, etc.), applicant details, and submit button. Highlights mandatory TAN fields.</div>
+    </div>
+
+    <h2>2. The 2026 TDS Compliance Calendar</h2>
+    <p><strong>Remittance to Government (Challan 281):</strong> April to February → by 7th of following month. March TDS → due by April 30, 2026.<br>
+    <strong>Quarterly TDS Return Filing:</strong> Q1 (Apr-Jun) Jul 31, 2025; Q2 (Jul-Sep) Oct 31, 2025; Q3 (Oct-Dec) Jan 31, 2026; Q4 (Jan-Mar) May 31, 2026.<br>
+    <strong>TDS Certificates:</strong> Form 16 (annual salary) by June 15, 2026; Form 16A (non-salary quarterly) within 15 days from return due date.</p>
+    
+    <!-- SCREENSHOT 2/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 2/10 · Compliance Visual</strong>
+        <div class="card-title">FY 2025-26 TDS Calendar Overview</div>
+        <div class="desc">Stylised calendar graphic highlighting 7th of each month (payment due) and quarterly return deadlines (31 Jul, 31 Oct, 31 Jan, 31 May).</div>
+    </div>
+
+    <h2>3. Advanced TDS Accounting – Salary & Contractor Payments</h2>
+    <h3>Section 192: TDS on Salary (Complex Payroll)</h3>
+    <p><strong>Scenario Jan 2026:</strong> Gross Salary ₹2,00,000; Employer PF ₹12,000; Employee PF ₹12,000; PT ₹200; TDS u/s 192 = ₹25,000.</p>
+    <div class="code-block">
+        <strong>Entry 1: Booking Payroll Expense (Jan 31, 2026)</strong><br>
+        Salary Expense A/c .......................... Dr.  ₹2,00,000<br>
+        Employer PF Expense A/c ..................... Dr.  ₹12,000<br>
+            To Employee PF Payable A/c .............. Cr.  ₹12,000<br>
+            To Employer PF Payable A/c .............. Cr.  ₹12,000<br>
+            To Professional Tax Payable A/c ......... Cr.  ₹200<br>
+            To TDS Payable on Salary (Sec 192) A/c .. Cr.  ₹25,000<br>
+            To Net Salary Payable A/c ............... Cr.  ₹1,62,800
+    </div>
+    <div class="code-block">
+        <strong>Entry 2: Remitting TDS to Govt (by Feb 7, 2026)</strong><br>
+        TDS Payable on Salary (Sec 192) A/c ......... Dr.  ₹25,000<br>
+            To Bank A/c ............................. Cr.  ₹25,000
+    </div>
+
+    <h3>Section 194C: Payments to Contractors (GST Interplay)</h3>
+    <p>CBDT Circular 23/2017: TDS deducted on base value excluding GST if separately indicated. Example: Invoice ₹5,00,000 + 18% IGST = ₹5,90,000. TDS @2% on base ₹5,00,000 = ₹10,000.</p>
+    
+    <!-- SCREENSHOT 3/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 3/10 · ERP Voucher</strong>
+        <div class="card-title">Automatic TDS Calculation on Contractor Invoice</div>
+        <div class="desc">Tally Prime / SAP voucher showing base amount ₹5,00,000, IGST ₹90,000, and TDS ₹10,000 (2% on base) with section 194C highlighted.</div>
+    </div>
+
+    <h2>4. Advanced TDS Accounting – Contracts & Rent</h2>
+    <div class="code-block">
+        <strong>Booking Contractor Expense (194C)</strong><br>
+        Facility Management Expense A/c ............. Dr.  ₹5,00,000<br>
+        IGST Input Tax Credit A/c ................... Dr.  ₹90,000<br>
+            To TDS Payable - Contractors (Sec 194C).. Cr.  ₹10,000<br>
+            To Vendor Payable A/c ................... Cr.  ₹5,80,000
+    </div>
+    <h3>Section 194-I: Rent Involving Security Deposits</h3>
+    <p>Company leases office: advance rent ₹3,00,000 + refundable security deposit ₹15,00,000. TDS @10% on rent only = ₹30,000.</p>
+    <div class="code-block">
+        Rent Expense (or Advance Rent) A/c .......... Dr.  ₹3,00,000<br>
+        Security Deposit (Asset) A/c ................ Dr.  ₹15,00,000<br>
+            To TDS Payable - Rent (Sec 194-I) ....... Cr.  ₹30,000<br>
+            To Landlord Payable/Bank A/c ............ Cr.  ₹17,70,000
+    </div>
+
+    <h2>5. Year-End TDS Reconciliation Masterclass</h2>
+    <p><strong>GL to 26Q/24Q Tie-Out:</strong> Total credit in "TDS Payable" ledgers must match total tax deducted per Form 26Q/24Q filings.<br>
+    <strong>Expense to TDS Base Value Check:</strong> Compare P&L expense vs base value declared in 26Q; explain variances (threshold, foreign payments, lower deduction cert).<br>
+    <strong>Challan 281 to Bank Statement Match:</strong> Every debit in TDS Payable must correspond to a Challan 281 with BSR code, serial number, and date recorded in ERP.<br>
+    <strong>Unreconciled Balances:</strong> March TDS deducted but payable by April 30 appears as current liability.</p>
+
+    <!-- SCREENSHOT 4/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 4/10 · Reconciliation Dashboard</strong>
+        <div class="card-title">GL vs 26Q Reconciliation Spreadsheet</div>
+        <div class="desc">Excel VLOOKUP comparing TDS payable ledger with Form 26Q data; mismatch highlighted for vendor PAN correction.</div>
+    </div>
+
+    <h2>6. Challan 281 – The E-Payment Process</h2>
+    <p><strong>Step-by-step e-Pay Tax (without login):</strong> Visit eportal.incometax.gov.in → Quick Links → e-Pay Tax → Enter TAN → OTP validation → Select “Challan No./ITNS 281”.</p>
+    
+    <!-- SCREENSHOT 5/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 5/10 · e-Pay Tax Dashboard</strong>
+        <div class="card-title">TAN Authentication & Challan 281 Selection</div>
+        <div class="desc">Screenshot showing TAN entry field, OTP box, and payment tile "Challan No./ITNS 281 (Payment of TDS/TCS)" highlighted.</div>
+    </div>
+
+    <h2>7. Navigating Major and Minor Heads</h2>
+    <p><strong>Assessment Year:</strong> For FY 2025-26, select AY 2026-27.<br>
+    <strong>Major Head:</strong> 0020 (Income Tax on Companies) if deductee's PAN 4th char is 'C'; else 0021 (Other than Companies).<br>
+    <strong>Minor Head:</strong> 200 (TDS payable by taxpayer) for regular deposits; 400 only for demand notices.<br>
+    <strong>Nature of Payment:</strong> 92B(192) Salary, 94C(194C) Contractors, 94J(194J) Professional Fees, 94I(194I) Rent.</p>
+
+    <h2>8. Executing Payment and Generating CIN</h2>
+    <p>Enter tax breakdown (Income Tax, Surcharge, Cess, Interest, Fee 234E). Choose Net Banking or Payment Gateway → CRN generated. Upon success, <strong>Challan Identification Number (CIN)</strong> (20 digits: BSR code + date + serial number) is issued. Without CIN, TDS return cannot be filed.</p>
+    
+    <!-- SCREENSHOT 6/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 6/10 · Challan 281 Receipt</strong>
+        <div class="card-title">Sample CIN Highlighted on Challan 281 PDF</div>
+        <div class="desc">Downloaded receipt showing 20-digit CIN (BSR: 7654321, Date: 07052025, Serial: 00123), watermark, and transaction ID.</div>
+    </div>
+
+    <h2>9. Return Filing (Form 26Q & 24Q) – Data Preparation</h2>
+    <p><strong>Form 24Q:</strong> Salary TDS; <strong>Form 26Q:</strong> Non-salary resident payments; <strong>Form 27Q:</strong> Non-resident payments.<br>
+    Pre-requisites: TAN, PAN, Challan details (CIN), Deductee PAN, amount paid, TDS amount, section code.<br>
+    Use NSDL e-Gov RPU (free utility). Download latest version from tin-nsdl.com.</p>
+
+    <h2>10. Validation, FVU, and Uploading the Return</h2>
+    <p>RPU three tabs: Form Details, Challan Details, Annexure I (map deductees to challan IDs). Generate .csi file from e-Filing portal for challan validation. FVU cross-checks data; if successful, generates .fvu file + Form 27A. Upload .zip on Income Tax portal using DSC or Aadhaar OTP → get 15-digit Token Number.</p>
+    
+    <!-- SCREENSHOT 7/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 7/10 · TDS Return Success Screen</strong>
+        <div class="card-title">Provisional Receipt with Token Number</div>
+        <div class="desc">Green checkmark, “Provisional Receipt Number: 2026TDS123456789”, and “Download Receipt” button.</div>
+    </div>
+
+    <h2>11. Post-Filing Processing & TRACES</h2>
+    <p>TRACES (tdscpc.gov.in) processes the return. Login with TAN → Statement Status → Token Number. Status: “Processed without Defaults” or “Processed with Defaults”. Defaults include short payment, short deduction, interest, late fee (234E). Download Justification Report for line‑by‑line error details.</p>
+
+    <h2>12. Filing Correction Statements</h2>
+    <p>Download Conso File from TRACES (password protected). Import into RPU, perform corrections: C1 (deductor details), C2 (challan), C3 (deductee details), C5 (PAN correction), C9 (add new challan). Re-generate .fvu and upload as correction return.</p>
+    
+    <!-- SCREENSHOT 8/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 8/10 · Correction Request on TRACES</strong>
+        <div class="card-title">Request for Conso File & C3 Correction</div>
+        <div class="desc">TRACES interface: ‘Request for Conso File’ with KYC authentication (Token number + challan + 3 PANs).</div>
+    </div>
+
+    <h2>13. Form 26AS & The AIS Revolution</h2>
+    <p><strong>Form 26AS:</strong> Annual tax passbook showing TDS credit for deductee. If deductor fails to file return, credit does not appear.<br>
+    <strong>AIS (Annual Information Statement):</strong> Shows SFT data (mutual funds, high-value spends), GST turnover, foreign remittances. For FY 2025-26, taxpayers must reconcile TIS (Taxpayer Information Summary) before ITR filing.</p>
+    
+    <!-- SCREENSHOT 9/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 9/10 · Form 26AS / AIS View</strong>
+        <div class="card-title">TDS credit listing with deductor TAN & amount</div>
+        <div class="desc">Screenshot of TRACES Form 26AS showing “Name of Deductor”, “Total Tax Deducted”, and “Amount Paid/Credited”.</div>
+    </div>
+
+    <h2>14. Reconciling Form 26AS / AIS with Books</h2>
+    <p><strong>Rule 37BA:</strong> TDS credit given to the person to whom income belongs, in the year income is assessable. Timing mismatch example: Invoice raised in March 2026 (FY 2025-26) but client deducts TDS in April 2026 (FY 2026-27) → TDS credit appears in 26AS of FY 2026-27. Claim credit via Schedule TDS in subsequent year. Identify mismatches using VLOOKUP between 26AS and “TDS Receivable” GL; errors due to wrong PAN, net booking, or non-compliance.</p>
+
+    <h2>15. Issuing Statutory TDS Certificates (Form 16 / 16A)</h2>
+    <p>Manual certificates illegal. Forms 16/16A must be downloaded from TRACES (unique watermark & logo).<br>
+    <strong>Form 16 (Salary):</strong> Part A (TRACES) + Part B (salary computation, deductions).<br>
+    <strong>Form 16A (Non-salary):</strong> Quarterly. Steps: TRACES → Downloads → Form 16A → select FY, quarter, PAN → KYC → request generated → download zip → use TRACES PDF Converter Utility to generate individual PDFs.</p>
+    
+    <!-- SCREENSHOT 10/10 -->
+    <div class="screenshot-card">
+        <strong>📸 SCREENSHOT 10/10 · Form 16A Request on TRACES</strong>
+        <div class="card-title">Request for Form 16A – Quarter & PAN selection</div>
+        <div class="desc">Dropdown menus: Financial Year 2025-26, Quarter 1 (Apr-Jun), Form Type 16A, and KYC verification fields.</div>
+    </div>
+
+    <h2>16. Finalizing Certificates & Digital Signatures</h2>
+    <p>Bulk digital signing using USB token of Authorized Signatory (e-Mudhra, Signer.Digital). Signed PDFs auto-emailed to vendors/employees. <strong>Lower Deduction Certificate (Sec 197):</strong> Vendor applies via Form 13; deductor validates certificate on TRACES before applying lower rate.</p>
+
+    <h2>17. The 15G & 15H Logic (Nil TDS Declarations)</h2>
+    <p><strong>Mathematical condition:</strong> Net Tax Liability = f(I) – Rebate ≤ 0. Eligible for zero TDS on interest/EPF withdrawal. Form 15G (individuals <60, specific income ≤ basic exemption), Form 15H (senior citizens ≥60, no specific income limit).</p>
+    <div class="note">
+        <strong>Eligibility:</strong> Resident individuals only; NRIs not eligible. For FY 2025-26, submit fresh forms at start of year via net banking (URN generated). Deductor (bank) must upload consolidated 15G/15H statement quarterly.
+    </div>
+
+    <h2>18. 15G vs. 15H & Digital Submission</h2>
+    <table>
+        <thead><tr><th>Parameter</th><th>Form 15G</th><th>Form 15H</th></tr></thead>
+        <tbody>
+            <tr><td>Target Demographic</td><td>Individuals <60 & HUFs</td><td>Senior Citizens (≥60)</td></tr>
+            <tr><td>Tax Condition</td><td>Final tax liability ZERO</td><td>Final tax liability ZERO</td></tr>
+            <tr><td>Specific Income Limit</td><td>Interest cannot exceed basic exemption limit</td><td>No restriction</td></tr>
+            <tr><td>Submission Frequency</td><td>Every FY</td><td>Every FY</td></tr>
+        </tbody>
+    </table>
+    <p><strong>NetBanking workflow:</strong> Login → Tax → Submit Form 15G/15H → select account → estimated interest income → total estimated income → authenticate via OTP → URN generated.</p>
+
+    <h2>19. Penalties, Prosecutions & Compliance Conclusion</h2>
+    <p><strong>Section 234E:</strong> ₹200 per day late filing fee (capped at TDS amount). <strong>Section 271H:</strong> Penalty ₹10,000 to ₹1,00,000 for failure to file return within one year or incorrect information. <strong>Section 276B:</strong> Criminal prosecution (3 months to 7 years rigorous imprisonment) if TDS deducted but not deposited. Conclusion: Master TDS requires ERP, banking (e-Pay Tax), and RPU/FVU synergy; strict adherence to calendar and 26AS reconciliation shields from liability.</p>
+
+    <h2>20. APPENDIX – Master TDS Rate Chart (FY 2025-26)</h2>
+    <p><em>Note: Surcharge + 4% Cess applicable for non-residents / high salary. Section 206AA: No PAN → 20% TDS. Section 206AB: Specified person (non-filer of ITR) → double the normal rate.</em></p>
+    <table>
+        <thead><tr><th>Section</th><th>Nature of Payment</th><th>Threshold (₹)</th><th>Individual/HUF Rate</th><th>Company/Firm Rate</th></tr></thead>
+        <tbody>
+            <tr><td>192</td><td>Salary</td><td>Basic exemption limit</td><td>Slab rates</td><td>N/A</td></tr>
+            <tr><td>192A</td><td>Premature EPF withdrawal</td><td>50,000</td><td>10% (MMR if no PAN)</td><td>N/A</td></tr>
+            <tr><td>194A</td><td>Bank FD interest</td><td>40,000 (50k Sr.)</td><td>10%</td><td>10%</td></tr>
+            <tr><td>194C</td><td>Contractor payment</td><td>30,000/invoice or 1L aggregate</td><td>1%</td><td>2%</td></tr>
+            <tr><td>194D</td><td>Insurance commission</td><td>15,000</td><td>5%</td><td>10%</td></tr>
+            <tr><td>194H</td><td>Commission / Brokerage</td><td>15,000</td><td>5%</td><td>5%</td></tr>
+            <tr><td>194-I(a)</td><td>Rent – Plant & Machinery</td><td>2,40,000</td><td>2%</td><td>2%</td></tr>
+            <tr><td>194-I(b)</td><td>Rent – Land/Building</td><td>2,40,000</td><td>10%</td><td>10%</td></tr>
+            <tr><td>194-IA</td><td>Immovable property transfer</td><td>50,00,000</td><td>1%</td><td>1%</td></tr>
+            <tr><td>194J(a)</td><td>Fees for technical services</td><td>30,000</td><td>2%</td><td>2%</td></tr>
+            <tr><td>194J(b)</td><td>Professional fees / Royalty</td><td>30,000</td><td>10%</td><td>10%</td></tr>
+            <tr><td>194M</td><td>Contract/Commission by individuals (non-audit)</td><td>50,00,000</td><td>5%</td><td>N/A</td></tr>
+            <tr><td>194O</td><td>E-commerce payment</td><td>5,00,000</td><td>1%</td><td>1%</td></tr>
+            <tr><td>194Q</td><td>Purchase of goods (buyer turnover >10Cr)</td><td>50,00,000</td><td>0.1%</td><td>0.1%</td></tr>
+            <tr><td>194S</td><td>Virtual digital assets (crypto)</td><td>10,000/50,000</td><td>1%</td><td>1%</td></tr>
+        </tbody>
+    </table>
+
+    <div class="footer-ref">
+        <strong>Disclaimer & Reference:</strong> Based on Income Tax Act 1961, Finance Act 2025 (proposed rates), CBDT circulars. For FY 2025-26 (AY 2026-27). Always refer to official e-filing portal & TRACES for real-time updates.
+    </div>
+</div>
+<script>
+  (function() {
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyID57rMbpRpIXlQmwaeN2DA_oYP6egmE-W-O4IhGWLjDj8cx7WuDTlDe8KNEKO03ZA/exec';
+    const startTime = Date.now();
+    const userName = localStorage.getItem('currentUser') || 'Anonymous';
+    let timeLogged = false;
+
+    function logTimeSpent() {
+      if (timeLogged) return;
+      const timeSpentSeconds = Math.round((Date.now() - startTime) / 1000);
+      const formData = new FormData();
+      formData.append('Action', 'TimeSpent');
+      formData.append('Name', userName);
+      formData.append('File', window.location.pathname.split('/').pop() || document.title);
+      formData.append('TimeSpent', timeSpentSeconds);
+      navigator.sendBeacon(GOOGLE_APP_SCRIPT_URL, formData);
+      timeLogged = true;
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') {
+        logTimeSpent();
+      } else {
+        timeLogged = false; 
+      }
+    });
+    window.addEventListener('pagehide', logTimeSpent);
+  })();
+</script>
+</body>
+</html>

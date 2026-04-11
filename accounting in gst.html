@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Accounting under GST – Complete Workshop Manual</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+    }
+    h1 {
+        text-align: center;
+        color: #004080;
+        border-bottom: 2px solid #004080;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #00509e;
+        margin-top: 40px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #0066cc;
+        margin-top: 25px;
+    }
+    /* Mapped classes from old structures to composition scheme classes */
+    .metadata, .meta, .doc-meta {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+        padding: 15px;
+        background-color: #f4f8fc;
+        border-radius: 5px;
+    }
+    .toc {
+        background-color: #f9f9f9;
+        padding: 20px 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    .toc ol, .toc ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    .toc li {
+        margin-bottom: 8px;
+    }
+    .screenshot, .screenshot-card, .screenshot-placeholder {
+        background-color: #fcfcfc;
+        border: 2px dashed #b3b3b3;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+        font-style: italic;
+        color: #555;
+        border-radius: 5px;
+    }
+    .screenshot strong, .screenshot-card strong, .screenshot-placeholder strong {
+        display: block;
+        margin-bottom: 10px;
+        color: #d9534f;
+        font-style: normal;
+    }
+    .note, .warning {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 15px 0;
+        font-size: 0.95em;
+    }
+    ul, ol {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .faq-q {
+        font-weight: bold;
+        color: #004080;
+        margin-top: 20px;
+    }
+    .faq-a {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>WORKSHOP MANUAL:<br>MASTERING ACCOUNTING PRACTICES UNDER GST</h1>
+  <div class="doc-meta">
+    <strong>Edition:</strong> Comprehensive Deep-Dive<br>
+    <strong>Target Audience:</strong> Accountants, Bookkeepers, ERP Implementers, Finance Students<br>
+    <strong>Estimated Print Length:</strong> ~15 Pages
+  </div>
+
+  <div class="toc">
+    <strong>📑 TABLE OF CONTENTS</strong>
+    <ul>
+      <li>Introduction & Core GST Definitions</li>
+      <li>Designing the Chart of Accounts (Ledger Setup)</li>
+      <li>Accounting for Inward Supplies (Purchases & Expenses)</li>
+      <li>Accounting for Outward Supplies (Sales & Services)</li>
+      <li>Handling Credit Notes, Debit Notes & Discounts</li>
+      <li>Accounting for Advances Received and Paid</li>
+      <li>Accounting for Section 17(5): Blocked / Ineligible ITC</li>
+      <li>Zero-Rated Supplies: Accounting for Exports & SEZ</li>
+      <li>Reverse Charge Mechanism (RCM) Accounting</li>
+      <li>The Climax: Month-End ITC Offset & Settlement Entries</li>
+      <li>GST Reconciliation (Books vs. GSTR-2B/3B) & FAQs</li>
+    </ul>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <h2>CHAPTER 1: INTRODUCTION & CORE GST DEFINITIONS</h2>
+  <p>Accounting under the Goods and Services Tax (GST) regime is fundamentally different from traditional accounting. GST is a destination-based consumption tax driven by a flawless flow of Input Tax Credit (ITC). An accountant's primary job is not just to record expenses and revenues, but to protect the company's ITC assets and accurately state its output tax liabilities.</p>
+  <p><strong>Essential Definitions for Accountants</strong><br>
+  <strong>GSTIN:</strong> Goods and Services Tax Identification Number. A 15-digit PAN-based registration number.<br>
+  <strong>Intra-State Supply:</strong> When the Location of the Supplier and the Place of Supply (destination) are in the same State. Attracts CGST + SGST.<br>
+  <strong>Inter-State Supply:</strong> When the Location of the Supplier and the Place of Supply are in different States. Attracts IGST.<br>
+  <strong>Input Tax Credit (ITC):</strong> The GST paid on purchases (inward supplies) that a business can claim back to reduce its tax liability on sales. In accounting terms, ITC is a Current Asset.<br>
+  <strong>Output Tax:</strong> The GST charged and collected from customers on sales (outward supplies). In accounting terms, Output Tax is a Current Liability.<br>
+  <strong>B2B (Business to Business):</strong> Supply made to a registered person possessing a valid GSTIN. ITC can be passed on.<br>
+  <strong>B2C (Business to Consumer):</strong> Supply made to an unregistered person. The tax chain breaks here; no ITC is passed on.<br>
+  <strong>Electronic Credit Ledger:</strong> The government's virtual wallet maintaining your accumulated ITC balance.<br>
+  <strong>Electronic Cash Ledger:</strong> The government's virtual wallet where you deposit cash (via bank transfer) to pay your net tax liabilities, interest, or penalties.</p>
+
+  <!-- CHAPTER 2 -->
+  <h2>CHAPTER 2: DESIGNING THE CHART OF ACCOUNTS (LEDGER SETUP)</h2>
+  <p>The biggest mistake accountants make is creating just one "GST Account." This makes month-end filing a nightmare. You must segregate your ledgers by tax type (CGST, SGST, IGST) and by transaction direction (Input vs. Output).</p>
+  <p><strong>Recommended Ledger Structure (Under "Duties & Taxes")</strong><br>
+  1. <strong>Input Taxes (Current Assets - Debit Balances)</strong><br>
+  Input CGST A/c (@ various rates like 2.5%, 6%, 9% if needed, though a common ledger is preferred by modern ERPs)<br>
+  Input SGST A/c<br>
+  Input IGST A/c<br>
+  Input Cess A/c<br>
+  2. <strong>Output Taxes (Current Liabilities - Credit Balances)</strong><br>
+  Output CGST A/c<br>
+  Output SGST A/c<br>
+  Output IGST A/c<br>
+  Output Cess A/c<br>
+  3. <strong>GST Cash Ledgers (Current Assets)</strong><br>
+  GST Electronic Cash Ledger A/c (Used to mirror your balance on the GST Portal).</p>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 1: "Chart_of_Accounts_GST_Ledgers.png"]<br>(Workshop Instructor Note: Display a snapshot of Tally Prime or QuickBooks Chart of Accounts, showing the clear segregation of 'Duties & Taxes' into Input and Output categories).</div>
+
+  <!-- CHAPTER 3 -->
+  <h2>CHAPTER 3: ACCOUNTING FOR INWARD SUPPLIES (PURCHASES)</h2>
+  <p>When you purchase goods or services for business purposes, you pay GST to your supplier. This tax is not an expense; it is a receivable asset (ITC).</p>
+  <h3>3.1 Intra-State Purchase (Local)</h3>
+  <p>Scenario: Your company (in Delhi) buys raw materials worth ₹1,00,000 + 18% GST from a supplier in Delhi.</p>
+  <pre>
+Debit: Purchase A/c                     ₹1,00,000 (Hits P&L)
+Debit: Input CGST A/c                    ₹9,000 (Hits Balance Sheet - Asset)
+Debit: Input SGST A/c                    ₹9,000 (Hits Balance Sheet - Asset)
+Credit: Supplier (Creditor) A/c        ₹1,18,000 (Hits Balance Sheet - Liability)
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 2: "Intra_State_Purchase_Voucher.png"]<br>(Workshop Instructor Note: Show a Purchase Voucher in an ERP system. Highlight the tax breakdown at the bottom showing separate lines for Input CGST and Input SGST).</div>
+
+  <h3>3.2 Inter-State Purchase (Outside State)</h3>
+  <p>Scenario: Your company (in Delhi) buys laptops for office use worth ₹2,00,000 + 18% GST from a supplier in Haryana.</p>
+  <pre>
+Debit: Computers/Fixed Assets A/c       ₹2,00,000
+Debit: Input IGST A/c                   ₹36,000
+Credit: Supplier (Creditor) A/c        ₹2,36,000
+  </pre>
+
+  <!-- CHAPTER 4 -->
+  <h2>CHAPTER 4: ACCOUNTING FOR OUTWARD SUPPLIES (SALES)</h2>
+  <p>When you sell, you collect tax on behalf of the government. This is a liability.</p>
+  <h3>4.1 Intra-State Sale (B2B or B2C)</h3>
+  <p>Scenario: You sell finished goods worth ₹50,000 + 12% GST to a customer in your own state.</p>
+  <pre>
+Debit: Customer (Debtor) A/c / Bank A/c  ₹56,000
+Credit: Sales A/c                       ₹50,000 (Hits P&L - Revenue)
+Credit: Output CGST A/c                  ₹3,000 (Hits Balance Sheet - Liability)
+Credit: Output SGST A/c                  ₹3,000 (Hits Balance Sheet - Liability)
+  </pre>
+
+  <h3>4.2 Inter-State Sale</h3>
+  <p>Scenario: You sell consulting services worth ₹5,00,000 + 18% GST to a client in another state.</p>
+  <pre>
+Debit: Client (Debtor) A/c              ₹5,90,000
+Credit: Service Revenue A/c             ₹5,00,000
+Credit: Output IGST A/c                 ₹90,000
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 3: "Inter_State_Sales_Voucher.png"]<br>(Workshop Instructor Note: Show a standard Tax Invoice generation screen in an ERP. Highlight the "Place of Supply" field dictating that IGST is automatically calculated).</div>
+
+  <!-- CHAPTER 5 -->
+  <h2>CHAPTER 5: HANDLING CREDIT NOTES & DEBIT NOTES</h2>
+  <p>Returns, discounts, and pricing errors are common. They are corrected using Credit and Debit Notes.</p>
+  <h3>5.1 Sales Return (Issuing a Credit Note)</h3>
+  <p>When a customer returns goods, you must reduce your sales revenue and, crucially, reduce your output tax liability.<br>Scenario: Customer returns goods originally billed for ₹10,000 + 18% IGST.</p>
+  <pre>
+Debit: Sales Return A/c                 ₹10,000
+Debit: Output IGST A/c                   ₹1,800 (Reversing the liability)
+Credit: Customer (Debtor) A/c           ₹11,800
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 4: "Credit_Note_Sales_Return.png"]<br>(Workshop Instructor Note: Show a Credit Note entry screen. Emphasize the "Original Invoice Number" and "Original Invoice Date" fields, which are mandatory for GST reporting).</div>
+
+  <h3>5.2 Purchase Return (Issuing a Debit Note)</h3>
+  <p>When you return goods to a supplier, you must reduce your purchase expense and reverse the ITC you previously claimed.<br>Scenario: You return defective materials worth ₹20,000 + 12% intra-state GST.</p>
+  <pre>
+Debit: Supplier (Creditor) A/c          ₹22,400
+Credit: Purchase Return A/c             ₹20,000
+Credit: Input CGST A/c                   ₹1,200 (Reversing the asset)
+Credit: Input SGST A/c                   ₹1,200 (Reversing the asset)
+  </pre>
+
+  <!-- CHAPTER 6 -->
+  <h2>CHAPTER 6: ACCOUNTING FOR ADVANCES</h2>
+  <p>Under GST, receiving an advance payment for Services triggers an immediate GST liability, even if the invoice is raised months later. (Note: Advances for Goods are exempt from this rule).<br>Scenario: Received ₹1,18,000 advance for an architectural service contract (inclusive of 18% GST).</p>
+  <p><strong>Step 1: Receipt of Advance (Liability created)</strong></p>
+  <pre>
+Debit: Bank A/c                         ₹1,18,000
+Credit: Advance from Customer A/c       ₹1,00,000
+Credit: Output IGST (Advance) A/c        ₹18,000
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 5: "Advance_Receipt_Voucher.png"]<br>(Workshop Instructor Note: Display a Receipt Voucher. Highlight the flag/setting "Mark as Advance Receipt for GST" which automatically calculates the tax component out of the total amount).</div>
+
+  <p><strong>Step 2: When the final Invoice is raised later</strong></p>
+  <pre>
+Debit: Customer A/c                     ₹1,18,000
+Credit: Service Revenue A/c             ₹1,00,000
+Credit: Output IGST A/c                  ₹18,000
+(Note: A simultaneous adjustment entry is passed to knock off the Advance ledgers against the main ledgers to prevent double taxation).
+  </pre>
+
+  <!-- CHAPTER 7 -->
+  <h2>CHAPTER 7: ACCOUNTING FOR SECTION 17(5): BLOCKED ITC</h2>
+  <p>Section 17(5) of the CGST Act lists items on which you cannot claim ITC, even if used for business. Examples: Motor vehicles, employee food/beverages, club memberships, gifts, and goods lost/stolen.</p>
+  <p><strong>The Accounting Rule for Blocked ITC:</strong> The GST paid cannot be routed to the 'Input Tax' ledgers. It must be added to the cost of the asset or expensed out.</p>
+  <p>Scenario: Company buys a car for the Director for ₹10,00,000 + ₹2,80,000 GST.<br>
+  <strong>INCORRECT ENTRY:</strong> Debit: Motor Car A/c (10L) | Debit: Input GST A/c (2.8L) | Credit: Bank (12.8L). (Wrong, leads to illegal ITC claim).<br>
+  <strong>CORRECT ENTRY:</strong></p>
+  <pre>
+Debit: Motor Car A/c                   ₹12,80,000 (Tax capitalized into asset value)
+Credit: Bank / Auto Loan A/c           ₹12,80,000
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 6: "Blocked_Credit_Expense_Entry.png"]<br>(Workshop Instructor Note: Show an expense voucher for "Staff Welfare - Restaurant Food". Highlight that the tax classification is set to "Ineligible/Blocked ITC", absorbing the tax into the expense ledger).</div>
+
+  <!-- CHAPTER 8 -->
+  <h2>CHAPTER 8: ZERO-RATED SUPPLIES: EXPORTS & SEZ</h2>
+  <p>Exports and supplies to Special Economic Zones (SEZs) are "Zero-Rated." You have two options:</p>
+  <p><strong>Option 1: Export under LUT (Letter of Undertaking)</strong><br>You export without charging any IGST.</p>
+  <pre>
+Debit: Foreign Customer A/c             ₹5,00,000 (Equivalent INR)
+Credit: Export Sales A/c                ₹5,00,000
+(No tax ledgers involved).
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 7: "Export_Invoice_Under_LUT.png"]<br>(Workshop Instructor Note: Display an Export Invoice. Draw a box around the declaration: "Supply Meant for Export Under Letter of Undertaking Without Payment of IGST").</div>
+
+  <p><strong>Option 2: Export with Payment of IGST</strong><br>You pay IGST out of your pocket (using accumulated ITC or cash) and claim a refund from Customs later.</p>
+  <pre>
+Debit: Foreign Customer A/c             ₹5,00,000
+Debit: IGST Refund Receivable A/c        ₹90,000 (Current Asset)
+Credit: Export Sales A/c                ₹5,00,000
+Credit: Output IGST A/c                  ₹90,000
+  </pre>
+
+  <!-- CHAPTER 9 -->
+  <h2>CHAPTER 9: REVERSE CHARGE MECHANISM (RCM) ACCOUNTING</h2>
+  <p>Under RCM, the buyer pays the tax directly to the government instead of the supplier.<br>Scenario: Paid ₹10,000 to an unregistered Goods Transport Agency (GTA). RCM applicable @ 5%.</p>
+  <pre>
+Debit: Freight Expense A/c              ₹10,000
+Debit: Input CGST (RCM) A/c               ₹250
+Debit: Input SGST (RCM) A/c               ₹250
+Credit: GTA Vendor A/c                  ₹10,000
+Credit: Output CGST (RCM Payable) A/c     ₹250
+Credit: Output SGST (RCM Payable) A/c     ₹250
+(Note: The Payable ledgers will be settled in cash, and the Input ledgers will be used to offset regular outward tax liabilities).
+  </pre>
+
+  <!-- CHAPTER 10 -->
+  <h2>CHAPTER 10: THE CLIMAX: MONTH-END ITC OFFSET & SETTLEMENT</h2>
+  <p>This is the most critical accounting entry of the month. You must knock off your Input Tax Assets against your Output Tax Liabilities according to the strict legal offset rules:</p>
+  <ul>
+    <li>IGST Input knocks off IGST Output, then CGST Output, then SGST Output.</li>
+    <li>CGST Input knocks off CGST Output, then IGST Output.</li>
+    <li>SGST Input knocks off SGST Output, then IGST Output.</li>
+    <li>(Rule of Blood: CGST and SGST can NEVER offset each other).</li>
+  </ul>
+  <p><strong>Scenario at Month End:</strong><br>Total Output Liabilities: IGST=50K, CGST=20K, SGST=20K.<br>Total Input ITC Available: IGST=60K, CGST=10K, SGST=10K.</p>
+  <p><strong>The Offset Calculation:</strong><br>
+  Use 50K IGST input to kill 50K IGST output. (10K IGST input remains).<br>
+  Use remaining 10K IGST input to kill 10K CGST output. (10K CGST output remains).<br>
+  Use 10K CGST input to kill the remaining 10K CGST output.<br>
+  Use 10K SGST input to kill 10K SGST output. (10K SGST output remains to be paid in cash).</p>
+  <p><strong>The Master Journal Voucher (The Offset Entry):</strong></p>
+  <pre>
+Debit: Output IGST A/c                  ₹50,000
+Debit: Output CGST A/c                  ₹20,000
+Debit: Output SGST A/c                  ₹10,000
+Credit: Input IGST A/c                  ₹60,000
+Credit: Input CGST A/c                  ₹10,000
+Credit: Input SGST A/c                  ₹10,000
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 8: "Month_End_ITC_Offset_JV.png"]<br>(Workshop Instructor Note: Display a complex Journal Voucher showing the netting off of Output and Input ledgers as described above).</div>
+
+  <p><strong>The Payment Entry (Paying the balance ₹10K SGST via Bank):</strong></p>
+  <pre>
+Debit: Output SGST A/c                  ₹10,000
+Credit: Bank A/c                        ₹10,000
+  </pre>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 9: "GST_Payment_Cash_Ledger_Entry.png"]<br>(Workshop Instructor Note: Show a Payment Voucher clearly referencing the GST Challan Number (CPIN) in the narration).</div>
+
+  <!-- CHAPTER 11 -->
+  <h2>CHAPTER 11: GST RECONCILIATION & FAQS</h2>
+  <p>Your accounting books mean nothing if they do not match the government portal.</p>
+  <p><strong>The GSTR-2B Reconciliation</strong><br>You accounted for ₹1 Lakh of ITC in your "Input" ledgers based on purchase bills you received. However, you can ONLY claim this ITC if your suppliers have uploaded those bills in their GSTR-1, which auto-populates into your GSTR-2B.<br>Accounting Action: If an invoice is missing in GSTR-2B, you must park that ITC in an "ITC Pending/Deferred A/c" and follow up with the vendor. You cannot utilize it this month.</p>
+  <div class="screenshot-placeholder">📸 [SCREENSHOT 10: "GSTR2B_Reconciliation_Report.png"]<br>(Workshop Instructor Note: Show an ERP dashboard (like Tally's GST report) showing "As per Books" vs "As per Portal", highlighting the "Unreconciled" invoices in red).</div>
+
+  <h3>Workshop FAQs</h3>
+  <div class="note">
+    <strong>Q1: What happens if I forget to claim an ITC invoice in the same month?</strong><br>
+    Answer: You can claim it in subsequent months. The law allows you to claim missed ITC up to the 30th of November of the following financial year. Just ensure your "Input GST" ledger matches what you actually report in GSTR-3B.
+  </div>
+  <div class="note">
+    <strong>Q2: We gave away free samples of our products. Do we need to reverse ITC?</strong><br>
+    Answer: Yes. Goods distributed as free samples fall under Section 17(5)(h). You must pass a journal entry crediting (reducing) your Input GST ledgers and debiting the "Free Samples / Sales Promotion Expense" account.
+  </div>
+  <div class="note">
+    <strong>Q3: Is the accounting different for unregistered sales (B2C)?</strong><br>
+    Answer: The basic journal entry is the same (Debit Bank, Credit Sales, Credit Output GST). However, your ERP must be configured to flag this as a B2C transaction so it flows to Table 7 of GSTR-1, whereas B2B flows to Table 4, requiring the customer's GSTIN.
+  </div>
+  <div class="note">
+    <strong>Q4: Can I pass a single entry for total daily cash sales?</strong><br>
+    Answer: Yes, you can pass consolidated daily entries for B2C cash sales, provided the tax breakdown is accurately maintained based on the HSN/tax rates of the items sold.
+  </div>
+
+  <hr>
+  <div class="warning">
+    ⚠️ Critical Reminder: Always reconcile ITC as per books with GSTR-2B before filing GSTR-3B. Mismatches lead to demand notices and interest.
+  </div>
+  <footer>
+    END OF WORKSHOP MANUAL — Accurate GST accounting protects ITC and ensures compliance.
+  </footer>
+</div>
+<script>
+  (function() {
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyID57rMbpRpIXlQmwaeN2DA_oYP6egmE-W-O4IhGWLjDj8cx7WuDTlDe8KNEKO03ZA/exec';
+    const startTime = Date.now();
+    const userName = localStorage.getItem('currentUser') || 'Anonymous';
+    let timeLogged = false;
+
+    function logTimeSpent() {
+      if (timeLogged) return;
+      const timeSpentSeconds = Math.round((Date.now() - startTime) / 1000);
+      const formData = new FormData();
+      formData.append('Action', 'TimeSpent');
+      formData.append('Name', userName);
+      formData.append('File', window.location.pathname.split('/').pop() || document.title);
+      formData.append('TimeSpent', timeSpentSeconds);
+      navigator.sendBeacon(GOOGLE_APP_SCRIPT_URL, formData);
+      timeLogged = true;
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') {
+        logTimeSpent();
+      } else {
+        timeLogged = false; 
+      }
+    });
+    window.addEventListener('pagehide', logTimeSpent);
+  })();
+</script>
+</body>
+</html>

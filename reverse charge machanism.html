@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RCM under GST | Workshop Manual</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+    }
+    h1 {
+        text-align: center;
+        color: #004080;
+        border-bottom: 2px solid #004080;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #00509e;
+        margin-top: 40px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #0066cc;
+        margin-top: 25px;
+    }
+    /* Mapped classes from old structures to composition scheme classes */
+    .metadata, .meta, .doc-meta {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+        padding: 15px;
+        background-color: #f4f8fc;
+        border-radius: 5px;
+    }
+    .toc {
+        background-color: #f9f9f9;
+        padding: 20px 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    .toc ol, .toc ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    .toc li {
+        margin-bottom: 8px;
+    }
+    .screenshot, .screenshot-card, .screenshot-placeholder {
+        background-color: #fcfcfc;
+        border: 2px dashed #b3b3b3;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+        font-style: italic;
+        color: #555;
+        border-radius: 5px;
+    }
+    .screenshot strong, .screenshot-card strong, .screenshot-placeholder strong {
+        display: block;
+        margin-bottom: 10px;
+        color: #d9534f;
+        font-style: normal;
+    }
+    .note, .warning {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 15px 0;
+        font-size: 0.95em;
+    }
+    ul, ol {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .faq-q {
+        font-weight: bold;
+        color: #004080;
+        margin-top: 20px;
+    }
+    .faq-a {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>WORKSHOP MANUAL:<br>MASTERING REVERSE CHARGE MECHANISM (RCM) UNDER GST</h1>
+  <div class="doc-meta">
+    <strong>Edition:</strong> Comprehensive Deep-Dive<br>
+    <strong>Target Audience:</strong> Tax Practitioners, Accountants, Finance Managers, Business Owners
+  </div>
+
+  <div class="toc">
+    <strong>📑 CONTENTS</strong>
+    <ul>
+      <li><a href="#intro">1. Introduction: Forward Charge vs. Reverse Charge</a></li>
+      <li><a href="#legal">2. Legal Framework (Section 9(3) & 9(4))</a></li>
+      <li><a href="#goods">3. RCM on Goods – Key Notified Categories</a></li>
+      <li><a href="#services">4. RCM on Services (GTA, Legal, Directors, Sponsorship, etc.)</a></li>
+      <li><a href="#itc">5. RCM & Input Tax Credit – The "Cash First" Rule</a></li>
+      <li><a href="#invoicing">6. Invoicing Rules & Documentation (Self-Invoice, Payment Voucher)</a></li>
+      <li><a href="#accounting">7. System Setup: Accounting Entries for RCM (Tally/ERP)</a></li>
+      <li><a href="#gstr1">8. GST Portal Part 1: GSTR-1 and GSTR-2B Dynamics</a></li>
+      <li><a href="#gstr3b">9. GST Portal Part 2: GSTR-3B Reporting (Liability & ITC)</a></li>
+      <li><a href="#annual">10. Annual Reconciliation (GSTR-9) & Audit Red Flags</a></li>
+      <li><a href="#faq">11. Workshop FAQs & Common Pitfalls</a></li>
+    </ul>
+  </div>
+
+  <!-- Chapter 1 -->
+  <h2 id="intro">CHAPTER 1: FORWARD CHARGE VS. REVERSE CHARGE</h2>
+  <p>Under normal GST regime, supplier collects tax from buyer and deposits it – <strong>Forward Charge Mechanism (FCM)</strong>. To widen tax net and monitor unorganized sectors, <strong>Reverse Charge Mechanism (RCM)</strong> shifts the liability to the recipient.</p>
+  <p><strong>Why RCM exists:</strong><br>
+  - Unorganized suppliers (farmers, freelance truck drivers) can't be expected to register.<br>
+  - Import of services: Indian buyer must pay IGST under RCM because foreign supplier is outside Indian jurisdiction.</p>
+
+  <h2 id="legal">CHAPTER 2: LEGAL FRAMEWORK (CGST ACT, 2017)</h2>
+  <p>Section 9 of CGST Act (and corresponding Section 5 of IGST Act) governs RCM.</p>
+  <p><strong>Section 9(3): Notified goods & services</strong> – government specifies list where RCM is mandatory regardless of supplier's registration status.</p>
+  <p><strong>Section 9(4): Purchases from Unregistered Dealers (URD)</strong> – originally any purchase from URD attracted RCM, but suspended. Currently applies mainly to real estate sector (promoters buying from unregistered dealers, shortfall attracts RCM at 18% or 28% for cement).</p>
+
+  <h2 id="goods">CHAPTER 3: RCM ON GOODS – KEY NOTIFIED CATEGORIES</h2>
+  <p>If your business purchases these from agriculturists / specified suppliers, you (registered buyer) must pay GST under RCM:</p>
+  <ul>
+    <li>Cashew nuts (not shelled or peeled) – from agriculturist</li>
+    <li>Bidi wrapper leaves (Tendu) – from agriculturist</li>
+    <li>Tobacco leaves – from agriculturist</li>
+    <li>Raw cotton – from agriculturist</li>
+    <li>Lottery – RCM paid by lottery distributor</li>
+    <li>Used vehicles, seized/confiscated goods, waste & scrap – when supplied by Central/State Government to registered person</li>
+  </ul>
+
+  <h2 id="services">CHAPTER 4: RCM ON SERVICES – HIGH-RISK BUSINESS SCENARIOS</h2>
+  <h3>4.1 Goods Transport Agency (GTA)</h3>
+  <p>If GTA does not opt for forward charge (12% with ITC or 5% without ITC), the registered recipient must pay RCM @ 5% on freight. Always check GTA invoice declaration.</p>
+  <h3>4.2 Legal Services (Advocates & Arbitral Tribunals)</h3>
+  <p>Individual advocate or firm providing legal services to a business entity → 18% GST under RCM by business entity.</p>
+  <h3>4.3 Remuneration to Directors</h3>
+  <p>Salary (employer-employee) – no GST. <strong>Sitting fees / Commission</strong> (Non-Executive Directors) → 18% RCM by company.</p>
+  <h3>4.4 Sponsorship Services</h3>
+  <p>Body corporate paying sponsorship fees for any event → 18% RCM.</p>
+  <h3>4.5 Security Services & Rent-a-Cab</h3>
+  <p>Security personnel (supplied by any person other than body corporate) to registered person → RCM.<br>
+  Renting of motor vehicle by non-body corporate (e.g., individual cab owner) to body corporate → RCM @ 5%.</p>
+  <h3>4.6 Import of Services</h3>
+  <p>Any service imported from outside India for business purposes → IGST under RCM (usually 18%).</p>
+
+  <h2 id="itc">CHAPTER 5: RCM & INPUT TAX CREDIT – THE "CASH FIRST" RULE</h2>
+  <div class="warning">
+    <strong>Golden Rule of RCM:</strong> You CANNOT use existing ITC balance to pay RCM liability. RCM must be paid in CASH (Electronic Cash Ledger).<br>
+    <strong>Silver Lining:</strong> After paying RCM in cash, you can claim the exact same amount as Input Tax Credit in the same month's GSTR-3B (provided business use). Net tax cost = zero, but temporary working capital outflow.
+  </div>
+  <div class="screenshot-placeholder">📸 [Screenshot: Electronic_Cash_Ledger_Payment.png] – GST portal dashboard: Electronic Cash Ledger highlighting that RCM dues must be paid via cash deposit.</div>
+
+  <h2 id="invoicing">CHAPTER 6: INVOICING RULES & DOCUMENTATION UNDER RCM</h2>
+  <p><strong>Self-Invoice (Section 31(3)(f)):</strong> If you purchase goods/services from an Unregistered Supplier that attract RCM, issue a Self-Invoice on date of receipt of goods/services. Header must clearly mention "TAX INVOICE ISSUED UNDER REVERSE CHARGE".</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Self_Invoice_Format.png] – Standard invoice template with "REVERSE CHARGE" header and tax amounts.</div>
+  <p><strong>Payment Voucher (Section 31(3)(g)):</strong> At the time of making payment to the supplier for an RCM supply, the recipient must issue a Payment Voucher (Supplier name, recipient GSTIN, amount paid, RCM tax amount).</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Payment_Voucher_Format.png] – Payment Voucher document highlighting mandatory fields.</div>
+
+  <h2 id="accounting">CHAPTER 7: SYSTEM SETUP: ACCOUNTING ENTRIES FOR RCM (Tally/ERP)</h2>
+  <p><strong>Example: GTA freight bill of ₹10,000 (RCM @5% – CGST 2.5% + SGST 2.5%)</strong></p>
+  <p><strong>Step 1: Purchase/Expense Entry (create liability)</strong></p>
+  <pre style="background:#f5f5f5; padding:0.8rem; font-size:0.85rem; overflow-x:auto;">
+Debit: Freight/Transport Expense A/c          ₹10,000
+Debit: RCM CGST Input A/c                     ₹250
+Debit: RCM SGST Input A/c                     ₹250
+Credit: Vendor (GTA) A/c                      ₹10,000
+Credit: RCM CGST Payable A/c                  ₹250
+Credit: RCM SGST Payable A/c                  ₹250
+  </pre>
+  <div class="screenshot-placeholder">📸 [Screenshot: Tally_RCM_Purchase_Voucher.png] – Tally voucher with "Purchase From URD - Reverse Charge" classification.</div>
+  <p><strong>Step 2: Payment to Government Entry (clear liability via cash)</strong></p>
+  <pre style="background:#f5f5f5; padding:0.8rem; font-size:0.85rem; overflow-x:auto;">
+Debit: RCM CGST Payable A/c                  ₹250
+Debit: RCM SGST Payable A/c                  ₹250
+Credit: Bank A/c                              ₹500
+  </pre>
+  <div class="screenshot-placeholder">📸 [Screenshot: Tally_RCM_Tax_Payment_JV.png] – Journal/Payment voucher clearing RCM payable ledgers via bank.</div>
+  <p><em>Note: RCM Input A/c (created in Step 1) becomes ITC asset, available to offset normal outward liability.</em></p>
+
+  <h2 id="gstr1">CHAPTER 8: GST PORTAL PART 1: GSTR-1 AND GSTR-2B DYNAMICS</h2>
+  <p><strong>8.1 Supplier's GSTR-1:</strong> Registered supplier (e.g., registered advocate/GTA) files GSTR-1 and ticks the checkbox <strong>"Supply attracts Reverse Charge"</strong> for those invoices.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: GSTR1_Supplier_RCM_Checkbox.png] – B2B invoice addition screen, red circle around "Supply attracts Reverse Charge".</div>
+  <p><strong>8.2 Recipient's GSTR-2B:</strong> When you pull GSTR-2B, RCM invoices appear in separate table: <strong>"B2B - Invoices (Reverse charge)"</strong>.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: GSTR2B_RCM_View.png] – GSTR-2B dashboard highlighting the reverse charge table.</div>
+
+  <h2 id="gstr3b">CHAPTER 9: GST PORTAL PART 2: GSTR-3B REPORTING</h2>
+  <p><strong>Step 1: Declare RCM Liability</strong> – Table 3.1(d) "Inward supplies (liable to reverse charge)". Enter taxable value and tax (CGST/SGST/IGST).</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: GSTR3B_Table3_1_d.png] – Table 3.1 row 'd' – RCM liability entry.</div>
+  <p><strong>Step 2: Claim RCM ITC</strong> – Table 4(A)(3) "Inward supplies liable to reverse charge". Enter same tax amounts.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: GSTR3B_Table4_A_3.png] – Table 4 row A(3) showing matching ITC claim.</div>
+  <p><strong>Step 3: Offsetting Liability</strong> – Portal forces you to pay Table 3.1(d) liability using <strong>Cash</strong> (blocks use of ITC for that specific row).</p>
+
+  <h2 id="annual">CHAPTER 10: ANNUAL RECONCILIATION (GSTR-9) & AUDIT RED FLAGS</h2>
+  <p><strong>GSTR-9 Reporting:</strong> Table 4G – total RCM liability paid; Table 6C & 6D – RCM ITC claimed (segregated into purchases from Registered and Unregistered persons).</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: GSTR9_Annual_RCM_Table.png] – Table 6 highlighting 6C/6D for RCM ITC declaration.</div>
+  <p><strong>Audit Red Flags (How Taxman Catches You):</strong></p>
+  <ul>
+    <li><strong>Mismatch in 3B vs 2B:</strong> Claimed RCM ITC that doesn't match supplier's RCM invoices in 2B.</li>
+    <li><strong>Missing RCM on Freight in P&L:</strong> Officer multiplies "Freight & Carriage Inward" expense by 5% – if your RCM paid is less, notice issued.</li>
+    <li><strong>Missing RCM on Director Sitting Fees:</strong> Ledger amount × 18% must match RCM declared.</li>
+    <li><strong>Foreign Currency Remittances:</strong> Forex outward remittances (import of services) matched against IGST under RCM.</li>
+  </ul>
+
+  <h2 id="faq">CHAPTER 11: WORKSHOP FAQs & COMMON PITFALLS</h2>
+  <div class="note">
+    <strong>Q1: Forgot to pay RCM on invoice from 6 months ago – can I pay now and claim ITC?</strong><br>
+    A: Yes, pay tax + interest @18% p.a. for delay. You can claim ITC in current month's 3B (subject to time limit u/s 16(4) – Nov 30th of next FY). Interest paid is expense, no ITC on interest.
+  </div>
+  <div class="note">
+    <strong>Q2: Hospital (exempt output) hired a GTA – do we pay RCM?</strong><br>
+    A: No. Exemption exists for GTA services provided to entities whose entire output is exempt.
+  </div>
+  <div class="note">
+    <strong>Q3: Advocate not registered under GST – still pay RCM?</strong><br>
+    A: YES. Section 9(3) is absolute. Business entity must pay RCM and issue self-invoice.
+  </div>
+  <div class="note">
+    <strong>Q4: Director full-time employee, monthly salary ₹2L, TDS u/s 192 – RCM applicable?</strong><br>
+    A: NO. Salary (employer-employee) is outside GST (Schedule III). RCM applies only to sitting fees/commissions (TDS u/s 194J).
+  </div>
+  <div class="note">
+    <strong>Q5: Is there a threshold limit for RCM (₹5,000 per day)?</strong><br>
+    A: NO. The ₹5,000/day exemption was withdrawn in 2017. Even ₹100 RCM expense requires tax payment, self-invoice and GSTR-3B reporting.
+  </div>
+
+  <hr>
+  <div class="warning">
+    ⚠️ Critical Compliance Reminder: RCM mismatches are top trigger for GST notices. Always reconcile GSTR-2B, maintain self-invoices, and pay RCM only via cash ledger.
+  </div>
+  <footer>
+    END OF WORKSHOP MANUAL — RCM demands accuracy, timely cash payment, and meticulous documentation.
+  </footer>
+</div>
+<script>
+  (function() {
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyID57rMbpRpIXlQmwaeN2DA_oYP6egmE-W-O4IhGWLjDj8cx7WuDTlDe8KNEKO03ZA/exec';
+    const startTime = Date.now();
+    const userName = localStorage.getItem('currentUser') || 'Anonymous';
+    let timeLogged = false;
+
+    function logTimeSpent() {
+      if (timeLogged) return;
+      const timeSpentSeconds = Math.round((Date.now() - startTime) / 1000);
+      const formData = new FormData();
+      formData.append('Action', 'TimeSpent');
+      formData.append('Name', userName);
+      formData.append('File', window.location.pathname.split('/').pop() || document.title);
+      formData.append('TimeSpent', timeSpentSeconds);
+      navigator.sendBeacon(GOOGLE_APP_SCRIPT_URL, formData);
+      timeLogged = true;
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') {
+        logTimeSpent();
+      } else {
+        timeLogged = false; 
+      }
+    });
+    window.addEventListener('pagehide', logTimeSpent);
+  })();
+</script>
+</body>
+</html>

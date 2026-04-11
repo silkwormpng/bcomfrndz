@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Payroll Workshop Manual | End-to-End Processing</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+    }
+    h1 {
+        text-align: center;
+        color: #004080;
+        border-bottom: 2px solid #004080;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #00509e;
+        margin-top: 40px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #0066cc;
+        margin-top: 25px;
+    }
+    /* Mapped classes from old structures to composition scheme classes */
+    .metadata, .meta, .doc-meta {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+        padding: 15px;
+        background-color: #f4f8fc;
+        border-radius: 5px;
+    }
+    .toc {
+        background-color: #f9f9f9;
+        padding: 20px 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    .toc ol, .toc ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    .toc li {
+        margin-bottom: 8px;
+    }
+    .screenshot, .screenshot-card, .screenshot-placeholder {
+        background-color: #fcfcfc;
+        border: 2px dashed #b3b3b3;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+        font-style: italic;
+        color: #555;
+        border-radius: 5px;
+    }
+    .screenshot strong, .screenshot-card strong, .screenshot-placeholder strong {
+        display: block;
+        margin-bottom: 10px;
+        color: #d9534f;
+        font-style: normal;
+    }
+    .note, .warning {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 15px 0;
+        font-size: 0.95em;
+    }
+    ul, ol {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .faq-q {
+        font-weight: bold;
+        color: #004080;
+        margin-top: 20px;
+    }
+    .faq-a {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>WORKSHOP MANUAL:<br>MASTERING END-TO-END PAYROLL PROCESSING</h1>
+  <div class="doc-meta">
+    <strong>Edition:</strong> Comprehensive Deep-Dive<br>
+    <strong>Target Audience:</strong> HR Executives, Payroll Administrators, Finance Professionals, Small Business Owners
+  </div>
+
+  <div class="toc">
+    <strong>📋 CONTENTS</strong>
+    <ul>
+      <li><a href="#intro">1. Introduction & Payroll Lifecycle</a></li>
+      <li><a href="#core">2. Demystifying CTC, Gross & Net Pay</a></li>
+      <li><a href="#prepayroll">3. Essential Pre-Payroll Inputs</a></li>
+      <li><a href="#statutory">4. Decoding Statutory Compliances (PF, ESI, PT, TDS)</a></li>
+      <li><a href="#setup">5. System Setup & Employee Master</a></li>
+      <li><a href="#pillars">6. Step-by-Step Payroll Processing: The 5 Pillars</a></li>
+      <li><a href="#payout">7. Payouts: Bank Advice & Disbursement</a></li>
+      <li><a href="#postpayroll">8. Post-Payroll: Statutory Challans & Remittances</a></li>
+      <li><a href="#payslip">9. Generating Payslips & Accounting Entries (JV)</a></li>
+      <li><a href="#fnf">10. Full & Final (F&F) Settlements and Year-End</a></li>
+      <li><a href="#faq">11. Workshop FAQs & Common Pitfalls</a></li>
+    </ul>
+  </div>
+
+  <!-- Chapter 1 -->
+  <h2 id="intro">CHAPTER 1: INTRODUCTION & THE PAYROLL LIFECYCLE</h2>
+  <p>Payroll is much more than simply distributing money on the last day of the month. It is a critical, highly sensitive business process governed by strict labor laws, tax regulations, and accounting standards. A single error can lead to disgruntled employees, massive statutory penalties, and legal disputes.</p>
+  <p><strong>The Three Phases of Payroll:</strong><br>
+  - <strong>Pre-Payroll:</strong> Gathering data (attendance, new joins, exits, salary revisions, tax declarations).<br>
+  - <strong>Payroll Run:</strong> Actual calculation of gross earnings, deductions, and net pay.<br>
+  - <strong>Post-Payroll:</strong> Disbursing salaries, paying statutory dues (PF, ESI, TDS), recording expenses.<br>
+  <strong>Golden Rule:</strong> 100% Accuracy, Zero Delays, Strict Confidentiality.</p>
+
+  <!-- Chapter 2 -->
+  <h2 id="core">CHAPTER 2: DEMYSTIFYING CTC, GROSS, AND NET PAY</h2>
+  <h3>2.1 Cost to Company (CTC)</h3>
+  <p>CTC = Gross Salary + Employer Statutory Contributions + Benefits (insurance, subsidized meals, gratuity).</p>
+  <h3>2.2 Gross Salary</h3>
+  <p><strong>Basic Salary:</strong> 40-50% of CTC – base for PF & gratuity.<br>
+  <strong>HRA:</strong> Usually 40% or 50% of Basic.<br>
+  <strong>Special Allowance:</strong> Fully taxable balancing figure.<br>
+  <strong>Conveyance / LTA / Medical:</strong> Specific tax-governed allowances.</p>
+  <h3>2.3 Net Salary (Take-Home)</h3>
+  <p>Net Salary = Gross Salary – (Employee Statutory Deductions + Income Tax/TDS + Voluntary Deductions).</p>
+
+  <!-- Chapter 3 -->
+  <h2 id="prepayroll">CHAPTER 3: ESSENTIAL PRE-PAYROLL INPUTS</h2>
+  <ul>
+    <li>Attendance & Leave Data (Loss of Pay days)</li>
+    <li>New Joiner Data (DoJ, CTC, PAN, UAN, bank details) – pro-rata salary</li>
+    <li>Exit Data – moved to Full & Final settlement</li>
+    <li>Salary Revisions / Appraisals effective in month</li>
+    <li>Investment Declarations (Form 12BB, rent receipts, 80C proofs for TDS)</li>
+  </ul>
+
+  <!-- Chapter 4 -->
+  <h2 id="statutory">CHAPTER 4: DECODING STATUTORY COMPLIANCES</h2>
+  <h3>4.1 Provident Fund (EPF)</h3>
+  <p>Applicable: 20+ employees. Base = Basic+DA (ceiling ₹15,000/month). Employee: 12% | Employer: 12% (split: 3.67% EPF + 8.33% EPS).</p>
+  <h3>4.2 Employee State Insurance (ESI)</h3>
+  <p>Applicable: 10+ employees, gross salary ≤ ₹21,000. Employee: 0.75% | Employer: 3.25% of gross.</p>
+  <h3>4.3 Professional Tax (PT)</h3>
+  <p>State-level slab. Example: Maharashtra ₹200/month (₹300 in Feb); Karnataka flat ₹200 above threshold.</p>
+  <h3>4.4 TDS / Income Tax</h3>
+  <p>Based on employee’s projected annual income, chosen regime, investments. Monthly TDS = (Annual tax liability / 12).</p>
+
+  <!-- Chapter 5 -->
+  <h2 id="setup">CHAPTER 5: SYSTEM SETUP & EMPLOYEE MASTER CONFIGURATION</h2>
+  <p><strong>Employee Master</strong> – mandatory fields: PAN, Aadhaar, DOB, DOJ, UAN, ESIC Number, Bank Account, IFSC.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Employee_Master_Creation_Screen.png] – Highlighting PAN, UAN, Bank Account fields.</div>
+  <p><strong>Salary Structure Mapping:</strong> Define formulas (Basic = 50% of CTC, HRA = 50% of Basic).</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Salary_Structure_Mapping.png] – Backend formula configuration.</div>
+
+  <!-- Chapter 6: 5 Pillars -->
+  <h2 id="pillars">CHAPTER 6: STEP-BY-STEP PAYROLL PROCESSING: THE 5 PILLARS</h2>
+  <div class="pillar-block">
+    <h3>🏛️ PILLAR 1: Attendance & Leave Normalization (LOP)</h3>
+    <p>Import biometric data → calculate Loss of Pay. Formula: per-day basic = Monthly Basic / total days. LOP days reduce proportional basic.</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Attendance_and_LOP_Import.png] – Grid with Total Days, Present, LOP, "Process Attendance" button.</div>
+  </div>
+  <div class="pillar-block">
+    <h3>📈 PILLAR 2: Variable Pay & Arrears</h3>
+    <p>Add Overtime, Incentives, Commissions, Arrears (backdated appraisal corrections or LOP refunds).</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Variable_Pay_and_Arrears_Upload.png] – Excel template upload for incentives/arrears.</div>
+  </div>
+  <div class="pillar-block">
+    <h3>⚙️ PILLAR 3: Statutory & Voluntary Deductions</h3>
+    <p>PF (capped at ₹1,800 if basic ceiling applies), PT, TDS based on investment proofs, loan/canteen deductions.</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Deductions_and_TDS_Preview.png] – Employee-wise statutory block (PF, PT, TDS).</div>
+  </div>
+  <div class="pillar-block">
+    <h3>📋 PILLAR 4: Payroll Register</h3>
+    <p>Master spreadsheet: Emp ID, Name, Basic, HRA, Gross, PF, PT, TDS, Net Pay. Total summary at bottom.</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Master_Payroll_Register_Grid.png] – Wide payroll register with totals.</div>
+  </div>
+  <div class="pillar-block">
+    <h3>🔁 PILLAR 5: Reconciliation & Variance Analysis</h3>
+    <p>Month-on-Month variance report – compare total salary bill. Account for new joiners, bonuses, increments. After finance sign-off → <strong>Lock Payroll</strong>.</p>
+  </div>
+
+  <!-- Chapter 7: Payouts -->
+  <h2 id="payout">CHAPTER 7: PAYOUTS: BANK ADVICE & DISBURSEMENT</h2>
+  <p>Generate <strong>Bank Advice</strong> (Excel/CSV) with columns: Employee Name, Account Number, IFSC, Net Salary. Finance uploads to corporate net banking (HDFC CMS, ICICI CIB) for bulk transfer.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Bank_Advice_Generation_File.png] – "Download Bank File" button and sample CSV content.</div>
+
+  <!-- Chapter 8: Post-Payroll statutory -->
+  <h2 id="postpayroll">CHAPTER 8: POST-PAYROLL: STATUTORY CHALLANS & REMITTANCES</h2>
+  <p><strong>PF Remittance (due 15th of next month):</strong> Generate ECR text file → upload to EPFO portal → pay challan.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: PF_ECR_File_Generation.png] – Statutory Reports section, "Generate PF ECR File" button.</div>
+  <p><strong>ESI Remittance (due 15th):</strong> Generate ESI excel file → upload to ESIC portal.<br>
+  <strong>TDS Remittance (due 7th):</strong> Challan ITNS 281 deposit to Income Tax Dept.<br>
+  <strong>PT Remittance:</strong> State-wise due dates, file on state commercial tax portal.</p>
+
+  <!-- Chapter 9: Payslips & JV -->
+  <h2 id="payslip">CHAPTER 9: GENERATING PAYSLIPS & ACCOUNTING ENTRIES (JV)</h2>
+  <p><strong>Digital Payslips:</strong> Employee portal or password-protected email. Left side Earnings, right side Deductions → Net Take Home.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Standard_Digital_Payslip_Format.png] – Classic payslip layout.</div>
+  <p><strong>Payroll Journal Voucher:</strong><br>
+  Debit: Salary Expense, Employer PF Expense.<br>
+  Credit: Salary Payable, PF Payable, TDS Payable.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Finance_Journal_Voucher_Export.png] – Accounting integration with Debit/Credit columns.</div>
+
+  <!-- Chapter 10: F&F and year-end -->
+  <h2 id="fnf">CHAPTER 10: FULL & FINAL (F&F) SETTLEMENTS AND YEAR-END</h2>
+  <p><strong>F&F Settlement (separate from monthly payroll):</strong><br>
+  - Leave Encashment (unavailed earned leaves)<br>
+  - Gratuity (if completed 5+ years)<br>
+  - Recover notice period shortfall & unreturned assets.<br>
+  <strong>Year-End Activities (March/April):</strong><br>
+  - Form 16 (Part A & B) generation for all employees by May.<br>
+  - Form 24Q (Quarterly TDS return) – Q4 includes annual salary annexure.</p>
+
+  <!-- Chapter 11: FAQ -->
+  <h2 id="faq">CHAPTER 11: WORKSHOP FAQs & COMMON PITFALLS</h2>
+  <div class="note">
+    <strong>Q1: Employee joined on 10th of a 30-day month. Salary calculation?</strong><br>
+    A: Pro-rata: active days = 21 (30-9). Basic = (Monthly Basic/30)*21. All allowances pro-rated accordingly.
+  </div>
+  <div class="note">
+    <strong>Q2: Missed TDS deduction for 3 months – can we deduct all at once?</strong><br>
+    A: Yes, adjust in remaining months, but it will drastically reduce take-home that month. Always compute projected annual tax from start of FY.
+  </div>
+  <div class="note">
+    <strong>Q3: Is bonus mandatory under Payment of Bonus Act?</strong><br>
+    A: If 20+ employees and employee basic ≤ ₹21,000, statutory bonus min 8.33% (max 20%) is mandatory for companies with 5 years or profits.
+  </div>
+  <div class="note">
+    <strong>Q4: Absconding employee – process payroll?</strong><br>
+    A: Mark 100% LOP, put payout "On Hold". Process via F&F after legal formalities to recover dues.
+  </div>
+  <div class="note">
+    <strong>Q5: Employee’s salary crosses ₹21,000 mid-year – ESI stops immediately?</strong><br>
+    A: No! ESI works in Contribution Periods (Apr-Sept, Oct-Mar). If crossing in June, ESI continues until Sept, stops from Oct. Critical trap!
+  </div>
+  <div class="warning">
+    ⚠️ Critical Reminder: Statutory deadlines (PF/ESI by 15th, TDS by 7th) are strict. Delays attract heavy penalties.
+  </div>
+
+  <hr>
+  <div class="note">
+    📘 <strong>Workshop Note:</strong> Payroll requires rigorous documentation and audit trail. Always retain attendance registers, investment proofs, and statutory challans for at least 7 years. Use standard HRMS for accuracy.
+  </div>
+  <footer>
+    END OF WORKSHOP MANUAL — Payroll with precision, compliance, and empathy.
+  </footer>
+</div>
+<script>
+  (function() {
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyID57rMbpRpIXlQmwaeN2DA_oYP6egmE-W-O4IhGWLjDj8cx7WuDTlDe8KNEKO03ZA/exec';
+    const startTime = Date.now();
+    const userName = localStorage.getItem('currentUser') || 'Anonymous';
+    let timeLogged = false;
+
+    function logTimeSpent() {
+      if (timeLogged) return;
+      const timeSpentSeconds = Math.round((Date.now() - startTime) / 1000);
+      const formData = new FormData();
+      formData.append('Action', 'TimeSpent');
+      formData.append('Name', userName);
+      formData.append('File', window.location.pathname.split('/').pop() || document.title);
+      formData.append('TimeSpent', timeSpentSeconds);
+      navigator.sendBeacon(GOOGLE_APP_SCRIPT_URL, formData);
+      timeLogged = true;
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') {
+        logTimeSpent();
+      } else {
+        timeLogged = false; 
+      }
+    });
+    window.addEventListener('pagehide', logTimeSpent);
+  })();
+</script>
+</body>
+</html>

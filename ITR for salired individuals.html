@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ITR Filing Workshop Manual | Salaried Individuals</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+    }
+    h1 {
+        text-align: center;
+        color: #004080;
+        border-bottom: 2px solid #004080;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #00509e;
+        margin-top: 40px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #0066cc;
+        margin-top: 25px;
+    }
+    /* Mapped classes from old structures to composition scheme classes */
+    .metadata, .meta, .doc-meta {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+        padding: 15px;
+        background-color: #f4f8fc;
+        border-radius: 5px;
+    }
+    .toc {
+        background-color: #f9f9f9;
+        padding: 20px 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    .toc ol, .toc ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    .toc li {
+        margin-bottom: 8px;
+    }
+    .screenshot, .screenshot-card, .screenshot-placeholder {
+        background-color: #fcfcfc;
+        border: 2px dashed #b3b3b3;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+        font-style: italic;
+        color: #555;
+        border-radius: 5px;
+    }
+    .screenshot strong, .screenshot-card strong, .screenshot-placeholder strong {
+        display: block;
+        margin-bottom: 10px;
+        color: #d9534f;
+        font-style: normal;
+    }
+    .note, .warning {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 10px 15px;
+        margin: 15px 0;
+        font-size: 0.95em;
+    }
+    ul, ol {
+        margin-bottom: 20px;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    .faq-q {
+        font-weight: bold;
+        color: #004080;
+        margin-top: 20px;
+    }
+    .faq-a {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>WORKSHOP MANUAL:<br>MASTERING INCOME TAX RETURN (ITR) FILING FOR SALARIED INDIVIDUALS</h1>
+  <div class="doc-meta">
+    <strong>Edition:</strong> Comprehensive Deep-Dive<br>
+    <strong>Target Audience:</strong> Salaried Employees, HR Professionals, Finance Students, Corporate Training Seminars<br>
+    <strong>Assessment Year:</strong> 2024-25 (FY 2023-24)
+  </div>
+
+  <!-- Table of contents (anchor links) -->
+  <div class="toc">
+    <strong>📑 CONTENTS</strong>
+    <ul>
+      <li><a href="#intro">1. Introduction & Legal Mandate</a></li>
+      <li><a href="#regimes">2. Tax Regimes & Slabs (AY 2024-25)</a></li>
+      <li><a href="#checklist">3. Pre-Filing Document Checklist</a></li>
+      <li><a href="#forms26as">4. Decoding Form 16, 26AS, AIS & TIS</a></li>
+      <li><a href="#portal">5. Portal Registration & Profile Setup</a></li>
+      <li><a href="#itrform">6. Selecting the Right ITR Form</a></li>
+      <li><a href="#itr1">7. Step-by-Step ITR-1 Filing: The 5 Pillars</a></li>
+      <li><a href="#validation">8. Validation, Tax Payment & Submission</a></li>
+      <li><a href="#everify">9. The Crucial Final Step: E-Verification</a></li>
+      <li><a href="#postfiling">10. Post-Filing: Intimations, Revisions & Refunds</a></li>
+      <li><a href="#faq">11. Workshop FAQs & Common Pitfalls</a></li>
+    </ul>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <h2 id="intro">CHAPTER 1: INTRODUCTION & THE LEGAL MANDATE</h2>
+  <p>Filing an Income Tax Return (ITR) is not merely about claiming a refund; it is a mandatory legal declaration of your annual earnings to the Government of India under Section 139(1) of the Income Tax Act, 1961. For salaried individuals, the employer is legally obligated to deduct Tax Deducted at Source (TDS) based on the employee's declared investments and deposit it with the government. However, the employer's calculation is only an estimate based on what you told them. Filing the ITR is your final, personal reconciliation with the government.</p>
+  <p><strong>Consequences of Non-Filing or Late Filing:</strong> The standard deadline for salaried individuals whose accounts do not require an audit is July 31st of the Assessment Year.<br>
+  - <strong>Late Fees (Section 234F):</strong> ₹5,000 (₹1,000 if total income below ₹5 Lakhs).<br>
+  - <strong>Penal Interest (Section 234A):</strong> 1% interest per month on outstanding tax.<br>
+  - <strong>Loss of Benefits:</strong> Cannot carry forward certain losses, higher future TDS rates.</p>
+
+  <h2 id="regimes">CHAPTER 2: DEMYSTIFYING TAX REGIMES & SLABS (AY 2024-25)</h2>
+  <p><strong>Financial Year 2023-24 (Income: 1 Apr 2023 – 31 Mar 2024) → Assessment Year 2024-25</strong></p>
+  <h3>2.1 The Default: New Tax Regime (Section 115BAC)</h3>
+  <p>Starting AY 2024-25, the New Tax Regime is the default. Pros: lower slabs, simpler. Cons: most deductions forfeited (80C, 80D, HRA, LTA, home loan interest for self-occupied property). Allowed: Standard Deduction ₹50,000, employer NPS [80CCD(2)]. Rebate u/s 87A: income up to ₹7,00,000 = zero tax.</p>
+  <table class="tax-table">
+    <thead><tr><th>Income Slab (₹)</th><th>Tax Rate</th></tr></thead>
+    <tbody>
+      <tr><td>0 – 3,00,000</td><td>Nil</td></tr>
+      <tr><td>3,00,001 – 6,00,000</td><td>5%</td></tr>
+      <tr><td>6,00,001 – 9,00,000</td><td>10%</td></tr>
+      <tr><td>9,00,001 – 12,00,000</td><td>15%</td></tr>
+      <tr><td>12,00,001 – 15,00,000</td><td>20%</td></tr>
+      <tr><td>Above 15,00,000</td><td>30%</td></tr>
+    </tbody>
+  </table>
+  <h3>2.2 The Alternative: Old Tax Regime</h3>
+  <p>You must consciously “opt-out” of the New Regime on the portal. Highly beneficial if HRA, home loans, max 80C/80D investments. Rebate u/s 87A: income up to ₹5,00,000 = zero tax.</p>
+  <table class="tax-table">
+    <thead><tr><th>Income Slab (₹) – Age < 60</th><th>Tax Rate</th></tr></thead>
+    <tbody>
+      <tr><td>0 – 2,50,000</td><td>Nil</td></tr>
+      <tr><td>2,50,001 – 5,00,000</td><td>5%</td></tr>
+      <tr><td>5,00,001 – 10,00,000</td><td>20%</td></tr>
+      <tr><td>Above 10,00,000</td><td>30%</td></tr>
+    </tbody>
+  </table>
+  <div class="note">✅ Workshop Tip: Both regimes attract 4% Health & Education Cess on final tax amount.</div>
+
+  <h2 id="checklist">CHAPTER 3: ESSENTIAL PRE-FILING DOCUMENT CHECKLIST</h2>
+  <ul>
+    <li>PAN Card & Aadhaar Card (ensure linked – unlinked PAN becomes inoperative)</li>
+    <li>Form 16 (Part A & B) from employer(s)</li>
+    <li>Bank Statements (Apr 1 – Mar 31 of FY)</li>
+    <li>Form 16A/16B/16C (TDS on interest, rent, etc.)</li>
+    <li>Investment proofs: Rent receipts & landlord’s PAN (if rent > ₹1L/year), Home loan interest certificate, Life/Health insurance premium receipts, Donation receipts (with donee’s PAN for 80G)</li>
+  </ul>
+
+  <h2 id="forms26as">CHAPTER 4: DECODING FORM 16, 26AS, AIS, AND TIS</h2>
+  <p><strong>Form 16:</strong> Part A – TAN, PAN, month-wise TDS summary. Part B – salary breakdown, exemptions, net taxable salary.<br>
+  <strong>Form 26AS:</strong> Official tax ledger showing all TDS/TCS against your PAN. <strong>Golden Rule:</strong> If TDS is in Form 16 but not in 26AS, government will NOT give credit.<br>
+  <strong>AIS (Annual Information Statement):</strong> Detailed transaction-level surveillance (mutual funds, dividends, interest).<br>
+  <strong>TIS (Taxpayer Information Summary):</strong> Summarized version; portal uses TIS to pre-fill ITR.</p>
+
+  <h2 id="portal">CHAPTER 5: PORTAL REGISTRATION, LOGIN & PROFILE SETUP</h2>
+  <ol>
+    <li>Visit <strong>www.incometax.gov.in</strong> → Click "Login".</li>
+    <li>Enter PAN, password (Forgot password? Reset via Aadhaar OTP).</li>
+  </ol>
+  <div class="screenshot-placeholder">📸 [Screenshot: Portal_Login_Screen.png] – Login interface with PAN/Aadhaar fields.</div>
+  <p><strong>Pre-Validation of Bank Account (for refunds):</strong><br>
+  Profile → My Bank Accounts → Add Bank Account (Account number, IFSC, type) → system validates. Look for green “Validated and EVC Enabled” tick.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Bank_Pre_Validation_Screen.png] – "Validated and EVC Enabled" badge.</div>
+
+  <h2 id="itrform">CHAPTER 6: SELECTING THE RIGHT ITR FORM</h2>
+  <p><strong>ITR-1 (Sahaj):</strong> For resident individuals, total income up to ₹50 Lakhs, income from Salary, ONE house property, and Other Sources (interest, dividends, agri up to ₹5k).<br>
+  <strong>ITR-2:</strong> Income > ₹50 Lakhs, capital gains, multiple house properties, directorship/unlisted shares.<br>
+  <strong>ITR-3/ITR-4:</strong> Business / presumptive taxation. <strong>This workshop focuses strictly on ITR-1.</strong></p>
+
+  <h2 id="itr1">CHAPTER 7: STEP-BY-STEP ITR-1 FILING: THE 5 PILLARS</h2>
+  <p><strong>Initiating:</strong> e-File → Income Tax Returns → File Income Tax Return → Select AY 2024-25, Mode: Online, Individual, ITR-1 → "Let's Get Started".</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: Start_New_Filing_ITR1.png] – Select AY and ITR-1 option.</div>
+
+  <div class="pillar-block">
+    <h3>🏛️ PILLAR 1: Personal Information & Bank Linking</h3>
+    <p>Verify demographics, name matches PAN. Nature of Employment: For private sector select "Others". Filing section: 139(1) (on time) / 139(4) (belated) / 139(5) (revised).<br>
+    <strong>Regime Selection (Crucial):</strong> "Do you wish to exercise option u/s 115BAC(6) of opting out of New Tax Regime?" → <strong>YES</strong> = Old Regime, <strong>NO</strong> = New Regime (default).</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Personal_Info_Nature_of_Employment.png] – dropdown & regime radio buttons.</div>
+    <p>Bank Details: Select pre-validated account for refund credit → Confirm.</p>
+  </div>
+
+  <div class="pillar-block">
+    <h3>📊 PILLAR 2: Gross Total Income</h3>
+    <p><strong>Part A: Salary</strong> – Compare pre-filled numbers with Form 16 Part B. Exempt allowances: HRA (10(13A)), LTA (10(5)), Standard Deduction ₹50,000 auto-applied, Professional Tax u/s 16(iii).</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Editing_Salary_Exemptions.png] – Exempt allowances dropdown showing HRA.</div>
+    <p><strong>Part B: House Property</strong><br>
+    - Self-occupied: enter home loan interest (max ₹2,00,000 under Old Regime).<br>
+    - Let-out: gross rent received, 30% deduction auto, municipal taxes, full interest (loss set-off capped ₹2,00,000).<br>
+    <strong>Part C: Other Sources</strong> – Pre-filled via TIS. Declare savings/FD interest, dividends, family pension. Verify bank statements.</p>
+  </div>
+
+  <div class="pillar-block">
+    <h3>💰 PILLAR 3: Total Deductions (Chapter VI-A)</h3>
+    <p><strong>⚠️ Important:</strong> If you selected New Regime (opted NOT to opt out), most deductions are not allowed. For Old Regime, manually claim:<br>
+    <strong>Section 80C (max ₹1,50,000):</strong> EPF, PPF, ELSS, LIC, tuition fees, home loan principal.<br>
+    <strong>80D (Health Insurance):</strong> Self/family up to ₹25,000; Parents (senior) up to ₹50,000. Preventive health checkup ₹5,000 (within limit).<br>
+    <strong>80E:</strong> Education loan interest (no upper limit).<br>
+    <strong>80TTA:</strong> Savings account interest up to ₹10,000.<br>
+    <strong>80TTB:</strong> Senior citizens: up to ₹50,000 on all interest.<br>
+    <strong>80G:</strong> Donations (e.g., PM Cares 100%, NGOs 50%) – require donee PAN.</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Chapter_VIA_Deductions_Menu.png] – Deductions checklist for manual entry.</div>
+  </div>
+
+  <div class="pillar-block">
+    <h3>🧾 PILLAR 4: Tax Paid & Reconciliation</h3>
+    <p>Read-only summary: TDS on Salary (match Form 16 Part A), TDS on other income (Form 16A), TCS, Advance Tax / Self-Assessment Tax payments. <strong>Troubleshooting:</strong> If employer TDS missing in this schedule, DO NOT proceed – your employer hasn’t filed TDS return, will cause demand notice.</p>
+    <div class="screenshot-placeholder">📸 [Screenshot: Tax_Paid_TDS_Summary.png] – TDS from salary and other sources with deductor TAN details.</div>
+  </div>
+
+  <div class="pillar-block">
+    <h3>🧮 PILLAR 5: Total Tax Liability & Calculations</h3>
+    <p>Automated calculator: Gross Total Income – Deductions = Taxable Income. Tax computed as per chosen regime slab. Rebate u/s 87A (if income ≤ ₹5L Old / ≤ ₹7L New) reduces tax to zero. 4% Cess added. Net Tax Liability = Gross Tax – Tax Paid (TDS). Confirm.</p>
+  </div>
+
+  <h2 id="validation">CHAPTER 8: VALIDATION, TAX PAYMENT & SUBMISSION</h2>
+  <p>All 5 pillars show green checkmark → Click "Proceed". Assessment summary shows:</p>
+  <ul>
+    <li><strong>Scenario A (Refund):</strong> "You are eligible for a Refund of ₹X" (TDS > Liability)</li>
+    <li><strong>Scenario B (Tax Demand):</strong> "You have a Tax Demand of ₹X" (Liability > TDS) → Click "Pay Now", go to e-Pay Tax, select 'Self-Assessment Tax (300)'. Pay via net banking/UPI. Download challan (BSR Code, serial no, date) → return to Pillar 4, enter challan details → recompute → demand zero.</li>
+  </ul>
+  <div class="screenshot-placeholder">📸 [Screenshot: Tax_Demand_or_Refund_Summary.png] – Red/Green summary with Pay Now button.</div>
+  <p>Click Preview Return → declaration checkbox → place → Proceed to Validation. "Validation Successful" → Proceed to Verification.</p>
+
+  <h2 id="everify">CHAPTER 9: THE CRUCIAL FINAL STEP: E-VERIFICATION</h2>
+  <div class="warning">⚠️ LEGAL WARNING: An ITR is invalid and treated as "Not Filed" until verified within 30 days of submission.</div>
+  <p>Select "e-Verify Now" (recommended). Methods: Aadhaar OTP (easiest, must link mobile), Net Banking, Bank Account EVC, Demat EVC. Choose Aadhaar OTP → consent box → Generate Aadhaar OTP → enter 6-digit OTP → Validate.</p>
+  <div class="screenshot-placeholder">📸 [Screenshot: E_Verify_Options_Screen.png] – e-Verify now vs later options.</div>
+  <div class="screenshot-placeholder">📸 [Screenshot: Filing_Success_Confirmation.png] – Success screen with Acknowledgement Number (ITR-V).</div>
+  <p>Download ITR-V (Acknowledgement) PDF for records.</p>
+
+  <h2 id="postfiling">CHAPTER 10: POST-FILING: INTIMATIONS, REVISIONS, AND REFUNDS</h2>
+  <p><strong>Processing by CPC Bengaluru:</strong> Cross-checks ITR with 26AS & AIS.<br>
+  <strong>Intimation u/s 143(1):</strong> Password-protected PDF (PAN+DOB in lowercase).<br>
+  <strong>Defective Return u/s 139(9):</strong> 15 days to correct.<br>
+  <strong>Tracking Refunds:</strong> Login → e-File → View Filed Returns. Status: Submitted → Verified → Processing → Processed with Refund Due → Refund Issued (NEFT to pre-validated bank).<br>
+  <strong>Revised Return u/s 139(5):</strong> Start new filing → in Personal Info select 139(5) – Revised Return → enter original Acknowledgement number & date → fix errors → submit & e-verify again. Revised return replaces original.</p>
+
+  <h2 id="faq">CHAPTER 11: WORKSHOP FAQs & COMMON PITFALLS</h2>
+  <div class="note">
+    <strong>Q1: I changed jobs mid-year, two Form 16s. What do I do?</strong><br>
+    A: Aggregate Gross Salary from both. Both employers applied basic exemption separately – you will likely owe Self-Assessment Tax. Calculate and pay before filing.
+  </div>
+  <div class="note">
+    <strong>Q2: HR rejected rent receipts. Can I still claim HRA?</strong><br>
+    A: Yes. In Old Regime, under Pillar 2 salary exemptions, manually enter HRA exemption (calculated: least of HRA received, 50% of basic (metro)/40% non-metro, rent paid minus 10% basic). Keep valid rent receipts & landlord PAN.
+  </div>
+  <div class="note">
+    <strong>Q3: I traded shares (profit ₹5,000). Can I file ITR-1?</strong><br>
+    A: No. Capital gains require ITR-2. Filing ITR-1 will lead to defective return notice.
+  </div>
+  <div class="note">
+    <strong>Q4: Do I need to declare EPF interest?</strong><br>
+    A: Interest on EPF up to contributions of ₹2.5L/year is exempt. However, exempt income should be reported in "Exempt Income" schedule.
+  </div>
+  <div class="note">
+    <strong>Q5: Aadhaar mobile number not linked for OTP?</strong><br>
+    A: Either update mobile at Aadhaar Seva Kendra or use Net Banking e-verification (most major banks have “Income Tax e-Filing” link under Tax services) – verifies return without OTP.
+  </div>
+
+  <hr>
+  <div class="note">
+    📘 <strong>Note to Attendees:</strong> Taxation laws are subject to change via the Annual Finance Act. Always verify current slab rates and limits for the specific Assessment Year you are filing. This manual is based on AY 2024-25 provisions.
+  </div>
+  <footer>
+    END OF WORKSHOP MANUAL — Keep ITR-V safe. File on time. Stay compliant.
+  </footer>
+</div>
+<script>
+  (function() {
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyID57rMbpRpIXlQmwaeN2DA_oYP6egmE-W-O4IhGWLjDj8cx7WuDTlDe8KNEKO03ZA/exec';
+    const startTime = Date.now();
+    const userName = localStorage.getItem('currentUser') || 'Anonymous';
+    let timeLogged = false;
+
+    function logTimeSpent() {
+      if (timeLogged) return;
+      const timeSpentSeconds = Math.round((Date.now() - startTime) / 1000);
+      const formData = new FormData();
+      formData.append('Action', 'TimeSpent');
+      formData.append('Name', userName);
+      formData.append('File', window.location.pathname.split('/').pop() || document.title);
+      formData.append('TimeSpent', timeSpentSeconds);
+      navigator.sendBeacon(GOOGLE_APP_SCRIPT_URL, formData);
+      timeLogged = true;
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden') {
+        logTimeSpent();
+      } else {
+        timeLogged = false; 
+      }
+    });
+    window.addEventListener('pagehide', logTimeSpent);
+  })();
+</script>
+</body>
+</html>
