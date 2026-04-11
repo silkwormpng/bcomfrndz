@@ -1,252 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BFJD2H2EH"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-8BFJD2H2EH');
-    </script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HOME - Bcom 5th </title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="index.css" />
-   
-  </head>
-  <body>
-    <main>
-      <!-- Header Card -->
-      <header class="header-card card">
-        <img src="9.png" alt="Abstract background image" />
-      </header>
-      <!-- Dedication card for BCom 5th Sem -->
-      <section class="dedication-card card">
-        <div class="dedication-content">Dedicated to B.Com 5th Sem</div>
-      </section>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Portal | Manjeet Enterprises</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
 
-      <!-- Owner/Feature Card -->
-      <section class="feature-card card owner-card">
-        <a
-          class="card-link"
-          href="https://www.instagram.com/manxjeetagain"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Manjeet's Instagram"
-        ></a>
-        <img
-          src="owner pic2.png"
-          alt="Manjeet, owner of Manjeet Enterprises"
-          class="feature-image"
-        />
-        <h2>Manjeet Enterprises</h2>
-        <p>Your one-stop destination for commerce study materials.</p>
-        <a
-          class="follow-pill"
-          href="https://www.instagram.com/manxjeetagain"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Follow @manxjeetagain"
-          >Follow @manxjeetagain</a
-        >
-      </section>
+    :root {
+      --bg-color: #050505;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --accent: #d4af37;
+      /* subtle gold */
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
 
-<!-- Subject Cards List -->
-      <section class="card-list">
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="6ut.html"
-            aria-label="Open PDS"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="6.png" alt="" />
-            </div>
-            <p class="subject-name">SEM 6th Unit Test</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* Magazine Style Brand Typography */
+    .brand {
+      margin-bottom: 4rem;
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .brand h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .brand h1 .top-line {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .brand h1 .capital-m {
+      font-size: 5.5rem;
+      font-weight: 700;
+      line-height: 0.8;
+      font-style: italic;
+    }
+
+    .brand h1 .rest-of-word {
+      text-transform: lowercase;
+      font-style: italic;
+      font-size: 4.5rem;
+      line-height: 0.9;
+    }
+
+    .brand h1 .copyright {
+      font-size: 1.2rem;
+      font-style: normal;
+      margin-left: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--accent);
+      vertical-align: super;
+    }
+
+    .brand h1 .enterprises {
+      font-size: 2rem;
+      letter-spacing: 12px;
+      margin-top: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      margin-left: 12px;
+      /* optical alignment */
+    }
+
+    .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 8px;
+      color: var(--text-muted);
+      margin-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+      text-transform: uppercase;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      color: #000000;
+      width: 90%;
+      max-width: 450px;
+      padding: 2.5rem;
+      position: relative;
+      transform: translateY(30px);
+      transition: all 0.4s ease;
+      text-align: center;
+      border-radius: 4px;
+      margin-bottom: max(env(safe-area-inset-bottom), 20px);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    .lock-icon {
+      width: 50px;
+      height: 50px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      color: #fff;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #000 0%, #000 70%, #d4af37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #000;
+    }
+
+    .modal-subtitle {
+      font-size: 0.75rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+    }
+
+    .input-label {
+      text-align: left;
+      display: block;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .modal-input {
+      width: 100%;
+      border: 1px solid #000;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 1.5rem;
+      outline: none;
+      color: #333;
+    }
+
+    .modal-input:focus {
+      border-color: #d4af37;
+    }
+
+    .steps-box {
+      background: #efefef;
+      border: 1px solid #000;
+      padding: 1rem;
+      text-align: left;
+      font-size: 0.8rem;
+      font-family: monospace;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .share-btn {
+      width: 100%;
+      border: 1px solid #000;
+      background: #fff;
+      color: #666;
+      padding: 1.2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    .share-btn:hover {
+      background: #f7f7f7;
+      color: #000;
+      border-color: #d4af37;
+    }
+
+    .share-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Links Section */
+    .links-section {
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .file-list {
+      list-style: none;
+      text-align: left;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    .file-list li {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .file-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 1rem;
+      color: var(--text-main);
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .file-list a:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--accent);
+      padding-left: 1.5rem;
+    }
+
+    .file-list a::after {
+      content: '→';
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s;
+    }
+
+    .file-list a:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="brand">
+      <h1>
+        <div class="top-line">
+          <span class="capital-m">M</span>
+          <span class="rest-of-word">anjeet</span>
+          <span class="copyright">&copy;</span>
         </div>
+        <div class="enterprises">ENTERPRISES</div>
+      </h1>
+      <div class="subtitle">WRITE ANY 3 TOPICS TO COVER 40 PAGES</div>
+    </div>
 
+    <!-- Workshop Files Directory -->
+    <div class="links-section" id="linksSection">
+      <ul class="file-list">
+        <li>
+          <a href="applying for pan.html">
+            <span>Applying for PAN</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="billinginvoice.html">
+            <span>Billing & Invoice System</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="TDS accounting.html">
+            <span>TDS Accounting</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="GST composition scheme.html">
+            <span>GST Composition Scheme</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="ITR for salired individuals.html">
+            <span>ITR for Salaried Individuals</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="accounting in gst.html">
+            <span>Accounting in GST</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="payrool processing.html">
+            <span>Payroll Processing</span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="reverse charge machanism.html">
+            <span>Reverse Charge Mechanism</span>
+          </a>
+          
+        </li>
+      </ul>
+    </div>
 
+    <!-- Contact Footer -->
+    <div
+      style="text-align: center; margin-top: 60px; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-size: 0.95rem; letter-spacing: 0.05em; color: #aaaaaa;">
+      Want something else? Feel free to ask.<br>
+      <a href="https://ig.me/m/manxjeetagain" target="_blank"
+        style="display: inline-block; margin-top: 20px; color: #ffffff; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 50px; background: rgba(16, 38, 82, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(80, 140, 255, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1); transition: all 0.3s ease;">
+        <svg style="width: 18px; height: 18px; vertical-align: middle; margin-right: 8px; margin-top: -2px;"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+        </svg>
+        Message me on Instagram
+      </a>
+    </div>
 
-      
-      <!-- Subject Cards List -->
-      <section class="card-list">
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="PDS.html"
-            aria-label="Open PDS"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="simpsons.gif" alt="" />
-            </div>
-            <p class="subject-name">Predicted PAPERs</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+  </div> <!-- End container -->
 
+  <!-- Unlock Modal -->
+  <div class="modal-overlay" id="unlockModal">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closeModal()">CLOSE [X]</div>
+      <div class="lock-icon">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <div class="modal-title">UNLOCK ACCESS</div>
+      <div class="modal-subtitle">ENTER YOUR NAME AND SHARE WITH 3 FRIENDS TO UNLOCK.</div>
 
-      <!-- Subject Cards List -->
-      <section class="card-list">
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="direct tax.html"
-            aria-label="Open Direct tax"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="img direct tax.jpg" alt="" />
-            </div>
-            <p class="subject-name">Direct Tax</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+      <label class="input-label">YOUR NAME</label>
+      <input type="text" class="modal-input" id="userNameModal" placeholder="e.g. Manjeet Pathania">
 
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="auditing.html"
-            aria-label="Open Auditing"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="img audit.jpg" alt="" />
-            </div>
-            <p class="subject-name">Auditing</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+      <div class="steps-box">
+        STEP 1: ENTER YOUR NAME ABOVE.<br>
+        STEP 2: TAP THE BUTTON BELOW.<br>
+        STEP 3: SHARE WITH 3 FRIENDS ON WHATSAPP.<br>
+        STEP 4: COME BACK TO DOWNLOAD INSTANTLY!
+      </div>
 
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="account.html"
-            aria-label="Open Management account"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="img account.png" alt="" />
-            </div>
-            <p class="subject-name">Management Account</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+      <button class="share-btn" onclick="shareAndUnlock()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92zM18 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 7.02c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
+        </svg>
+        SHARE & UNLOCK
+      </button>
+    </div>
+  </div>
 
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="banking.html"
-            aria-label="Open Banking services"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="ponkesol-ponke.gif" alt="" />
-            </div>
-            <p class="subject-name">Banking Services</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+  <script>
+    // =====================================================================
+    // 🔴 GOOGLE SHEETS WEB APP URL
+    // =====================================================================
+    const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyID57rMbpRpIXlQmwaeN2DA_oYP6egmE-W-O4IhGWLjDj8cx7WuDTlDe8KNEKO03ZA/exec';
+    // =====================================================================
 
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="punjabi.html"
-            aria-label="Open Panjabi"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="img punjabi.jpg" alt="" />
-            </div>
-            <p class="subject-name">Punjabi</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+    const modal = document.getElementById('unlockModal');
+    let currentPendingFile = '';
 
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="english.html"
-            aria-label="Open English"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="img english.jpg" alt="" />
-            </div>
-            <p class="subject-name">English</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
+    // Initialize unlocked files list
+    let unlockedFiles = JSON.parse(localStorage.getItem('manjeet_unlockedFiles') || '[]');
 
-        <div class="subject-card card">
-          <a
-            class="card-link"
-            href="insurance.html"
-            aria-label="Open Insurance services"
-          ></a>
-          <div class="card-content">
-            <div class="subject-image">
-              <img src="img insurance.png" alt="" />
-            </div>
-            <p class="subject-name">Insurance Services</p>
-          </div>
-          <span class="arrow-icon" aria-hidden="true">›</span>
-        </div>
-      </section>
+    document.querySelectorAll('.file-list a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
 
-      <!-- Second Feature Card -->
-      <section class="feature-card card">
-        <img
-          src="featureimg.png"
-          alt="Illustration of books and study materials"
-          class="feature-image-lg"
-        />
-        <h2>All Your Study Materials in One Place</h2>
-      </section>
+        // Check if already unlocked
+        if (unlockedFiles.includes(href)) {
+          // Send tracking info for viewing the file
+          const nameInput = localStorage.getItem('currentUser') || 'Anonymous';
+          const formData = new FormData();
+          formData.append('Action', 'ViewFile');
+          formData.append('Name', nameInput);
+          formData.append('File', href);
+          navigator.sendBeacon(GOOGLE_APP_SCRIPT_URL, formData);
+          return; // Let standard navigation proceed
+        }
 
-      <!-- End Card -->
-      <section class="end-card card">
-        <img class="end-media" src="ani.jpg" alt="Person studying diligently" />
-        <div class="end-content">
-          <h3 class="end-headline">Ready to Ace Your Exams?</h3>
-          <p class="end-sub">
-            Our curated question lists have a 92% chance of appearing on your
-            upcoming exams. Start studying smarter, not harder.
-          </p>
-        </div>
-      </section>
-    </main>
-<script>
-    // Simulate blinking effect by adding/removing class
-        setInterval(() => {
-            const blinkingElements = document.querySelectorAll('.blinking-text');
-            blinkingElements.forEach(el => {
-                el.classList.toggle('blink-animation'); // Toggles a class that defines blink
-            });
-        }, 1500); // Every 1.5 seconds
+        e.preventDefault();
+        currentPendingFile = href;
 
-        // Add a class for the actual blink animation in CSS if you prefer
-        // For simplicity, the blink is directly in the CSS @keyframes
+        // Auto-fill name if we know it
+        const savedName = localStorage.getItem('currentUser');
+        if (savedName) {
+          document.getElementById('userNameModal').value = savedName;
+        }
 
-    </script>
-      </script>
-       <script src="track.js"></script>
-  </body>
+        modal.classList.add('active');
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    function shareAndUnlock() {
+      const nameInput = document.getElementById('userNameModal').value.trim();
+      if (!nameInput) {
+        alert("Please enter your name first!");
+        return;
+      }
+
+      // Save user
+      localStorage.setItem('currentUser', nameInput);
+
+      // Fire tracking event for Share
+      const formData = new FormData();
+      formData.append('Action', 'ShareFile');
+      formData.append('Name', nameInput);
+      formData.append('File', currentPendingFile);
+      fetch(GOOGLE_APP_SCRIPT_URL, { method: 'POST', body: formData }).catch(e => console.log(e));
+
+      // WhatsApp Share Link
+      const text = encodeURIComponent("Check out this awesome workshop resource! " + window.location.href);
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${text}`;
+
+      // Mark as unlocked
+      unlockedFiles.push(currentPendingFile);
+      localStorage.setItem('manjeet_unlockedFiles', JSON.stringify(unlockedFiles));
+
+      closeModal();
+
+      // Open WhatsApp in new tab
+      window.open(whatsappUrl, '_blank');
+
+      // Short delay for better UX before navigation on original tab
+      setTimeout(() => {
+        window.location.href = currentPendingFile;
+      }, 1000);
+    }
+  </script>
+</body>
+
 </html>
-
-
-
