@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjeet Enterprises</title>
+    <style>
+	html {
+            font-size: 80%; 
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Apple-style light background with premium light green wood grain texture overlay */
+        body {
+            background-color: #f2f7f4; 
+            background-image: 
+                linear-gradient(rgba(46, 125, 50, 0.02) 1px, transparent 1px),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 100% 4px, auto;
+            color: #1d1d1f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 130px;
+            padding-bottom: 60px;
+            min-height: 100vh;
+        }
+
+        /* iOS Translucent Header with Dotted Cutout Border */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px dashed #000000;
+            padding: 16px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            font-style: italic;
+            letter-spacing: -0.5px;
+            color: #000000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            margin-top: 15px;
+            padding: 35px 24px;
+            border-radius: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            text-align: center;
+        }
+
+        .insta-card {
+            width: 90%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px dashed #000000;
+            margin-bottom: 15px;
+            padding: 30px 24px;
+            border-radius: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Minimalist Premium Notice Board Module Styling */
+        .notice-board {
+            width: 90%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid #000000;
+            margin-bottom: 15px;
+            padding: 20px 22px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
+            text-align: left;
+        }
+
+        .notice-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .notice-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #000000;
+        }
+
+        .live-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ff453a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #ff453a;
+            border-radius: 50%;
+            animation: pulse 1.6s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.9); }
+        }
+
+        .notice-content {
+            font-size: 0.98rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        .notice-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: auto;
+        }
+
+        .notice-action-btn:hover {
+            background-color: #25D366;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
+        }
+
+        .wa-bottom-card {
+            width: 90%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px dashed #000000;
+            margin-top: 25px;
+            padding: 30px 24px;
+            border-radius: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            text-align: center;
+        }
+
+        /* Fixed: Small & Perfectly Circular Profile Framework Layout */
+        .profile-media-frame {
+            width: 85px;
+            height: 85px;
+            border-radius: 50% !important;
+            margin-bottom: 18px;
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.15);
+            overflow: hidden !important;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-media-frame img {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 50% !important;
+            object-fit: contain !important; /* Zooms out so your head isn't cropped */
+            object-position: center !important;
+        }
+
+        .alert-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.45;
+            color: #000000;
+            margin-bottom: 25px;
+            letter-spacing: -0.2px;
+        }
+
+        .insta-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.45;
+            color: #1d1d1f;
+            margin-bottom: 22px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 16px 30px;
+            border-radius: 50px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            letter-spacing: -0.1px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .share-btn {
+            background-color: #25D366;
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+        }
+
+        .share-btn:hover {
+            background-color: #20ba5a;
+            transform: translateY(-1.5px);
+            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.3);
+        }
+
+        .insta-btn {
+            background-color: #007aff;
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.25);
+        }
+
+        .insta-btn:hover {
+            background-color: #0066d6;
+            transform: translateY(-1.5px);
+            box-shadow: 0 10px 28px rgba(0, 122, 255, 0.35);
+        }
+
+        .btn:disabled {
+            background-color: #aeaeb2;
+            color: #f2f2f7;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-step {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .subjects-section h2 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+        }
+
+        .subject-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .subject-item {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            padding: 18px 22px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-align: left;
+            color: #1d1d1f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subject-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .arrow-icon {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #1d1d1f;
+            opacity: 0.25;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .subject-item:hover .arrow-icon {
+            opacity: 0.7;
+            transform: translateX(3px);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            width: 90%;
+            max-width: 440px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 2px dashed #000000;
+            border-radius: 32px;
+            padding: 30px 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-style: italic;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .modal-card p {
+            font-size: 0.95rem;
+            color: #48484a;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #86868b;
+            margin-bottom: 6px;
+            margin-left: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1d1d1f;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            background: #ffffff;
+            border-color: #007aff;
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+        }
+
+        .step-status {
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: block;
+            margin-top: -8px;
+            margin-bottom: 12px;
+            color: #ff453a;
+        }
+
+        .step-status.done {
+            color: #34c759;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Manjeet Enterprises</h1>
+    </header>
+
+    <div class="insta-card">
+        <div class="profile-media-frame">
+            <img src="profile.jpg" alt="manxjeetagain">
+        </div>
+        <p class="insta-text">
+            Do me a favor—don't just grab the papers and run. Follow me on Instagram!
+        </p>
+        <a href="https://www.instagram.com/manxjeetagain/" target="_blank" class="btn insta-btn">
+            Follow on Instagram
+        </a>
+    </div>
+
+    <div class="notice-board">
+        <div class="notice-header">
+            <span class="notice-title">Notice Board</span>
+            <div class="live-tag">
+                <div class="live-dot"></div>Live
+            </div>
+        </div>
+        <div class="notice-content">
+            Right now, predicted questions for only 2 subjects are uploaded. We will be uploading the other papers very soon! If you need early access to the remaining subjects' predicted questions, feel free to contact us directly. 
+        </div>
+        <a href="https://wa.me/9417063467?text=I%20need%20other%20subjects%20questions%20too" target="_blank" class="notice-action-btn">
+            Get other subjects now ↗
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="subjects-section">
+            <h2>Select Subject</h2>
+            <div class="subject-list">
+                <div class="subject-item" data-target="corporate goverance.html">Corporate Governance <span class="arrow-icon">→</span></div>
+                <div class="subject-item" data-target="english.html">English <span class="arrow-icon">→</span></div>
+                <div class="subject-item" data-target="punjabi.html">Punjabi <span class="arrow-icon">→</span></div>
+                <div class="subject-item" data-target="operation_research.html">Operation Research <span class="arrow-icon">→</span></div>
+                <div class="subject-item" data-target="insurance.html">Insurance <span class="arrow-icon">→</span></div>
+                <div class="subject-item" data-target="management_accounting.html">Management Accounting <span class="arrow-icon">→</span></div>
+                <div class="subject-item" data-target="direct_tax_law.html">Direct Tax Law <span class="arrow-icon">→</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wa-bottom-card">
+        <p class="alert-text">
+            Real Legends Share.<br>Don't be a jerk, pass this on!
+        </p>
+        <button id="mainShareBtn" class="btn share-btn">
+            Share via WhatsApp
+        </button>
+    </div>
+
+    <div id="unlockModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3>Unlock Content</h3>
+            <p>Verify your details to gain instant, free access to these study resources.</p>
+            
+            <div class="input-group">
+                <label for="studentName">Full Name</label>
+                <input type="text" id="studentName" class="input-field" placeholder="Enter your full name" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label for="studentRoll">Roll Number</label>
+                <input type="text" id="studentRoll" class="input-field" placeholder="Enter your college roll number" autocomplete="off">
+            </div>
+
+            <button id="taskShareBtn" class="btn share-btn btn-step" disabled>1. Share to WhatsApp Group</button>
+            <span id="waStatus" class="step-status">Required: Share link first</span>
+
+            <button id="taskFollowBtn" class="btn insta-btn btn-step" disabled>2. Follow on Instagram</button>
+            <span id="instaStatus" class="step-status">Required: Follow profile second</span>
+
+            <button id="finalUnlockBtn" class="btn" style="background:#000; color:#fff;" disabled>Access Content</button>
+        </div>
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbyjMncCy_tmKh_LWrBSrfpUuBjvtHngBidVAyWck4ptsvmT9BqaTA0wO2op_2-TEYgIYw/exec";
+
+        const pageLoadTime = Date.now();
+        let selectedTargetUrl = "";
+        let referralName = "Direct/Organic";
+        
+        let hasSharedWA = false;
+        let hasFollowedInsta = false;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('ref') && urlParams.get('ref').trim() !== "") {
+            referralName = urlParams.get('ref').trim();
+        }
+
+        function getHomepageShareLink(senderName) {
+            const rootPath = window.location.origin + window.location.pathname;
+            const absoluteHomepage = rootPath.endsWith('.html') ? rootPath.substring(0, rootPath.lastIndexOf('/')) + '/index.html' : rootPath + '/index.html';
+            return `${absoluteHomepage}?ref=${encodeURIComponent(senderName)}`;
+        }
+
+        const mainShareBtn = document.getElementById('mainShareBtn');
+        if (mainShareBtn) {
+            mainShareBtn.addEventListener('click', function() {
+                const currentSharer = referralName !== "Direct/Organic" ? referralName : "Someone";
+                const publicLink = getHomepageShareLink(currentSharer);
+                const shareMsg = encodeURIComponent("Hey! Grab the predicted exam question papers here. Everything is open layout: " + publicLink);
+                window.open("https://api.whatsapp.com/send?text=" + shareMsg, '_blank');
+            });
+        }
+
+        const subjectItems = document.querySelectorAll('.subject-item');
+        const unlockModal = document.getElementById('unlockModal');
+        const studentNameInput = document.getElementById('studentName');
+        const studentRollInput = document.getElementById('studentRoll');
+        const taskShareBtn = document.getElementById('taskShareBtn');
+        const taskFollowBtn = document.getElementById('taskFollowBtn');
+        const finalUnlockBtn = document.getElementById('finalUnlockBtn');
+        const waStatus = document.getElementById('waStatus');
+        const instaStatus = document.getElementById('instaStatus');
+
+        subjectItems.forEach(item => {
+            item.addEventListener('click', function() {
+                selectedTargetUrl = this.getAttribute('data-target');
+                unlockModal.classList.add('active');
+            });
+        });
+
+        function checkInputs() {
+            const nameValid = studentNameInput.value.trim().length > 2;
+            const rollValid = studentRollInput.value.trim().length > 0;
+            
+            if (nameValid && rollValid) {
+                if (!hasSharedWA) taskShareBtn.disabled = false;
+            } else {
+                taskShareBtn.disabled = true;
+                taskFollowBtn.disabled = true;
+                finalUnlockBtn.disabled = true;
+            }
+        }
+
+        studentNameInput.addEventListener('input', checkInputs);
+        studentRollInput.addEventListener('input', checkInputs);
+
+        taskShareBtn.addEventListener('click', function() {
+            const userName = studentNameInput.value.trim();
+            const fixedHomepageUrl = getHomepageShareLink(userName);
+            const dynamicShareText = encodeURIComponent("Hey! Real legends share. Don't be a jerk, pass this on! Get the predicted questions here: " + fixedHomepageUrl);
+            
+            window.open("https://api.whatsapp.com/send?text=" + dynamicShareText, '_blank');
+            
+            window.addEventListener('focus', function verifyWA() {
+                hasSharedWA = true;
+                waStatus.innerText = "✓ Shared Successfully";
+                waStatus.classList.add('done');
+                taskShareBtn.disabled = true;
+                if (!hasFollowedInsta) taskFollowBtn.disabled = false;
+                if (hasSharedWA && hasFollowedInsta) finalUnlockBtn.disabled = false;
+                window.removeEventListener('focus', verifyWA);
+            });
+        });
+
+        taskFollowBtn.addEventListener('click', function() {
+            window.open("https://www.instagram.com/manxjeetagain/", "_blank");
+            
+            window.addEventListener('focus', function verifyInsta() {
+                if (hasSharedWA) {
+                    hasFollowedInsta = true;
+                    instaStatus.innerText = "✓ Following Verified";
+                    instaStatus.classList.add('done');
+                    taskFollowBtn.disabled = true;
+                    if (hasSharedWA && hasFollowedInsta) finalUnlockBtn.disabled = false;
+                }
+                window.removeEventListener('focus', verifyInsta);
+            });
+        });
+
+        finalUnlockBtn.addEventListener('click', function() {
+            finalUnlockBtn.disabled = true;
+            finalUnlockBtn.innerText = "Processing...";
+
+            const totalTimeSpentSeconds = Math.round((Date.now() - pageLoadTime) / 1000);
+            const formattedName = studentNameInput.value.trim();
+            const formattedRoll = studentRollInput.value.trim();
+
+            localStorage.setItem('studentName', formattedName);
+            localStorage.setItem('studentRoll', formattedRoll);
+            localStorage.setItem('cameByReferrer', referralName);
+
+            const dataPayload = {
+                name: formattedName + " (Roll: " + formattedRoll + ")", // COMBINED to match your 5-column sheet setup perfectly!
+                referredBy: referralName,
+                action: "Document Unlocked",
+                timeSpent: totalTimeSpentSeconds + " seconds"
+            };
+
+            fetch(GOOGLE_SCRIPT_API_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataPayload)
+            })
+            .then(function() { window.location.href = selectedTargetUrl; })
+            .catch(function() { window.location.href = selectedTargetUrl; });
+        });
+
+        unlockModal.addEventListener('click', function(e) {
+            if (e.target === unlockModal) unlockModal.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
